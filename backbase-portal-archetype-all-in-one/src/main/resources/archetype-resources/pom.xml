@@ -11,27 +11,6 @@
     <version>${version}</version>
     <packaging>war</packaging>
 
-    <!-- setup of these repositories is relevant only we use snapshots since repo.backbase.com is configured in profile as default configuration step-->
-    <repositories>
-        <repository>
-            <id>Backbase Artifact Repository</id>
-            <url>https://artifacts.backbase.com/repo</url>
-            <snapshots>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>Backbase Artifact Repository</id>
-            <url>https://artifacts.backbase.com/repo</url>
-            <snapshots>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
     <properties>
         <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
         <project.build.sourceEncoding>${project.build.sourceEncoding}</project.build.sourceEncoding>
@@ -40,11 +19,9 @@
         <!-- Backbase module versions -->
         <portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
         <portal.server.version>${portal.server.version}</portal.server.version>
-        <!--<targeting.version>${targeting.version}</targeting.version>-->
         <portal.client.version>${portal.client.version}</portal.client.version>
         <orchestrator.version>${orchestrator.version}</orchestrator.version>
         <contentservices.version>${contentservices.version}</contentservices.version>
-        <!--<es.portal.demos.version>\${es.portal.demos.version}</es.portal.demos.version>-->
     </properties>
 
     <dependencies>
@@ -299,7 +276,7 @@
                     </connectors>
                     <contextHandlers>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <contextPath>/contentservices</contextPath>
+                            <contextPath>/contentservices-webapp</contextPath>
                             <resourceBase>\${project.basedir}/target/contentservices.war</resourceBase>
                             <configurationClasses>
                                 <configurationClass>org.eclipse.jetty.webapp.WebInfConfiguration</configurationClass>
@@ -313,7 +290,7 @@
                             </configurationClasses>
                         </contextHandler>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <contextPath>/orchestrator</contextPath>
+                            <contextPath>/orchestrator-webapp</contextPath>
                             <resourceBase>\${project.basedir}/target/orchestrator.war</resourceBase>
                             <configurationClasses>
                                 <configurationClass>org.eclipse.jetty.webapp.WebInfConfiguration</configurationClass>
@@ -397,7 +374,7 @@
                     <!-- optional system propoerties you want to add -->
                     <systemProperties>
                         <portalserver.language>en</portalserver.language>
-                        <PORTALSERVER_PROXY_URL>http://localhost:/${port}/portalserver/proxy</PORTALSERVER_PROXY_URL>
+                        <PORTALSERVER_PROXY_URL>http://localhost:${port}/portalserver/proxy</PORTALSERVER_PROXY_URL>
                         <CONTENT_SERVICES_LOG_FOLDER>\${project.build.directory}/logs</CONTENT_SERVICES_LOG_FOLDER>
                     </systemProperties>
                     <!-- if you want to use test dependencies rather than only runtime -->
@@ -412,14 +389,14 @@
                     <webapps>
                         <webapp>
                             <groupId>com.backbase.portal.contentservices</groupId>
-                            <artifactId>contentservices</artifactId>
+                            <artifactId>contentservices-webapp</artifactId>
                             <version>\${contentservices.version}</version>
                             <type>war</type>
                             <asWebapp>true</asWebapp>
                         </webapp>
                         <webapp>
                             <groupId>com.backbase.portal.orchestrator</groupId>
-                            <artifactId>orchestrator</artifactId>
+                            <artifactId>orchestrator-webapp</artifactId>
                             <version>\${orchestrator.version}</version>
                             <type>war</type>
                             <asWebapp>true</asWebapp>
@@ -458,90 +435,6 @@
                         </goals>
                     </execution>
                 </executions>-->
-            </plugin>
-
-            <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>7.3.Final</version>
-                <executions>
-                    <!--<execution>
-                        <id>deploy-h2-driver</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>deploy-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>com.h2database</groupId>
-                            <artifactId>h2</artifactId>
-                            <version>1.3.154</version>
-                            <name>h2.jar</name>
-                        </configuration>
-                    </execution>-->
-                    <!--<execution>
-                        <id>add-portal-datasource</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <address>subsystem=datasources,data-source=java:jboss/portalDS</address>
-                            <resource>
-                                <enable-resource>true</enable-resource>
-                                <properties>
-                                    <jndi-name>java:jboss/portalDS</jndi-name>
-                                    <enabled>true</enabled>
-                                    <connection-url>jdbc:h2:file:data/portalFoundation;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</connection-url>
-                                    <driver-class>org.h2.Driver</driver-class>
-                                    <driver-name>h2</driver-name>
-                                    <security.user-name>sa</security.user-name>
-                                    <security.password></security.password>
-                                    <pool-name>portalFoundationPool</pool-name>
-                                </properties>
-                            </resource>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>add-audit-datasource</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <address>subsystem=datasources,data-source=java:jboss/auditDS</address>
-                            <resource>
-                                <enable-resource>true</enable-resource>
-                                <properties>
-                                    <jndi-name>java:jboss/auditDS</jndi-name>
-                                    <enabled>true</enabled>
-                                    <connection-url>jdbc:h2:file:data/portalFoundation;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</connection-url>
-                                    <driver-class>org.h2.Driver</driver-class>
-                                    <driver-name>h2</driver-name>
-                                    <security.user-name>sa</security.user-name>
-                                    <security.password></security.password>
-                                    <pool-name>portalFoundationPool</pool-name>
-                                </properties>
-                            </resource>
-                        </configuration>
-                    </execution>-->
-                    <!--<execution>
-                        <id>add-backbase-configuration</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <address>subsystem=datasources,data-source=java:jboss/auditDS</address>
-                            <resource>
-                                <enable-resource>true</enable-resource>
-                                <properties>
-                                    <jndi-name>java:jboss/auditDS</jndi-name>
-                                    <enabled>true</enabled>
-                                </properties>
-                            </resource>
-                        </configuration>
-                    </execution>-->
-                </executions>
             </plugin>
 
             <plugin>
@@ -1014,37 +907,5 @@
                 </plugins>
             </build>
         </profile>
-
-        <!--<profile>
-            <id>with-basic-demo</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-
-            <dependencies>
-                <dependency>
-                    <groupId>com.backbase.expert.demos</groupId>
-                    <artifactId>portal-basic-demo</artifactId>
-                    <version>\${es.portal.demos.version}</version>
-                    <type>war</type>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <profile>
-            <id>with-ptc-demo</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-
-            <dependencies>
-                <dependency>
-                    <groupId>com.backbase.expert.demos</groupId>
-                    <artifactId>portal-ptc-demo</artifactId>
-                    <version>\${es.portal.demos.version}</version>
-                    <type>war</type>
-                </dependency>
-            </dependencies>
-        </profile>-->
     </profiles>
 </project>

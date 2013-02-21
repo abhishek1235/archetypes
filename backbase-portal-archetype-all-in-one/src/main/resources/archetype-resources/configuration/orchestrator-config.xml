@@ -43,7 +43,7 @@
         <hostType>CONTENT_SERVICES</hostType>
         <address>localhost</address>
         <port>${port}</port>
-        <contextPath>contentservices/atom</contextPath>
+        <contextPath>contentservices-webapp/atom</contextPath>
         <user>admin</user>
         <password>admin</password>
         <repositoryId>contentRepository</repositoryId>
@@ -57,7 +57,7 @@
             <hostType>ORCHESTRATOR</hostType>
             <address>localhost</address>
             <port>${port}</port>
-            <contextPath>orchestrator</contextPath>
+            <contextPath>orchestrator-webapp</contextPath>
             <user>admin</user>
             <password>admin</password>
         </host>

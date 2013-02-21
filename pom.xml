@@ -4,12 +4,12 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes</artifactId>
-    <version>5.4.0-SNAPSHOT</version>
+    <version>5.3.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>
     <description>A collection of Maven archetypes for Backbase Portal created by Expert Services that can help help with initial project setup.</description>
-    <url>http://www.backbase.com</url>
+    <url>https://github.com/Backbase/archetypes</url>
 
     <properties>
         <!-- Standard Maven settings -->
@@ -31,7 +31,7 @@
         <h2.version>1.3.154</h2.version>
         <javax.mail.version>1.4.3</javax.mail.version>
         <jetty.plugin.version>7.6.4.v20120524</jetty.plugin.version>
-        <tomcat.plugin.version>2.1-SNAPSHOT</tomcat.plugin.version>
+        <tomcat.plugin.version>2.0</tomcat.plugin.version>
         <junit.version>4.8.2</junit.version>
         <groovy.version>1.8.0</groovy.version>
         <port>8080</port>
@@ -47,14 +47,14 @@
 
     <distributionManagement>
          <repository>
-            <id>repo.backbase.com</id>
-            <name>repo.backbase.com-releases</name>
-            <url>https://repo.backbase.com//expert-release-local</url>
+            <id>artifacts.backbase.com</id>
+            <name>artifacts.backbase.com-releases</name>
+            <url>https://artifacts.backbase.com//backbase-ps-releases</url>
         </repository>
         <snapshotRepository>
-            <id>repo.backbase.com</id>
-            <name>repo.backbase.com-snapshots</name>
-            <url>https://repo.backbase.com//expert-snapshot-local</url>
+            <id>artifacts.backbase.com</id>
+            <name>artifacts.backbase.com-snapshots</name>
+            <url>https://artifacts.backbase.com//backbase-ps-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -70,8 +70,8 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <modules>
         <module>backbase-portal-archetype-all-in-one</module>

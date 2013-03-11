@@ -4,7 +4,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes</artifactId>
-    <version>5.4.0-SNAPSHOT</version>
+    <version>5.4.0.5</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>
@@ -72,7 +72,7 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>tag-archetypes-5.4.0.5.</tag>
+        <tag>tag-archetypes-5.4.0.5</tag>
     </scm>
 
     <modules>

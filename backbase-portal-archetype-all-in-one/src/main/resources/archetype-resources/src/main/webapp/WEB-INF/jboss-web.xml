@@ -18,11 +18,11 @@
     -->
     <resource-env-ref>
         <resource-env-ref-name>backbase/config</resource-env-ref-name>
-        <jndi-name>backbase/config</jndi-name>
+        <jndi-name>java:/backbase/config</jndi-name>
     </resource-env-ref>
     <resource-env-ref>
         <resource-env-ref-name>portalmanager/ice-config</resource-env-ref-name>
-        <jndi-name>portalmanager/ice-config</jndi-name>
+        <jndi-name>java:/portalmanager/ice-config</jndi-name>
     </resource-env-ref>
 
 </jboss-web>

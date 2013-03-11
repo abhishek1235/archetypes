@@ -4,7 +4,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes</artifactId>
-    <version>5.4.0-SNAPSHOT</version>
+    <version>5.3.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>
@@ -19,12 +19,11 @@
         <maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
         
         <!-- Backbase dependency versions -->
-        <portal.server.version>5.4.0.5</portal.server.version>
+        <portal.dashboard.version>5.3.1.1</portal.dashboard.version>
+        <portal.server.version>5.3.1.1</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
-        <portal.dashboard.version>5.4.0.5</portal.dashboard.version>
-        <targeting.version>5.4.0.5</targeting.version>
-        <contentservices.version>5.4.0.5</contentservices.version>
-        <orchestrator.version>5.4.0.5</orchestrator.version>
+        <contentservices.version>5.3.0.0</contentservices.version>
+        <orchestrator.version>5.3.1.0</orchestrator.version>
         
         <!-- Third party dependency versions -->
         <springframework.version>3.1.0.RELEASE</springframework.version>
@@ -35,7 +34,6 @@
         <tomcat.plugin.version>2.0</tomcat.plugin.version>
         <junit.version>4.8.2</junit.version>
         <groovy.version>1.8.0</groovy.version>
-        <httpclient.version>3.1</httpclient.version>
         <port>8080</port>
         <java.target.version>1.6</java.target.version>
     </properties>
@@ -72,12 +70,11 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>tag-archetypes-5.4.0.5.</tag>
+        <tag>tag-archetypes-5.3.1.1.</tag>
     </scm>
 
     <modules>
         <module>backbase-portal-archetype-all-in-one</module>
-        <module>backbase-contentservices-archetype</module>
     </modules>
 
      <build>

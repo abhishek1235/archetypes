@@ -20,7 +20,7 @@
         <td><img src="<c:url value="/static/default/media/BB_logo_.png"/>"/></td>
         <td>
             <sec:authorize ifNotGranted="role_anonymous"><a href="<c:url value="/j_spring_security_logout"/>">logout</a></sec:authorize>
-            <sec:authentication property="name"/>
+            <c:out value="${username}"/>
         </td>
     </tr>
 </table>

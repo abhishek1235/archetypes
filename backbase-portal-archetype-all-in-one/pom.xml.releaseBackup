@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>archetypes</artifactId>
-        <version>5.4.0-SNAPSHOT</version>
+        <version>5.3.1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>backbase-portal-archetype-all-in-one</artifactId>
@@ -21,32 +21,26 @@
             <artifactId>resources</artifactId>
             <classifier>database-scripts</classifier>
             <type>zip</type>
-            <version>${portal.server.version}</version>
+            <version>5.3.1.1</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.foundation</groupId>
             <artifactId>webapp</artifactId>
             <type>zip</type>
-            <version>${portal.server.version}</version>
+            <version>5.3.1.1</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.contentservices</groupId>
             <artifactId>repository</artifactId>
             <classifier>ddl-scripts</classifier>
             <type>zip</type>
-            <version>${contentservices.version}</version>
+            <version>5.3.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.orchestrator</groupId>
             <artifactId>resources</artifactId>
             <type>zip</type>
-            <version>${orchestrator.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.backbase.portal.targeting</groupId>
-            <artifactId>connectorframework-examples</artifactId>
-            <version>${targeting.version}</version>
-            <classifier>sources</classifier>
+            <version>5.3.1.0</version>
         </dependency>
     </dependencies>
 
@@ -111,20 +105,6 @@
                                     <artifactId>resources</artifactId>
                                     <type>zip</type>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration/scripts/orchestrator</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.backbase.portal.targeting</groupId>
-                                    <artifactId>connectorframework-examples</artifactId>
-                                    <classifier>sources</classifier>
-                                    <includes> **\/targeting-connectorframework.xml</includes>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.backbase.portal.targeting</groupId>
-                                    <artifactId>connectorframework-examples</artifactId>
-                                    <classifier>sources</classifier>
-                                    <includes> **\/WeatherContextCollector.java</includes>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/java</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>

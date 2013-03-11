@@ -39,6 +39,11 @@
         <file>backbase.com.2012.nexus/template-containers.xml</file>
         <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
     </templates>
+    <!-- Darts -->
+    <templates>
+        <file>backbase.com.2012.darts/template-containers.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
     <!-- ** SERVER CATALOG CONTAINERS ** -->
     <!-- Nexus / Navigation -->
     <containers>
@@ -54,6 +59,11 @@
     <containers>
         <file>backbase.com.2012.aurora/catalog-containers-adminDesignerOnly.xml</file>
     </containers>
+    <!-- Darts -->
+    <containers>
+        <file>backbase.com.2012.darts/catalog-containers.xml</file>
+    </containers>
+
     <!-- ** SERVER CATALOG WIDGETS ** -->
     <!-- ICE -->
     <widgets>

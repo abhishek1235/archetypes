@@ -13,7 +13,7 @@
 
     <name>Backbase Portal Content Services Archetype</name>
     <description>A blank Maven archetype for the Backbase Portal Content Services.</description>
-    <url>http://www.backbase.com</url>
+    <url>https://github.com/Backbase/archetypes</url>
 
     <dependencies>
         <dependency>

@@ -30,7 +30,7 @@
             <name>PortalServer</name>
             <hostType>PORTAL_SERVER</hostType>
             <address>localhost</address>
-            <port>${port}</port>
+            <port>${portal.port}</port>
             <contextPath>portalserver</contextPath>
             <user>sys2sys</user>
             <password>sys2sys</password>
@@ -42,7 +42,7 @@
         <name>ContentServices</name>
         <hostType>CONTENT_SERVICES</hostType>
         <address>localhost</address>
-        <port>${port}</port>
+        <port>${contentservices.port}</port>
         <contextPath>contentservices-webapp/atom</contextPath>
         <user>admin</user>
         <password>admin</password>
@@ -56,7 +56,7 @@
             <name>Orchestrator</name>
             <hostType>ORCHESTRATOR</hostType>
             <address>localhost</address>
-            <port>${port}</port>
+            <port>${orchestrator.port}</port>
             <contextPath>orchestrator-webapp</contextPath>
             <user>admin</user>
             <password>admin</password>

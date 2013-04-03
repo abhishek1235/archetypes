@@ -1,5 +1,7 @@
 # Archetype backbase-portal-archetype-all-in-one
 
+Version **5.4.0.6**
+
 ##Overview
 A blank Maven archetype for the Backbase Portal server running on a single JVM instance. This archetype contains integrated Mashup Services, Content Services and Orchestrator with necessery configuration files already pre-configured.
 
@@ -28,9 +30,9 @@ Following steps are replacing/complementing 13 steps described in Development Se
 2. All is the same except that we ned to use this archetype, so Maven command would look like this:  
     <pre>
     $ mvn archetype:generate
-        -DarchetypeArtifactId=archetype-name
-        -DarchetypeGroupId=com.backbase.expert.tools.archetypes
-        -DarchetypeVersion=archetype-version
+        -DarchetypeArtifactId=backbase-portal-archetype-all-in-one
+        -DarchetypeGroupId=com.backbase.expert.tools
+        -DarchetypeVersion=5.4.0.6
     </pre>
 3. As-is.
 4. As-is.

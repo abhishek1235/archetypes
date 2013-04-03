@@ -1,4 +1,4 @@
-package my.company.contentservices;
+package my.company.mashupservices;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class InstallationValidationTestST {
     @Test
     public void basicValidation() throws IOException {
         // request url assuming default set up
-        String url = "http://localhost:8080/contentservices-webapp/atom";
+        String url = "http://localhost:8080/mashupservices-webapp/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/";
 
         // set up the getMethod
         GetMethod get = new GetMethod(url);

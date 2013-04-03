@@ -24,7 +24,7 @@
 
     <context-param>
         <param-name>com.backbase.portal.ptc.web.PROPERTIES_FILE</param-name>
-        <param-value>classpath:/ice-config.properties,jndi:java:comp/env/portalmanager/ice-config</param-value>
+        <param-value>classpath:/ptc-server.properties,classpath:/ice-config.properties,jndi:java:comp/env/portalmanager/ice-config</param-value>
     </context-param>
     <env-entry>
         <env-entry-name>portalmanager/ice-config</env-entry-name>

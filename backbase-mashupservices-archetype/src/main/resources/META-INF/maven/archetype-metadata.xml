@@ -13,9 +13,6 @@
         <fileSet filtered="false" encoding="UTF-8">
             <directory>configuration/tomcat</directory>
         </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>tools</directory>
-        </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>src/test/resources</directory>
         </fileSet>
@@ -24,12 +21,6 @@
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory>src/main/webapp</directory>
-        </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/dashboardResources</directory>
-        </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/coreResources</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8" packaged="false">
             <directory>src/main/java</directory>

@@ -19,12 +19,14 @@
         <maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
         
         <!-- Backbase dependency versions -->
-        <portal.server.version>5.4.0.5</portal.server.version>
+        <portal.server.version>5.4.0.6</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
-        <portal.dashboard.version>5.4.0.5</portal.dashboard.version>
-        <targeting.version>5.4.0.5</targeting.version>
+        <portal.dashboard.version>5.4.0.6</portal.dashboard.version>
+        <mashupservices.version>5.4.0.2</mashupservices.version>
+        <targeting.version>5.4.0.6</targeting.version>
         <contentservices.version>5.4.0.5</contentservices.version>
-        <orchestrator.version>5.4.0.5</orchestrator.version>
+        <orchestrator.version>5.4.0.6</orchestrator.version>
+        <tools.version>5.4.0.2</tools.version>
         
         <!-- Third party dependency versions -->
         <springframework.version>3.1.0.RELEASE</springframework.version>
@@ -36,7 +38,14 @@
         <junit.version>4.8.2</junit.version>
         <groovy.version>1.8.0</groovy.version>
         <httpclient.version>3.1</httpclient.version>
-        <port>8080</port>
+        <portal.port>8080</portal.port>
+        <portal.port.stop>9996</portal.port.stop>
+        <contentservices.port>8080</contentservices.port>
+        <contentservices.port.stop>9997</contentservices.port.stop>
+        <mashupservices.port>8080</mashupservices.port>
+        <mashupservices.port.stop>9998</mashupservices.port.stop>
+        <orchestrator.port>8080</orchestrator.port>
+        <orchestrator.port.stop>9999</orchestrator.port.stop>
         <java.target.version>1.6</java.target.version>
     </properties>
 
@@ -48,15 +57,15 @@
     </repositories>
 
     <distributionManagement>
-         <repository>
-            <id>artifacts.backbase.com</id>
-            <name>artifacts.backbase.com-releases</name>
-            <url>https://artifacts.backbase.com//backbase-ps-releases</url>
+        <repository>
+            <id>repo.backbase.com</id>
+            <name>repo.backbase.com-releases</name>
+            <url>https://repo.backbase.com/extensions</url>
         </repository>
         <snapshotRepository>
             <id>artifacts.backbase.com</id>
             <name>artifacts.backbase.com-snapshots</name>
-            <url>https://artifacts.backbase.com//backbase-ps-snapshots</url>
+            <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -78,6 +87,7 @@
     <modules>
         <module>backbase-portal-archetype-all-in-one</module>
         <module>backbase-contentservices-archetype</module>
+        <module>backbase-mashupservices-archetype</module>
     </modules>
 
      <build>

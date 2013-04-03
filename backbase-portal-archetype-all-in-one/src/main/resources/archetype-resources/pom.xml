@@ -287,7 +287,7 @@
                 <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
-                    <stopPort>9999</stopPort>
+                    <stopPort>${portal.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
                     <webAppConfig>
@@ -299,7 +299,7 @@
                     </webAppConfig>
                     <connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${port}</port>
+                            <port>${portal.port}</port>
                         </connector>
                     </connectors>
                     <contextHandlers>
@@ -341,6 +341,10 @@
                             <name>CONTENT_SERVICES_LOG_FOLDER</name>
                             <value>${project.build.directory}/logs</value>
                         </systemProperty>
+                        <!--<systemProperty>
+                            <name>PORTALSERVER_PROXY_URL</name>
+                            <value>http://localhost:${mashupservices.port}/mashupservices-webapp/proxy</value>
+                        </systemProperty>-->
                     </systemProperties>
                     <reload>manual</reload>
                 </configuration>
@@ -390,7 +394,7 @@
                 <version>${tomcat.plugin.version}</version>
                 <configuration>
                     <!-- http port -->
-                    <port>${port}</port>
+                    <port>${portal.port}</port>
                     <!--<tomcat-url>http://localhost:8080/manager/html</tomcat-url>-->
                     <!-- application path always starts with /-->
                     <!--<path>/\${project.build.finalName}</path>-->
@@ -403,6 +407,7 @@
                     <systemProperties>
                         <portalserver.language>en</portalserver.language>
                         <CONTENT_SERVICES_LOG_FOLDER>\${project.build.directory}/logs</CONTENT_SERVICES_LOG_FOLDER>
+                        <!--<PORTALSERVER_PROXY_URL>http://localhost:${mashupservices.port}/mashupservices-webapp/proxy</PORTALSERVER_PROXY_URL>-->
                     </systemProperties>
                     <!-- if you want to use test dependencies rather than only runtime -->
                     <useTestClasspath>false</useTestClasspath>

@@ -17,14 +17,14 @@
         <project.reporting.outputEncoding>${project.reporting.outputEncoding}</project.reporting.outputEncoding>
 
         <!-- Backbase module versions -->
-        <contentservices.version>${contentservices.version}</contentservices.version>
+        <mashupservices.version>${mashupservices.version}</mashupservices.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.backbase.portal.contentservices</groupId>
-            <artifactId>contentservices-webapp</artifactId>
-            <version>\${contentservices.version}</version>
+            <groupId>com.backbase.services.mashup</groupId>
+            <artifactId>mashup-web</artifactId>
+            <version>\${mashupservices.version}</version>
             <type>war</type>
         </dependency>
     
@@ -86,24 +86,18 @@
                 <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
-                    <stopPort>${contentservices.port.stop}</stopPort>
+                    <stopPort>${mashupservices.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
                     <webAppConfig>
                         <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
-                        <contextPath>/contentservices-webapp</contextPath>
+                        <contextPath>/mashupservices-webapp</contextPath>
                     </webAppConfig>
                     <connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${contentservices.port}</port>
+                            <port>${mashupservices.port}</port>
                         </connector>
                     </connectors>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>CONTENT_SERVICES_LOG_FOLDER</name>
-                            <value>${project.build.directory}/logs</value>
-                        </systemProperty>
-                    </systemProperties>
                 </configuration>
                 <executions>
                     <execution>
@@ -151,19 +145,15 @@
                 <version>${tomcat.plugin.version}</version>
                 <configuration>
                     <!-- http port -->
-                    <port>${port}</port>
+                    <port>${mashupservices.port}</port>
                     <!--<tomcat-url>http://localhost:8080/manager/html</tomcat-url>-->
                     <!-- application path always starts with /-->
                     <!--<path>/\${project.build.finalName}</path>-->
-                    <path>/contentservices-webapp</path>
+                    <path>/mashupservices-webapp</path>
                     <!-- optional, needed only if you want to use a preconfigured server.xml file -->
                     <!-- <serverXml>\${project.build.testOutputDirectory}/configuration/tomcat/server.xml</serverXml>-->
                     <!-- optional path to a context file -->
                     <contextFile>\${project.build.testOutputDirectory}/configuration/tomcat/context.xml</contextFile>
-                    <!-- optional system propoerties you want to add -->
-                    <systemProperties>
-                        <CONTENT_SERVICES_LOG_FOLDER>\${project.build.directory}/logs</CONTENT_SERVICES_LOG_FOLDER>
-                    </systemProperties>
                     <!-- if you want to use test dependencies rather than only runtime -->
                     <useTestClasspath>false</useTestClasspath>
                     <!-- optional if you want to add some extra directories into the classloader -->
@@ -243,11 +233,6 @@
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>2.3</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>1.4</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -260,155 +245,6 @@
             </activation>
 
             <!--TODO create distribution-->
-        </profile>
-
-        <profile>
-            <id>create-database</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>sql-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>createContentServicesConfiguration</id>
-                                <phase>clean</phase>
-                                <goals>
-                                    <goal>execute</goal>
-                                </goals>
-                                <configuration>
-                                    <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesConfiguration</url>
-                                    <username>sa</username>
-                                    <password></password>
-                                    <srcFiles>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/create-schema-bbcs.sql</srcFile>
-                                    </srcFiles>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>createContentServicesContent</id>
-                                <phase>clean</phase>
-                                <goals>
-                                    <goal>execute</goal>
-                                </goals>
-                                <configuration>
-                                    <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesContent</url>
-                                    <username>sa</username>
-                                    <password></password>
-                                    <srcFiles>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/create-schema-bbcs.sql</srcFile>
-                                    </srcFiles>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>createContentServicesResource</id>
-                                <phase>clean</phase>
-                                <goals>
-                                    <goal>execute</goal>
-                                </goals>
-                                <configuration>
-                                    <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesResource</url>
-                                    <username>sa</username>
-                                    <password></password>
-                                    <srcFiles>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/create-schema-bbcs.sql</srcFile>
-                                    </srcFiles>
-                                </configuration>
-                            </execution>
-                        </executions>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.h2database</groupId>
-                                <artifactId>h2</artifactId>
-                                <version>${h2.version}</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
         </profile> 
-
-        <profile>
-            <id>clean-database</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>sql-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>cleanContentServicesConfiguration</id>
-                                <phase>clean</phase>
-                                <goals>
-                                    <goal>execute</goal>
-                                </goals>
-                                <configuration>
-                                    <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesConfiguration</url>
-                                    <username>sa</username>
-                                    <password></password>
-                                    <srcFiles>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/drop-schema-bbcs.sql</srcFile>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/create-schema-bbcs.sql</srcFile>
-                                    </srcFiles>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>cleanContentServicesContent</id>
-                                <phase>clean</phase>
-                                <goals>
-                                    <goal>execute</goal>
-                                </goals>
-                                <configuration>
-                                    <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesContent</url>
-                                    <username>sa</username>
-                                    <password></password>
-                                    <srcFiles>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/drop-schema-bbcs.sql</srcFile>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/create-schema-bbcs.sql</srcFile>
-                                    </srcFiles>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>cleanContentServicesResource</id>
-                                <phase>clean</phase>
-                                <goals>
-                                    <goal>execute</goal>
-                                </goals>
-                                <configuration>
-                                    <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesResource</url>
-                                    <username>sa</username>
-                                    <password></password>
-                                    <srcFiles>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/drop-schema-bbcs.sql</srcFile>
-                                        <srcFile>\${project.basedir}/configuration/scripts/contentservices/h2/create-schema-bbcs.sql</srcFile>
-                                    </srcFiles>
-                                </configuration>
-                            </execution>
-                        </executions>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.h2database</groupId>
-                                <artifactId>h2</artifactId>
-                                <version>${h2.version}</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>  
     </profiles>
 </project>

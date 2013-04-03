@@ -13,7 +13,7 @@
 
     <name>Backbase Portal All-In-One Archetype</name>
     <description>A blank Maven archetype for the Backbase Portal server running on a single JVM instance. This one contains integrated Mashup Services, Content Services and Orchestrator with necessery configuration files already there.</description>
-    <url>http://www.backbase.com</url>
+    <url>https://github.com/Backbase/archetypes</url>
 
     <dependencies>
         <dependency>
@@ -23,7 +23,7 @@
             <type>zip</type>
             <version>${portal.server.version}</version>
         </dependency>
-        <dependency>
+        <dependency><!-- missing in repo.backbase.com-->
             <groupId>com.backbase.portal.foundation</groupId>
             <artifactId>webapp</artifactId>
             <type>zip</type>
@@ -47,6 +47,19 @@
             <artifactId>connectorframework-examples</artifactId>
             <version>${targeting.version}</version>
             <classifier>sources</classifier>
+        </dependency>
+        <dependency><!-- missing in repo.backbase.com-->
+            <groupId>com.backbase.portal.manager</groupId>
+            <artifactId>resources</artifactId>
+            <type>zip</type>
+            <version>${portal.dashboard.version}</version>
+        </dependency>
+        <dependency><!-- missing in repo.backbase.com-->
+            <groupId>com.backbase.portal.tools</groupId>
+            <artifactId>importer</artifactId>
+            <type>jar</type>
+            <version>${tools.version}</version>
+            <classifier>jar-with-dependencies</classifier>
         </dependency>
     </dependencies>
 
@@ -94,12 +107,6 @@
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration/scripts/foundation</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>com.backbase.portal.foundation</groupId>
-                                    <artifactId>webapp</artifactId>
-                                    <type>zip</type>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/webapp</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
                                     <groupId>com.backbase.portal.contentservices</groupId>
                                     <artifactId>repository</artifactId>
                                     <classifier>ddl-scripts</classifier>
@@ -111,6 +118,23 @@
                                     <artifactId>resources</artifactId>
                                     <type>zip</type>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration/scripts/orchestrator</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-various-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>webapp</artifactId>
+                                    <type>zip</type>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/webapp</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.backbase.portal.targeting</groupId>
@@ -125,6 +149,31 @@
                                     <classifier>sources</classifier>
                                     <includes> **\/WeatherContextCollector.java</includes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/java</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.manager</groupId>
+                                    <artifactId>resources</artifactId>
+                                    <type>zip</type>
+                                    <includes> **\/uiEditingOptions.js</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-portal-tools</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.tools</groupId>
+                                    <artifactId>importer</artifactId>
+                                    <type>jar</type>
+                                    <classifier>jar-with-dependencies</classifier>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/tools</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>

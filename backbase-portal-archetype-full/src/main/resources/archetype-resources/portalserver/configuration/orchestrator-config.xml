@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <name>Orchestrator</name>
+    <description>This Orchestrator publishes within one environment to multiple portals.</description>
+    <editorial>true</editorial>
+
+    <!-- This location is used to store publishing bundles -->
+    <fileStoreLocation>data/fileStore</fileStoreLocation>
+    <bundleStreamBufferSize>1024</bundleStreamBufferSize>
+
+    <!-- This username and password will be used to connect to this orchestrator -->
+    <username>admin</username>
+    <password>admin</password>
+
+    <!-- Portal Server Groups that are allowed to approve -->
+    <approvalGroups>
+        <approvalGroup>admin</approvalGroup>
+        <approvalGroup>approvers</approvalGroup>
+    </approvalGroups>
+
+    <!-- Portal Server Groups that are allowed to publish -->
+    <publishGroups>
+        <publishGroup>admin</publishGroup>
+        <publishGroup>publishers</publishGroup>
+    </publishGroups>
+
+    <!-- Portal Server hosts for this orchestrator -->
+    <hosts>
+        <host>
+            <name>PortalServer</name>
+            <hostType>PORTAL_SERVER</hostType>
+            <address>localhost</address>
+            <port>${portal.port}</port>
+            <contextPath>portalserver</contextPath>
+            <user>sys2sys</user>
+            <password>sys2sys</password>
+        </host>
+    </hosts>
+
+    <!-- The Content Services host for this orchestrator -->
+    <cmsHost>
+        <name>ContentServices</name>
+        <hostType>CONTENT_SERVICES</hostType>
+        <address>localhost</address>
+        <port>${contentservices.port}</port>
+        <contextPath>contentservices-webapp/atom</contextPath>
+        <user>admin</user>
+        <password>admin</password>
+        <repositoryId>contentRepository</repositoryId>
+        <lockStrategy>checkoutlocking</lockStrategy>
+    </cmsHost>
+
+    <!-- Publishing targets for this orchestrator -->
+    <targetOrchestrators>
+        <host>
+            <name>Orchestrator</name>
+            <hostType>ORCHESTRATOR</hostType>
+            <address>localhost</address>
+            <port>${orchestrator.port}</port>
+            <contextPath>orchestrator-webapp</contextPath>
+            <user>admin</user>
+            <password>admin</password>
+        </host>
+    </targetOrchestrators>
+
+    <publishChains>
+        <publishChain>
+            <publishChainName>Self - Direct</publishChainName>
+            <publishChainElements>
+                <publishChainElement>
+                    <targetOrchestrator>Orchestrator</targetOrchestrator>
+                    <requiresApproval>false</requiresApproval>
+                    <portalMappings>
+                        <portalMapping>
+                            <sourcePortal>my-portal</sourcePortal>
+                            <targetPortal>my-portal-live</targetPortal>
+                        </portalMapping>
+                    </portalMappings>
+                </publishChainElement>
+            </publishChainElements>
+        </publishChain>
+        <publishChain>
+            <publishChainName>Self - Approval on Package</publishChainName>
+            <publishChainElements>
+                <publishChainElement>
+                    <targetOrchestrator>Orchestrator</targetOrchestrator>
+                    <requiresApproval>false</requiresApproval>
+                    <portalMappings>
+                        <portalMapping>
+                            <sourcePortal>my-portal</sourcePortal>
+                            <targetPortal>my-portal-staging</targetPortal>
+                        </portalMapping>
+                    </portalMappings>
+                    <publishChainElements>
+                        <publishChainElement>
+                            <targetOrchestrator>Orchestrator</targetOrchestrator>
+                            <requiresApproval>false</requiresApproval>
+                            <portalMappings>
+                                <portalMapping>
+                                    <sourcePortal>my-portal</sourcePortal>
+                                    <targetPortal>my-portal-live</targetPortal>
+                                </portalMapping>
+                            </portalMappings>
+                        </publishChainElement>
+                    </publishChainElements>
+                </publishChainElement>
+            </publishChainElements>
+        </publishChain>
+        <publishChain>
+            <publishChainName>Self - Approval on Pages</publishChainName>
+            <publishChainElements>
+                <publishChainElement>
+                    <targetOrchestrator>Orchestrator</targetOrchestrator>
+                    <requiresApproval>true</requiresApproval>
+                    <portalMappings>
+                        <portalMapping>
+                            <sourcePortal>my-portal</sourcePortal>
+                            <targetPortal>my-portal-staging</targetPortal>
+                        </portalMapping>
+                    </portalMappings>
+                    <publishChainElements>
+                        <publishChainElement>
+                            <targetOrchestrator>Orchestrator</targetOrchestrator>
+                            <requiresApproval>false</requiresApproval>
+                            <portalMappings>
+                                <portalMapping>
+                                    <sourcePortal>my-portal</sourcePortal>
+                                    <targetPortal>my-portal-live</targetPortal>
+                                </portalMapping>
+                            </portalMappings>
+                        </publishChainElement>
+                    </publishChainElements>
+                </publishChainElement>
+            </publishChainElements>
+        </publishChain>
+    </publishChains>
+</configuration>

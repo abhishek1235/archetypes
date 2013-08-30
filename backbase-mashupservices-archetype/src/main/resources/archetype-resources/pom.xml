@@ -18,6 +18,9 @@
 
         <!-- Backbase module versions -->
         <mashupservices.version>${mashupservices.version}</mashupservices.version>
+
+        <!-- Folder where H2 and binary data is stored-->
+        <portal.data.dir>\${project.basedir}/data</portal.data.dir>
     </properties>
 
     <dependencies>

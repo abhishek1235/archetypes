@@ -1,0 +1,74 @@
+<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+                      name="Backbase Portal All-In-One Archetype">
+
+    <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>portalserver</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portalserver/configuration</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portalserver/configuration/jetty</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portalserver/configuration/tomcat</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portalserver/tools</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>portalserver/src/test/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8" packaged="true">
+            <directory>portalserver/src/test/java</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portalserver/src/main/webapp</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portalserver/src/main/dashboardResources</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portalserver/src/main/coreResources</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8" packaged="false">
+            <directory>portalserver/src/main/java</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>portalserver/src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>portalserver/src/main/resources/import</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>portalserver/src/main/resources/import/launchpad</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>theme</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>theme/configuration</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>theme/configuration/jetty</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>theme/src/main/webapp</directory>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.expert.tools</groupId>
+        <artifactId>archetypes</artifactId>
+        <version>5.4.0.7-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>backbase-portal-archetype-full</artifactId>
+    <packaging>maven-archetype</packaging>
+
+    <name>Backbase Portal Full Archetype</name>
+    <description>A blank Maven archetype for the Backbase Portal server based on parent POM concept.</description>
+    <url>https://github.com/Backbase/archetypes</url>  
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.portal.foundation</groupId>
+            <artifactId>resources</artifactId>
+            <classifier>database-scripts</classifier>
+            <type>zip</type>
+            <version>${portal.server.version}</version>
+        </dependency>
+        <dependency><!-- missing in repo.backbase.com-->
+            <groupId>com.backbase.portal.foundation</groupId>
+            <artifactId>webapp</artifactId>
+            <type>zip</type>
+            <version>${portal.server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.contentservices</groupId>
+            <artifactId>repository</artifactId>
+            <classifier>ddl-scripts</classifier>
+            <type>zip</type>
+            <version>${contentservices.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.orchestrator</groupId>
+            <artifactId>resources</artifactId>
+            <type>zip</type>
+            <version>${orchestrator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.targeting</groupId>
+            <artifactId>connectorframework-examples</artifactId>
+            <version>${targeting.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency><!-- missing in repo.backbase.com-->
+            <groupId>com.backbase.portal.manager</groupId>
+            <artifactId>resources</artifactId>
+            <type>zip</type>
+            <version>${portal.dashboard.version}</version>
+        </dependency>
+        <dependency><!-- missing in repo.backbase.com-->
+            <groupId>com.backbase.portal.tools</groupId>
+            <artifactId>importer</artifactId>
+            <type>jar</type>
+            <version>${tools.version}</version>
+            <classifier>jar-with-dependencies</classifier>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources/</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>2.1</version>
+            </extension>
+        </extensions>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-resources-for-clean-database</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>resources</artifactId>
+                                    <classifier>database-scripts</classifier>
+                                    <type>zip</type>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portalserver/configuration/scripts/foundation</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.contentservices</groupId>
+                                    <artifactId>repository</artifactId>
+                                    <classifier>ddl-scripts</classifier>
+                                    <type>zip</type>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/contentservices/configuration/scripts/contentservices</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.orchestrator</groupId>
+                                    <artifactId>resources</artifactId>
+                                    <type>zip</type>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/orchestrator/configuration/scripts/orchestrator</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-various-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>webapp</artifactId>
+                                    <type>zip</type>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portalserver/src/main/webapp</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.targeting</groupId>
+                                    <artifactId>connectorframework-examples</artifactId>
+                                    <classifier>sources</classifier>
+                                    <includes> **\/targeting-connectorframework.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portalserver/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.targeting</groupId>
+                                    <artifactId>connectorframework-examples</artifactId>
+                                    <classifier>sources</classifier>
+                                    <includes> **\/WeatherContextCollector.java</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portalserver/src/main/java</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.manager</groupId>
+                                    <artifactId>resources</artifactId>
+                                    <type>zip</type>
+                                    <includes> **\/uiEditingOptions.js</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portalserver/configuration</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-portal-tools</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.tools</groupId>
+                                    <artifactId>importer</artifactId>
+                                    <type>jar</type>
+                                    <classifier>jar-with-dependencies</classifier>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/tools</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Do a mvn release:prepare and a mvn release:perform if you want to release -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <!-- During release:perform, enable the "release" profile -->
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,59 @@
+<proxy>
+    <pipe name="mustachePipe">
+        <cache referenceId="mustache-cache"/>
+        <data-provider id="mustacheRenderedDataProvider"
+                       class="com.backbase.portal.ptc.provider.impl.MustacheRendererDataProvider">
+            <param name="cmisServerUrl" value="${cmisServerUrl}"/>
+            <param name="repositoryId" value="${cmisRepositoryId}"/>
+            <param name="username" value="${cmisUsername}"/>
+            <param name="password" value="${cmisPassword}"/>
+            <param name="portalServerUrl" value="${portalServerUrl}"/>
+        </data-provider>
+    </pipe>
+
+    <pipe name="samplePipe">
+        <cache referenceId="defaultCache"/>
+        <data-provider id="sampleRenderedDataProvider" class="com.backbase.portal.ptc.provider.impl.SampleDataProvider"/>
+    </pipe>
+	<pipe name="rss">
+        <response-transform>
+            <transform
+                class="com.backbase.portal.ptc.transform.response.impl.XSLTTransformer">
+                <param name="xsltFile" value="/static/backbase.com.2012.sabre/widgets/RSS/xsl/rss2html.xsl" />
+                <param name="cacheXSLFile" value="true" />
+            </transform>
+            <transform
+                class="com.backbase.portal.ptc.transform.response.impl.SetHeaderResponseTransformer">
+                <param name="Cache-Control" value="no-cache" />
+                <param name="Pragma" value="no-cache" />
+                <param name="Expires" value="-1" />
+            </transform>
+        </response-transform>
+    </pipe>
+
+	<cache id="mustache-cache" enabled="true">
+        <param name="maxElementsInMemory" value="100000"/>
+        <param name="memoryStoreEvictionPolicy" value="LRU"/>
+        <param name="isOverflowToDisk" value="false"/>
+        <param name="diskStorePath" value=""/>
+        <param name="isEternal" value="false"/>
+        <param name="isDiskPersistent" value="false"/>
+        <param name="timeToLiveSeconds" value="3600"/>
+        <param name="getTimeToIdleInSeconds" value="3600"/>
+        <param name="diskExpiryThreadIntervalSeconds" value="7200"/>
+        <param name="maxElementsOnDisk" value="10000000"/>
+        <param name="diskSpoolBufferSizeMB" value="30"/>
+    </cache>
+
+    <cache id="defaultCache">
+        <param name="memoryStoreEvictionPolicy" value="LRU"/>
+        <param name="isOverflowToDisk" value="false"/>
+        <param name="diskStorePath" value="c:/proxy"/>
+        <param name="isEternal" value="false"/>
+        <param name="timeToLiveSeconds" value="100000000"/>
+        <param name="isDiskPersistent" value="true"/>
+        <param name="diskExpiryThreadIntervalSeconds" value="10000"/>
+        <param name="maxElementsOnDisk" value="100000"/>
+        <param name="diskSpoolBufferSizeMB" value="30"/>
+    </cache>
+</proxy>

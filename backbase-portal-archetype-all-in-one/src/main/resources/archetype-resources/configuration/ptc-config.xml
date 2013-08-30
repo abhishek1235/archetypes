@@ -1,8 +1,7 @@
 <proxy>
     <pipe name="mustachePipe">
         <cache referenceId="mustache-cache"/>
-        <data-provider id="mustacheRenderedDataProvider"
-                       class="com.backbase.portal.ptc.provider.impl.MustacheRendererDataProvider">
+        <data-provider id="mustacheRenderedDataProvider" class="com.backbase.portal.ice.provider.impl.IceDataProvider">
             <param name="cmisServerUrl" value="${cmisServerUrl}"/>
             <param name="repositoryId" value="${cmisRepositoryId}"/>
             <param name="username" value="${cmisUsername}"/>
@@ -13,13 +12,15 @@
 
     <pipe name="samplePipe">
         <cache referenceId="defaultCache"/>
-        <data-provider id="sampleRenderedDataProvider" class="com.backbase.portal.ptc.provider.impl.SampleDataProvider"/>
+        <data-provider id="sampleRenderedDataProvider" class="com.backbase.portal.aurora.provider.impl.SampleDataProvider"/>
     </pipe>
+    
 	<pipe name="rss">
+        <cache referenceId="defaultCache"/>
         <response-transform>
             <transform
                 class="com.backbase.portal.ptc.transform.response.impl.XSLTTransformer">
-                <param name="xsltFile" value="/static/backbase.com.2012.sabre/widgets/RSS/xsl/rss2html.xsl" />
+                <param name="xsltFile" value="/static/RSS/xsl/rss2html.xsl" />
                 <param name="cacheXSLFile" value="true" />
             </transform>
             <transform
@@ -35,7 +36,7 @@
         <param name="maxElementsInMemory" value="100000"/>
         <param name="memoryStoreEvictionPolicy" value="LRU"/>
         <param name="isOverflowToDisk" value="false"/>
-        <param name="diskStorePath" value=""/>
+        <param name="diskStorePath" value="${diskStorePath}"/>
         <param name="isEternal" value="false"/>
         <param name="isDiskPersistent" value="false"/>
         <param name="timeToLiveSeconds" value="3600"/>
@@ -48,7 +49,7 @@
     <cache id="defaultCache">
         <param name="memoryStoreEvictionPolicy" value="LRU"/>
         <param name="isOverflowToDisk" value="false"/>
-        <param name="diskStorePath" value="c:/proxy"/>
+        <param name="diskStorePath" value="${diskStorePath}"/>
         <param name="isEternal" value="false"/>
         <param name="timeToLiveSeconds" value="100000000"/>
         <param name="isDiskPersistent" value="true"/>

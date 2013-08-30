@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<web-app id="WebApp_ID" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>Webapp to wrap PTC</display-name>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+
+    <!-- context initialization -->
+    <context-param>
+        <param-name>contextInitializerClasses</param-name>
+        <param-value>com.backbase.portal.ptc.config.PtcApplicationContextInitializer</param-value>
+    </context-param>
+
+    <!-- the path on which the ProxyServlet is mapped -->
+    <context-param>
+        <param-name>com.backbase.portal.PORTAL_PTC_URL</param-name>
+        <param-value>proxy</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>com.backbase.portal.ptc.web.PROPERTIES_FILE</param-name>
+        <param-value>classpath:/ptc-config.properties,classpath:/ice-config.properties,jndi:java:comp/env/mashup/ptc-config,jndi:java:comp/env/portalmanager/ice-config</param-value>
+    </context-param>
+
+    <!-- The PTC servlet -->
+    <servlet>
+        <servlet-name>ProxyServlet</servlet-name>
+        <servlet-class>com.backbase.portal.ptc.ProxyServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ProxyServlet</servlet-name>
+        <url-pattern>/proxy/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:applicationContext.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>

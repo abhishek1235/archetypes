@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--NOTE If no unit of time is specified, then the unit of time is assumed to be milliseconds,
+which is usually inappropriate. If you change the default scanning period, do not forget to
+specify a time unit.-->
 <configuration debug="false" scan="true" scanPeriod="30 seconds">
 
-    <!-- To enable jmx access to the appenders -->
-    <jmxConfigurator />
+    <conversionRule conversionWord="smsg"
+                    converterClass="com.backbase.portal.commons.api.logging.SecureMessageConverter"/>
+    <conversionRule conversionWord="smdc"
+                    converterClass="com.backbase.portal.commons.api.logging.SecureMDCConverter"/>
+    <contextName>Portal Foundation</contextName>
 
-    <!--<configuration debug="false" scan="true" scanPeriod="30 seconds">-->
-    <!--NOTE If no unit of time is specified, then the unit of time is assumed to be milliseconds,
-    which is usually inappropriate. If you change the default scanning period, do not forget to
-    specify a time unit.-->
+    <!-- To enable jmx access to the appenders -->
+
+    <jmxConfigurator />
 
     <!-- Console -->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>"%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"</pattern>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] -%smdc{user}-  %-5level %logger{36} - %smsg%n</pattern>
         </encoder>
     </appender>
 
@@ -29,7 +34,7 @@
                 <Append>false</Append>
                 <file>/temp/portal-%{portal}.log</file>
                 <layout class="ch.qos.logback.access.PatternLayout">
-                    <pattern>"[%thread] %d %level %mdc %logger{35} - %msg%n"</pattern>
+                    <pattern>"[%thread] %d %level %mdc %logger{35} - %smsg%n"</pattern>
                 </layout>
             </appender>
         </sift>
@@ -41,7 +46,7 @@
         <Append>true</Append>
         <file>/tmp/exceptions.log</file>
         <encoder>
-            <pattern>[%thread] %d %level %mdc %logger{35} - %msg%n"</pattern>
+            <pattern>[%thread] %d %level %mdc %logger{35} - %smsg%n"</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <fileNamePattern>/tmp/exceptions.log.%i</fileNamePattern>
@@ -59,7 +64,7 @@
         <Append>true</Append>
         <File>/tmp/perf4j.log</File>
         <encoder>
-            <pattern>"%date %-5level [%thread] %logger{36} [%file:%line] %msg%n"</pattern>
+            <pattern>"%date %-5level [%thread] %logger{36} [%file:%line] %smsg%n"</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>/tmp/perf4j.log.%d{yyyy-MM-dd}</fileNamePattern>
@@ -67,11 +72,11 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="org.hibernate" level="WARN"/>
-    <logger name="org.springframework" level="WARN"/>
-    <logger name="org.apache" level="WARN"/>
+    <logger name="org.hibernate" level="ERROR"/>
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.apache" level="ERROR"/>
     <logger name="org.apache.velocity.app" level="OFF"/>
-    <logger name="net.sf.ehcache" level="WARN"/>
+    <logger name="net.sf.ehcache" level="ERROR"/>
     <logger name="httpclient.wire.header" level="OFF"/>
     <logger name="httpclient.wire.content" level="OFF"/>
     <logger name="org.perf4j.TimingLogger" level="OFF" additivity="false">
@@ -81,7 +86,7 @@
         <appender-ref ref="EXCEPTIONS"/>
     </logger>
 
-    <root level="INFO">
+    <root level="WARN">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="SIFT"/>
     </root>

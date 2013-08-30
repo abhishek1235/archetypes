@@ -1,92 +1,94 @@
 # Archetype backbase-portal-archetype-all-in-one
 
-Version **5.4.0.6**
+Version **5.4.1.3**
 
 ##Overview
-A blank Maven archetype for the Backbase Portal server running on a single JVM instance. This archetype contains integrated Mashup Services, Content Services and Orchestrator with necessery configuration files already pre-configured.
+A blank Maven archetype for the Backbase Portal Foundation with all other Backbase modules embedded running on a single JVM instance. This archetype contains integrated Mashup Services, Targeting, Content Services and Orchestrator with all necessery configuration files already pre-configured.
 
-This archetype enables all-in-one setup for local development. Focus of this archetype is on demonstartion of how to configure Content Services and Orchestrator to run along Backbase Portal on same JVM process of server of your choice. Currently in Maven we have pre-configured Jetty and Tomcat 7. One can easily swicth from tomcat 7 to Tomcat 6 in single line within POM file. 
+This archetype enables all-in-one setup for local development. Focus of this archetype is on demonstration of how to configure Content Services and Orchestrator to run along Backbase Portal Foundation on same JVM process of server of your choice.
 
-Default database stays H2 and basic developemnt guide already instructs on how to move to a database of your choice if required.
+The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. It also contains all necessery scripts and configuration files required for forther configuration changes.
+
+H2 is the default database. Refer to the reference documentation for full details on how to [move to a database of your choice if required](https://my.backbase.com/doc-center/manuals/portal/inst_inst_cose.html#inst_inst_cs_database).
+
+Mahup Services are pre-configured together with example RSS pipe.
+
+Targeting is pre-configured together with example WeatherCollector.
 
 Content Services are pre-configured and ready to use frokm within Portal Manager.
 
 Orchestrator is pre-configured for self-publishing. More info within orchestrator configuration file which is located inside configuration folder.
 
-Targeting is pre-configured together with example WeatherCollector.
-
 ##Usage
-Usage is almost the same as already explained for default archetype in [Backbase Development Guide](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html). 
+Follow the steps below to get started with this archetype. Some of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html). You should get familiar with these topics before you start using this archetype.
 
-In next few lines we are giving modifications to a previously referenced page from this manual
-
-###9 Development Setup
-
-Following steps are replacing/complementing 13 steps described in Development Setup Procedure.
-
-####9.1 Backbase Portal Foundation
-
-1. As-is.
-2. All is the same except that we ned to use this archetype, so Maven command would look like this:  
+1. Configure your Maven installation to include the Backbase extensions repository by editing the settings.xml file located in the .m2 folder. 
+    <pre>```    
+    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+        <profiles>
+            <profile>
+                <id>backbase</id>
+                <activation>
+                    <activebydefault>true</activebydefault>
+                </activation>
+                <repositories>
+                    <repository>
+                        <id>Backbase Artifact Repository</id>
+                        <url>https://repo.backbase.com/repo/</url>
+                    </repository>
+                    <repository>
+                        <id>Backbase Extensions Repository</id>
+                        <url>https://repo.backbase.com/extensions/</url>
+                    </repository>
+                </repositories>
+            </profile>
+        </profiles>
+        <servers>
+            <server>
+                <id>Backbase Artifact Repository</id>
+                <!--Please change your_user_name and your_password below-->
+                <username>your_user_name</username>
+                <password>your_password</password>
+            </server>
+            <server>
+                <id>Backbase Extensions Repository</id>
+                <!--Please change your_user_name and your_password below-->
+                <username>your_user_name</username>
+                <password>your_password</password>
+            </server>
+        </servers>
+    </settings>
+    ```</pre>
+2. Generate the project. Open a command shell and go to a location where you want to create the content services project. Execute the following command:
     <pre>
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-portal-archetype-all-in-one
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.4.0.6
+        -DarchetypeVersion=5.4.1.3
     </pre>
-3. As-is.
-4. As-is.
-5. Logback configuration is already pre-configured and configuration file for it is located within a configuration subfolder of your project root folder.
-6. Properties configuration file backbase.properties is already pre-configured and it is located in a configuration subfolder of your project root folder.
-7. Environment entries are already defined within Jetty and Tomcat configuration files that are located inside the configuration/jetty and configuration/tomcat subfolders of your project root folder.
-8. Done inside a properties configuration file backbase.properties as part of step #6.
-9. Pre-configured for 1.6.
-10. Pre-configured.
-11. Done.
-12. As-is.
-13. As-is.
-
-#####9.1.1 Database setup (optional)
-Jetty and Tomcat files with data-source configurations are located inside configuration/jetty and configuration/tomcat folders. Everything else is as-is.
-
-#####9.1.2 Portal Example
-As-is.
-
-#####9.1.3 Test
-
-Following steps are replacing/complementing 4 steps described in this section.
-
-1. Use the following commands instead. 
-
-This ones prepares Portal for running:  
-    
+Refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) for more information. 
+3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html).
+4. Use the following command to prepare the project for running.
+    <pre>
     $ mvn clean install -P create-database
-
-Then, if you want run Portal on Jetty:
-
+    </pre>
+If you want to run Portal on Jetty:  
+    <pre>
     $ mvn jetty:run-war
-
-OR 
-
-If you want to run Portal on Tomcat 7:
-
+    </pre>
+Or, if you want to run Portal on Tomcat 7:
+    <pre>
     $ mvn tomcat7:run-war
-
+    </pre>
 Optionally run following command to delete and re-create databases when required:
-
+    <pre>
     $ mvn clean -P clean-database
-
-Both Jetty and Tomcat use 8080 ports.
-
-2. As-is.
-3. As-is.
-4. As-is.
-
-####9.2 Targeting
-As-is.
-
-####9.3 Maven Settings File
-As-is.
+    </pre>
+Note that both Jetty and Tomcat use the 8080 port by default. In case you need to choose a different port since you maybe already have another process runing on port 8080, make necessary changes in jetty and tomcat plugins within POM file before you run Portal Foundation.
+5. Test Portal Foundation by opening the Portal Foundation URL in a browser: http://localhost:8080/portalserver/ (pay attention to the port number).
+6. Test Mashup Services by opening the Mashup Services RSS pipe URL in a browser: http://localhost:8080/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/ (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
+7. Test Content Services by opening the Content Services RSS URL in a browser: http://localhost:8080/portalserver/content/atom (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.
+8. Test Orchestrators by opening the Orchestrator configuration URL in a browser: http://localhost:8080/portalserver/orchestrator/configuration (pay attention to the port number).
 
 ##Anatomy
 **project**  
@@ -111,14 +113,18 @@ As-is.
 --**scripts**  
 ---**contentservices** --> content services database scripts for all databases we support  
 ---**foundation** --> portal foundation database scripts for all databases we support  
+---**manager** --> portal manager scripts   
 ---**orchestrator** --> orchestrator database scripts for all databases we support  
+---**tracking** --> tracking database scripts for all databases we support  
 --**tomcat**  
----context.xml --> tomcat 7 context configuration  
+---context.xml --> tomcat 7 JNDI bindings for portal web application defined with this Maven project   
 ---server.xml --> tomcat 7 server configuration  
 --backbase.properties --> main backbase configuration file  
 --ice-config.properties --> backbase ICE configuration file  
 --logback.xml --> logback configuration file  
---orchestrator-config.xml --> orchestrator configuration file  
+--ptc-config.properties --> Mashup Services configuration properties file  
+--ptc-config.xml --> Mashup Services main configuration file    
+--to-self-publishchains.xml --> orchestrator configuration file  
 -**data** --> working folder for local storage, such as H2 database files, orchestrator and import/export work packages and so on  
 -**src**  
 --**main**  
@@ -128,25 +134,22 @@ As-is.
 ---**dashboardResources**  
 ----**import**  
 -----importPortal.xml --> backbase portal import file for portal with portal manager  
----**java**
-----**com**
------**backbase**
-------**targeting**
--------**collector**
---------**examples**
----------WeatherContextCollector.java --> target collector example
-----**my**
------**company**
-------**com** --> empty Java package created based on package name for project
+---**java**  
+----**com**  
+-----**backbase**  
+------**targeting**  
+-------**collector**  
+--------**examples**  
+---------WeatherContextCollector.java --> target collector example  
 ---**resources**  
 ----**import**  
 -----importPortal.xml --> copy of one from dashboardResources/import  
 ----**META-INF**  
 -----**spring**  
-------**optional**  
--------targeting-connectorframework.xml --> spring configuration for targeting that refers to targetimng example 
+------**optional**   
+-------targeting-connectorframework.xml --> spring configuration for targeting that refers to targetimng example  
 ------backbase-portal-application-config.xml --> spring configuration suitable to hook custom spring configurations  
-------backbase-portal-integration-config.xml --> spring configuration suitable to hook custom spring configurations  
+------backbase-portal-integration-config.xml --> spring configuration suitable to hook custom spring configurations   
 ---**webapp**  
 ----**static**  
 -----**default**  
@@ -158,6 +161,9 @@ As-is.
 -------bg_pm.png  
 -----**lib**  
 ------jquery-1.6.1-min.js  
+-----**RSS**  
+------**xsl**  
+-------rss2html.xsl  
 ----**WEB-INF**  
 -----**default** --> default backbase templates  
 ------borderlayout.jsp  
@@ -177,9 +183,17 @@ As-is.
 -----web.xml  
 --**test**  
 ---**java**   
-----**my**  
------**company**  
-------**portalserver**  
--------InstallationValidationTestST.java --> Test used to validate build on embedded server  
+----**com**  
+-----**backbase**  
+------**test**   
+-------**contentservices**  
+--------InstallationValidationTestST.java --> Test used to validate Content Services on embedded server  
+-------**mashupservices**  
+--------InstallationValidationTestST.java --> Test used to validate embedded Mashup Services on embedded server    
+-------**orchestrator**  
+--------InstallationValidationTestST.java --> Test used to validate Orchestrator on embedded server   
+-------**portalserver**   
+--------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server  
 ---**resources**  
+-**tools** --> various tools  
 -pom.xml  

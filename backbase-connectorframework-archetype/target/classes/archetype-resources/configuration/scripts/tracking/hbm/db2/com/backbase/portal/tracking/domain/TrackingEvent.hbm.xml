@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.backbase.portal.tracking.domain" default-access="property">
+
+    <class name="TrackingEvent" table="tracking_events">
+
+        <id name="trackingEventId" column="ID">
+            <generator class="sequence">
+                <param name="sequence">hibernate_sequence</param>
+            </generator>
+        </id>
+
+        <property name="portalName" not-null="true"/>
+        <property name="itemName" not-null="true"/>
+        <property name="tagName" not-null="true"/>
+        <property name="userName" not-null="false"/>
+        <property name="timestamp" not-null="true"/>
+    </class>
+
+</hibernate-mapping>

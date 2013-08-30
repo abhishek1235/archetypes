@@ -10,7 +10,7 @@
             password=""
             maxWait="5000"
             driverClassName="org.h2.Driver"
-            url="jdbc:h2:file:\${project.basedir}/data/contentServicesConfiguration;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE"/>
+            url="jdbc:h2:file:\${portal.data.dir}/contentServicesConfiguration;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE"/>
 
     <Resource name="jdbc/content-datasource"
             auth="Container"
@@ -21,7 +21,7 @@
             password=""
             maxWait="5000"
             driverClassName="org.h2.Driver"
-            url="jdbc:h2:file:\${project.basedir}/data/contentServicesContent;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE"/>
+            url="jdbc:h2:file:\${portal.data.dir}/contentServicesContent;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE"/>
 
     <Resource name="jdbc/resource-datasource"
             auth="Container"
@@ -32,7 +32,7 @@
             password=""
             maxWait="5000"
             driverClassName="org.h2.Driver"
-            url="jdbc:h2:file:\${project.basedir}/data/contentServicesResource;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE"/>
+            url="jdbc:h2:file:\${portal.data.dir}/contentServicesResource;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE"/>
 
     <Environment name="backbase/config"
             value="\${project.build.testOutputDirectory}/configuration/backbase.properties"

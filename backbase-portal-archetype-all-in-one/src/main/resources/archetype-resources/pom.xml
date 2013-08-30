@@ -20,9 +20,12 @@
         <portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
         <portal.server.version>${portal.server.version}</portal.server.version>
         <portal.client.version>${portal.client.version}</portal.client.version>
-        <targeting.version>${targeting.version}</targeting.version>
+        <connectorframework.version>${connectorframework.version}</connectorframework.version>
         <orchestrator.version>${orchestrator.version}</orchestrator.version>
         <contentservices.version>${contentservices.version}</contentservices.version>
+
+        <!-- Folder where H2 and binary data is stored-->
+        <portal.data.dir>\${project.basedir}/data</portal.data.dir>
     </properties>
 
     <dependencies>
@@ -55,19 +58,19 @@
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.targeting</groupId>
-            <artifactId>connectorframework</artifactId>
+            <artifactId>connectorframework-local</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>com.backbase.portal.targeting</groupId>
                     <artifactId>connectorframework-resources</artifactId>
                 </exclusion>
             </exclusions>
-            <version>${targeting.version}</version>
+            <version>\${connectorframework.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.targeting</groupId>
             <artifactId>tracking</artifactId>
-            <version>${targeting.version}</version>
+            <version>\${connectorframework.version}</version>
         </dependency>
 
         <!-- Backbase third party -->
@@ -117,7 +120,7 @@
         <dependency>
             <groupId>com.backbase.portal.foundation</groupId>
             <artifactId>security-portalserver</artifactId>
-            <version>${portal.server.version}</version>                     
+            <version>\${portal.server.version}</version>                     
         </dependency>
     
         <!-- testing -->
@@ -339,7 +342,7 @@
                         </systemProperty>
                         <systemProperty>
                             <name>CONTENT_SERVICES_LOG_FOLDER</name>
-                            <value>${project.build.directory}/logs</value>
+                            <value>\${project.build.directory}/logs</value>
                         </systemProperty>
                         <!--<systemProperty>
                             <name>PORTALSERVER_PROXY_URL</name>
@@ -543,7 +546,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/portalFoundation</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/portalFoundation</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -561,7 +564,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesConfiguration</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/contentServicesConfiguration</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -577,7 +580,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesContent</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/contentServicesContent</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -593,7 +596,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesResource</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/contentServicesResource</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -609,7 +612,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/orchestrator</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/orchestrator</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -617,6 +620,21 @@
                                     </srcFiles>
                                 </configuration>
                             </execution>
+                            <!--<execution>
+                                <id>createTracking</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/tracking</url>
+                                    <username>sa</username>
+                                    <password></password>
+                                    <srcFiles>
+                                        <srcFile>\${project.basedir}/configuration/scripts/tracking/scripts/h2/tracking_schema.ddl</srcFile>
+                                    </srcFiles>
+                                </configuration>
+                            </execution>-->
                         </executions>
                         <dependencies>
                             <dependency>
@@ -650,7 +668,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/portalFoundation</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/portalFoundation</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -668,7 +686,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesConfiguration</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/contentServicesConfiguration</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -685,7 +703,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesContent</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/contentServicesContent</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -702,7 +720,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/contentServicesResource</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/contentServicesResource</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -719,7 +737,7 @@
                                 </goals>
                                 <configuration>
                                     <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${project.basedir}/data/orchestrator</url>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/orchestrator</url>
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
@@ -728,6 +746,22 @@
                                     </srcFiles>
                                 </configuration>
                             </execution>
+                            <!--<execution>
+                                <id>cleanTracking</phase>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/tracking</url>
+                                    <username>sa</username>
+                                    <password></password>
+                                    <srcFiles>
+                                        <srcFile>\${project.basedir}/configuration/scripts/tracking/scripts/h2/tracking_schema.ddl</srcFile>
+                                    </srcFiles>
+                                </configuration>
+                            </execution>-->
                         </executions>
                         <dependencies>
                             <dependency>
@@ -759,17 +793,17 @@
                 <dependency>
                     <groupId>org.apache.camel</groupId>
                     <artifactId>camel-core</artifactId>
-                    <version>2.10.3</version>
+                    <version>${camel.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.camel</groupId>
                     <artifactId>camel-spring-javaconfig</artifactId>
-                    <version>2.10.3</version>
+                    <version>${camel.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.camel</groupId>
                     <artifactId>camel-spring</artifactId>
-                    <version>2.10.3</version>
+                    <version>${camel.version}</version>
                 </dependency>
             </dependencies>
             <build>
@@ -856,7 +890,7 @@
                                             <artifactId>portalclient</artifactId>
                                             <type>zip</type>
                                             <classifier>min</classifier>
-                                            <outputDirectory>\${work.dir}/static/lib</outputDirectory>
+                                            <outputDirectory>\${work.dir}/</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>com.backbase.portal</groupId>
@@ -957,7 +991,7 @@
                                             <artifactId>portalclient</artifactId>
                                             <type>zip</type>
                                             <classifier>min</classifier>
-                                            <outputDirectory>\${work.dir}/static/lib</outputDirectory>
+                                            <outputDirectory>\${work.dir}/</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>com.backbase.portal</groupId>

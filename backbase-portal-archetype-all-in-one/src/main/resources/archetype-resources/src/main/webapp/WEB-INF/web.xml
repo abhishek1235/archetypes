@@ -21,11 +21,12 @@
             classpath:backbase-ptc.xml
         ]]></param-value>
     </context-param>
-
+    
     <context-param>
         <param-name>com.backbase.portal.ptc.web.PROPERTIES_FILE</param-name>
-        <param-value>classpath:/ptc-server.properties,classpath:/ice-config.properties,jndi:java:comp/env/portalmanager/ice-config</param-value>
+        <param-value>classpath:/ptc-server.properties,classpath:/ice-config.properties,jndi:java:comp/env/mashup/ptc-config,jndi:java:comp/env/portalmanager/ice-config</param-value>
     </context-param>
+    
     <env-entry>
         <env-entry-name>portalmanager/ice-config</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
@@ -174,14 +175,19 @@
         <res-auth>Container</res-auth>
     </resource-ref>
 
-    <!--
-        <resource-ref>
-            <description>Portal Audit Datasource</description>
-            <res-ref-name>jdbc/auditDS</res-ref-name>
-            <res-type>javax.sql.DataSource</res-type>
-            <res-auth>Container</res-auth>
-        </resource-ref>
-    -->
+    <resource-ref>
+        <description>Portal Audit Datasource</description>
+        <res-ref-name>jdbc/auditDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+    <!--<resource-ref>
+        <description>Tracking Datasource</description>
+        <res-ref-name>jdbc/trackingDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>-->
 
     <env-entry>
         <env-entry-name>backbase/config</env-entry-name>

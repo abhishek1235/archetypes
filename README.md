@@ -1,19 +1,21 @@
 #Archetypes
 
-Version **5.4.0.6**
+Version **5.4.1.3**
 
 ##Overview
 A collection of Maven archetypes related to Backbase Portal created by Backbase Expert Services that can help with initial project setup and other tasks.
 
-Archetypes are deployed to Backbase Expert Service's Maven repository at
+Archetypes are deployed to Backbase Expert Services' Maven repository at
 
-1. PUBLIC RELEASES   	**https://repo.backbase.com/extensions** 
-2. INTERNAL SNAPSHOTS  	**https://repo.backbase.com/extensions-snapshots**
+1. PUBLIC RELEASES   					**https://repo.backbase.com/extensions** 
+2. INTERNAL RELEASES AND SNAPSHOTS  	**https://artifacts.backbase.com/extensions**
 
 ##List of currently available archetypes:
 1. **backbase-portal-archetype-all-in-one**, from version **5.3.1.1**
 2. **backbase-contentservices-archetype-all-in-one**, from version **5.4.0.5**
 3. **backbase-mashupervices-archetype-all-in-one**, from version **5.4.0.6**
+4. **backbase-portal-archetype-basic**, from version **5.4.1.3**
+5. **backbase-portal-archetype-all-in-one-launchpad**, from version **5.4.1.3**
 
 ##Usage
 
@@ -23,10 +25,10 @@ We assume you're already familiar with [Backbase Development Guide](https://my.b
 ###Maven repository configuration
 Configure your Maven configuration to include the Backbase extensions releases repository (https://repo.backbase.com/extensions).
 
-###Maven archetype project generation
-	<pre>
+###Maven archetype project generation: 
+<pre>
 	$ mvn archetype:generate -DarchetypeArtifactId=<archetype_name> -DarchetypeGroupId=com.backbase.expert.tools -DarchetypeVersion=<archetype_version> 
-	</pre>
+</pre>
 
 ##Customization
 Feel encouraged to create your own versions of these archetypes by forking the code and further changing it to meet your specific needs if you have them. If you feel change you have on mind is more of a generic change and other Backbase customers could use it, please feel free to share ideas on Github Issues section.
@@ -34,17 +36,26 @@ Feel encouraged to create your own versions of these archetypes by forking the c
 After you have build these archetypes locally and optionally deploy accross your organization, you are ready to start using them. Each archetype is specific so details on usage are within each of them.
 
 In order to use these archetypes, you need to pull or fork code from this Git repository and build it locally:  
-	<pre>
+<pre>
 	$ mvn clean install
-	</pre>
+</pre>
 This way you can use these archetypes from your local Maven repository directly. 
 
 ###Deploy within organization
-Optionally, you can also install them into a Maven repository within your organization. This would enable other people from your organization with access to that Maven repository to use these archetypes. You should do this with Maven deploy plugin. We already use it to deploy to our internal Maven repository so you just need to chnage our settings into yours. More info on this plugin you can find [here](http://maven.apache.org/plugins/maven-deploy-plugin). Key configuration you need to change is related to distributionManagement section inside main POM file.
+Optionally, you can also install these archetypes into a Maven repository within your organization. This would enable other people from your organization with access to that Maven repository to use these archetypes. You should do this with Maven deploy plugin. We already use it to deploy to our internal Maven repository so you just need to chnage our settings into yours. More info on this plugin you can find [here](http://maven.apache.org/plugins/maven-deploy-plugin). Key configuration you need to change is related to distributionManagement section inside main POM file.
 
 This way, all your coleagues can use these archetypes from your organization's Maven repository. 
 
 ## History of Changes
+5.4.1.3 
+
+1. Initial version of Basic Archetype 
+2. Initial version of Launchpad All-In-One Archetype
+3. Alignement of All-In-One, Content Services and Mashup Services Archetypes with 5.4.1.3 version of Backbase Portal suite
+4. Fixing reported bugs
+5. Consolidated logging configurations across archetypes
+6. Documentation optimization
+
 5.4.0.6 
 
 1. Initial version of Mashup Services Archetype 

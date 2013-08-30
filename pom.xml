@@ -4,7 +4,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes</artifactId>
-    <version>5.4.0.7-SNAPSHOT</version>
+    <version>5.4.1.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>
@@ -19,14 +19,15 @@
         <maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
         
         <!-- Backbase dependency versions -->
-        <portal.server.version>5.4.0.6</portal.server.version>
+        <portal.server.version>5.4.1.3</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
-        <portal.dashboard.version>5.4.0.6</portal.dashboard.version>
-        <mashupservices.version>5.4.0.2</mashupservices.version>
-        <targeting.version>5.4.0.6</targeting.version>
-        <contentservices.version>5.4.0.5</contentservices.version>
-        <orchestrator.version>5.4.0.6</orchestrator.version>
-        <tools.version>5.4.0.2</tools.version>
+        <portal.dashboard.version>5.4.1.3</portal.dashboard.version>
+        <portal.tools.version>5.4.1.3</portal.tools.version>
+        <mashupservices.version>5.4.1.3</mashupservices.version>
+        <contentservices.version>5.4.1.3</contentservices.version>
+        <orchestrator.version>5.4.1.3</orchestrator.version>
+        <connectorframework.version>5.4.1.3</connectorframework.version>
+        <launchpad.version>0.6.2</launchpad.version>
         
         <!-- Third party dependency versions -->
         <springframework.version>3.1.0.RELEASE</springframework.version>
@@ -38,15 +39,23 @@
         <junit.version>4.8.2</junit.version>
         <groovy.version>1.8.0</groovy.version>
         <httpclient.version>3.1</httpclient.version>
-        <portal.port>8080</portal.port>
-        <portal.port.stop>9996</portal.port.stop>
-        <contentservices.port>8080</contentservices.port>
-        <contentservices.port.stop>9997</contentservices.port.stop>
-        <mashupservices.port>8080</mashupservices.port>
-        <mashupservices.port.stop>9998</mashupservices.port.stop>
-        <orchestrator.port>8080</orchestrator.port>
-        <orchestrator.port.stop>9999</orchestrator.port.stop>
+        <less.version>1.3.0</less.version>
+        <camel.version>2.10.3</camel.version>
         <java.target.version>1.6</java.target.version>
+
+        <!-- Server portss -->
+        <portal.port>8080</portal.port>
+        <portal.port.stop>9993</portal.port.stop>
+        <contentservices.port>8081</contentservices.port>
+        <contentservices.port.stop>9994</contentservices.port.stop>
+        <mashupservices.port>8082</mashupservices.port>
+        <mashupservices.port.stop>9995</mashupservices.port.stop>
+        <orchestrator.port>8083</orchestrator.port>
+        <orchestrator.port.stop>9996</orchestrator.port.stop>
+        <connectorframework.port>8084</connectorframework.port>
+        <connectorframework.port.stop>9997</connectorframework.port.stop>
+        <theme.port>8085</theme.port>
+        <theme.port.stop>9998</theme.port.stop>
     </properties>
 
     <repositories>
@@ -81,13 +90,17 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>tag-archetypes-5.4.0.6</tag>
+        <tag>tag-archetypes-5.4.1.3</tag>
     </scm>
 
     <modules>
-        <module>backbase-portal-archetype-all-in-one</module>
+        <!--<module>backbase-collectorframework-archetype</module>-->
         <module>backbase-contentservices-archetype</module>
         <module>backbase-mashupservices-archetype</module>
+        <module>backbase-portal-archetype-basic</module>
+        <module>backbase-portal-archetype-all-in-one</module>
+        <module>backbase-portal-archetype-all-in-one-launchpad</module>
+        <!--<module>backbase-portal-archetype-full</module>-->
     </modules>
 
      <build>

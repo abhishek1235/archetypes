@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+    http://maven.apache.org/POM/4.0.0
+    http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
+        <project.build.sourceEncoding>${project.build.sourceEncoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.reporting.outputEncoding}</project.reporting.outputEncoding>
+
+        <!-- Backbase module versions -->
+        <connectorframework.version>${connectorframework.version}</connectorframework.version>
+
+        <!-- Folder where H2 and binary data is stored-->
+        <portal.data.dir>${portal.data.dir}</portal.data.dir>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.portal.targeting</groupId>
+            <artifactId>connectorframework-webapp</artifactId>
+            <version>\${connectorframework.version}</version>
+            <type>war</type>
+        </dependency>
+    
+        <!-- testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${httpclient.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>\${project.artifactId}</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>configuration</directory>
+                <filtering>true</filtering>
+                <targetPath>configuration</targetPath>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.target.version}</source>
+                    <target>${java.target.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.plugin.version}</version>
+                <configuration>
+                    <stopKey>foo</stopKey>
+                    <stopPort>${connectorframework.port.stop}</stopPort>
+                    <scanIntervalSeconds>1</scanIntervalSeconds>
+                    <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
+                    <webAppConfig>
+                        <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
+                        <contextPath>/connectorframework-webapp</contextPath>
+                    </webAppConfig>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>${connectorframework.port}</port>
+                        </connector>
+                    </connectors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                            <skip>\${skipTests}</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>c3p0</groupId>
+                        <artifactId>c3p0</artifactId>
+                        <version>${c3p0.version}</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <!-- or if you want to use tomcat 6.x
+                <artifactId>tomcat6-maven-plugin</artifactId>
+                -->
+                <version>${tomcat.plugin.version}</version>
+                <configuration>
+                    <!-- http port -->
+                    <port>${connectorframework.port}</port>
+                    <!--<tomcat-url>http://localhost:8080/manager/html</tomcat-url>-->
+                    <!-- application path always starts with /-->
+                    <!--<path>/\${project.build.finalName}</path>-->
+                    <path>/connectorframework-webapp</path>
+                    <!-- optional, needed only if you want to use a preconfigured server.xml file -->
+                    <!-- <serverXml>\${project.build.testOutputDirectory}/configuration/tomcat/server.xml</serverXml>-->
+                    <!-- optional path to a context file -->
+                    <contextFile>\${project.build.testOutputDirectory}/configuration/tomcat/context.xml</contextFile>
+                    <!-- if you want to use test dependencies rather than only runtime -->
+                    <useTestClasspath>false</useTestClasspath>
+                    <!-- optional if you want to add some extra directories into the classloader -->
+                    <additionalClasspathDirs>
+                        <additionalClasspathDir></additionalClasspathDir>
+                    </additionalClasspathDirs>
+                    <addContextWarDependencies>true</addContextWarDependencies>
+                    <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+                    <warSourceDirectory>\${project.build.directory}/\${project.build.finalName}/</warSourceDirectory>
+                </configuration>
+                <!-- For any extra dependencies needed when running embedded Tomcat (not WAR dependencies) add them below -->
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.mail</groupId>
+                        <artifactId>mail</artifactId>
+                        <version>${javax.mail.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+                </dependencies>
+                <!--<executions>
+                    <execution>
+                        <id>tomcat-run</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run-war-only</goal>
+                        </goals>
+                        <configuration>
+                            <fork>true</fork>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tomcat-shutdown</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>shutdown</goal>
+                        </goals>
+                    </execution>
+                </executions>-->
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/*TestST.java</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/target/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!--<profiles>
+        <profile>
+            <id>create-database</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>createTracking</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/tracking</url>
+                                    <username>sa</username>
+                                    <password></password>
+                                    <srcFiles>
+                                        <srcFile>\${project.basedir}/configuration/scripts/tracking/scripts/h2/tracking_schema.ddl</srcFile>
+                                    </srcFiles>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.h2database</groupId>
+                                <artifactId>h2</artifactId>
+                                <version>${h2.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile> 
+
+        <profile>
+            <id>clean-database</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>cleanTracking</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/tracking</url>
+                                    <username>sa</username>
+                                    <password></password>
+                                    <srcFiles>
+                                        <srcFile>\${project.basedir}/configuration/scripts/tracking/scripts/h2/tracking_schema.ddl</srcFile>
+                                    </srcFiles>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.h2database</groupId>
+                                <artifactId>h2</artifactId>
+                                <version>${h2.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>  
+    </profiles>-->
+</project>

@@ -63,6 +63,10 @@
             <id>repo.backbase.com</id>
             <url>https://repo.backbase.com/repo/</url>
         </repository>
+        <repository>
+            <id>artifacts.backbase.com</id>
+            <url>https://artifacts.backbase.com/repo/</url>
+        </repository>
     </repositories>
 
     <distributionManagement>

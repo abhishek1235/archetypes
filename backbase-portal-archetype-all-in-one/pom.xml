@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>archetypes</artifactId>
-        <version>5.4.1.4-SNAPSHOT</version>
+        <version>5.4.2.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>backbase-portal-archetype-all-in-one</artifactId>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>com.backbase.portal.targeting</groupId>
             <artifactId>connectorframework-examples</artifactId>
-            <version>${connectorframework.version}</version>
+            <version>${targeting.version}</version>
             <classifier>sources</classifier>
         </dependency>
         <dependency>
@@ -47,7 +47,7 @@
             <artifactId>tracking</artifactId>
             <classifier>database-scripts</classifier>
             <type>zip</type>
-            <version>${connectorframework.version}</version>
+            <version>${targeting.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.manager</groupId>

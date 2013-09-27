@@ -1,23 +1,21 @@
 # Archetype backbase-portal-archetype-all-in-one
 
-Version **5.4.1.3**
+Version **5.4.2.0**
 
 ##Overview
-A blank Maven archetype for the Backbase Portal Foundation with all other Backbase modules embedded running on a single JVM instance. This archetype contains integrated Mashup Services, Targeting, Content Services and Orchestrator with all necessery configuration files already pre-configured.
+A blank Maven archetype that allows you to run a Backbase Portal Foundation running on a single JVM instance (Jetty, Tomcat 6, or Tomcat 7) along with all the other Backbase Portal modules (Mashup Services, Targeting, Content Services and Orchestrator) pre-configured and ready-to-use.
 
-This archetype enables all-in-one setup for local development. Focus of this archetype is on demonstration of how to configure Content Services and Orchestrator to run along Backbase Portal Foundation on same JVM process of server of your choice.
-
-The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. It also contains all necessery scripts and configuration files required for forther configuration changes.
+This archetype facilitates all-in-one setup for local development. It demonstrates how to configure Content Services and Orchestrator to run along Backbase Portal in the same JVM on a server of your choice. The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. 
 
 H2 is the default database. Refer to the reference documentation for full details on how to [move to a database of your choice if required](https://my.backbase.com/doc-center/manuals/portal/inst_inst_cose.html#inst_inst_cs_database).
 
-Mahup Services are pre-configured together with example RSS pipe.
+Mashup Services are pre-configured together with example RSS pipe.
 
 Targeting is pre-configured together with example WeatherCollector.
 
-Content Services are pre-configured and ready to use frokm within Portal Manager.
+Content Services are pre-configured and ready to use from within Portal Manager.
 
-Orchestrator is pre-configured for self-publishing. More info within orchestrator configuration file which is located inside configuration folder.
+Orchestrator is pre-configured for self-publishing. Refer to our reference documentation for more information on [Orchestrator Configuration](https://my.backbase.com/doc-center/manuals/portal/inst_publ.html#inst_publ_config) how to configure publishing by modifying the orchestrator configuration file which is located inside the configuration folder.
 
 ##Usage
 Follow the steps below to get started with this archetype. Some of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html). You should get familiar with these topics before you start using this archetype.
@@ -64,11 +62,11 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-portal-archetype-all-in-one
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.4.1.3
+        -DarchetypeVersion=5.4.2.0
     </pre>
 Refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) for more information. 
 3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html).
-4. Use the following command to prepare the project for running.
+4. Use the following command to prepare the project for running:
     <pre>
     $ mvn clean install -P create-database
     </pre>
@@ -88,7 +86,7 @@ Note that both Jetty and Tomcat use the 8080 port by default. In case you need t
 5. Test Portal Foundation by opening the Portal Foundation URL in a browser: http://localhost:8080/portalserver/ (pay attention to the port number).
 6. Test Mashup Services by opening the Mashup Services RSS pipe URL in a browser: http://localhost:8080/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/ (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
 7. Test Content Services by opening the Content Services RSS URL in a browser: http://localhost:8080/portalserver/content/atom (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.
-8. Test Orchestrators by opening the Orchestrator configuration URL in a browser: http://localhost:8080/portalserver/orchestrator/configuration (pay attention to the port number).
+8. Test Orchestrator by opening the Orchestrator configuration URL in a browser: http://localhost:8080/portalserver/orchestrator/configuration (pay attention to the port number).
 
 ##Anatomy
 **project**  

@@ -1,6 +1,6 @@
 #Archetypes
 
-Version **5.4.1.3**
+Version **5.4.2.0**
 
 ##Overview
 A collection of Maven archetypes related to Backbase Portal created by Backbase Expert Services that can help with initial project setup and other tasks.
@@ -11,9 +11,9 @@ Archetypes are deployed to Backbase Expert Services' Maven repository at
 2. INTERNAL RELEASES AND SNAPSHOTS  	**https://artifacts.backbase.com/extensions**
 
 ##List of currently available archetypes:
-1. **backbase-portal-archetype-all-in-one**, from version **5.3.1.1**
-2. **backbase-contentservices-archetype-all-in-one**, from version **5.4.0.5**
-3. **backbase-mashupervices-archetype-all-in-one**, from version **5.4.0.6**
+1. **backbase-contentservices-archetype-all-in-one**, from version **5.4.0.5**
+2. **backbase-mashupervices-archetype-all-in-one**, from version **5.4.0.6**
+3. **backbase-portal-archetype-all-in-one**, from version **5.3.1.1**
 4. **backbase-portal-archetype-basic**, from version **5.4.1.3**
 5. **backbase-portal-archetype-all-in-one-launchpad**, from version **5.4.1.3**
 
@@ -47,6 +47,11 @@ Optionally, you can also install these archetypes into a Maven repository within
 This way, all your coleagues can use these archetypes from your organization's Maven repository. 
 
 ## History of Changes
+5.4.2.0 
+
+1. Alignement of Basic, Content Services, Mashup Services, All-In-One and All-In-One with Launchpad archetypes with 5.4.2.0 version of Backbase Portal suite
+2. Fixing reported bugs
+
 5.4.1.3 
 
 1. Initial version of Basic Archetype 

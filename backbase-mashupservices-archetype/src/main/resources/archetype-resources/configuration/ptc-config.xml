@@ -1,6 +1,9 @@
 <proxy>
     <pipe name="mustachePipe">
         <cache referenceId="mustache-cache"/>
+        <request-transform>
+            <transform class="com.backbase.portal.ice.transformer.IceCacheRequestTransformer" />
+        </request-transform>
         <data-provider id="mustacheRenderedDataProvider" class="com.backbase.portal.ice.provider.impl.IceDataProvider">
             <param name="cmisServerUrl" value="${cmisServerUrl}"/>
             <param name="repositoryId" value="${cmisRepositoryId}"/>
@@ -14,25 +17,40 @@
         <cache referenceId="defaultCache"/>
         <data-provider id="sampleRenderedDataProvider" class="com.backbase.portal.aurora.provider.impl.SampleDataProvider"/>
     </pipe>
-    
-	<pipe name="rss">
-        <cache referenceId="defaultCache"/>
+
+    <pipe name="rss">
         <response-transform>
-            <transform
-                class="com.backbase.portal.ptc.transform.response.impl.XSLTTransformer">
+            <transform class="com.backbase.portal.ptc.transform.response.impl.XSLTTransformer">
                 <param name="xsltFile" value="/static/RSS/xsl/rss2html.xsl" />
                 <param name="cacheXSLFile" value="true" />
             </transform>
-            <transform
-                class="com.backbase.portal.ptc.transform.response.impl.SetHeaderResponseTransformer">
+            <transform class="com.backbase.portal.ptc.transform.response.impl.SetHeaderResponseTransformer">
                 <param name="Cache-Control" value="no-cache" />
                 <param name="Pragma" value="no-cache" />
                 <param name="Expires" value="-1" />
             </transform>
+            <transform class="com.backbase.portal.ptc.transform.response.impl.ContentTypeResponseTransformer">
+                <!--<param name="charset" value="UTF-8"/>-->
+                <param name="contentType" value="text/html"/>
+            </transform>
         </response-transform>
     </pipe>
 
-	<cache id="mustache-cache" enabled="true">
+    <cache id="mustache-cache" enabled="true">
+        <param name="maxElementsInMemory" value="100000"/>
+        <param name="memoryStoreEvictionPolicy" value="LRU"/>
+        <param name="isOverflowToDisk" value="false"/>
+        <param name="diskStorePath" value="${diskStorePath}"/>
+        <param name="isEternal" value="false"/>
+        <param name="isDiskPersistent" value="false"/>
+        <param name="timeToLiveSeconds" value="3600"/>
+        <param name="getTimeToIdleInSeconds" value="3600"/>
+        <param name="diskExpiryThreadIntervalSeconds" value="7200"/>
+        <param name="maxElementsOnDisk" value="10000000"/>
+        <param name="diskSpoolBufferSizeMB" value="30"/>
+    </cache>
+
+    <cache id="bbIceExternalReferencesCache" enabled="true">
         <param name="maxElementsInMemory" value="100000"/>
         <param name="memoryStoreEvictionPolicy" value="LRU"/>
         <param name="isOverflowToDisk" value="false"/>

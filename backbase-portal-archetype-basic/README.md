@@ -1,6 +1,6 @@
 # Archetype backbase-portal-archetype-basic
 
-Version **5.4.1.3**
+Version **5.4.2.0**
 
 ##Overview
 A blank Maven archetype for the Backbase Portal Foundation. This archetype contains integrated Mashup Services and Targeting with all necessery configuration files already pre-configured.
@@ -9,7 +9,7 @@ The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily
 
 H2 is the default database. Refer to the reference documentation for full details on how to [move to a database of your choice if required](https://my.backbase.com/doc-center/manuals/portal/inst_inst_cose.html#inst_inst_cs_database).
 
-Mahup Services are pre-configured together with example RSS pipe.
+Mashup Services are pre-configured together with example RSS pipe.
 
 Targeting is pre-configured together with example WeatherCollector.
 
@@ -60,7 +60,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-portal-archetype-basic
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.4.1.3
+        -DarchetypeVersion=5.4.2.0
     </pre>
 Refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) for more information. 
 3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html).

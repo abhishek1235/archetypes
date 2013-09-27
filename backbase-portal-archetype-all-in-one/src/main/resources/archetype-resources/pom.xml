@@ -20,7 +20,7 @@
         <portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
         <portal.server.version>${portal.server.version}</portal.server.version>
         <portal.client.version>${portal.client.version}</portal.client.version>
-        <connectorframework.version>${connectorframework.version}</connectorframework.version>
+        <targeting.version>${targeting.version}</targeting.version>
         <orchestrator.version>${orchestrator.version}</orchestrator.version>
         <contentservices.version>${contentservices.version}</contentservices.version>
 
@@ -65,12 +65,12 @@
                     <artifactId>connectorframework-resources</artifactId>
                 </exclusion>
             </exclusions>
-            <version>\${connectorframework.version}</version>
+            <version>\${targeting.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.targeting</groupId>
             <artifactId>tracking</artifactId>
-            <version>\${connectorframework.version}</version>
+            <version>\${targeting.version}</version>
         </dependency>
 
         <!-- Backbase third party -->

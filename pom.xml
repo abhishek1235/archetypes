@@ -4,7 +4,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes</artifactId>
-    <version>5.4.1.4-SNAPSHOT</version>
+    <version>5.4.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>
@@ -19,14 +19,14 @@
         <maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
         
         <!-- Backbase dependency versions -->
-        <portal.server.version>5.4.1.3</portal.server.version>
+        <portal.server.version>5.4.2.0</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
-        <portal.dashboard.version>5.4.1.3</portal.dashboard.version>
-        <portal.tools.version>5.4.1.3</portal.tools.version>
-        <mashupservices.version>5.4.1.3</mashupservices.version>
-        <contentservices.version>5.4.1.3</contentservices.version>
-        <orchestrator.version>5.4.1.3</orchestrator.version>
-        <connectorframework.version>5.4.1.3</connectorframework.version>
+        <portal.dashboard.version>5.4.2.0</portal.dashboard.version>
+        <portal.tools.version>5.4.2.0</portal.tools.version>
+        <mashupservices.version>5.4.2.0</mashupservices.version>
+        <contentservices.version>5.4.2.0</contentservices.version>
+        <orchestrator.version>5.4.2.0</orchestrator.version>
+        <targeting.version>5.4.2.0</targeting.version>
         <launchpad.version>0.6.2</launchpad.version>
         
         <!-- Third party dependency versions -->
@@ -52,8 +52,8 @@
         <mashupservices.port.stop>9995</mashupservices.port.stop>
         <orchestrator.port>8083</orchestrator.port>
         <orchestrator.port.stop>9996</orchestrator.port.stop>
-        <connectorframework.port>8084</connectorframework.port>
-        <connectorframework.port.stop>9997</connectorframework.port.stop>
+        <targeting.port>8084</targeting.port>
+        <targeting.port.stop>9997</targeting.port.stop>
         <theme.port>8085</theme.port>
         <theme.port.stop>9998</theme.port.stop>
     </properties>
@@ -69,12 +69,14 @@
         <repository>
             <id>artifacts.backbase.com</id>
             <name>artifacts.backbase.com-releases</name>
-            <url>https://artifacts.backbase.com/backbase-ps-releases</url>
+            <!--<url>https://artifacts.backbase.com/backbase-ps-releases</url>-->
+            <url>https://repo.backbase.com//expert-release-local</url>
         </repository>
         <snapshotRepository>
             <id>artifacts.backbase.com</id>
             <name>artifacts.backbase.com-snapshots</name>
-            <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
+            <!--<url>https://artifacts.backbase.com/backbase-ps-snapshots</url>-->
+            <url>https://repo.backbase.com//expert-snapshot-local</url>
         </snapshotRepository>
     </distributionManagement>
 

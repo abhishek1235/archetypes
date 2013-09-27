@@ -1,6 +1,6 @@
 # Archetype backbase-contentservices-archetype
 
-Version **5.4.1.3**
+Version **5.4.2.0**
 
 ##Overview
 This archetype allows you to customize Backbase Content Services according to your specific needs. We are basically creating a standard Maven WAR overlay of Standalone Backbase Content Services WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
@@ -56,7 +56,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-contentservices-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.4.1.3
+        -DarchetypeVersion=5.4.2.0
     </pre>
 Refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) for more information. 
 3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Content Services](https://my.backbase.com/doc-center/manuals/portal/inst_inst_cose.html).

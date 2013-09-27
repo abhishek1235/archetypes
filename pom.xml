@@ -59,13 +59,13 @@
     </properties>
 
     <repositories>
-        <repository>
+        <!--<repository>
             <id>Backbase Repo Repository</id>
-            <url>https://repo.backbase.com/repo/</url>
-        </repository>
+            <url>https://repo.backbase.com/repo</url>
+        </repository>-->
         <repository>
             <id>Backbase Artifact Repository</id>
-            <url>https://artifacts.backbase.com/repo/</url>
+            <url>https://artifacts.backbase.com/repo</url>
         </repository>
     </repositories>
 

@@ -28,6 +28,13 @@
         <portal.data.dir>\${project.basedir}/data</portal.data.dir>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>repo.backbase.com</id>
+            <url>https://repo.backbase.com/repo/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.backbase.portal.contentservices</groupId>

@@ -69,15 +69,23 @@
         <repository>
             <id>artifacts.backbase.com</id>
             <name>artifacts.backbase.com-releases</name>
-            <!--<url>https://artifacts.backbase.com/backbase-ps-releases</url>-->
-            <url>https://repo.backbase.com//expert-release-local</url>
+            <url>https://artifacts.backbase.com/backbase-ps-releases</url>
+            <!--<id>repo.backbase.com</id>
+            <name>repo.backbase.com-releases</name>
+            <url>https://repo.backbase.com/expert-release-local</url>-->
         </repository>
         <snapshotRepository>
             <id>artifacts.backbase.com</id>
             <name>artifacts.backbase.com-snapshots</name>
-            <!--<url>https://artifacts.backbase.com/backbase-ps-snapshots</url>-->
-            <url>https://repo.backbase.com//expert-snapshot-local</url>
+            <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
+            <!--<id>repo.backbase.com</id>
+            <name>repo.backbase.com-snapshots</name>
+            <url>https://repo.backbase.com/expert-snapshot-local</url>-->
         </snapshotRepository>
+        <!--<site>
+            <id>website</id>
+            <url>scp://webhost.company.com/www/website</url>
+        </site>-->
     </distributionManagement>
 
     <developers>

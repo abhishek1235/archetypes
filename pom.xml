@@ -60,31 +60,25 @@
 
     <repositories>
         <repository>
-            <id>repo.backbase.com</id>
+            <id>Backbase Repo Repository</id>
             <url>https://repo.backbase.com/repo/</url>
         </repository>
         <repository>
-            <id>artifacts.backbase.com</id>
+            <id>Backbase Artifact Repository</id>
             <url>https://artifacts.backbase.com/repo/</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
-            <id>artifacts.backbase.com</id>
+            <id>Backbase Artifact Repository</id>
             <name>artifacts.backbase.com-releases</name>
             <url>https://artifacts.backbase.com/backbase-ps-releases</url>
-            <!--<id>repo.backbase.com</id>
-            <name>repo.backbase.com-releases</name>
-            <url>https://repo.backbase.com/expert-release-local</url>-->
         </repository>
         <snapshotRepository>
-            <id>artifacts.backbase.com</id>
+            <id>Backbase Artifact Repository</id>
             <name>artifacts.backbase.com-snapshots</name>
             <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
-            <!--<id>repo.backbase.com</id>
-            <name>repo.backbase.com-snapshots</name>
-            <url>https://repo.backbase.com/expert-snapshot-local</url>-->
         </snapshotRepository>
         <!--<site>
             <id>website</id>

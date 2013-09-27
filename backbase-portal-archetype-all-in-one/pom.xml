@@ -16,9 +16,9 @@
     <url>https://github.com/Backbase/archetypes</url>
 
     <properties>
-        <contentservices.port>8080</contentservices.port>
+        <contentservices.port>7777</contentservices.port>
         <contentservices.port.stop>9999</contentservices.port.stop>
-        <orchestrator.port>8080</orchestrator.port>
+        <orchestrator.port>7777</orchestrator.port>
         <orchestrator.port.stop>9999</orchestrator.port.stop>
     </properties>    
 

@@ -44,7 +44,7 @@
         <java.target.version>1.6</java.target.version>
 
         <!-- Server portss -->
-        <portal.port>8080</portal.port>
+        <portal.port>7777</portal.port>
         <portal.port.stop>9993</portal.port.stop>
         <contentservices.port>8081</contentservices.port>
         <contentservices.port.stop>9994</contentservices.port.stop>

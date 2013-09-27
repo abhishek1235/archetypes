@@ -80,9 +80,9 @@ Optionally run following command to delete and re-create databases when required
     <pre>
     $ mvn clean -P clean-database
     </pre>
-Note that both Jetty and Tomcat use the 8080 port by default. In case you need to choose a different port since you maybe already have another process runing on port 8080, make necessary changes in jetty and tomcat plugins within POM file before you run Portal Foundation.
-5. Test Portal Foundation by opening the Portal Foundation URL in a browser: http://localhost:8080/portalserver/ (pay attention to the port number).
-6. Test Mashup Services by opening the Mashup Services RSS pipe URL in a browser: http://localhost:8080/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/ (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
+Note that both Jetty and Tomcat use the 7777 port by default. In case you need to choose a different port since you maybe already have another process runing on port 7777, make necessary changes in jetty and tomcat plugins within POM file before you run Portal Foundation.
+5. Test Portal Foundation by opening the Portal Foundation URL in a browser: http://localhost:7777/portalserver/ (pay attention to the port number).
+6. Test Mashup Services by opening the Mashup Services RSS pipe URL in a browser: http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/ (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
 7. In order to integrate Portal Foundation with your Content Services that is running in its own standalone process, make sure to configure Portal’s Content Services Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/doc-center/manuals/portal/inst_inst_configfiles.html#inst_inst_proxyconfig).
 8. In order to integrate Portal Foundation with your Orchestrator that is running in its own standalone process, make sure to configure Portal’s Orchestrator and Orchestrator Proxy within backbase.properties as it is explained in [Orchestrator](https://my.backbase.com/doc-center/manuals/portal/inst_publ.html) and [Proxy Configuration](https://my.backbase.com/doc-center/manuals/portal/inst_inst_configfiles.html#inst_inst_proxyconfig).
 

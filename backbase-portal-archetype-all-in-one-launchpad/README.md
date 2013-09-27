@@ -92,12 +92,12 @@ Optionally run following command from the root project folder to delete and re-c
     <pre>
     $ mvn clean -P clean-database
     </pre>
-Note that both Jetty and Tomcat for Portal use the 8080 port by default, while the Launchpad Theme is running on port 8085. In case you need to choose a different port since you maybe already have another process running on ports 8080 and 8085, make necessary changes in jetty and tomcat plugins within POM files before you run Portal and Launchpad Theme. In order to use Launchpad you do need to run both Portal and Launchpad Theme at the same time. 
-5. Test Portal by opening the Portal Foundation URL in a browser: http://localhost:8080/portalserver/ (pay attention to the port number).
+Note that both Jetty and Tomcat for Portal use the 7777 port by default, while the Launchpad Theme is running on port 8085. In case you need to choose a different port since you maybe already have another process running on ports 7777 and 8085, make necessary changes in jetty and tomcat plugins within POM files before you run Portal and Launchpad Theme. In order to use Launchpad you do need to run both Portal and Launchpad Theme at the same time. 
+5. Test Portal by opening the Portal Foundation URL in a browser: http://localhost:7777/portalserver/ (pay attention to the port number).
 6. Test Launchpad Theme by opening the main theme CSS in a browser: http://localhost:8085/theme/static/themes/default/less/base.less (pay attention to the port number).
-7. Test Mashup Services by opening the Mashup Services RSS pipe URL in a browser: http://localhost:8080/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/ (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
-8. Test Content Services by opening the Content Services RSS URL in a browser: http://localhost:8080/portalserver/content/atom (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.
-9. Test Orchestrators by opening the Orchestrator configuration URL in a browser: http://localhost:8080/portalserver/orchestrator/configuration (pay attention to the port number).
+7. Test Mashup Services by opening the Mashup Services RSS pipe URL in a browser: http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/ (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
+8. Test Content Services by opening the Content Services RSS URL in a browser: http://localhost:7777/portalserver/content/atom (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.
+9. Test Orchestrators by opening the Orchestrator configuration URL in a browser: http://localhost:7777/portalserver/orchestrator/configuration (pay attention to the port number).
 
 ##Anatomy
 **project**  

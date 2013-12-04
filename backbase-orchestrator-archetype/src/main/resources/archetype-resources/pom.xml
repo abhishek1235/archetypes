@@ -17,7 +17,7 @@
         <project.reporting.outputEncoding>${project.reporting.outputEncoding}</project.reporting.outputEncoding>
 
         <!-- Backbase module versions -->
-        <mashupservices.version>${mashupservices.version}</mashupservices.version>
+        <orchestrator.version>${orchestrator.version}</orchestrator.version>
 
         <!-- Folder where H2 and binary data is stored-->
         <portal.data.dir>\${project.basedir}/data</portal.data.dir>
@@ -32,9 +32,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.backbase.services.mashup</groupId>
-            <artifactId>mashup-web</artifactId>
-            <version>\${mashupservices.version}</version>
+            <groupId>com.backbase.portal.orchestrator</groupId>
+            <artifactId>orchestrator-webapp</artifactId>
+            <version>\${orchestrator.version}</version>
             <type>war</type>
         </dependency>
     
@@ -96,16 +96,16 @@
                 <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
-                    <stopPort>${mashupservices.port.stop}</stopPort>
+                    <stopPort>${orchestrator.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
                     <webAppConfig>
                         <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
-                        <contextPath>/mashupservices-webapp</contextPath>
+                        <contextPath>/orchestrator-webapp</contextPath>
                     </webAppConfig>
                     <connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${mashupservices.port}</port>
+                            <port>${orchestrator.port}</port>
                         </connector>
                     </connectors>
                 </configuration>
@@ -145,6 +145,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -154,11 +155,11 @@
                 <version>${tomcat.plugin.version}</version>
                 <configuration>
                     <!-- http port -->
-                    <port>${mashupservices.port}</port>
+                    <port>${orchestrator.port}</port>
                     <!--<tomcat-url>http://localhost:8080/manager/html</tomcat-url>-->
                     <!-- application path always starts with /-->
                     <!--<path>/\${project.build.finalName}</path>-->
-                    <path>/mashupservices-webapp</path>
+                    <path>/orchestrator-webapp</path>
                     <!-- optional, needed only if you want to use a preconfigured server.xml file -->
                     <!-- <serverXml>\${project.build.testOutputDirectory}/configuration/tomcat/server.xml</serverXml>-->
                     <!-- optional path to a context file -->
@@ -206,6 +207,7 @@
                     </execution>
                 </executions>-->
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -241,18 +243,97 @@
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>2.3</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
     <profiles>
         <profile>
-            <id>dist</id>
+            <id>create-database</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
 
-            <!--TODO create distribution-->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>createOrchestrator</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/orchestrator</url>
+                                    <username>sa</username>
+                                    <password></password>
+                                    <srcFiles>
+                                        <srcFile>\${project.basedir}/configuration/scripts/orchestrator/scripts/h2/create_database.sql</srcFile>
+                                    </srcFiles>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.h2database</groupId>
+                                <artifactId>h2</artifactId>
+                                <version>${h2.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
         </profile> 
+
+        <profile>
+            <id>clean-database</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>cleanOrchestrator</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:\${portal.data.dir}/orchestrator</url>
+                                    <username>sa</username>
+                                    <password></password>
+                                    <srcFiles>
+                                        <srcFile>\${project.basedir}/configuration/scripts/orchestrator/scripts/h2/drop_database.sql</srcFile>
+                                        <srcFile>\${project.basedir}/configuration/scripts/orchestrator/scripts/h2/create_database.sql</srcFile>
+                                    </srcFiles>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.h2database</groupId>
+                                <artifactId>h2</artifactId>
+                                <version>${h2.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>  
     </profiles>
 </project>

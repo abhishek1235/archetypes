@@ -17,7 +17,7 @@
         <project.reporting.outputEncoding>${project.reporting.outputEncoding}</project.reporting.outputEncoding>
 
         <!-- Backbase module versions -->
-        <mashupservices.version>${mashupservices.version}</mashupservices.version>
+        <targeting.version>${targeting.version}</targeting.version>
 
         <!-- Folder where H2 and binary data is stored-->
         <portal.data.dir>\${project.basedir}/data</portal.data.dir>
@@ -32,10 +32,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.backbase.services.mashup</groupId>
-            <artifactId>mashup-web</artifactId>
-            <version>\${mashupservices.version}</version>
+            <groupId>com.backbase.portal.targeting</groupId>
+            <artifactId>connectorframework-webapp</artifactId>
+            <version>${targeting.version}</version>
             <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.targeting</groupId>
+            <artifactId>connectorframework</artifactId>
+            <version>${targeting.version}</version>
         </dependency>
     
         <!-- testing -->
@@ -96,18 +101,24 @@
                 <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
-                    <stopPort>${mashupservices.port.stop}</stopPort>
+                    <stopPort>${targeting.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
                     <webAppConfig>
                         <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
-                        <contextPath>/mashupservices-webapp</contextPath>
+                        <contextPath>/targeting-webapp</contextPath>
                     </webAppConfig>
                     <connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${mashupservices.port}</port>
+                            <port>${targeting.port}</port>
                         </connector>
                     </connectors>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>TARGETING_LOG_FOLDER</name>
+                            <value>\${project.build.directory}/logs</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
                 <executions>
                     <execution>
@@ -130,21 +141,8 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>c3p0</groupId>
-                        <artifactId>c3p0</artifactId>
-                        <version>${c3p0.version}</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.h2database</groupId>
-                        <artifactId>h2</artifactId>
-                        <version>${h2.version}</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -154,15 +152,19 @@
                 <version>${tomcat.plugin.version}</version>
                 <configuration>
                     <!-- http port -->
-                    <port>${mashupservices.port}</port>
+                    <port>${targeting.port}</port>
                     <!--<tomcat-url>http://localhost:8080/manager/html</tomcat-url>-->
                     <!-- application path always starts with /-->
                     <!--<path>/\${project.build.finalName}</path>-->
-                    <path>/mashupservices-webapp</path>
+                    <path>/targeting-webapp</path>
                     <!-- optional, needed only if you want to use a preconfigured server.xml file -->
                     <!-- <serverXml>\${project.build.testOutputDirectory}/configuration/tomcat/server.xml</serverXml>-->
                     <!-- optional path to a context file -->
                     <contextFile>\${project.build.testOutputDirectory}/configuration/tomcat/context.xml</contextFile>
+                    <!-- optional system propoerties you want to add -->
+                    <systemProperties>
+                        <TARGETING_LOG_FOLDER>\${project.build.directory}/logs</TARGETING_LOG_FOLDER>
+                    </systemProperties>
                     <!-- if you want to use test dependencies rather than only runtime -->
                     <useTestClasspath>false</useTestClasspath>
                     <!-- optional if you want to add some extra directories into the classloader -->
@@ -179,11 +181,6 @@
                         <groupId>javax.mail</groupId>
                         <artifactId>mail</artifactId>
                         <version>${javax.mail.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.h2database</groupId>
-                        <artifactId>h2</artifactId>
-                        <version>${h2.version}</version>
                     </dependency>
                 </dependencies>
                 <!--<executions>
@@ -206,6 +203,7 @@
                     </execution>
                 </executions>-->
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -247,12 +245,54 @@
 
     <profiles>
         <profile>
-            <id>dist</id>
+            <id>jboss</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
-
-            <!--TODO create distribution-->
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+            
+            <dependencies>
+                <dependency>
+                    <groupId>com.backbase.portal.targeting</groupId>
+                    <artifactId>tracking</artifactId>
+                    <version>${targeting.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-core</artifactId>
+                    <version>${camel.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-spring-javaconfig</artifactId>
+                    <version>${camel.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-spring</artifactId>
+                    <version>${camel.version}</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.3</version>
+                        <configuration>
+                            <packagingExcludes>
+                                WEB-INF/lib/stax-api*.jar,
+                                WEB-INF/lib/xercesImpl-*.jar,
+                                WEB-INF/lib/camel-core-2.6*.jar,
+                                WEB-INF/lib/camel-spring-2.6*.jar,
+                                WEB-INF/lib/camel-spring-javaconfig-2.6*.jar,
+                                WEB-INF/lib/groovy-all*.jar
+                            </packagingExcludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile> 
     </profiles>
 </project>

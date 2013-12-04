@@ -4,11 +4,11 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes</artifactId>
-    <version>5.4.2.0-SNAPSHOT</version>
+    <version>5.4.2.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>
-    <description>A collection of Maven archetypes for Backbase Portal created by Expert Services that can help help with initial project setup.</description>
+    <description>A collection of Maven archetypes for Backbase Portal created by Expert Services that can help help with initial project setup and various project customizations.</description>
     <url>https://github.com/Backbase/archetypes</url>
 
     <properties>
@@ -19,15 +19,15 @@
         <maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
         
         <!-- Backbase dependency versions -->
-        <portal.server.version>5.4.2.0</portal.server.version>
+        <portal.server.version>5.4.2.2</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
-        <portal.dashboard.version>5.4.2.0</portal.dashboard.version>
-        <portal.tools.version>5.4.2.0</portal.tools.version>
-        <mashupservices.version>5.4.2.0</mashupservices.version>
-        <contentservices.version>5.4.2.0</contentservices.version>
-        <orchestrator.version>5.4.2.0</orchestrator.version>
-        <targeting.version>5.4.2.0</targeting.version>
-        <launchpad.version>0.6.2</launchpad.version>
+        <portal.dashboard.version>5.4.2.2</portal.dashboard.version>
+        <portal.tools.version>5.4.2.2</portal.tools.version>
+        <mashupservices.version>5.4.2.2</mashupservices.version>
+        <contentservices.version>5.4.2.2</contentservices.version>
+        <orchestrator.version>5.4.2.2</orchestrator.version>
+        <targeting.version>5.4.2.2</targeting.version>
+        <launchpad.version>0.7</launchpad.version>
         
         <!-- Third party dependency versions -->
         <springframework.version>3.1.0.RELEASE</springframework.version>
@@ -43,7 +43,8 @@
         <camel.version>2.10.3</camel.version>
         <java.target.version>1.6</java.target.version>
 
-        <!-- Server portss -->
+        <!-- Server details -->
+        <server.host>localhost</server.host>
         <portal.port>7777</portal.port>
         <portal.port.stop>9993</portal.port.stop>
         <contentservices.port>8081</contentservices.port>
@@ -64,19 +65,19 @@
             <url>https://repo.backbase.com/repo/</url>
         </repository>
         <repository>
-            <id>repo.backbase.com</id>
+            <id>Backbase Artifacts Repository</id>
             <url>https://artifacts.backbase.com/repo/</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
-            <id>Backbase Artifact Repository</id>
+            <id>Backbase Artifacts ES Repository</id>
             <name>artifacts.backbase.com-releases</name>
             <url>https://artifacts.backbase.com/backbase-ps-releases</url>
         </repository>
         <snapshotRepository>
-            <id>Backbase Artifact Repository</id>
+            <id>Backbase Artifacts ES Repository</id>
             <name>artifacts.backbase.com-snapshots</name>
             <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
         </snapshotRepository>
@@ -98,33 +99,20 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>tag-archetypes-5.4.1.3</tag>
+        <tag>tag-archetypes-5.4.2.2</tag>
     </scm>
 
     <modules>
-        <!--<module>backbase-collectorframework-archetype</module>-->
+        <module>backbase-all-in-one-archetype</module>
+        <module>backbase-all-in-one-launchpad-archetype</module>
         <module>backbase-contentservices-archetype</module>
         <module>backbase-mashupservices-archetype</module>
-        <module>backbase-portal-archetype-basic</module>
-        <module>backbase-portal-archetype-all-in-one</module>
-        <module>backbase-portal-archetype-all-in-one-launchpad</module>
-        <!--<module>backbase-portal-archetype-full</module>-->
+        <module>backbase-orchestrator-archetype</module>
+        <module>backbase-portalserver-archetype</module>
+        <module>backbase-targeting-archetype</module>
     </modules>
 
-     <build>
-        <plugins>
-            <!-- Do a mvn release:prepare and a mvn release:perform if you want to release -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <configuration>
-                    <!-- During release:perform, enable the "release" profile -->
-                    <releaseProfiles>release</releaseProfiles>
-                    <goals>deploy</goals>
-                </configuration>
-            </plugin>
-        </plugins>
-
+    <build>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -135,10 +123,26 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>2.4.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <!-- Do a mvn release:prepare and a mvn release:perform if you want to release -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <!--<preparationGoals>clean verify install</preparationGoals>-->
+                    <!-- During release:perform, enable the "release" profile -->
+                    <!--<useReleaseProfile>false</useReleaseProfile>-->
+                    <releaseProfiles>release</releaseProfiles>
+                    <!--<autoVersionSubmodules>true</autoVersionSubmodules>-->
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <profiles>
@@ -219,6 +223,32 @@
         </profile>
         <profile>
             <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>

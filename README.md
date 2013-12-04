@@ -1,21 +1,24 @@
 #Archetypes
 
-Version **5.4.2.0**
+Version **5.4.2.2**
 
 ##Overview
-A collection of Maven archetypes related to Backbase Portal created by Backbase Expert Services that can help with initial project setup and other tasks.
+A collection of Maven archetypes for Backbase Portal created by Expert Services that can help help with initial project setup and various project customizations.
 
 Archetypes are deployed to Backbase Expert Services' Maven repository at
 
 1. PUBLIC RELEASES   					**https://repo.backbase.com/extensions** 
-2. INTERNAL RELEASES AND SNAPSHOTS  	**https://artifacts.backbase.com/extensions**
+2. INTERNAL RELEASES                	**https://artifacts.backbase.com/backbase-ps-releases**
+3. INTERNAL SNAPSHOTS               	**https://artifacts.backbase.com/backbase-ps-snapshots**
 
 ##List of currently available archetypes:
-1. **backbase-contentservices-archetype-all-in-one**, from version **5.4.0.5**
-2. **backbase-mashupervices-archetype-all-in-one**, from version **5.4.0.6**
-3. **backbase-portal-archetype-all-in-one**, from version **5.3.1.1**
-4. **backbase-portal-archetype-basic**, from version **5.4.1.3**
-5. **backbase-portal-archetype-all-in-one-launchpad**, from version **5.4.1.3**
+1. **backbase-all-in-one-archetype**, from version **5.3.1.1**
+2. **backbase-contentservices-archetype**, from version **5.4.0.5**
+3. **backbase-mashupservices-archetype**, from version **5.4.0.6**
+4. **backbase-portalserver-archetype**, from version **5.4.1.3**
+5. **backbase-all-in-one-launchpad-archetype**, from version **5.4.1.3**
+6. **backbase-orchestrator-archetype**, from version **5.4.2.2**
+7. **backbase-targeting-archetype**, from version **5.4.2.2**
 
 ##Usage
 
@@ -41,16 +44,21 @@ In order to use these archetypes, you need to pull or fork code from this Git re
 </pre>
 This way you can use these archetypes from your local Maven repository directly. 
 
-###Deploy within organization
+###Deploy within your organization
 Optionally, you can also install these archetypes into a Maven repository within your organization. This would enable other people from your organization with access to that Maven repository to use these archetypes. You should do this with Maven deploy plugin. We already use it to deploy to our internal Maven repository so you just need to chnage our settings into yours. More info on this plugin you can find [here](http://maven.apache.org/plugins/maven-deploy-plugin). Key configuration you need to change is related to distributionManagement section inside main POM file.
 
 This way, all your coleagues can use these archetypes from your organization's Maven repository. 
 
 ## History of Changes
-5.4.2.0 
+5.4.2.2 
 
-1. Alignement of Basic, Content Services, Mashup Services, All-In-One and All-In-One with Launchpad archetypes with 5.4.2.0 version of Backbase Portal suite
-2. Fixing reported bugs
+1. Alignement of Basic, Content Services, Mashup Services, All-In-One and All-In-One with Launchpad archetypes with 5.4.2.2 version of Backbase Portal suite
+2. Initial version of Orchestrator Archetype
+3. Initial version of Targeting Archetype
+4. Rename archetypes to fit uniform naming convention 
+5. Making 7777 as a default port for Backbase Portal
+6. Change repositories so that Backbase Expert Services Jenkins can perform builds
+7. Fixing reported bugs
 
 5.4.1.3 
 

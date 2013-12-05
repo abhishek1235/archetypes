@@ -59,13 +59,15 @@
         <theme.port.stop>9998</theme.port.stop>
     </properties>
 
+
+    <!-- Do  not change repo id's here due to Backbase ES Jenkins -->
     <repositories>
         <repository>
-            <id>Backbase Repo Repository</id>
+            <id>repo.backbase.com</id>
             <url>https://repo.backbase.com/repo/</url>
         </repository>
         <repository>
-            <id>Backbase Artifacts Repository</id>
+            <id>artifacts.backbase.com</id>
             <url>https://artifacts.backbase.com/repo/</url>
         </repository>
     </repositories>

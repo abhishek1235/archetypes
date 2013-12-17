@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>archetypes</artifactId>
-        <version>5.4.2.2-SNAPSHOT</version>
+        <version>5.4.2.2</version>
     </parent>
 
     <artifactId>backbase-all-in-one-launchpad-archetype</artifactId>

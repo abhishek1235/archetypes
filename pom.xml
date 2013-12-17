@@ -4,7 +4,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes</artifactId>
-    <version>5.4.2.2-SNAPSHOT</version>
+    <version>5.4.2.2</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>

@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
+    <groupId>\${groupId}</groupId>
+    <artifactId>\${artifactId}</artifactId>
+    <version>\${version}</version>
     <packaging>war</packaging>
 
     <properties>
@@ -89,30 +89,28 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>
                     <source>${java.target.version}</source>
                     <target>${java.target.version}</target>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
                     <stopPort>${targeting.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
-                    <webAppConfig>
+                    <jettyXml>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyXml>
+                    <webApp>
                         <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
                         <contextPath>/targeting-webapp</contextPath>
-                    </webAppConfig>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${targeting.port}</port>
-                        </connector>
-                    </connectors>
+                    </webApp>
+                    <httpConnector>
+                        <port>${targeting.port}</port>
+                    </httpConnector>
                     <systemProperties>
                         <systemProperty>
                             <name>TARGETING_LOG_FOLDER</name>
@@ -142,7 +140,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -203,7 +200,6 @@
                     </execution>
                 </executions>-->
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>

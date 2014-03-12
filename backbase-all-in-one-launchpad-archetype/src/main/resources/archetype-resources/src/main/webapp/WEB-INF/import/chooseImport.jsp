@@ -1,16 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page import="com.backbase.portal.foundation.presentation.util.SecurityUtils"%>
-<%@ page session="false"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 <style>
     /**
-     * Copyright � 2011 Backbase B.V.
+     * Copyright © 2011 Backbase B.V.
      */
 xmp {
     display: none;
@@ -275,7 +275,7 @@ h2 {
                 <div class="bd-maincontainer">
                     <div class="bd-mainTitle"><span>IMPORT BACKBASE PORTAL OBJECTS</span></div>
 
-                    <% if(SecurityUtils.isAdminAuthorized()) { %>
+                    <sec:authorize access="hasRole('role_admin')">
 
                     <form:form commandName="formObject" action="import" method="POST">
                     Select the objects you want to import: <input type="button"
@@ -361,7 +361,7 @@ h2 {
                         </tr>
                     </table>
                     </form:form>
-                    <% } %>
+                    </sec:authorize>
             </td>
             <td valign="top" class="bd-right">
                 <div class="bd-top">

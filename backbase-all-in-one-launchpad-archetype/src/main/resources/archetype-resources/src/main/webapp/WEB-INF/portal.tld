@@ -48,4 +48,24 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    <tag>
+        <name>areaSort</name>
+        <tag-class>com.backbase.portal.foundation.presentation.renderer.AreaSortTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>src</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>xmlModel</name>
+        <tag-class>com.backbase.portal.foundation.presentation.renderer.XmlModelTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>src</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

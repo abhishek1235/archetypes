@@ -1,16 +1,18 @@
 # Archetype backbase-targeting-archetype
 
-Version **5.4.2.2**
+Version **5.5.0.0**
 
 ##Overview
-This archetype allows you to customize Backbase Targeting according to your specific needs. We are basically creating a standard Maven WAR overlay of Standalone Backbase Targeting WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
+This archetype allows you to run and customize Standalone Backbase Targeting according to your specific needs. We are basically creating a standard Maven WAR overlay of Standalone Backbase Targeting WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
 
 The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. It also contains all necessery scripts and configuration files required for forther configuration changes. 
 
-The reason why you would want to create your own version of Targeting and therefore use this archetype is if you really need to customize Targeting according to your special needs.
+Backbase Targeting is not using database, therefore no database configurations are supplied.
+
+The reason why you would want to use Standalone Targeting and therefore use this archetype is if you plan to run this module in a standalone JVM separate from Portal Foundation.
 
 ##Usage
-Follow the steps below to get started with this archetype. Some of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Targeting](https://my.backbase.com/doc-center/manuals/portal/inst_trgt.html). You should get familiar with these topics before you start using this archetype.
+Follow the steps below to get started with this archetype. Some of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Targeting Stand-Alone](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#N63C55). You should get familiar with these topics before you start using this archetype.
 
 1. Configure your Maven installation to include the Backbase extensions repository by editing the settings.xml file located in the .m2 folder. 
     <pre>```    
@@ -54,10 +56,10 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-targeting-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.4.2.2
+        -DarchetypeVersion=5.5.0.0
     </pre>
-Refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) for more information. 
-3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Targeting](https://my.backbase.com/doc-center/manuals/portal/inst_trgt.html).
+Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
+3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Targeting Stand-Alone](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#N63C55).
 4. Use the following command to run Targeting on Jetty:  
     <pre>
     $ mvn jetty:run-war
@@ -66,9 +68,9 @@ Or, if you want to run Targeting on Tomcat 7:
     <pre>
     $ mvn tomcat7:run-war
     </pre>
-Note that both Jetty and Tomcat use the 8084 port by default. In case you need to choose a different port since you maybe already have another process runing on port 8084, make necessary changes in jetty and tomcat plugins within POM file before you run Targeting.
+Note that both Jetty and Tomcat use the 8084 port by default. In case you need to choose a different port since you maybe already have another process running on port 8084, make necessary changes in jetty and tomcat plugins within POM file before you run Targeting.
 5. Test Targeting by opening the Targeting contexts in a browser: http://localhost:8084/targeting-webapp/contexts (pay attention to the port number).
-6. In order to integrate Targeting with your Backbase Portal that is running in its own standalone process, make sure to configure Portal’s Targeting Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/doc-center/manuals/portal/inst_inst_configfiles.html#inst_inst_proxyconfig).
+6. In order to integrate Targeting with your Backbase Portal that is running in its own standalone process, make sure to configure Portal’s Targeting Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
 
 ##Anatomy
 **project**  

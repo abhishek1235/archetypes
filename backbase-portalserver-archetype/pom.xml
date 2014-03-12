@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>archetypes</artifactId>
-        <version>5.5.0-SNAPSHOT</version>
+        <version>5.5.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>backbase-portalserver-archetype</artifactId>
@@ -76,7 +76,7 @@
             <extension>
                 <groupId>org.apache.maven.archetype</groupId>
                 <artifactId>archetype-packaging</artifactId>
-                <version>2.1</version>
+                <version>2.2</version>
             </extension>
         </extensions>
 
@@ -105,6 +105,7 @@
                                     <artifactId>tracking</artifactId>
                                     <classifier>database-scripts</classifier>
                                     <type>zip</type>
+                                    <includes>**\/scripts/**/**.*</includes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration/scripts/tracking</outputDirectory>
                                 </artifactItem>
                             </artifactItems>

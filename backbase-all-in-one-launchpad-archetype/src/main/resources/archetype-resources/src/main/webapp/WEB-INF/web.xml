@@ -19,9 +19,11 @@
             classpath:/META-INF/spring/backbase-portal-presentation-ssr.xml
             classpath:/META-INF/spring/backbase-portal-business-security.xml
             classpath:backbase-ptc.xml
+            classpath:/META-INF/spring/backbase-mashup.xml
         ]]></param-value>
     </context-param>
 
+    <!-- PTC properties files list. -->
     <context-param>
         <param-name>com.backbase.portal.ptc.web.PROPERTIES_FILE</param-name>
         <param-value>classpath:/ptc-server.properties,classpath:/ice-config.properties,jndi:java:comp/env/mashup/ptc-config,jndi:java:comp/env/portalmanager/ice-config</param-value>
@@ -54,36 +56,11 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
-    <!-- Cache the staticResourceFilter Javascript, CSS, and Images
-    <filter-mapping>
-        <filter-name>staticResourceFilter</filter-name>
-        <url-pattern>*.js</url-pattern>
-    </filter-mapping> 
-    <filter-mapping>
-        <filter-name>staticResourceFilter</filter-name>
-        <url-pattern>*.css</url-pattern>
-    </filter-mapping> 
-    <filter-mapping>
-        <filter-name>staticResourceFilter</filter-name>
-        <url-pattern>*.gif</url-pattern>
-    </filter-mapping> 
-    <filter-mapping>
-        <filter-name>staticResourceFilter</filter-name>
-        <url-pattern>*.jpg</url-pattern>
-    </filter-mapping> 
-    <filter-mapping>
-        <filter-name>staticResourceFilter</filter-name>
-        <url-pattern>*.png</url-pattern>
-    </filter-mapping> 
-    <filter-mapping>
-        <filter-name>staticResourceFilter</filter-name>
-        <url-pattern>*.xsl</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>staticResourceFilter</filter-name>
-        <url-pattern>/static/*</url-pattern>
-    </filter-mapping>
-    -->
+    <!-- Filter allowing override of user agent sent by browser -->
+    <filter>
+        <filter-name>uAgentOverrideFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
     <!-- Filter for setting the UAgentInfo -->
     <filter>
         <filter-name>uAgentInfoGatheringFilter</filter-name>
@@ -128,10 +105,19 @@
         <filter-name>urlFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
+    <!-- Filter for faking authentication -->
+    <filter>
+        <filter-name>fakeAuthenticationFilter</filter-name>
+        <filter-class>com.backbase.services.FakeAuthenticationFilter</filter-class>
+    </filter>
 
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>uAgentOverrideFilter</filter-name>
+        <servlet-name>Portal Foundation Spring MVC</servlet-name>
     </filter-mapping>
     <filter-mapping>
         <filter-name>uAgentInfoGatheringFilter</filter-name>
@@ -157,6 +143,11 @@
         <filter-name>urlFilter</filter-name>
         <servlet-name>Portal Foundation Spring MVC</servlet-name>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>fakeAuthenticationFilter</filter-name>
+        <servlet-name>Mashup Servlet</servlet-name>
+    </filter-mapping>
+
     <!-- Creates the Spring Container shared by all Servlets and Filters -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -165,6 +156,11 @@
     <!-- Needed for targeting module to access current servlet request -->
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <!-- ServletContextListeners -->
+    <listener>
+        <listener-class>com.backbase.portal.foundation.presentation.listener.PortalFoundationContextListener</listener-class>
     </listener>
 
     <context-param>
@@ -182,11 +178,23 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <!-- Handles Spring requests -->
     <servlet>
-        <servlet-name>PTC Servlet</servlet-name>
-        <servlet-class>com.backbase.portal.foundation.presentation.renderer.PtcServlet</servlet-class>
-        <load-on-startup>2</load-on-startup>
+        <servlet-name>mvcServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value></param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
+    <!-- Handles Integration Services requests -->
+    <servlet>
+       <servlet-name>Mashup Servlet</servlet-name>
+       <servlet-class>com.backbase.mashup.camel.servlet.MashupServlet</servlet-class>
+       <load-on-startup>2</load-on-startup>
+    </servlet>
+    <!-- Handles LESS CSS files -->
     <servlet>
         <servlet-name>less</servlet-name>
         <servlet-class>com.asual.lesscss.LessServlet</servlet-class>
@@ -198,16 +206,24 @@
             <param-name>cache</param-name>
             <param-value>false</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <load-on-startup>3</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>PTC Servlet</servlet-name>
+        <servlet-name>Portal Foundation Spring MVC</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mvcServlet</servlet-name>
+        <url-pattern>/mvc/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Mashup Servlet</servlet-name>
         <url-pattern>/proxy/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Portal Foundation Spring MVC</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>Mashup Servlet</servlet-name>
+        <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>less</servlet-name>
@@ -217,13 +233,6 @@
     <session-config>
         <session-timeout>20</session-timeout>
     </session-config>
-
-    <!-- ServletContextListeners -->
-    <listener>
-        <listener-class>
-            com.backbase.portal.foundation.presentation.listener.PortalFoundationContextListener
-        </listener-class>
-    </listener>
 
     <resource-ref>
         <description>Portal Datasource</description>

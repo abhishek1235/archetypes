@@ -1,6 +1,6 @@
 #Archetypes
 
-Version **5.4.2.2**
+Version **5.4.2.4**
 
 ##Overview
 A collection of Maven archetypes for Backbase Portal created by Expert Services that can help help with initial project setup and various project customizations.

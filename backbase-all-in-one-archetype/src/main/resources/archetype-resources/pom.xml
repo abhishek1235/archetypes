@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
+    <groupId>\${groupId}</groupId>
+    <artifactId>\${artifactId}</artifactId>
+    <version>\${version}</version>
     <packaging>war</packaging>
 
     <properties>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>${springframework.version}</version>
+            <version>${spring.security.framework.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -146,6 +146,22 @@
         </dependency>
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.sun.xml.fastinfoset</groupId>
+                <artifactId>FastInfoset</artifactId>
+                <version>1.2.12</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jsr173_api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <finalName>\${project.artifactId}</finalName>
 
@@ -165,17 +181,16 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>
                     <source>${java.target.version}</source>
                     <target>${java.target.version}</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.4</version>
                 <configuration>
                     <overlays>
                         <overlay>
@@ -195,7 +210,6 @@
                     </overlays>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -238,19 +252,20 @@
                                     <artifactId>contentservices-webapp</artifactId>
                                     <type>war</type>
                                     <outputDirectory>\${project.basedir}/target/contentservices.war</outputDirectory>
+                                    <excludes>**/c3p0*.jar</excludes>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.backbase.portal.orchestrator</groupId>
                                     <artifactId>orchestrator-webapp</artifactId>
                                     <type>war</type>
                                     <outputDirectory>\${project.basedir}/target/orchestrator.war</outputDirectory>
+                                    <excludes>**/c3p0*.jar</excludes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -290,28 +305,25 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
                     <stopPort>${portal.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
-                    <webAppConfig>
+                    <jettyXml>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyXml>
+                    <webApp>
                         <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
                         <contextPath>/portalserver</contextPath>
                         <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
                             <resourcesAsCSV>\${project.basedir}/src/main/webapp;\${work.dir}</resourcesAsCSV>
                         </baseResource>
-                    </webAppConfig>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${portal.port}</port>
-                        </connector>
-                    </connectors>
+                    </webApp>
+                    <httpConnector>
+                        <port>${portal.port}</port>
+                    </httpConnector>
                     <contextHandlers>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
                             <contextPath>/contentservices-webapp</contextPath>
@@ -381,7 +393,7 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>c3p0</groupId>
+                        <groupId>com.mchange</groupId>
                         <artifactId>c3p0</artifactId>
                         <version>${c3p0.version}</version>
                         <scope>runtime</scope>
@@ -394,7 +406,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -478,7 +489,6 @@
                     </execution>
                 </executions>-->
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>

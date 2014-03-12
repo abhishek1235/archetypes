@@ -12,7 +12,7 @@ There is an option to clear a EhCache by clicking the link next to the cache.
 <head>
     <title>EhCache Statistics summary</title>
     <%-- resolve url to local jQuery resources --%>
-    <script type="text/javascript" src="<%=portalContextRoot%>/static/ext-lib/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="<%=portalContextRoot%>/static/lib/jquery-1.6.1-min.js"></script>
     <script type="text/javascript">
         function clearCache(cacheName) {
             var sServiceUri = "<%=portalContextRoot%>/caches/" + cacheName;
@@ -45,19 +45,19 @@ There is an option to clear a EhCache by clicking the link next to the cache.
         </tr>
         <c:forEach items="${model['ehCacheStatistics']}" var="item">
             <tr>
-                <td>${(item.cacheName != null)? item.cacheName:""}</td>
-                <td>${(item.cacheHitCount != null)? item.cacheHitCount:""}</td>
-                <td>${(item.cacheMissCount != null)? item.cacheMissCount:""}</td>
-                <td>${(item.cachedObjectCount != null)? item.cachedObjectCount:""}</td>
-                <td>${(item.cacheEvictionCount != null)? item.cacheEvictionCount:""}</td>
-                <td>${(item.averageFetchTime != null)? item.averageFetchTime:""}</td>
-                <td>${(item.inMemoryHitCount != null)? item.inMemoryHitCount:""}</td>
-                <td>${(item.onDiskHitCount != null)? item.onDiskHitCount:""}</td>
+                <td>${(item.associatedCacheName != null)? item.associatedCacheName:""}</td>
+                <td>${(item.cacheHits != null)? item.cacheHits:""}</td>
+                <td>${(item.cacheMisses != null)? item.cacheMisses:""}</td>
+                <td>${(item.objectCount != null)? item.objectCount:""}</td>
+                <td>${(item.evictionCount != null)? item.evictionCount:""}</td>
+                <td>${(item.averageGetTime != null)? item.averageGetTime:""}</td>
+                <td>${(item.inMemoryHits != null)? item.inMemoryHits:""}</td>
+                <td>${(item.onDiskHits != null)? item.onDiskHits:""}</td>
                 <td>
                     <c:choose>
-                        <c:when test="${(item.cacheName != null)}">
-                            <a href="#" onclick="clearCache('${item.cacheName}')">
-                                Clear ${item.cacheName} cache
+                        <c:when test="${(item.associatedCacheName != null)}">
+                            <a href="#" onclick="clearCache('${item.associatedCacheName}')">
+                                Clear ${item.associatedCacheName} cache
                             </a>
                         </c:when>
                     </c:choose>

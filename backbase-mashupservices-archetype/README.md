@@ -1,18 +1,18 @@
 # Archetype backbase-mashupservices-archetype
 
-Version **5.4.2.2**
+Version **5.5.0.0**
 
 ##Overview
-This archetype allows you to customize Backbase Mashup Services according to your specific needs. We are basically creating a standard Maven WAR overlay of Standalone Backbase Mashup Services WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
+This archetype allows you to run and customize Standalone Backbase Mashup Services according to your specific needs. We are basically creating a standard Maven WAR overlay of Standalone Backbase Mashup Services WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
 
 The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. It also contains all necessery scripts and configuration files required for forther configuration changes. 
 
 Backbase Mashup Services is not using database, therefore no database configurations are supplied.
 
-The reason why you would want to create your own version of Mashup Services and therefore use this archetype is if you need to use Standalone Mashup Services and develop customizations on top of it. Most common reason for customizations is creation of custom filters, data providers and transformers and this is covered in [Developing for Mashup Services](https://my.backbase.com/doc-center/manuals/portal/devd_cuma.html) part of Mashup Services documentation. 
+The reason why you would want to use Standalone Mashup Services and therefore use this archetype is if you want to run this module in a standalone JVM separate from Portal Foundation.
 
 ##Usage
-Follow the steps below to get started with this archetype. Some of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Mashup Services](https://my.backbase.com/doc-center/manuals/portal/inst_inst_ptc.html). You should get familiar with these topics before you start using this archetype.
+Follow the steps below to get started with this archetype. Some of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Mashup Services Stand-Alone](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_mash). You should get familiar with these topics before you start using this archetype.
 
 1. Configure your Maven installation to include the Backbase extensions repository by editing the settings.xml file located in the .m2 folder. 
     <pre>```    
@@ -56,14 +56,14 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-mashupservices-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.4.2.2
+        -DarchetypeVersion=5.5.0.0
     </pre>
-Refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) for more information. 
+Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
 3. Optionally adjust JMV properties, differently configure the logback, or make some changes to one or more of the following configuration files:
     - main configuration file (backbase.properties),
     - Mashup Services configuration file (ptc-config.xml),
     - ICE configuration file (ice-config.properties).
-For any of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Mashup Services](https://my.backbase.com/doc-center/manuals/portal/inst_inst_ptc.html).
+For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Mashup Services Stand-Alone](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_mash).
 4. Use the following command to prepare the project for running:
     <pre>
     $ mvn clean install
@@ -76,9 +76,9 @@ Or, if you want to run Mashup Services on Tomcat 7:
     <pre>
     $ mvn tomcat7:run-war
     </pre>
-Note that both Jetty and Tomcat use the 8082 port by default. In case you need to choose a different port since you maybe already have another process runing on port 8082, make necessary changes in jetty and tomcat plugins within POM file before you run Mashup Services.
+Note that both Jetty and Tomcat use the 8082 port by default. In case you need to choose a different port since you maybe already have another process running on port 8082, make necessary changes in jetty and tomcat plugins within POM file before you run Mashup Services.
 5. Test Mashup Services by opening the Mashup Services RSS pipe URL in a browser: http://localhost:8082/mashupservices-webapp/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/ (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
-6. In order to integrate Mashup Services with your Backbase Portal that is running in its own standalone process, make sure to configure all the Portal and Mashup Services inter-related configurations. In order to do that, you need to modify a PTC profile in backbase.properties of your portal and to set Portal Foundation URL as a JVM property. On top of that you need to adjust ice-config.properties with the correct Portal URL. All of this is explained in [Proxy Configuration](https://my.backbase.com/doc-center/manuals/portal/inst_inst_configfiles.html#inst_inst_proxyconfig).
+6. In order to integrate Mashup Services with your Backbase Portal that is running in its own standalone process, make sure to configure all the Portal and Mashup Services inter-related configurations. In order to do that, you need to modify a PTC profile in backbase.properties of your portal and to set Portal Foundation URL as a JVM property. On top of that you need to adjust ice-config.properties with the correct Portal URL. All of this is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
 
 ##Anatomy
 **project**  

@@ -7,9 +7,7 @@
         <res-auth>Container</res-auth>
         <jndi-name>java:/jdbc/portalDS</jndi-name>
     </resource-ref>
-
-    <!-- Optional datasources
-
+    <!--
     <resource-ref>
         <res-ref-name>jdbc/auditDS</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
@@ -17,21 +15,7 @@
         <res-auth>Container</res-auth>
         <jndi-name>java:/jdbc/auditDS</jndi-name>
     </resource-ref>
-
-    <resource-ref>
-        <res-ref-name>jdbc/trackingDS</res-ref-name>
-        <res-type>javax.sql.DataSource</res-type>
-        <mapped-name>jdbc/trackingDS</mapped-name>
-        <res-auth>Container</res-auth>
-        <jndi-name>java:/jdbc/trackingDS</jndi-name>
-    </resource-ref>
-
     -->
-
-    <!-- Optional context root
-        <context-root>/</context-root>
-    -->
-
     <resource-env-ref>
         <resource-env-ref-name>backbase/config</resource-env-ref-name>
         <jndi-name>java:/backbase/config</jndi-name>

@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
+    <groupId>\${groupId}</groupId>
+    <artifactId>\${artifactId}</artifactId>
+    <version>\${version}</version>
     <packaging>war</packaging>
 
     <properties>
@@ -61,12 +61,12 @@
         <dependency>
             <groupId>com.backbase.services.mashup</groupId>
             <artifactId>mashup-camel-core</artifactId>
-            <version>${mashupservices.version}</version>
+            <version>\${mashupservices.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.services.mashup</groupId>
             <artifactId>backbase.com.2011.ice</artifactId>
-            <version>${mashupservices.version}</version>
+            <version>\${mashupservices.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.frontend</groupId>
@@ -111,7 +111,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>${springframework.version}</version>
+            <version>${spring.security.framework.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -151,16 +151,16 @@
         <dependency>
             <groupId>com.backbase.launchpad</groupId>
             <artifactId>launchpad-authentication</artifactId>
-            <version>${launchpad.version}</version>
+            <version>\${launchpad.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.launchpad</groupId>
             <artifactId>launchpad-targeting</artifactId>
-            <version>${launchpad.version}</version>
+            <version>\${launchpad.version}</version>
         </dependency>
     
         <!-- Less -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.asual.lesscss</groupId>
             <artifactId>lesscss-engine</artifactId>
             <version>${less.version}</version>
@@ -169,6 +169,14 @@
             <groupId>com.asual.lesscss</groupId>
             <artifactId>lesscss-servlet</artifactId>
             <version>${less.version}</version>
+        </dependency>-->
+
+        <!-- Required for FakeAuthenitcationProvider -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.4</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- testing -->
@@ -185,19 +193,23 @@
             <artifactId>groovy-all</artifactId>
             <version>${groovy.version}</version>
         </dependency>
-
-        <!-- Less for server side theme compilation -->
-        <dependency>
-            <groupId>com.asual.lesscss</groupId>
-            <artifactId>lesscss-engine</artifactId>
-            <version>${less.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.asual.lesscss</groupId>
-            <artifactId>lesscss-servlet</artifactId>
-            <version>${less.version}</version>
-        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.sun.xml.fastinfoset</groupId>
+                <artifactId>FastInfoset</artifactId>
+                <version>1.2.12</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jsr173_api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <finalName>\${project.artifactId}</finalName>
@@ -205,6 +217,17 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/import/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/import/**</include>
+                </includes>
             </resource>
         </resources>
         <testResources>
@@ -218,20 +241,19 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>
                     <source>${java.target.version}</source>
                     <target>${java.target.version}</target>
                 </configuration>
             </plugin>
-
-            <plugin>
+            <!--<plugin>
                 <groupId>org.lesscss</groupId>
                 <artifactId>lesscss-maven-plugin</artifactId>
-                <version>${less.version}</version>
+                <version>${less.maven.version}</version>
                 <configuration>
-                    <sourceDirectory>\${project.basedir}/src/main/webapp/static/themes/\${theme.name}/less</sourceDirectory>
-                    <outputDirectory>\${project.build.directory}/\${build.finalName}/static/themes/\${theme.name}/css</outputDirectory>
+                    <sourceDirectory>\${project.basedir}/src/main/webapp/static/themes/\${theme.name}</sourceDirectory>
+                    <outputDirectory>\${project.build.directory}/\${project.build.finalName}/static/themes/\${theme.name}</outputDirectory>
                     <compress>true</compress>
                     <includes>
                         <include>base.less</include>
@@ -245,8 +267,7 @@
                         <phase>prepare-package</phase>
                     </execution>
                 </executions>
-            </plugin>
-
+            </plugin>-->
             <!-- Stops the default jar from beign created -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -258,11 +279,10 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.4</version>
                 <configuration>
                     <overlays>
                         <overlay>
@@ -282,7 +302,6 @@
                     </overlays>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -325,19 +344,20 @@
                                     <artifactId>contentservices-webapp</artifactId>
                                     <type>war</type>
                                     <outputDirectory>\${project.basedir}/target/contentservices.war</outputDirectory>
+                                    <excludes>**/c3p0*.jar</excludes>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.backbase.portal.orchestrator</groupId>
                                     <artifactId>orchestrator-webapp</artifactId>
                                     <type>war</type>
                                     <outputDirectory>\${project.basedir}/target/orchestrator.war</outputDirectory>
+                                    <excludes>**/c3p0*.jar</excludes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -377,28 +397,25 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
                     <stopPort>${portal.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
-                    <webAppConfig>
+                    <jettyXml>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyXml>
+                    <webApp>
                         <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
                         <contextPath>/portalserver</contextPath>
                         <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
                             <resourcesAsCSV>\${project.basedir}/src/main/webapp;\${work.dir}</resourcesAsCSV>
                         </baseResource>
-                    </webAppConfig>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${portal.port}</port>
-                        </connector>
-                    </connectors>
+                    </webApp>
+                    <httpConnector>
+                        <port>${portal.port}</port>
+                    </httpConnector>
                     <contextHandlers>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
                             <contextPath>/contentservices-webapp</contextPath>
@@ -468,7 +485,7 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>c3p0</groupId>
+                        <groupId>com.mchange</groupId>
                         <artifactId>c3p0</artifactId>
                         <version>${c3p0.version}</version>
                         <scope>runtime</scope>
@@ -481,7 +498,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -565,7 +581,6 @@
                     </execution>
                 </executions>-->
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -867,13 +882,23 @@
                     <groupId>org.apache.camel</groupId>
                     <artifactId>camel-spring</artifactId>
                     <version>${camel.version}</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-aop</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-tx</artifactId>
+                        </exclusion>
+                    </exclusions>
                 </dependency>
             </dependencies>
             <build>
                 <plugins>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
-                        <version>2.3</version>
+                        <version>2.4</version>
                         <configuration>
                             <packagingExcludes>
                                 WEB-INF/lib/stax-api*.jar,
@@ -1103,6 +1128,12 @@
                     <version>${launchpad.version}</version>            
                     <type>zip</type>
                 </dependency>
+                <dependency>
+                    <groupId>com.backbase.launchpad</groupId>
+                    <artifactId>foundation-services-bundle-demo</artifactId>
+                    <version>${launchpad.version}</version>
+                    <type>pom</type>
+                </dependency>
             </dependencies>
 
             <build>
@@ -1135,6 +1166,87 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!--<plugin>
+                        <groupId>com.backbase.launchpad.maven</groupId>
+                        <artifactId>launchpad-maven-plugin</artifactId>
+                        <version>1.0-SNAPSHOT</version>
+                        <configuration>
+                            <aggregateConfigXml>
+                                <directory>${project.build.outputDirectory}/import/launchpad/widgets</directory>
+                                <transformXsl>widgets</transformXsl>
+                            </aggregateConfigXml>
+                            <widgets>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-widget-base</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-advanced-content</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-google-analytics</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>-->
+                                <!--<widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-login</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>-->
+                                <!--<widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-login-multifactor</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-navbar</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-navfooter</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-navshortcuts</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-notifications</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-places</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-video</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                                <widget>
+                                    <groupId>com.backbase.launchpad.widgets</groupId>
+                                    <artifactId>launchpad-widget-catalog</artifactId>
+                                    <version>${launchpad.version}</version>
+                                </widget>
+                            </widgets>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <phase>process-resources</phase>
+                            </execution>
+                        </executions>
+                    </plugin>-->
                 </plugins>
             </build>
         </profile>
@@ -1148,15 +1260,9 @@
             <dependencies>
                 <dependency>
                     <groupId>com.backbase.launchpad</groupId>
-                    <artifactId>launchpad-retail</artifactId>
+                    <artifactId>retail-services-bundle-demo</artifactId>
                     <version>${launchpad.version}</version>
-                    <classifier>classes</classifier>
-                </dependency>
-                <dependency>
-                    <groupId>com.backbase.launchpad</groupId>
-                    <artifactId>launchpad-retail</artifactId>
-                    <version>${launchpad.version}</version>
-                    <type>zip</type>
+                    <type>pom</type>
                 </dependency>
             </dependencies>
 
@@ -1166,31 +1272,6 @@
                         <directory>src/main/resources</directory>
                     </resource>
                 </resources>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack-launchpad-retail-dependencies</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.backbase.launchpad</groupId>
-                                            <artifactId>launchpad-retail</artifactId>
-                                            <type>zip</type>
-                                            <outputDirectory>\${work.dir}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
             </build>
         </profile>
 
@@ -1202,15 +1283,9 @@
             
             <dependencies>
                 <dependency>
-                    <groupId>com.backbase.launchpad</groupId>
-                    <artifactId>launchpad-mobile</artifactId>
-                    <version>${launchpad.version}</version>
-                    <classifier>classes</classifier>
-                </dependency>
-                <dependency>
-                    <groupId>com.backbase.launchpad</groupId>
-                    <artifactId>launchpad-mobile</artifactId>
-                    <version>${launchpad.version}</version>
+                    <groupId>com.backbase.portal</groupId>
+                    <artifactId>mobile</artifactId>
+                    <version>5.5.0.0</version>
                     <type>zip</type>
                 </dependency>
             </dependencies>
@@ -1235,10 +1310,10 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>com.backbase.launchpad</groupId>
-                                            <artifactId>launchpad-mobile</artifactId>
+                                            <groupId>com.backbase.portal</groupId>
+                                            <artifactId>mobile</artifactId>
                                             <type>zip</type>
-                                            <outputDirectory>\${work.dir}</outputDirectory>
+                                            <outputDirectory>${work.dir}/</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>

@@ -1,13 +1,13 @@
 # Archetype backbase-all-in-one-launchpad-archetype
 
-Version **5.4.2.2**
+Version **5.5.0.0**
 
 ##Overview
-A blank Maven archetype that allows you to run a Backbase Portal Foundation running on a single JVM instance (Jetty, Tomcat 6, or Tomcat 7) along with all the other Backbase Portal modules (Mashup Services, Targeting, Content Services and Orchestrator) and Launchpad Foundation on top pre-configured and ready-to-use.
+A blank Maven archetype that allows you to run a Backbase Portal Foundation running on a single JVM instance (Jetty, Tomcat 6, or Tomcat 7) along with all the other Backbase Portal modules (Mashup Services, Targeting, Content Services and Publishing) and Launchpad Foundation on top pre-configured and ready-to-use.
 
 This archetype facilitates all-in-one setup for local development. It demonstrates how to configure Content Services and Orchestrator to run along Backbase Portal together with Launchpad Foundationin the same JVM on a server of your choice. The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. 
 
-H2 is the default database. Refer to the reference documentation for full details on how to [move to a database of your choice if required](https://my.backbase.com/doc-center/manuals/portal/inst_inst_cose.html#inst_inst_cs_database).
+H2 is the default database. Refer to the reference documentation for full details on how to [move to a database of your choice if required](https://my.backbase.com/resources/documentation/portal/inst_data.html).
 
 Mashup Services are pre-configured together with example RSS pipe.
 
@@ -15,12 +15,12 @@ Targeting is pre-configured together with example WeatherCollector.
 
 Content Services are pre-configured and ready to use from within Portal Manager.
 
-Orchestrator is pre-configured for self-publishing. Refer to our reference documentation for more information on [Orchestrator Configuration](https://my.backbase.com/doc-center/manuals/portal/inst_publ.html#inst_publ_config) how to configure publishing by modifying the orchestrator configuration file which is located inside the configuration folder.
+Publishing is pre-configured for self-publishing. Refer to our reference documentation for more information on [Configure Publishing](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#N632EA) how to configure publishing by modifying the orchestrator configuration file which is located inside the configuration folder.
 
 Launchpad Foundation is pre-configured and ready to be customized. Launchpad Foundation consists of Launchpad Theme, Launchpad Templates, Launchpad Foundation Containers and Launchpad Foundation Widgets.
 
 ##Usage
-Follow the steps below to get started with this archetype. Some of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html). You should get familiar with these topics before you start using this archetype.
+Follow the steps below to get started with this archetype. Some of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo). You should get familiar with these topics before you start using this archetype.
 
 1. Configure your Maven installation to include the Backbase extensions repository by editing the settings.xml file located in the .m2 folder. 
     <pre>```    
@@ -64,10 +64,10 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-all-in-one-launchpad-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.4.2.2
+        -DarchetypeVersion=5.5.0.0
     </pre>
-Refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) for more information. 
-3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html).
+Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
+3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).
 4. Use the following command from the root project folder to prepare the project for running:
     <pre>
     $ mvn clean install -P create-database
@@ -92,9 +92,9 @@ Optionally run following command from the root project folder to delete and re-c
     <pre>
     $ mvn clean -P clean-database
     </pre>
-Note that both Jetty and Tomcat for Portal use the 7777 port by default, while the Launchpad Theme is running on port 8085. In case you need to choose a different port since you maybe already have another process running on ports 7777 and 8085, make necessary changes in jetty and tomcat plugins within POM files before you run Portal and Launchpad Theme. In order to use Launchpad you do need to run both Portal and Launchpad Theme at the same time. 
+Note that both Jetty and Tomcat for Portal and Theme use the 7777 port by default. In case you need to choose a different port since you maybe already have another process running on ports 7777, make necessary changes in Jetty and Tomcat plugins within POM files before you run Portal and Launchpad Theme. In order to use Launchpad you do need to run both Portal and Launchpad Theme at the same time. 
 5. Test Portal by opening the Portal Foundation URL in a browser: http://localhost:7777/portalserver/ (pay attention to the port number).
-6. Test Launchpad Theme by opening the main theme CSS in a browser: http://localhost:8085/theme/static/themes/default/less/base.less (pay attention to the port number).
+6. Test Launchpad Theme by opening the main theme CSS in a browser: http://localhost:7777/portalserver/static/themes/default/less/base.less (pay attention to the port number).
 7. Test embedded Mashup Services by opening the Mashup Services RSS pipe URL in a browser: http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/ (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
 8. Test Content Services by opening the Content Services RSS URL in a browser: http://localhost:7777/portalserver/content/atom (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.
 9. Test Orchestrators by opening the Orchestrator configuration URL in a browser: http://localhost:7777/portalserver/orchestrator/configuration (pay attention to the port number).
@@ -221,3 +221,8 @@ Note that both Jetty and Tomcat for Portal use the 7777 port by default, while t
 -----**WEB-INF** 
 --pom.xml  
 -pom.xml  
+
+##Known issues
+
+1. Wrong version of LP integration dependnecy. Instead of 5.4.2.2.CAMEL should be 5.4.2.2.LP.0.8.
+2. Authentication issue with Integration services. They expect session attribute "partyId" to be filled in with some value such as 0 for example. Solution is to have a filter that always puts this value for integration services.

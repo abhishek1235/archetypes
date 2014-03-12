@@ -1,13 +1,13 @@
 # Archetype backbase-all-in-one-archetype
 
-Version **5.4.2.2**
+Version **5.5.0.0**
 
 ##Overview
-A blank Maven archetype that allows you to run a Backbase Portal Foundation running on a single JVM instance (Jetty or Tomcat 7) along with all the other Backbase Portal modules (Mashup Services, Targeting, Content Services and Orchestrator) pre-configured and ready-to-use.
+A blank Maven archetype that allows you to run a Backbase Portal Foundation running on a single JVM instance (Jetty or Tomcat 7) along with all the other Backbase Portal modules (Mashup Services, Targeting, Content Services and Publishing) pre-configured and ready-to-use.
 
 This archetype facilitates all-in-one setup for local development. It demonstrates how to configure Content Services and Orchestrator to run along Backbase Portal in the same JVM on a server of your choice. The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. 
 
-H2 is the default database. Refer to the reference documentation for full details on how to [move to a database of your choice if required](https://my.backbase.com/doc-center/manuals/portal/inst_inst_cose.html#inst_inst_cs_database).
+H2 is the default database. Refer to the reference documentation for full details on how to [move to a database of your choice if required](https://my.backbase.com/resources/documentation/portal/inst_data.html).
 
 Mashup Services are pre-configured together with example RSS pipe.
 
@@ -15,10 +15,10 @@ Targeting is pre-configured together with example WeatherCollector.
 
 Content Services are pre-configured and ready to use from within Portal Manager.
 
-Orchestrator is pre-configured for self-publishing. Refer to our reference documentation for more information on [Orchestrator Configuration](https://my.backbase.com/doc-center/manuals/portal/inst_publ.html#inst_publ_config) how to configure publishing by modifying the orchestrator configuration file which is located inside the configuration folder.
+Publishing is pre-configured for self-publishing. Refer to our reference documentation for more information on [Configure Publishing](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#N632EA) how to configure publishing by modifying the orchestrator configuration file which is located inside the configuration folder.
 
 ##Usage
-Follow the steps below to get started with this archetype. Some of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html). You should get familiar with these topics before you start using this archetype.
+Follow the steps below to get started with this archetype. Some of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo). You should get familiar with these topics before you start using this archetype.
 
 1. Configure your Maven installation to include the Backbase extensions repository by editing the settings.xml file located in the .m2 folder. 
     <pre>```    
@@ -62,10 +62,10 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-all-in-one-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.4.2.2
+        -DarchetypeVersion=5.5.0.0
     </pre>
-Refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) for more information. 
-3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Backbase Development Setup](https://my.backbase.com/doc-center/manuals/portal/inst_devl.html) or [Install Portal Foundation](https://my.backbase.com/doc-center/manuals/portal/inst_pofo.html).
+Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
+3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).
 4. Use the following command to prepare the project for running:
     <pre>
     $ mvn clean install -P create-database

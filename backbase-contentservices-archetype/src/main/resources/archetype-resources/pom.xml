@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
+    <groupId>\${groupId}</groupId>
+    <artifactId>\${artifactId}</artifactId>
+    <version>\${version}</version>
     <packaging>war</packaging>
 
     <properties>
@@ -84,30 +84,43 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>
                     <source>${java.target.version}</source>
                     <target>${java.target.version}</target>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>com.backbase.portal.contentservices</groupId>
+                            <artifactId>contentservices-webapp</artifactId>
+                            <excludes>
+                                <exclude>WEB-INF/lib/c3p0*.jar</exclude>
+                            </excludes>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
                     <stopPort>${contentservices.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
-                    <webAppConfig>
+                    <jettyXml>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyXml>
+                    <webApp>
                         <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
                         <contextPath>/contentservices-webapp</contextPath>
-                    </webAppConfig>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${contentservices.port}</port>
-                        </connector>
-                    </connectors>
+                    </webApp>
+                    <httpConnector>
+                        <port>${contentservices.port}</port>
+                    </httpConnector>
                     <systemProperties>
                         <systemProperty>
                             <name>CONTENT_SERVICES_LOG_FOLDER</name>
@@ -138,7 +151,7 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>c3p0</groupId>
+                        <groupId>com.mchange</groupId>
                         <artifactId>c3p0</artifactId>
                         <version>${c3p0.version}</version>
                         <scope>runtime</scope>

@@ -1,12 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="b" uri="http://www.backbase.com/taglib" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page session="false"%>
-<%@ page import="com.backbase.portal.foundation.presentation.util.SecurityUtils"%>
-<%
-	String authenticatedUserName = SecurityUtils.getAuthenticatedUserName();
-%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title><c:out value="${item.name}"/></title>
@@ -16,15 +12,15 @@
     <script src="/portalserver/static/lib/jquery-1.4.2-min.js"></script>
     <script src="/portalserver/static/lib/bcf/5_0_0/bpc.js"></script>
     <script src="/portalserver/static/lib/portal/5_0_0/portal-all.js"></script>
+
 </head>
 <body id="${item.URI.path}">
 <table>
     <tr>
         <td><img src="<c:url value="/static/default/media/BB_logo_.png"/>"/></td>
         <td>
-            <% if(authenticatedUserName != null) { %><a href="<c:url value="/j_spring_security_logout"/>">logout</a>
-            	<%=authenticatedUserName %>
-            <% } %>
+            <sec:authorize ifNotGranted="role_anonymous"><a href="<c:url value="/j_spring_security_logout"/>">logout</a></sec:authorize>
+            <c:out value="${username}"/>
         </td>
     </tr>
 </table>

@@ -21,11 +21,12 @@
         <portal.server.version>${portal.server.version}</portal.server.version>
         <portal.client.version>${portal.client.version}</portal.client.version>
         <targeting.version>${targeting.version}</targeting.version>
-        <orchestrator.version>${orchestrator.version}</orchestrator.version>
-        <contentservices.version>${contentservices.version}</contentservices.version>
 
         <!-- Folder where H2 and binary data is stored-->
         <portal.data.dir>\${project.basedir}/data</portal.data.dir>
+
+        <!-- EH cache kill switch-->
+        <ehcache.disabled>false</ehcache.disabled>
     </properties>
 
     <repositories>
@@ -34,6 +35,22 @@
             <url>https://repo.backbase.com/repo/</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.sun.xml.fastinfoset</groupId>
+                <artifactId>FastInfoset</artifactId>
+                <version>1.2.12</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jsr173_api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Backbase core modules -->
@@ -70,7 +87,7 @@
                     <artifactId>connectorframework-resources</artifactId>
                 </exclusion>
             </exclusions>
-            <version>${targeting.version}</version>
+            <version>\${targeting.version}</version>
         </dependency>-->
         <dependency>
             <groupId>com.backbase.portal.targeting</groupId>
@@ -144,22 +161,6 @@
         </dependency>
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.sun.xml.fastinfoset</groupId>
-                <artifactId>FastInfoset</artifactId>
-                <version>1.2.12</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jsr173_api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <build>
         <finalName>\${project.artifactId}</finalName>
 
@@ -176,6 +177,21 @@
             </testResource>
         </testResources>
 
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -243,6 +259,10 @@
                         <systemProperty>
                             <name>portalserver.language</name>
                             <value>en</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>net.sf.ehcache.disabled</name>
+                            <value>\${ehcache.disabled}</value>
                         </systemProperty>
                     </systemProperties>
                     <reload>manual</reload>
@@ -376,21 +396,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.3</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>1.4</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 
     <profiles>
@@ -406,9 +411,11 @@
         <profile>
             <id>create-database</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <!-- Activation by a property. Run with -Dset-env -->
+                <property>
+                    <name>set-env</name>
+                </property>
             </activation>
-
             <build>
                 <plugins>
                     <plugin>
@@ -448,10 +455,6 @@
 
         <profile>
             <id>clean-database</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-
             <build>
                 <plugins>
                     <plugin>
@@ -673,6 +676,13 @@
                     <version>\${portal.client.version}</version>
                     <type>zip</type>
                 </dependency>
+                <dependency>
+                    <groupId>com.backbase.extensions</groupId>
+                    <artifactId>mosaic-tools</artifactId>
+                    <version>${mosaic.tools.version}</version>
+                    <classifier>bundle-dist</classifier>
+                    <type>zip</type>
+                </dependency>
             </dependencies>
 
             <build>
@@ -729,6 +739,24 @@
                                             <outputDirectory>
                                                 \${work.dir}/static/lib/bcf/5_0_0/
                                             </outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>unpack-mosaic-tools</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>com.backbase.extensions</groupId>
+                                            <artifactId>mosaic-tools</artifactId>
+                                            <classifier>bundle-dist</classifier>
+                                            <type>zip</type>
+                                            <outputDirectory>\${work.dir}</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>

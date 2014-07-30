@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.eclipse.jetty.server.Server">
+	<New id="portalDS" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jdbc/portalDS</Arg>
+		<Arg>
+			<New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+				<Set name="driverClass">org.h2.Driver</Set>
+				<Set name="jdbcUrl">jdbc:h2:file:\${portal.data.dir}/portalFoundation;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</Set>
+				<Set name="user">sa</Set>
+				<Set name="password"></Set>
+			</New>
+		</Arg>
+	</New>
+    <New id="auditDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/auditDS</Arg>
+        <Arg>
+            <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <Set name="driverClass">org.h2.Driver</Set>
+                <Set name="jdbcUrl">jdbc:h2:file:\${portal.data.dir}/portalFoundation;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</Set>
+                <Set name="user">sa</Set>
+                <Set name="password"></Set>
+            </New>
+        </Arg>
+    </New>
+    <New id="portalConfigLocation" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg></Arg>
+        <Arg>backbase/config</Arg>
+        <Arg type="java.lang.String">\${project.build.testOutputDirectory}/configuration/backbase.properties</Arg>
+        <Arg type="boolean">false</Arg>
+    </New>
+    <New id="iceConfigLocation" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg></Arg>
+        <Arg>portalmanager/ice-config</Arg>
+        <Arg type="java.lang.String">\${project.build.testOutputDirectory}/configuration/ice-config.properties</Arg>
+        <Arg type="boolean">false</Arg>
+    </New>
+    <New id="ptcConfigLocation" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg></Arg>
+        <Arg>mashup/ptc-config</Arg>
+        <Arg type="java.lang.String">\${project.build.testOutputDirectory}/configuration/ptc-config.properties</Arg>
+        <Arg type="boolean">false</Arg>
+    </New>
+    <New id="serviceConfigLocation" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg></Arg>
+        <Arg>backbase/service-config</Arg>
+        <Arg type="java.lang.String">\${project.build.testOutputDirectory}/configuration/service-config.properties</Arg>
+        <Arg type="boolean">false</Arg>
+    </New>
+    <New id="lessServletCache" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg></Arg>
+        <Arg>/less/Cache</Arg>
+        <Arg type="java.lang.Boolean">\${less.cache}</Arg>
+        <Arg type="boolean">true</Arg>
+    </New>
+    <New id="lessCompress" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg></Arg>
+        <Arg>/less/Compress</Arg>
+        <Arg type="java.lang.Boolean">\${less.compress}</Arg>
+        <Arg type="boolean">true</Arg>
+    </New>
+</Configure>

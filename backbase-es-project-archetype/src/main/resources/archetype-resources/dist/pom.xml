@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:schemaLocation="
+        http://maven.apache.org/POM/4.0.0 
+        http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>\${groupId}</groupId>
+        <artifactId>\${artifactId}</artifactId>
+        <version>\${version}</version>
+    </parent>
+
+    <artifactId>dist</artifactId>
+
+    <properties>
+        <!-- Distributable Maven modules-->
+        <portal.dir>\${project.parent.basedir}/portal</portal.dir>
+        <orchestrator.dir>\${project.parent.basedir}/orchestrator</orchestrator.dir>
+        <contentservices.dir>\${project.parent.basedir}/contentservices</contentservices.dir>
+        <configuration.dir>\${project.parent.basedir}/configuration</configuration.dir>
+        <statics.dir>\${project.parent.basedir}/statics</statics.dir>
+    </properties>
+
+    <build>
+        <finalName>\${project.artifactId}-\${project.version}</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-distribution</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>\${project.build.directory}/${project.artifactId}-${project.version}-${project.name}.zip</file>
+                                    <type>zip</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>assembly/assembly.xml</descriptor>
+                    </descriptors>
+                    <outputDirectory>\${project.build.directory}</outputDirectory>
+                    <workDirectory>\${work.dir}</workDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>install</phase>  <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

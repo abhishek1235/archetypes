@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context useHttpOnly="false">
+
+    <Resource name="jdbc/orchestratorDS"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="10"
+              maxIdle="2"
+              username="\${db.username}"
+              password="\${db.password}"
+              maxWait="5000"
+              driverClassName="\${db.jdbc.driver}"
+              url="\${orchestrator.publishing.jdbc.url}"/>
+
+    <Resource name="jdbc/auditDS"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="4"
+              maxIdle="2"
+              username="\${db.username}"
+              password="\${db.password}"
+              maxWait="5000"
+              driverClassName="\${db.jdbc.driver}"
+              url="\${audit.jdbc.url}"/>
+
+    <Resource name="jdbc/archivingDS"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="4"
+              maxIdle="2"
+              username="\${db.username}"
+              password="\${db.password}"
+              maxWait="5000"
+              driverClassName="\${db.jdbc.driver}"
+              url="\${orchestrator.archiving.jdbc.url}"/>
+
+    <Environment name="backbase/config"
+            value="\${backbase.config.path}/backbase.properties"
+            type="java.lang.String"
+            override="false"/>
+
+</Context>

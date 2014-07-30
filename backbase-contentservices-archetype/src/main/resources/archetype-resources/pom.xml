@@ -81,6 +81,21 @@
             </testResource>
         </testResources>
 
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -256,30 +271,17 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.3</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>1.4</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 
     <profiles>
         <profile>
             <id>create-database</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <!-- Activation by a property. Run with -Dset-env -->
+                <property>
+                    <name>set-env</name>
+                </property>
             </activation>
-
             <build>
                 <plugins>
                     <plugin>
@@ -349,10 +351,6 @@
 
         <profile>
             <id>clean-database</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-
             <build>
                 <plugins>
                     <plugin>

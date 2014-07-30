@@ -1,0 +1,38 @@
+<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+                      name="Backbase Portal All-In-One Archetype">
+
+    <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>configuration</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portal/src/main/webapp</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>portal</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>contentservices</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>orchestrator</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>services</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>statics/themes/launchpad-default/src/main/webapp</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>statics</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>dist</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>tools</directory>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>

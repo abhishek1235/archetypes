@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!-- Copyright (c) 2011 Backbase B.V. -->
+<backbase-portal-import>
+    <!-- ** USER AND GROUPS ** -->
+    <!-- Spitfire / Backbase Portal Manager -->
+    <groups>
+        <file>groups.xml</file>
+    </groups>
+    <!-- ** TEMPLATES ** -->
+    <!--  Default -->
+    <templates>
+        <file>../defaultImportData/templates.xml</file>
+    </templates>
+    <!-- Aurora -->
+    <templates>
+        <file>backbase.com.2012.aurora/template-widgets.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2012.aurora/template-containers.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2012.aurora/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <!-- Aurora 2013 -->
+    <templates>
+        <file>backbase.com.2013.aurora/template-containers.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2013.aurora/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <!-- Spitfire / Backbase Portal Manager -->
+    <templates>
+        <file>backbase.com.2011.spitfire/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <!-- Launchpad -->
+    <templates>
+        <file>launchpad/template-pages.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </templates>
+<!--    &lt;!&ndash; Veltro &ndash;&gt;
+    <templates>
+        <file>backbase.com.2012.veltro/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>-->
+    <!-- Sabre -->
+    <templates>
+        <file>backbase.com.2012.sabre/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <!-- Nexus / Navigation -->
+    <templates>
+        <file>backbase.com.2012.nexus/template-containers.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <!-- Darts -->
+    <templates>
+        <file>backbase.com.2012.darts/template-containers.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <!-- Launchpad -->
+    <templates>
+        <file>launchpad/template-containers.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </templates>
+    <!-- ** SERVER CATALOG CONTAINERS ** -->
+    <!-- Nexus / Navigation -->
+    <containers>
+        <file>backbase.com.2012.nexus/catalog-containers.xml</file>
+    </containers>
+    <containers>
+        <file>backbase.com.2012.nexus/catalog-pages.xml</file>
+    </containers>
+    <!-- Aurora -->
+    <containers>
+        <file>backbase.com.2012.aurora/catalog-containers.xml</file>
+    </containers>
+    <containers>
+        <file>backbase.com.2012.aurora/catalog-containers-adminDesignerOnly.xml</file>
+    </containers>
+    <!-- Aurora 2013 -->
+    <containers>
+        <file>backbase.com.2013.aurora/catalog-containers.xml</file>
+    </containers>
+    <containers>
+        <file>backbase.com.2013.aurora/catalog-containers-adminDesignerOnly.xml</file>
+    </containers>
+    <!-- Darts -->
+    <containers>
+        <file>backbase.com.2012.darts/catalog-containers.xml</file>
+    </containers>
+    <!-- Launchpad -->
+    <containers>
+        <file>launchpad/catalog-pages.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </containers>
+    <containers>
+        <file>launchpad/catalog-containers.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </containers>
+
+    <!-- ** SERVER CATALOG WIDGETS ** -->
+    <!-- ICE -->
+    <widgets>
+        <file>backbase.com.2011.ice/catalog-widgets.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/widget-property-rights.xml</rights-file>
+    </widgets>
+    <!-- Nexus / Navigation -->
+    <widgets>
+        <file>backbase.com.2012.nexus/catalog-widgets.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/widget-property-rights.xml</rights-file>
+    </widgets>
+    <!-- Sabre -->
+    <widgets>
+        <file>backbase.com.2012.sabre/catalog-widgets.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/widget-property-rights.xml</rights-file>
+    </widgets>
+    <!-- Aurora -->
+    <widgets>
+        <file>backbase.com.2012.aurora/catalog-widgets.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/widget-property-rights.xml</rights-file>
+    </widgets>
+
+    <!-- Launchpad -->
+    <widgets>
+        <file>launchpad/widgets/launchpad-widget-base-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-advanced-content-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-google-analytics-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-login-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <!--<widgets>
+        <file>launchpad/widgets/launchpad-login-multifactor-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>-->
+    <widgets>
+        <file>launchpad/widgets/launchpad-navbar-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-navfooter-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-navshortcuts-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-notifications-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-places-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-video-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-widget-catalog-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+
+    <!-- ** PORTALS ** -->
+    <!-- Start Portal Dashboard Import -->
+    <portal-import>
+        <name>dashboard</name>
+        <file>backbase.com.2011.spitfire/instance-portal.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/ManagerConsumerRights.xml</rights-file>
+        <containers>
+            <file>backbase.com.2011.spitfire/instance-containers.xml</file>
+        </containers>
+        <widgets>
+            <file>backbase.com.2011.spitfire/instance-widgets.xml</file>
+        </widgets>
+        <widgets>
+            <file>backbase.com.2011.ice/instance-widgets.xml</file>
+        </widgets>
+        <widgets>
+            <file>backbase.com.2012.nexus/instance-widgets.xml</file>
+        </widgets>
+        <widgets>
+            <file>backbase.com.2012.tango/instance-widgets.xml</file>
+        </widgets>
+        <widgets>
+            <file>backbase.com.2011.spitfire/instance-widgets-admin-only.xml</file>
+            <rights-file>backbase.com.2011.spitfire/rights/adminOnlyRights.xml</rights-file>
+        </widgets>
+        <links>
+            <file>backbase.com.2011.spitfire/instance-links.xml</file>
+        </links>
+    </portal-import>
+    <!-- End Portal Dashboard Import -->
+</backbase-portal-import>

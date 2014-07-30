@@ -1,0 +1,15 @@
+<div class="lp-field form-group">
+    <label class="col-sm-3 control-label">
+        {{label}} <i class="lp-icon lp-icon-info-sign" tooltip="{{tip}}" tooltip-append-to-body="true" ng-show="tip"></i>
+    </label>
+    <div class="col-sm-6">
+        <div ng-transclude></div>
+        <div ng-repeat="error in errorMessages" class="text-danger"><small>{{error}}</small></div>
+        <div class="lp-field-help" ng-show="help">
+            <small class="text-muted">{{help}}</small>
+        </div>
+    </div>
+     <div class="col-sm-3 no-padding" ng-show="action">
+        <a ng-href="{{action}}"><small>{{actionLabel || action}}</small></a>
+    </div>
+</div>

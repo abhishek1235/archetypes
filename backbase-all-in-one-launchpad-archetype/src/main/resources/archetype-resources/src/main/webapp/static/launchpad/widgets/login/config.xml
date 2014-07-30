@@ -1,0 +1,24 @@
+<widget>
+    <name>widget-login</name>
+    <extendedItemName>widget-launchpad-base</extendedItemName>
+    <contextItemName>[BBHOST]</contextItemName>
+    <properties>
+        <property name="src">
+            <value type="string">$(contextRoot)/static/launchpad/widgets/login/index.html</value>
+        </property>
+        <property name="title" viewHint="user,designModeOnly">
+            <value type="string">Login</value>
+        </property>
+        <property name="thumbnailUrl">
+            <value type="string">$(contextRoot)/static/launchpad/widgets/login/icon.png</value>
+        </property>
+        <property label="Icon" name="icon" viewHint="text-input,user,designModeOnly">
+            <value type="string">login</value>
+        </property>
+    </properties>
+    <tags>
+        <tag type="regular">authentication</tag>
+        <tag type="section">launchpad</tag>
+    </tags>
+    <securityProfile>ADMIN</securityProfile>
+</widget>

@@ -16,12 +16,14 @@
     <url>https://github.com/Backbase/archetypes/backbase-all-in-one-launchpad-archetype</url>
 
     <properties>
-        <theme.name>default-v1</theme.name>
-        <mashupservices.version>5.5.0.0.LP.0.9.0</mashupservices.version>
+        <theme.name>default</theme.name>
+        <mashupservices.version>5.5.0.0.LP.0.10.0</mashupservices.version>
         <contentservices.port>7777</contentservices.port>
         <contentservices.port.stop>9999</contentservices.port.stop>
         <orchestrator.port>7777</orchestrator.port>
         <orchestrator.port.stop>9999</orchestrator.port.stop>
+        <c3p0.group>c3p0</c3p0.group>
+        <c3p0.version>0.9.1.1</c3p0.version>
     </properties>    
 
     <dependencies>
@@ -36,6 +38,21 @@
             <groupId>com.backbase.portal.foundation</groupId>
             <artifactId>webapp</artifactId>
             <type>zip</type>
+            <version>${portal.server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.foundation</groupId>
+            <artifactId>configuration</artifactId>
+            <version>${portal.server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.foundation</groupId>
+            <artifactId>presentation</artifactId>
+            <version>${portal.server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.foundation</groupId>
+            <artifactId>security-portalserver</artifactId>
             <version>${portal.server.version}</version>
         </dependency>
         <dependency>
@@ -165,19 +182,30 @@
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/webapp</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>configuration</artifactId>
+                                    <includes>**\/ehcache-auditing.xml,**\/ehcache-foundation.xml,**\/ehcache-foundation-jgroups-example.xml,**\/ehcache-persistence.xml,**\/ehcache-persistence-jgroups-example.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>presentation</artifactId>
+                                    <includes>**\/backbase-portal-presentation-security.xml,**\/backbase-portal-presentation-config.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>security-portalserver</artifactId>
+                                    <includes>**\/backbase-portal-business-security.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
                                     <groupId>com.backbase.portal.targeting</groupId>
                                     <artifactId>connectorframework-examples</artifactId>
                                     <classifier>sources</classifier>
                                     <includes>**\/WeatherContextCollector.java</includes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/java</outputDirectory>
                                 </artifactItem>
-                                <!--<artifactItem>
-                                    <groupId>com.backbase.portal.targeting</groupId>
-                                    <artifactId>connectorframework-examples</artifactId>
-                                    <classifier>sources</classifier>
-                                    <includes>**\/targeting-connectorframework.xml</includes>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
-                                </artifactItem>-->
                                 <artifactItem>
                                     <groupId>com.backbase.portal.manager</groupId>
                                     <artifactId>resources</artifactId>
@@ -212,7 +240,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-launchpad-resources</id>
+                        <id>copy-static-launchpad-resources</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>unpack</goal>
@@ -223,6 +251,7 @@
                                     <groupId>com.backbase.launchpad</groupId>
                                     <artifactId>launchpad-theme</artifactId>
                                     <type>war</type>
+                                    <includes>docs-v1\**,static\**</includes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/webapp</outputDirectory>
                                 </artifactItem>
                             </artifactItems>

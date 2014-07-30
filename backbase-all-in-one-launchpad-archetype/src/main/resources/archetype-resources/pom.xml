@@ -25,10 +25,26 @@
         <contentservices.version>${contentservices.version}</contentservices.version>
         <mashupservices.version>${mashupservices.version}</mashupservices.version>
         <launchpad.version>${launchpad.version}</launchpad.version>
-        <theme.name>${theme.name}</theme.name>
 
         <!-- Folder where H2 and binary data is stored-->
         <portal.data.dir>\${project.basedir}/data</portal.data.dir>
+
+        <!-- Overrides for 3rd party libs -->
+        <!--<c3p0.version>0.9.1</c3p0.version>-->
+        <less.version>${less.version}</less.version>
+        <less.maven.version>${less.maven.version}</less.maven.version>
+
+        <!-- Theme settings -->
+        <theme.name>${theme.name}</theme.name>
+        <less.cache>true</less.cache>
+        <less.compress>false</less.compress>
+        <less.install.command>npm</less.install.command>
+        <less.install.args>install less</less.install.args>
+        <less.compile.command>node_modules/less/bin/lessc</less.compile.command>
+        <less.compile.args>\${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.args>
+
+        <!-- EH cache kill switch-->
+        <ehcache.disabled>false</ehcache.disabled>
     </properties>
 
     <repositories>
@@ -37,6 +53,22 @@
             <url>https://repo.backbase.com/repo/</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.sun.xml.fastinfoset</groupId>
+                <artifactId>FastInfoset</artifactId>
+                <version>1.2.12</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jsr173_api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -158,18 +190,18 @@
             <artifactId>launchpad-targeting</artifactId>
             <version>\${launchpad.version}</version>
         </dependency>
-    
-        <!-- Less -->
-        <!--<dependency>
+
+        <!-- Theme -->
+        <dependency>
             <groupId>com.asual.lesscss</groupId>
             <artifactId>lesscss-engine</artifactId>
-            <version>${less.version}</version>
+            <version>\${less.version}</version>
         </dependency>
         <dependency>
             <groupId>com.asual.lesscss</groupId>
             <artifactId>lesscss-servlet</artifactId>
-            <version>${less.version}</version>
-        </dependency>-->
+            <version>\${less.version}</version>
+        </dependency>
 
         <!-- Required for FakeAuthenitcationProvider -->
         <dependency>
@@ -194,22 +226,6 @@
             <version>${groovy.version}</version>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.sun.xml.fastinfoset</groupId>
-                <artifactId>FastInfoset</artifactId>
-                <version>1.2.12</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jsr173_api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <finalName>\${project.artifactId}</finalName>
@@ -238,6 +254,21 @@
             </testResource>
         </testResources>
 
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -247,27 +278,25 @@
                     <target>${java.target.version}</target>
                 </configuration>
             </plugin>
-            <!--<plugin>
-                <groupId>org.lesscss</groupId>
-                <artifactId>lesscss-maven-plugin</artifactId>
-                <version>${less.maven.version}</version>
-                <configuration>
-                    <sourceDirectory>\${project.basedir}/src/main/webapp/static/themes/\${theme.name}</sourceDirectory>
-                    <outputDirectory>\${project.build.directory}/\${project.build.finalName}/static/themes/\${theme.name}</outputDirectory>
-                    <compress>true</compress>
-                    <includes>
-                        <include>base.less</include>
-                    </includes>
-                </configuration>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
                 <executions>
+                    <!-- Compiles less with node before jetty starts (test-compile phase) -->
                     <execution>
+                        <id>compile-less-with-node</id>
+                        <phase>compile</phase>
                         <goals>
-                            <goal>compile</goal>
+                            <goal>exec</goal>
                         </goals>
-                        <phase>prepare-package</phase>
+                        <configuration>
+                            <executable>\${less.compile.command}</executable>
+                            <commandlineArgs>\${less.compile.args}</commandlineArgs>
+                        </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
             <!-- Stops the default jar from beign created -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -459,6 +488,10 @@
                             <name>PORTALSERVER_PROXY_URL</name>
                             <value>http://localhost:${mashupservices.port}/mashupservices-webapp/proxy</value>
                         </systemProperty>-->
+                        <systemProperty>
+                            <name>net.sf.ehcache.disabled</name>
+                            <value>\${ehcache.disabled}</value>
+                        </systemProperty>
                     </systemProperties>
                     <reload>manual</reload>
                 </configuration>
@@ -485,7 +518,7 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>com.mchange</groupId>
+                        <groupId>${c3p0.group}</groupId>
                         <artifactId>c3p0</artifactId>
                         <version>${c3p0.version}</version>
                         <scope>runtime</scope>
@@ -608,21 +641,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.3</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>1.4</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 
     <profiles>
@@ -638,9 +656,11 @@
         <profile>
             <id>create-database</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <!-- Activation by a property. Run with -Dset-env -->
+                <property>
+                    <name>set-env</name>
+                </property>
             </activation>
-
             <build>
                 <plugins>
                     <plugin>
@@ -744,10 +764,6 @@
 
         <profile>
             <id>clean-database</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-
             <build>
                 <plugins>
                     <plugin>
@@ -917,9 +933,15 @@
         <profile>
             <id>no-dashboard</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <!-- Activation by a property. Run with -Dwithout-dashboard -->
+                <property>
+                    <name>without-dashboard</name>
+                </property>
             </activation>
-
+            <properties>
+                <dashboard.start>&lt;!--</dashboard.start>
+                <dashboard.end>--&gt;</dashboard.end>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>com.backbase.portal</groupId>
@@ -950,7 +972,6 @@
                     <type>zip</type>
                 </dependency>
             </dependencies>
-
             <build>
                 <resources>
                     <resource>
@@ -978,7 +999,7 @@
                                             <artifactId>portalclient</artifactId>
                                             <type>zip</type>
                                             <classifier>min</classifier>
-                                            <outputDirectory>\${work.dir}/static/lib</outputDirectory>
+                                            <outputDirectory>\${work.dir}/</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>com.backbase.portal</groupId>
@@ -999,7 +1020,9 @@
                                             <artifactId>backbase-client</artifactId>
                                             <classifier>min</classifier>
                                             <type>zip</type>
-                                            <outputDirectory>\${work.dir}/static/lib/bcf/5_0_0/</outputDirectory>
+                                            <outputDirectory>
+                                                \${work.dir}/static/lib/bcf/5_0_0/
+                                            </outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>
@@ -1013,9 +1036,15 @@
         <profile>
             <id>with-dashboard</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <!-- Activation by absence of a property. Run normally, without -Dwithout-dashboard -->
+                <property>
+                    <name>!without-dashboard</name>
+                </property>
             </activation>
-
+            <properties>
+                <dashboard.start>&lt;!-- Start Portal Dashboard Import --&gt;</dashboard.start>
+                <dashboard.end>&lt;!-- End Portal Dashboard Import --&gt;</dashboard.end>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>com.backbase.portal</groupId>
@@ -1045,8 +1074,14 @@
                     <version>\${portal.client.version}</version>
                     <type>zip</type>
                 </dependency>
+                <dependency>
+                    <groupId>com.backbase.extensions</groupId>
+                    <artifactId>mosaic-tools</artifactId>
+                    <version>${mosaic.tools.version}</version>
+                    <classifier>bundle-dist</classifier>
+                    <type>zip</type>
+                </dependency>
             </dependencies>
-
             <build>
                 <resources>
                     <resource>
@@ -1077,7 +1112,7 @@
                                             <artifactId>portalclient</artifactId>
                                             <type>zip</type>
                                             <classifier>min</classifier>
-                                            <outputDirectory>\${work.dir}/static/lib</outputDirectory>
+                                            <outputDirectory>\${work.dir}/</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>com.backbase.portal</groupId>
@@ -1098,7 +1133,9 @@
                                             <artifactId>backbase-client</artifactId>
                                             <classifier>min</classifier>
                                             <type>zip</type>
-                                            <outputDirectory>\${work.dir}/static/lib/bcf/5_0_0/</outputDirectory>
+                                            <outputDirectory>
+                                                \${work.dir}/static/lib/bcf/5_0_0/
+                                            </outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>
@@ -1110,32 +1147,38 @@
         </profile>
 
         <profile>
-            <id>with-launchpad</id>
+            <id>with-launchpad-foundation</id>
+            <!-- Activation by absence of a property. Run normally, without -Dwithout-launchpad-foundation -->
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>!without-launchpad-foundation</name>
+                </property>
             </activation>
-
             <dependencies>
                 <dependency>
                     <groupId>com.backbase.launchpad</groupId>
-                    <artifactId>launchpad-foundation</artifactId>
-                    <version>${launchpad.version}</version>   
-                    <classifier>classes</classifier>            
+                    <artifactId>launchpad-presentation</artifactId>
+                    <version>\${launchpad.version}</version>            
                 </dependency>
                 <dependency>
                     <groupId>com.backbase.launchpad</groupId>
-                    <artifactId>launchpad-foundation</artifactId>
-                    <version>${launchpad.version}</version>            
+                    <artifactId>launchpad-items</artifactId>
+                    <version>\${launchpad.version}</version>
                     <type>zip</type>
                 </dependency>
-                <dependency>
+                <!--<dependency>
                     <groupId>com.backbase.launchpad</groupId>
-                    <artifactId>foundation-services-bundle-demo</artifactId>
-                    <version>${launchpad.version}</version>
+                    <artifactId>launchpad-integration-services-bom</artifactId>
+                    <version>\${launchpad.version}</version>
                     <type>pom</type>
+                </dependency>-->
+                <dependency>
+                    <groupId>com.backbase.portal</groupId>
+                    <artifactId>mobile</artifactId>
+                    <version>\${portal.server.version}</version>
+                    <type>zip</type>
                 </dependency>
             </dependencies>
-
             <build>
                 <resources>
                     <resource>
@@ -1157,7 +1200,13 @@
                                     <artifactItems>
                                         <artifactItem>
                                             <groupId>com.backbase.launchpad</groupId>
-                                            <artifactId>launchpad-foundation</artifactId>
+                                            <artifactId>launchpad-items</artifactId>
+                                            <type>zip</type>
+                                            <outputDirectory>\${work.dir}</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.backbase.portal</groupId>
+                                            <artifactId>mobile</artifactId>
                                             <type>zip</type>
                                             <outputDirectory>\${work.dir}</outputDirectory>
                                         </artifactItem>
@@ -1166,13 +1215,13 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!--<plugin>
+                    <plugin>
                         <groupId>com.backbase.launchpad.maven</groupId>
                         <artifactId>launchpad-maven-plugin</artifactId>
                         <version>1.0-SNAPSHOT</version>
                         <configuration>
                             <aggregateConfigXml>
-                                <directory>${project.build.outputDirectory}/import/launchpad/widgets</directory>
+                                <directory>\${project.build.outputDirectory}/import/launchpad/widgets</directory>
                                 <transformXsl>widgets</transformXsl>
                             </aggregateConfigXml>
                             <widgets>
@@ -1190,17 +1239,17 @@
                                     <groupId>com.backbase.launchpad.widgets</groupId>
                                     <artifactId>launchpad-google-analytics</artifactId>
                                     <version>${launchpad.version}</version>
-                                </widget>-->
-                                <!--<widget>
+                                </widget>
+                                <widget>
                                     <groupId>com.backbase.launchpad.widgets</groupId>
                                     <artifactId>launchpad-login</artifactId>
                                     <version>${launchpad.version}</version>
-                                </widget>-->
+                                </widget>
                                 <!--<widget>
                                     <groupId>com.backbase.launchpad.widgets</groupId>
                                     <artifactId>launchpad-login-multifactor</artifactId>
                                     <version>${launchpad.version}</version>
-                                </widget>
+                                </widget>-->
                                 <widget>
                                     <groupId>com.backbase.launchpad.widgets</groupId>
                                     <artifactId>launchpad-navbar</artifactId>
@@ -1246,82 +1295,64 @@
                                 <phase>process-resources</phase>
                             </execution>
                         </executions>
-                    </plugin>-->
+                    </plugin>
                 </plugins>
             </build>
         </profile>
 
         <profile>
-            <id>with-launchpad-retail</id>
+            <id>install-less</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <!-- Activation by a property. Run with -Dset-env -->
+                <property>
+                    <name>set-env</name>
+                </property>
             </activation>
-
-            <dependencies>
-                <dependency>
-                    <groupId>com.backbase.launchpad</groupId>
-                    <artifactId>retail-services-bundle-demo</artifactId>
-                    <version>${launchpad.version}</version>
-                    <type>pom</type>
-                </dependency>
-            </dependencies>
-
             <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                </resources>
-            </build>
-        </profile>
-
-        <profile>
-            <id>with-launchpad-mobile</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            
-            <dependencies>
-                <dependency>
-                    <groupId>com.backbase.portal</groupId>
-                    <artifactId>mobile</artifactId>
-                    <version>5.5.0.0</version>
-                    <type>zip</type>
-                </dependency>
-            </dependencies>
-
-            <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                </resources>
                 <plugins>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
                         <executions>
+                            <!-- Install node less module on demand -->
                             <execution>
-                                <id>unpack-launchpad-dependencies</id>
+                                <id>install-less-with-node</id>
                                 <phase>generate-resources</phase>
                                 <goals>
-                                    <goal>unpack</goal>
+                                    <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.backbase.portal</groupId>
-                                            <artifactId>mobile</artifactId>
-                                            <type>zip</type>
-                                            <outputDirectory>${work.dir}/</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
+                                    <executable>${less.install.command}</executable>
+                                    <commandlineArgs>${less.install.args}</commandlineArgs>
                                 </configuration>
                             </execution>
                         </executions>
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+        <profile>
+            <id>no-cache</id>
+            <properties>
+                <less.cache>false</less.cache>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>run-on-windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <less.install.command>cmd</less.install.command>
+                <less.install.args>/c npm install less</less.install.args>
+                <less.compile.command>cmd</less.compile.command>
+                <less.compile.args>/c node node_modules\less\bin\lessc \${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.args>
+            </properties>
         </profile>
     </profiles>
 </project>

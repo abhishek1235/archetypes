@@ -1,0 +1,29 @@
+<Request>
+
+    <Authentication>
+        <client>${headers.client}</client>
+        <password>${headers.password}</password>
+    </Authentication>
+
+    <Transaction>
+        <TxnDetails>
+            <merchantreference>${headers.merchantreferenceValue}</merchantreference>
+            <amount currency="${headers.currencyValue}">${headers.amountValue}</amount>
+        </TxnDetails>
+
+        <CardTxn>
+            <method>${headers.cardTxnMethodValue}</method>
+        </CardTxn>
+
+        <HpsTxn>
+            <method>${headers.hpsTxnMethodValue}</method>
+            <page_set_id>${headers.page_set_idValue}</page_set_id>
+            <return_url>${headers.return_urlValue}</return_url>
+            <expiry_url>${headers.expiryUrlValue}</expiry_url>
+            <DynamicData>
+                <dyn_data_1>${headers.resourcesRootUrl}</dyn_data_1>
+            </DynamicData>
+        </HpsTxn>
+    </Transaction>
+
+</Request>

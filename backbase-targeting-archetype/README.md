@@ -59,7 +59,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
         -DarchetypeVersion=5.5.0.0
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
-3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Targeting Stand-Alone](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#N63C55).
+3. Optionally adjust JMV properties, differently configure the Logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Targeting Stand-Alone](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#N63C55).
 4. Use the following command to run Targeting on Jetty:  
     <pre>
     $ mvn jetty:run-war
@@ -69,7 +69,7 @@ Or, if you want to run Targeting on Tomcat 7:
     $ mvn tomcat7:run-war
     </pre>
 Note that both Jetty and Tomcat use the 8084 port by default. In case you need to choose a different port since you maybe already have another process running on port 8084, make necessary changes in jetty and tomcat plugins within POM file before you run Targeting.
-5. Test Targeting by opening the Targeting contexts in a browser: http://localhost:8084/targeting-webapp/contexts (pay attention to the port number).
+5. Test Targeting by opening the Targeting contexts in a browser: [http://localhost:8084/targeting-webapp/contexts](http://localhost:8084/targeting-webapp/contexts) (pay attention to the port number).
 6. In order to integrate Targeting with your Backbase Portal that is running in its own standalone process, make sure to configure Portal’s Targeting Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
 
 ##Anatomy

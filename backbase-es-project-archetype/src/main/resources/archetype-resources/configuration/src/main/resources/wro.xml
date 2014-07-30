@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="http://www.isdc.ro/wro">
+    <group name="portallibs-core">
+        <css>/portalclient/css/reset.css</css>
+        <css>/portalclient/css/backbase-portal.css</css>
+        <css>/portalclient/xml-lang/backbase.com.2012.view/css/all.css</css>
+        <css>/backbase.com.2012.aurora/build/aurora.min.css</css>
+        <css>/backbase.com.2012.aurora/build/aurora.containers.css</css>
+        <js>/ext-lib/jquery-1.8.3.js</js>
+        <js>/portalclient/client.js</js>
+        <js>/portalclient/portal_view.js</js>
+        <js>/portalclient/compatibility.js</js>
+        <js>/portalclient/controllers/ctrl.portal.js</js>
+        <js>/portalclient/xml-lang/backbase.com.2012.view/js/all.js</js>
+    </group>
+    <group name="portallibs-core.min">
+        <css>/portalclient/css/reset.css</css>
+        <css>/portalclient/css/backbase-portal.css</css>
+        <css>/portalclient/xml-lang/backbase.com.2012.view/css/all.css</css>
+        <js>/ext-lib/jquery-1.8.3.js</js>
+        <js>/portalclient/client.js</js>
+        <js>/portalclient/portal_view.js</js>
+        <js>/portalclient/compatibility.js</js>
+        <js>/portalclient/controllers/ctrl.portal.js</js>
+        <js>/portalclient/xml-lang/backbase.com.2012.view/js/all.js</js>
+    </group>
+    <group name="portallibs-bundles">
+        <js>/backbase.com.2012.aurora/build/aurora-lib.min.js</js>
+        <js>/backbase.com.2012.aurora/build/aurora.containers.js</js>
+        <js>/backbase.com.2011.ice/build/commonContent-lib.min.js</js>
+    </group>
+    <group name="portallibs-bundles.min">
+        <js>/backbase.com.2012.aurora/build/aurora-lib.min.js</js>
+        <js>/backbase.com.2012.aurora/build/aurora.containers.js</js>
+        <js>/backbase.com.2011.ice/build/commonContent-lib.min.js</js>
+    </group>
+</groups>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:camel="http://camel.apache.org/schema/spring" xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd 
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+                           http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+
+    <jee:jndi-lookup id="propertiesPath" jndi-name="backbase/services-config"/>
+
+    <bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
+        <property name="location" ref="propertiesPath" />
+    </bean>
+
+    <!--<cxf:cxfEndpoint id="sampleSoapEndpoint" 
+        wsdlURL="wsdl/weather.wsdl"
+        address="{{sampleSoapService.serviceUrl}}"
+        serviceClass="com.cdyne.ws.weatherws.Weather"
+        serviceName="Weather"
+        endpointName="WeatherSoap" />-->
+
+    <bean name="xmlJsonDataFormat" id="xmlJsonDataFormat" class="com.backbase.mashup.camel.json.XmlJsonDataFormatWrapper"
+        init-method="doStart">
+        <property name="forceTopLevelObject">
+            <value>true</value>
+        </property>
+        <property name="skipWhitespace">
+            <value>true</value>
+        </property>
+        <property name="trimSpaces">
+            <value>true</value>
+        </property>
+        <property name="skipNamespaces">
+            <value>true</value>
+        </property>
+        <property name="removeNamespacePrefixes">
+            <value>true</value>
+        </property>
+    </bean>
+
+    <camel:routeContext id="com.backbase.mashup.service.sample.sampleServices" xmlns="http://camel.apache.org/schema/spring">
+
+        <camel:route>
+            <camel:from uri="restlet:/sample/sampleRestService?restletMethods=post" />
+
+            <camel:to uri="velocity://template/velocity/sample-template.vm" />
+
+            <camel:removeHeaders pattern="*" />
+
+            <camel:setHeader headerName="Content-Type">
+                <simple>application/xml</simple>
+            </camel:setHeader>
+
+            <camel:setHeader headerName="CamelHttpMethod">
+                <constant>POST</constant>
+            </camel:setHeader>
+
+            <camel:to uri="{{sampleRestService.serviceUrl}}" />
+
+            <camel:setBody>
+                <camel:xpath>//Response</camel:xpath>
+            </camel:setBody>
+
+            <camel:marshal ref="xmlJsonDataFormat" />
+
+            <camel:removeHeaders pattern="*" />
+
+            <!-- Set the response HTTP-header which will be picked by Restlet. -->
+            <camel:setHeader headerName="Content-Type">
+                <simple>application/json</simple>
+            </camel:setHeader>
+        </camel:route>
+
+        <!--<camel:route>-->
+            <!-- RESTful entry/exit point for route. -->
+            <!--<camel:from uri="restlet:/sample/sampleWSDLService?restletMethods=post" />-->
+
+            <!-- Remove headers from the exchange messages, as they might cause problems with Restlet when building a response. -->
+            <!--<camel:removeHeaders pattern="*" />-->
+
+            <!-- Dispatch SOAP message via the CXF endpoint, using 'PAYLOAD' data-format. -->
+            <!--<camel:to uri="cxf:bean:sampleSoapEndpoint?dataFormat=PAYLOAD" />-->
+
+            <!-- Set input-->
+            <!--<camel:setBody>
+                <camel:xpath>//iDWrapperIVO</camel:xpath>
+            </camel:setBody>-->
+
+            <!-- Remove headers from the exchange messages, as they might cause problems with Restlet when building a response. -->
+            <!--<camel:removeHeaders pattern="*" />-->
+
+            <!-- Set the response HTTP-header which will be picked by Restlet. -->
+            <!--<camel:setHeader headerName="Content-Type">
+                <simple>application/xml</simple>
+            </camel:setHeader>
+        </camel:route>-->
+
+        <camel:route id="ptc-flavor-route">
+
+            <!-- RESTful entry/exit point for route. -->
+            <camel:from uri="restlet:/sample/ptc-demo-route" />
+
+            <camel:setHeader headerName="CamelCacheOperation">
+                <constant>CamelCacheGet</constant>
+            </camel:setHeader>
+
+            <camel:setHeader headerName="CamelCacheKey">
+                <constant>1600 Amphitheatre Parkway,MountainView,CA</constant>
+            </camel:setHeader>
+
+            <camel:to uri="cache://GeoLocations"/>
+            
+            <camel:choice>
+                <camel:when>
+                    <simple>${header.CamelCacheElementWasFound} == null</simple>
+                    
+                    <camel:removeHeaders pattern="CamelHttp*" />
+                    
+                    <camel:log message="Calling external service..."/>
+                    
+                    <camel:to uri="http://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&amp;sensor=true"/>
+                    
+                    <camel:convertBodyTo type="java.lang.String" charset="UTF-8"/>
+                    
+                    <camel:setHeader headerName="CamelCacheOperation">
+                        <constant>CamelCacheAdd</constant>
+                    </camel:setHeader>
+                    <camel:setHeader headerName="CamelCacheKey">
+                        <constant>1600 Amphitheatre Parkway,MountainView,CA</constant>
+                    </camel:setHeader>
+                    
+                    <camel:to uri="cache://GeoLocations"/>
+                </camel:when>
+                <camel:otherwise>
+                    <camel:log message="Using the value from cache..."/>
+                </camel:otherwise>
+            </camel:choice>
+
+            <camel:marshal ref="xmljson"/>
+            
+            <camel:removeHeaders pattern="*" />
+        </camel:route>
+
+    </camel:routeContext>
+
+</beans>

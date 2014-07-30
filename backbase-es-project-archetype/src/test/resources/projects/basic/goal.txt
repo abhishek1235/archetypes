@@ -1,0 +1,1 @@
+clean install -Dset-env -Dfull-build -Dembed-statics

@@ -4,7 +4,7 @@
     <!-- ** USER AND GROUPS ** -->
     <!-- Spitfire / Backbase Portal Manager -->
     <groups>
-        <file>backbase.com.2011.spitfire/usergroups/groups.xml</file>
+        <file>groups.xml</file>
     </groups>
     <!-- ** TEMPLATES ** -->
     <!--  Default -->
@@ -38,11 +38,16 @@
         <file>backbase.com.2011.spitfire/template-pages.xml</file>
         <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
     </templates>
-    <!-- Veltro -->
+    <!-- Launchpad -->
+    <templates>
+        <file>launchpad/template-pages.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </templates>
+<!--    &lt;!&ndash; Veltro &ndash;&gt;
     <templates>
         <file>backbase.com.2012.veltro/template-pages.xml</file>
         <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
-    </templates>
+    </templates>-->
     <!-- Sabre -->
     <templates>
         <file>backbase.com.2012.sabre/template-pages.xml</file>
@@ -58,6 +63,11 @@
         <file>backbase.com.2012.darts/template-containers.xml</file>
         <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
     </templates>
+    <!-- Launchpad -->
+    <templates>
+        <file>launchpad/template-containers.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </templates>
     <!-- ** SERVER CATALOG CONTAINERS ** -->
     <!-- Nexus / Navigation -->
     <containers>
@@ -65,7 +75,7 @@
     </containers>
     <containers>
         <file>backbase.com.2012.nexus/catalog-pages.xml</file>
-    </containers>    
+    </containers>
     <!-- Aurora -->
     <containers>
         <file>backbase.com.2012.aurora/catalog-containers.xml</file>
@@ -83,6 +93,15 @@
     <!-- Darts -->
     <containers>
         <file>backbase.com.2012.darts/catalog-containers.xml</file>
+    </containers>
+    <!-- Launchpad -->
+    <containers>
+        <file>launchpad/catalog-pages.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </containers>
+    <containers>
+        <file>launchpad/catalog-containers.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
     </containers>
 
     <!-- ** SERVER CATALOG WIDGETS ** -->
@@ -106,8 +125,59 @@
         <file>backbase.com.2012.aurora/catalog-widgets.xml</file>
         <rights-file>backbase.com.2011.spitfire/rights/widget-property-rights.xml</rights-file>
     </widgets>
+
+    <!-- Launchpad -->
+    <widgets>
+        <file>launchpad/widgets/launchpad-widget-base-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-advanced-content-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-google-analytics-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-login-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <!--<widgets>
+        <file>launchpad/widgets/launchpad-login-multifactor-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>-->
+    <widgets>
+        <file>launchpad/widgets/launchpad-navbar-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-navfooter-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-navshortcuts-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-notifications-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-places-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-video-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/widgets/launchpad-widget-catalog-config.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+
     <!-- ** PORTALS ** -->
-    <!-- Spitfire / Backbase Portal Manager -->
+    ${dashboard.start}
     <portal-import>
         <name>dashboard</name>
         <file>backbase.com.2011.spitfire/instance-portal.xml</file>
@@ -135,4 +205,5 @@
             <file>backbase.com.2011.spitfire/instance-links.xml</file>
         </links>
     </portal-import>
+    ${dashboard.end}
 </backbase-portal-import>

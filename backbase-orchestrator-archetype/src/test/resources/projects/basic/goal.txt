@@ -1,1 +1,1 @@
-clean install -P create-database
+clean install -Dset-env

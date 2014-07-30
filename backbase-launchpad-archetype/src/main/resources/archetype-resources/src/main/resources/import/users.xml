@@ -1,0 +1,26 @@
+<users>
+    <!-- Copyright © 2011 Backbase B.V. -->
+
+    <!-- publishing demo -->
+    <user>
+        <username>approver</username>
+        <password>password</password>
+        <enabled>true</enabled>
+        <groups>
+            <group>
+                <name>admin</name>
+            </group>
+        </groups>
+    </user>
+
+	<user>
+		<username>designer</username>
+		<password>designer</password>
+		<enabled>true</enabled>
+		<groups>
+			<group>
+				<name>master page designer</name>
+			</group>
+		</groups>
+	</user>
+</users>

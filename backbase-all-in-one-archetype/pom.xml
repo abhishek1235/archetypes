@@ -37,6 +37,21 @@
             <version>${portal.server.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.backbase.portal.foundation</groupId>
+            <artifactId>configuration</artifactId>
+            <version>${portal.server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.foundation</groupId>
+            <artifactId>presentation</artifactId>
+            <version>${portal.server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.foundation</groupId>
+            <artifactId>security-portalserver</artifactId>
+            <version>${portal.server.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.backbase.portal.targeting</groupId>
             <artifactId>connectorframework-examples</artifactId>
             <version>${targeting.version}</version>
@@ -156,6 +171,24 @@
                                     <artifactId>webapp</artifactId>
                                     <type>zip</type>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/webapp</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>configuration</artifactId>
+                                    <includes>**\/ehcache-auditing.xml,**\/ehcache-foundation.xml,**\/ehcache-foundation-jgroups-example.xml,**\/ehcache-persistence.xml,**\/ehcache-persistence-jgroups-example.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>presentation</artifactId>
+                                    <includes>**\/backbase-portal-presentation-security.xml,**\/backbase-portal-presentation-config.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.foundation</groupId>
+                                    <artifactId>security-portalserver</artifactId>
+                                    <includes>**\/backbase-portal-business-security.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.backbase.portal.targeting</groupId>

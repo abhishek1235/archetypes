@@ -1,0 +1,16 @@
+{
+	"timestamp" : 12312313123,
+	"messages" : [{
+			"id" : "123",
+			"level" : "INFO",
+			"message" : "Heads up! This alert needs your attention, but is not super important.",
+			"timeout" : 10000,
+			"closable" : true,
+			"links" : [{
+						"rel" : "/contact-dialogues/message",
+						"uri" : "/home"
+					}
+			]
+		}
+	]
+}

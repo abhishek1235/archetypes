@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:camel="http://camel.apache.org/schema/spring" xmlns:cxf="http://camel.apache.org/schema/cxf"
+        xmlns:jee="http://www.springframework.org/schema/jee"
+       
+       xsi:schemaLocation="http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <!-- When using CXF-->
+    <!--<import resource="classpath:META-INF/cxf/cxf.xml" />-->
+
+    <!-- External properties-->
+    <jee:jndi-lookup id="propertiesPath" jndi-name="camel/hiscox-services-config"/>
+
+    <bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
+        <property name="location" ref="propertiesPath" />
+    </bean>    
+
+    <!-- Bean definition for the 'CreateContact' web-service. -->
+    <cxf:cxfEndpoint id="sampleWSDLEndpoint" 
+        wsdlURL="wsdl/weather.wsdl"
+        address="{{service.weather.url}}"
+        serviceClass="com.cdyne.ws.weatherws.Weather"
+        serviceName="Weather"
+        endpointName="WeatherSoap" />    
+
+    <camel:routeContext id="sampleRoutes" xmlns="http://camel.apache.org/schema/spring">
+        <camel:route>
+            <!-- RESTful entry/exit point for route. -->
+            <camel:from uri="restlet:/sampleWSDLRoute?restletMethods=post" />
+
+            <!-- Remove headers from the exchange messages, as they might cause problems with Restlet when building a response. -->
+            <camel:removeHeaders pattern="*" />
+
+            <!-- Dispatch SOAP message via the CXF endpoint, using 'PAYLOAD' data-format. -->
+            <camel:to uri="cxf:bean:sampleWSDLEndpoint?dataFormat=PAYLOAD" />
+
+            <!-- Set input-->
+            <!--<camel:setBody>
+                <camel:xpath>//iDWrapperIVO</camel:xpath>
+            </camel:setBody>-->
+
+            <!-- Remove headers from the exchange messages, as they might cause problems with Restlet when building a response. -->
+            <camel:removeHeaders pattern="*" />
+
+            <!-- Set the response HTTP-header which will be picked by Restlet. -->
+            <camel:setHeader headerName="Content-Type">
+                <simple>application/xml</simple>
+            </camel:setHeader>
+        </camel:route>
+
+        <camel:route id="ptc-flavor-route">
+
+            <!-- RESTful entry/exit point for route. -->
+            <camel:from uri="restlet:/ptc-demo-route" />
+
+            <camel:setHeader headerName="CamelCacheOperation">
+                <constant>CamelCacheGet</constant>
+            </camel:setHeader>
+
+            <camel:setHeader headerName="CamelCacheKey">
+                <constant>1600 Amphitheatre Parkway,MountainView,CA</constant>
+            </camel:setHeader>
+
+            <camel:to uri="cache://GeoLocations"/>
+            
+            <camel:choice>
+                <camel:when>
+                    <camel:simple>${header.CamelCacheElementWasFound} == null</simple>
+                    
+                    <camel:removeHeaders pattern="CamelHttp*" />
+                    
+                    <camel:log message="Calling external service..."/>
+                    
+                    <camel:to uri="http://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&amp;sensor=true"/>
+                    
+                    <camel:convertBodyTo type="java.lang.String" charset="UTF-8"/>
+                    
+                    <camel:setHeader headerName="CamelCacheOperation">
+                        <constant>CamelCacheAdd</constant>
+                    </setHeader>
+                    <camel:setHeader headerName="CamelCacheKey">
+                        <constant>1600 Amphitheatre Parkway,MountainView,CA</constant>
+                    </setHeader>
+                    
+                    <camel:to uri="cache://GeoLocations"/>
+                </camel:when>
+                <camel:otherwise>
+                    <camel:log message="Using the value from cache..."/>
+                </camel:otherwise>
+            </camel:choice>
+
+            <camel:marshal ref="xmljson"/>
+            
+            <camel:removeHeaders pattern="*" />
+        </camel:route>
+    </camel:routeContext>
+</beans>

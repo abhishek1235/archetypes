@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:g="http://www.backbase.com/2008/gadget">
+    <head>
+        <title>Launchpad Places Widget</title>
+
+        <g:preferences>
+            <g:preference name="placesDataSrc" label="Places Data Source" type="text" default="$(contextPath)/static/launchpad/widgets/places/data/places.json" />
+            <g:preference name="latitude" label="Center latitude" type="text" default="40.722823" viewhint="text-input,user" />
+            <g:preference name="longitude" label="Center longitude" type="text" default="-74.003692" viewhint="text-input,user" />
+            <g:preference name="zoom" label="Zoom level" type="text" default="9" min="2" max="16" viewhint="text-input,user" />
+            <g:preference name="currentPosition" label="Initialize on user's position" type="checkbox" default="false" />
+            <g:preference name="showPOI" label="Show POI on map" type="checkbox" default="false" />
+            <g:preference name="panControl" label="Show pan control on map" type="checkbox" default="true" />
+        </g:preferences>
+
+        <link rel="stylesheet" type='text/css' href="css/places.css" />
+
+        <script src="../../conf/require-conf.js"></script>
+        <script src="../../support/modernizr.js"></script>
+    </head>
+    <body class="lp-places" g:onload="requireWidget(__WIDGET__, 'js/places');">
+
+        <div ng-controller="PlacesCtrl" class="ng-cloak" lp-responsive="lp-responsive" size-rules="sizeRules" lp-size="widgetSize" lp-on-resize="resized(width)">
+
+            <!--  Full Content -->
+            <div class="lp-widget-content panel panel-widget">
+
+                <!--  Alerts -->
+                <div class="lp-alerts">
+                    <div alert="alert" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</div>
+                </div>
+
+                <!--  Widget Head -->
+                <div class="panel-heading clearfix row">
+
+                    <div class="lp-places-search" ng-class="{'col-xs-8': widgetSize === 'normal', 'col-xs-12': widgetSize === 'small'}">
+                        <div class="input-group search-input">
+                            <span class="input-group-addon"><i class="lp-icon lp-icon-search2"></i></span>
+                            <input type="text" class="form-control filters-name" ng-model="filters.name" ng-change="redraw()" placeholder="Search address, zip, city" places-autocomplete="search(lat, lng)" autofocus="autofocus"/>
+                        </div>
+                    </div>
+
+                    <div class="lp-places-dropdown" ng-class="{'col-xs-4': widgetSize === 'normal', 'col-xs-12': widgetSize === 'small'}">
+
+                        <div class="btn-group bootstrap-select dropdown ng-pristine ng-valid">
+                            <button id="places-dropdown" type="button" aria-haspopup="true" tabindex="0" class="btn dropdown-small dropdown-toggle selectpicker btn-default" data-toggle="dropdown" title="{{filters.type.name || options.emptyTypeLabel}}">
+                                <div class="filter-option pull-left">{{filters.type.name || options.emptyTypeLabel}}</div>
+                                <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu open">
+                                <ul class="dropdown-menu inner selectpicker" aria-labelledby="places-dropdown" aria-hidden="true" role="menu">
+                                    <li role="presentation" ng-class="{selected: !filters.type}" ng-click="filters.type = null">
+                                       <a role="menuitem" tabindex="0" href="#" class="clearfix">{{options.emptyTypeLabel}}</a>
+                                    </li>
+                                    <li role="presentation" ng-class="{selected: filters.type === type}" ng-repeat="type in options.type">
+                                       <a role="menuitem" tabindex="-1" href="#" class="clearfix" ng-model="filters.type" btn-radio="type">{{type.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                  </div>
+
+                    <!--  Body Content -->
+                    <div class="lp-widget-body panel-body no-padding">
+
+                        <!-- Map -->
+                        <div gm-map="gm-map" gm-map-id="mapId" gm-center="map.center" gm-zoom="map.zoom" gm-map-options="options.map" class="map_canvas">
+                            <div gm-markers="gm-markers" gm-objects="places"
+                                gm-id="object.id"
+                                gm-position="{ lat: object.latitude, lng: object.longitude }"
+                                gm-marker-options="getMarkerOptions(object)"
+                                gm-on-click="openInfoWindow(object, marker)"></div>
+                        </div>
+
+                        <!-- Infowindow -->
+                        <div gm-info-window="infoWindow">
+                            <div class="infoBox">
+
+                                <div class="row-fluid"><h4>{{place.name}}</h4></div>
+                                <div class="row-fluid">{{place.address.addressLine1}}</div>
+                                <div class="row-fluid">
+                                    <div class="span6">{{place.address.city}}, {{place.address.state}} {{place.address.zipCode}}</div>
+                                    <div class="span6" style="text-align:right;">{{place.phoneNumber}}</div>
+                                </div>
+
+                                <table class="table table-hover table-condensed" ng-show="place.openingHours.length > 0">
+                                    <tbody>
+                                        <tr ng-repeat="opening in place.openingHours">
+                                            <td>{{opening.period}}</td><td class="opening-hours">{{opening.hours}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="row-fluid">
+                                    <a href="https://maps.google.com/maps?daddr={{place.latitude}},{{place.longitude}}" target="_blank">Get directions</a>
+                                    <div ng-show="place.webSiteUrl" class="pull-right"><a ng-href="{{place.webSiteUrl}}" target="_blank">{{place.webSiteUrl}}</a></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End InfoWindow -->
+
+                  </div>
+
+            </div>
+
+        </div> <!-- END PlacesCtrl -->
+
+    </body>
+</html>

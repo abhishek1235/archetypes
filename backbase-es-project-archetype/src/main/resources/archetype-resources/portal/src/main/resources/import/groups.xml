@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!-- Copyright © 2011 Backbase B.V. -->
+<groups>
+	<group>
+		<name>user</name>
+		<description>Normal users group</description>
+		<role>USER</role>
+	</group>
+	<group>
+		<name>manager</name>
+		<role>MANAGER</role>
+	</group>
+	<group>
+		<name>master page designer</name>
+		<role>MANAGER</role>
+	</group>
+</groups>

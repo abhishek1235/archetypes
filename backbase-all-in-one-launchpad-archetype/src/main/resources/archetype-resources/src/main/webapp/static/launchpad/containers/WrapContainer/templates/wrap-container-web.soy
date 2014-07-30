@@ -1,0 +1,26 @@
+{namespace launchpad}
+/**
+ * Lays out container for mobile
+ * @param item Item in context
+ */
+{template .WrapContainer}
+    <div class="bp-container bp-ui-dragRoot" id="{$item.name}" data-pid="{$item.name}" style="min-height:50px">
+    	<div class="topNavBar lp-mobilewrap-chrome">
+    	    //Check if back button is enabled
+    	    {if $item.preferences.enableBackButton.value == 'true'}
+                <a class="lp-mobilewrap-back" title="Back">Back</a>
+            {/if}
+            //Check it logout button is enabled
+            {if $item.preferences.enableLogoutButton.value == 'true'}
+                <a class="lp-mobilewrap-logout" title="Logout">Logout</a>
+            {/if}
+            <h1 class="topTitle lp-mobilewrap-title"><span>{$item.preferences.title.value}</span></h1>
+        </div>
+        <div class="lp-mobilewrap-chrome-spacer"></div>
+    	<div class="--area bp-area lp-mobilewrap-mainarea">
+			{foreach $child in $item.children}
+				{include($child) |noAutoescape}
+			{/foreach}
+        </div>
+    </div>
+{/template}

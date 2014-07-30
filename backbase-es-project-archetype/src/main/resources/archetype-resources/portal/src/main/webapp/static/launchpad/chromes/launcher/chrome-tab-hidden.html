@@ -1,0 +1,36 @@
+<div id="{{widgetInstanceId}}" data-pid="{{widgetInstanceId}}"
+    class="bp-widget {{#enableDND}}bp-ui-dragRoot{{/enableDND}} lp-launcher-chrome lp-chrome-launcher-tab lp-chrome-launcher-tab-hidden"
+    xmlns="http://www.w3.org/1999/html">
+    <div class="bp-widget-pref"></div>
+
+    <!-- Tab Part -->
+    <div class="bp-widget-head lp-launcher-tab bp-ui-dragGrip">
+        <a class="clearfix" role="button" href="#{{widgetInstanceId}}-body">
+            <span class="lp-launcher-tab-icon pull-left">{{#pref.icon}}<i class="lp-icon lp-icon-{{pref.icon.value}}"></i>{{/pref.icon}}</span>
+            <span class="lp-launcher-tab-text pull-left">{{widgetTitle}}</span>
+            <span class="lp-launcher-tab-arrow pull-right"><i class="lp-icon lp-icon-angle-right"></i></span>
+        </a>
+    </div>
+
+    <!-- Main widget -->
+    <div class="lp-launcher-tab-widget bp-widget-head lp-widget-head panel panel-chrome-default clearfix" id="{{widgetInstanceId}}-body">
+        <div class="panel-heading">
+            <div class="panel-title pull-left lp-launcher-chrome-title">{{#pref.icon}}<i class="lp-icon lp-icon-{{pref.icon.value}}"></i>{{/pref.icon}}{{widgetTitle}}</div>
+            <ul class="pull-right list-inline lp-widget-controls">
+                {{#showEdit}}
+                <li>
+                    <button class="lp-widget-control" tabindex="0" data-action="widget-preferences" data-fields="be.forms.Preferences.UserPreferenceField" data-form="be.portalClientExt.PortalManagerPreferencesForm" data-anim="be.animation.flipContainer" title="Edit {{widgetTitle}} Preferences">
+                        <i class="lp-icon lp-icon-cog"></i>
+                    </button>
+                </li>
+                {{/showEdit}}
+                <li>
+                    <button class="lp-widget-control" tabindex="0" data-action="lp-tab-hide" title="Close {{widgetTitle}}">
+                        <i class="lp-icon lp-icon-remove"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body bp-widget-body">{{{widgetContent}}}</div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+.lp-link-Home .lp-navshortcuts-title,
+.lp-link-Springboard .lp-navshortcuts-title{
+    display: none;
+}
+
+.lp-navshortcuts .lp-icon-Home,
+.lp-navshortcuts .lp-icon-Springboard {
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+.lp-navshortcuts .lp-link-Home,
+.lp-navshortcuts .lp-link-Springboard {
+    display:inline-block;
+    padding: 0 5px;
+}
+.lp-navshortcuts {
+    position: relative;
+    top: 15px;
+    z-index: 5;
+}
+.lp-navshortcuts i {
+    font-size:18px;
+    top: 2px
+}
+
+.lp-navshortcuts .list-inline>li {
+    display: inline-block;
+    margin:0;
+    margin-left:-5px;
+    padding:0;
+}
+
+.lp-navshortcuts a:hover,
+.lp-navshortcuts a:hover i {
+    text-decoration:none!important;
+}

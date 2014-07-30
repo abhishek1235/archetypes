@@ -1,0 +1,35 @@
+<widget>
+    <name>widget-navshortcuts</name>
+    <contextItemName>launchpad</contextItemName>
+    <extendedItemName>widget-launchpad-base</extendedItemName>
+    <properties>
+        <property name="title">
+            <value type="string">Shortcuts Navigation</value>
+        </property>
+        <property name="thumbnailUrl">
+            <value type="string">$(contextRoot)/static/launchpad/widgets/navshortcuts/icon.png</value>
+        </property>
+        <property name="src">
+            <value type="string">$(contextRoot)/static/launchpad/widgets/navshortcuts/index.html</value>
+        </property>
+        <property label="Nav Depth" name="navDepth" viewHint="text-input,designModeOnly,user">
+            <value type="long">2</value>
+        </property>
+        <property label="Template" name="navTemplate" viewHint="text-input,designModeOnly,user">
+            <value type="string">$(contextRoot)/static/launchpad/html/nav-shortcuts/mustache_top_level.html</value>
+        </property>
+        <!--
+        <property label="Sub-Template" name="navSubTemplate" viewHint="select-one,designModeOnly,user">
+            <value type="string">$(contextRoot)/static/launchpad/html/sitemapTemplate/mustache_mid_level.html</value>
+        </property>
+        -->
+        <property label="Tag Source - Link ID" name="navShow" viewHint="text-input,designModeOnly,user">
+            <value type="uuidRef"></value>
+        </property>
+    </properties>
+    <tags>
+        <tag type="regular">navigation</tag>
+        <tag type="section">launchpad</tag>
+    </tags>
+    <securityProfile>ADMIN</securityProfile>
+</widget>

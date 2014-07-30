@@ -37,4 +37,10 @@
             value="\${project.build.testOutputDirectory}/configuration/ptc-config.properties"
             type="java.lang.String"
             override="false"/>
+
+    <Environment name="backbase/service-config"
+            value="\${project.build.testOutputDirectory}/configuration/service-config.properties"
+            type="java.lang.String"
+            override="false"/>
+            
 </Context>

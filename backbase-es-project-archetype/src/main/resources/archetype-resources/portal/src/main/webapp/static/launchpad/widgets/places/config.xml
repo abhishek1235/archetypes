@@ -1,0 +1,44 @@
+<widget>
+    <name>widget-places</name>
+    <contextItemName>[BBHOST]</contextItemName>
+    <extendedItemName>widget-launchpad-base</extendedItemName>
+    <properties>
+        <property name="title" viewHint="user,designModeOnly">
+            <value type="string">Places Widget</value>
+        </property>
+        <property name="thumbnailUrl">
+            <value type="string">$(contextRoot)/static/launchpad/widgets/places/icon.png</value>
+        </property>
+        <property name="src">
+            <value type="string">$(contextRoot)/static/launchpad/widgets/places/index.html</value>
+        </property>
+        <property label="Icon" name="icon" viewHint="text-input,user,designModeOnly">
+            <value type="string">places</value>
+        </property>
+        <property name="placesDataSrc">
+            <value type="string">$(contextRoot)/static/launchpad/widgets/places/data/places.json</value>
+        </property>
+        <property name="latitude">
+            <value type="string">40.722823</value>
+        </property>
+        <property name="longitude">
+            <value type="string">-74.003692</value>
+        </property>
+        <property name="zoom">
+            <value type="string">9</value>
+        </property>
+        <property label="Show POI on map" name="showPOI" viewHint="checkbox,user,designModeOnly">
+            <value type="boolean">false</value>
+        </property>
+        <property label="Initialize on user's position" name="currentPosition" viewHint="checkbox,user,designModeOnly">
+            <value type="boolean">false</value>
+        </property>
+        <property label="Show pan control on map" name="panControl" viewHint="checkbox,user,designModeOnly">
+            <value type="boolean">true</value>
+        </property>
+    </properties>
+    <tags>
+        <tag type="regular">universal</tag>
+        <tag type="section">launchpad</tag>
+    </tags>
+</widget>

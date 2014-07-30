@@ -168,6 +168,17 @@
         <param-value>com.backbase.portal.foundation.integration.context.BackbaseContextInitializer,com.backbase.portal.ptc.config.PtcApplicationContextInitializer</param-value>
     </context-param>
     
+    <!-- launchpad server push mechanism start (boostrap Atmosphere framework) -->
+    <!--<servlet>
+        <description>AtmosphereServlet</description>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+        <init-param>
+            <param-name>org.atmosphere.cpr.packages</param-name>
+            <param-value>com.backbase.launchpad.services.notification.provider</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>-->
     <!-- Handles Foundation Spring requests -->
     <servlet>
         <servlet-name>Portal Foundation Spring MVC</servlet-name>
@@ -178,47 +189,34 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <!-- Handles Spring requests -->
-    <servlet>
-        <servlet-name>mvcServlet</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value></param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
     <!-- Handles Integration Services requests -->
     <servlet>
        <servlet-name>Mashup Servlet</servlet-name>
        <servlet-class>com.backbase.mashup.camel.servlet.MashupServlet</servlet-class>
        <load-on-startup>2</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>PTC Servlet</servlet-name>
+        <servlet-class>com.backbase.portal.foundation.presentation.renderer.PtcServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
     <!-- Handles LESS CSS files -->
     <servlet>
         <servlet-name>less</servlet-name>
         <servlet-class>com.asual.lesscss.LessServlet</servlet-class>
-        <init-param>
-            <param-name>compress</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cache</param-name>
-            <param-value>false</param-value>
-        </init-param>
         <load-on-startup>3</load-on-startup>
     </servlet>
 
+    <!--<servlet-mapping>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <url-pattern>/event/*</url-pattern>
+    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>Portal Foundation Spring MVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>mvcServlet</servlet-name>
-        <url-pattern>/mvc/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Mashup Servlet</servlet-name>
+        <servlet-name>PTC Servlet</servlet-name>
         <url-pattern>/proxy/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -257,6 +255,11 @@
 
     <env-entry>
         <env-entry-name>backbase/config</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+    </env-entry>
+
+    <env-entry>
+        <env-entry-name>backbase/camel-services-config</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
     </env-entry>
 

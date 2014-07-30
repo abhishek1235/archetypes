@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.eclipse.jetty.server.Server">
+    <New id="orchestratorDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/orchestratorDS</Arg>
+        <Arg>
+            <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <Set name="driverClass">\${db.jdbc.driver}</Set>
+                <Set name="jdbcUrl">\${orchestrator.publishing.jdbc.url}</Set>
+                <Set name="user">\${db.username}</Set>
+                <Set name="password">\${db.password}</Set>
+            </New>
+        </Arg>
+    </New>
+    <New id="auditDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/auditDS</Arg>
+        <Arg>
+            <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <Set name="driverClass">\${db.jdbc.driver}</Set>
+                <Set name="jdbcUrl">\${audit.jdbc.url}</Set>
+                <Set name="user">\${db.username}</Set>
+                <Set name="password">\${db.password}</Set>
+            </New>
+        </Arg>
+    </New>
+    <New id="archivingDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/archivingDS</Arg>
+        <Arg>
+            <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <Set name="driverClass">\${db.jdbc.driver}</Set>
+                <Set name="jdbcUrl">\${orchestrator.archiving.jdbc.url}</Set>
+                <Set name="user">\${db.username}</Set>
+                <Set name="password">\${db.password}</Set>
+            </New>
+        </Arg>
+    </New>
+    <New id="portalConfigLocation" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg></Arg>
+        <Arg>backbase/config</Arg>
+        <Arg type="java.lang.String">\${backbase.config.path}/backbase.properties</Arg>
+        <Arg type="boolean">false</Arg>
+    </New>
+</Configure>

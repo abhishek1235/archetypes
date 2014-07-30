@@ -15,12 +15,13 @@ Archetypes are deployed to Backbase Expert Services' Maven repository at
 1. **backbase-all-in-one-archetype**, from version **5.3.1.1**
 2. **backbase-all-in-one-launchpad-archetype**, from version **5.4.1.3**
 3. **backbase-contentservices-archetype**, from version **5.4.0.5**
-4. **backbase-launchpad-archetype**, from version **5.5.0.0**
-5. **backbase-mashupservices-archetype**, from version **5.4.0.6**
-6. **backbase-orchestrator-archetype**, from version **5.4.2.2**
-7. **backbase-portalserver-archetype**, from version **5.4.1.3**
-8. **backbase-services-archetype**, from version **5.5.0.0**
-9. **backbase-targeting-archetype**, from version **5.4.2.2**
+4. **backbase-es-project-archetype**, from version **5.5.0.0**
+5. **backbase-launchpad-archetype**, from version **5.5.0.0**
+6. **backbase-mashupservices-archetype**, from version **5.4.0.6**
+7. **backbase-orchestrator-archetype**, from version **5.4.2.2**
+8. **backbase-portalserver-archetype**, from version **5.4.1.3**
+9. **backbase-services-archetype**, from version **5.5.0.0**
+10. **backbase-targeting-archetype**, from version **5.4.2.2**
 
 ##Important Notes
 1. From version **5.5.0.0** we're using **JDK 7** as default option due to latest version of embedded Jetty.
@@ -57,11 +58,11 @@ This way, all your coleagues can use these archetypes from your organization's M
 ## History of Changes
 5.5.0.0 
 
-1. Initial version of Launchpad Archetype with 0.9 version of Launchpad and Services Archetype. 
+1. Initial version of Launchpad Archetype with 0.10.0 version of Launchpad and Services Archetype. 
 2. Alignement of Portal Server, Content Services, Mashup Services, Orchestrator, Targeting, All-In-One and All-In-One with Launchpad archetypes with 5.5.0.0 version of Backbase Portal suite.
-3. Alignement of All-In-One with Launchpad archetypes with 0.9 version of Launchpad
-4. Fixing reported bugs
-5. Move to Jetty 9.1.2
+3. Alignement of All-In-One with Launchpad archetypes with 0.10.0 version of Launchpad
+4. Separation of aggregator and parent POM so we can release individual archetypes when we need
+5. Move to Jetty 9.1.2.v20140210
 6. Move to JDK 7
 7. Fixing reported bugs
 
@@ -108,7 +109,7 @@ This way, all your coleagues can use these archetypes from your organization's M
 ## Planned tasks
 1. Enable JMX on local Jetty and Tomcat instances
 2. Refactor PTC Camel route to get address as input parameter
-3. Move all Maven plugin versions to top level POM 
-4. Use Launchpad 0.10 and come up with versioning concept when Launchpad chnages but portal stays the same
-5. Add better initial test configuration
-6. Add documentation generation configuration
+3. Add better initial test configuration
+4. Add documentation generation configuration
+5. Fix jetty shutdown issue
+6. Fix ES proejct archetype to properly run integration tests

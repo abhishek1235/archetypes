@@ -4,8 +4,9 @@
 
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
-        <artifactId>archetypes</artifactId>
+        <artifactId>backbase-parent-archetype</artifactId>
         <version>5.5.0.0-SNAPSHOT</version>
+        <relativePath>../backbase-parent-archetype/pom.xml</relativePath>
     </parent>
 
     <artifactId>backbase-launchpad-archetype</artifactId>

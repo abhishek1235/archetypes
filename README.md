@@ -24,7 +24,9 @@ Archetypes are deployed to Backbase Expert Services' Maven repository at
 10. **backbase-targeting-archetype**, from version **5.4.2.2**
 
 ##Important Notes
-1. From version **5.5.0.0** we're using **JDK 7** as default option due to latest version of embedded Jetty.
+1. We have separated aggregator and parent POMs since 5.5.0.0 so make sure to understand this before making any changes. Purpose of this was to enable us to independently release each archetype if needed.
+2. From version **5.5.0.0** we're using **JDK 7** as default option due to latest version of embedded Jetty.
+3. Recently Backbase has switched to HTTPS for Maven repositories. This emans that if you're performing deploy or release you need to add HTTPS certificates to your MAVEN_OPTS in order for Maven to communicate with Maven repositories when using deploy and release plug-ins.
 
 ##Usage
 
@@ -39,8 +41,8 @@ Configure your Maven configuration to include the Backbase extensions releases r
 	$ mvn archetype:generate -DarchetypeArtifactId=<archetype_name> -DarchetypeGroupId=com.backbase.expert.tools -DarchetypeVersion=<archetype_version> 
 </pre>
 
-##Customization
-Feel encouraged to create your own versions of these archetypes by forking the code and further changing it to meet your specific needs if you have them. If you feel change you have on mind is more of a generic change and other Backbase customers could use it, please feel free to share ideas on Github Issues section.
+##Contributions
+Please feel encouraged to create your own versions of these archetypes by forking the code and further changing it to meet your specific needs if you have them. If you feel change you have on mind is more of a generic change and other Backbase customers or ES could use it, please feel free to share ideas on Github Issues section or make a pull request.
 
 After you have build these archetypes locally and optionally deploy accross your organization, you are ready to start using them. Each archetype is specific so details on usage are within each of them.
 
@@ -106,10 +108,15 @@ This way, all your coleagues can use these archetypes from your organization's M
 ## Known issues
 1. Occasional issue with shutting down Jetty after using an Launchpad based archetype
 
-## Planned tasks
-1. Enable JMX on local Jetty and Tomcat instances
+## Planned tasks / open issues
+1. See is there anythiung we need to do to enable JMX on local Jetty and Tomcat instances by default
 2. Refactor PTC Camel route to get address as input parameter
-3. Add better initial test configuration
-4. Add documentation generation configuration
-5. Fix jetty shutdown issue
-6. Fix ES proejct archetype to properly run integration tests
+3. Make sure all sample Camel routes are working fine
+4. Refactor out sample Camel routes in Mosaic references and then pull them from there
+5. Add better initial test configuration
+6. Add documentation generation configuration
+7. Fix jetty shutdown issue
+8. Fix ES proejct archetype to properly run integration tests
+9. LESS autocompile vith Mosaic Tools grunt script
+10. Default static bundle template per ES strategy to be included in all portal archetypes
+11. Include Mosaic reference bundle in all portal archetypes

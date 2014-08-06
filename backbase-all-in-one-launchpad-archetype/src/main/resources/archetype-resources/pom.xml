@@ -43,6 +43,8 @@
         <less.install.args>install less</less.install.args>
         <less.compile.command>node_modules/less/bin/lessc</less.compile.command>
         <less.compile.args>\${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.args>
+        <less.watch.command>autoless</less.watch.command>
+        <less.watch.args>\${project.basedir}/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/static/themes/default</less.watch.args>
 
         <!-- EH cache kill switch-->
         <ehcache.disabled>false</ehcache.disabled>
@@ -1256,8 +1258,35 @@
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <executable>${less.install.command}</executable>
-                                    <commandlineArgs>${less.install.args}</commandlineArgs>
+                                    <executable>\${less.install.command}</executable>
+                                    <commandlineArgs>\${less.install.args}</commandlineArgs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>watch-less</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <executions>
+                            <!-- Watches less for changes, after jetty starts -->
+                            <execution>
+                                <id>watch-less-with-node</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>\${less.watch.command}</executable>
+                                    <commandlineArgs>\${less.watch.args}</commandlineArgs>
                                 </configuration>
                             </execution>
                         </executions>
@@ -1285,6 +1314,8 @@
                 <less.install.args>/c npm install less</less.install.args>
                 <less.compile.command>cmd</less.compile.command>
                 <less.compile.args>/c node node_modules\less\bin\lessc \${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.args>
+                <less.watch.command>cmd</less.watch.command>
+                <less.watch.args>/c autoless \${project.basedir}/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/static/themes/default</less.watch.args>
             </properties>
         </profile>
     </profiles>

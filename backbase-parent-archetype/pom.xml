@@ -88,7 +88,6 @@
         <theme.port.stop>9998</theme.port.stop>
     </properties>
 
-
     <!-- Do  not change repo id's here due to Backbase ES Jenkins -->
     <repositories>
         <repository>
@@ -118,14 +117,6 @@
         </site>-->
     </distributionManagement>
 
-    <developers>
-        <developer>
-            <email>marko@backbase.com</email>
-            <name>Marko Dragoljevic</name>
-            <url>https://github.com/chipi</url>
-        </developer>
-    </developers>
-
     <scm>
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
@@ -133,6 +124,14 @@
         <tag>tag-archetypes-5.5.0.0</tag>
     </scm>
 
+    <developers>
+        <developer>
+            <email>marko@backbase.com</email>
+            <name>Marko Dragoljevic</name>
+            <url>https://github.com/chipi</url>
+        </developer>
+    </developers>
+    
     <build>
         <pluginManagement>
             <plugins>

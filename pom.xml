@@ -15,6 +15,30 @@
     <description>A collection of Maven archetypes for Backbase Portal created by Expert Services that can help help with initial project setup and various project customizations.</description>
     <url>https://github.com/Backbase/archetypes</url>
 
+    <distributionManagement>
+        <repository>
+            <id>Backbase Artifacts ES Repository</id>
+            <name>artifacts.backbase.com-releases</name>
+            <url>https://artifacts.backbase.com/backbase-ps-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>Backbase Artifacts ES Repository</id>
+            <name>artifacts.backbase.com-snapshots</name>
+            <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
+        </snapshotRepository>
+        <!--<site>
+            <id>website</id>
+            <url>scp://webhost.company.com/www/website</url>
+        </site>-->
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
+        <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
+        <url>https://github.com/Backbase/archetypes</url>
+        <tag>tag-archetypes-5.5.0.0</tag>
+    </scm>
+
     <modules>
         <module>backbase-parent-archetype</module>
         <module>backbase-all-in-one-archetype</module>

@@ -13,13 +13,16 @@
 
     <properties>
         <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
+
         <project.build.sourceEncoding>${project.build.sourceEncoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.reporting.outputEncoding}</project.reporting.outputEncoding>
 
         <!-- Backbase module versions -->
-        <portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
         <portal.server.version>${portal.server.version}</portal.server.version>
         <portal.client.version>${portal.client.version}</portal.client.version>
+        <portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
+        <portal.mobile.version>${portal.mobile.version}</portal.mobile.version>
+
         <targeting.version>${targeting.version}</targeting.version>
         <mashupservices.version>${mashupservices.version}</mashupservices.version>
         <launchpad.version>${launchpad.version}</launchpad.version>
@@ -29,9 +32,11 @@
 
         <!-- Theme settings -->
         <theme.name>${theme.name}</theme.name>
+
         <!-- Core LESS settings -->
         <less.cache>true</less.cache>
         <less.compress>false</less.compress>
+        
         <!-- NodeJS LESS settings -->
         <less.install.command>npm</less.install.command>
         <less.install.args>install less</less.install.args>
@@ -191,24 +196,6 @@
             <groupId>com.backbase.launchpad</groupId>
             <artifactId>launchpad-targeting</artifactId>
             <version>\${launchpad.version}</version>
-        </dependency>
-
-        <!-- Theme -->
-        <dependency>
-            <groupId>com.asual.lesscss</groupId>
-            <artifactId>lesscss-engine</artifactId>
-            <version>${less.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.asual.lesscss</groupId>
-            <artifactId>lesscss-servlet</artifactId>
-            <version>${less.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>javax.servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- Required for FakeAuthenitcationProvider -->
@@ -373,15 +360,15 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>${c3p0.group}</groupId>
+                        <groupId>c3p0</groupId>
                         <artifactId>c3p0</artifactId>
-                        <version>${c3p0.version}</version>
+                        <version>0.9.1</version>
                         <scope>runtime</scope>
                     </dependency>
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>${h2.version}</version>
+                        <version>1.3.154</version>
                         <scope>runtime</scope>
                     </dependency>
                 </dependencies>
@@ -450,54 +437,19 @@
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>${h2.version}</version>
+                        <version>1.3.154</version>
                     </dependency>
                 </dependencies>
-                <!--<executions>
-                    <execution>
-                        <id>tomcat-run</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>run-war-only</goal>
-                        </goals>
-                        <configuration>
-                            <fork>true</fork>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>tomcat-shutdown</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>shutdown</goal>
-                        </goals>
-                    </execution>
-                </executions>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.17</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.10</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/*TestST.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/target/**</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>verify</id>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>2.17</version>
             </plugin>
         </plugins>
     </build>
@@ -505,12 +457,6 @@
     <profiles>
         <profile>
             <id>create-database</id>
-            <activation>
-                <!-- Activation by a property. Run with -Dset-env -->
-                <property>
-                    <name>set-env</name>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -540,7 +486,7 @@
                             <dependency>
                                 <groupId>com.h2database</groupId>
                                 <artifactId>h2</artifactId>
-                                <version>${h2.version}</version>
+                                <version>1.3.154</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -579,7 +525,7 @@
                             <dependency>
                                 <groupId>com.h2database</groupId>
                                 <artifactId>h2</artifactId>
-                                <version>${h2.version}</version>
+                                <version>1.3.154</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -898,10 +844,16 @@
                     <version>\${launchpad.version}</version>
                     <type>zip</type>
                 </dependency>
+                <!--<dependency>
+                    <groupId>com.backbase.launchpad</groupId>
+                    <artifactId>launchpad-integration-services-bom</artifactId>
+                    <version>\${launchpad.version}</version>
+                    <type>pom</type>
+                </dependency>-->
                 <dependency>
                     <groupId>com.backbase.portal</groupId>
                     <artifactId>mobile</artifactId>
-                    <version>\${portal.server.version}</version>
+                    <version>\${portal.mobile.version}</version>
                     <type>zip</type>
                 </dependency>
             </dependencies>
@@ -1022,13 +974,7 @@
         </profile>
 
         <profile>
-            <id>install-node-less</id>
-            <activation>
-                <!-- Activation by a property. Run with -Dset-env -->
-                <property>
-                    <name>set-env</name>
-                </property>
-            </activation>
+            <id>install-less</id>
             <build>
                 <plugins>
                     <plugin>

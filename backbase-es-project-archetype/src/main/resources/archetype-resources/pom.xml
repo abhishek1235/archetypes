@@ -11,62 +11,14 @@
     <version>\${version}</version>
 	<packaging>pom</packaging>
 
-	<name>ES Project CXP Parent POM</name>
-	<description>ES Project CXP Parent POM</description>
+	<name>Aggregator</name>
+	<description>A module that aggregates all other project modules.</description>
 
 	<properties>
-		<!-- Standard Maven proeprties -->
-		<project.build.sourceEncoding>${project.build.sourceEncoding}</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>${project.reporting.outputEncoding}</project.reporting.outputEncoding>
-		<maven.resources.escapeString>\</maven.resources.escapeString>
-		<maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
-		
-		<!-- Backbase module versions -->
-		<portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
-		<portal.server.version>${portal.server.version}</portal.server.version>
-		<portal.client.version>${portal.client.version}</portal.client.version>
-		<!-- Special version to to LP -->
-		<mashupservices.version>${mashupservices.version}</mashupservices.version>
-		<targeting.version>${targeting.version}</targeting.version>
-		<orchestrator.version>${orchestrator.version}</orchestrator.version>
-		<contentservices.version>${contentservices.version}</contentservices.version>
-		<launchpad.version>${launchpad.version}</launchpad.version>
-
-		<!-- Folder where project configuration is stored -->
-		<configuration.dir>\${basedir}/configuration</configuration.dir>
-
-		<!-- Folder where data is stored -->
-		<data.dir>\${basedir}/data</data.dir>
-	</properties>
-
-	<organization>
-		<name>Backbase</name>
-		<url>http://www.backbase.com</url>
-	</organization>
-
-	<developers>
-		<developer>
-			<email>email</email>
-			<id>id</id>
-			<name>name</name>
-			<organization>Backbase</organization>
-		</developer>
-	</developers>
-
-	<repositories>
-		<repository>
-			<id>repo.backbase.com</id>
-			<url>https://repo.backbase.com/repo/</url>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>repo.backbase.com</id>
-			<url>https://repo.backbase.com/repo/</url>
-		</pluginRepository>
-	</pluginRepositories>
-
+		<!--Project name-->
+        <project>TODO</project>
+    </properties>
+        
 	<distributionManagement>
 		<repository>
 			<id>Backbase Artifact Repository</id>
@@ -80,54 +32,15 @@
 		</snapshotRepository>
 		<site>
 			<id>project.backbase.com</id>
-			<url>scp://ci-ps.dev.backbase.com/www/docs/${project.name}/</url>
+			<url>scp://ci-ps.dev.backbase.com/www/docs/\${project.name}/</url>
 		</site>
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:svn:https://svn.backbase.com/customers/${project.name}/trunk</connection>
-		<developerConnection>scm:svn:https://svn.backbase.com/customers/${project.name}/trunk</developerConnection>
-		<url>https://svn.backbase.com/customers/${project.name}/trunk</url>
+		<connection>scm:svn:https://svn.backbase.com/customers/\${project}/trunk</connection>
+		<developerConnection>scm:svn:https://svn.backbase.com/customers/\${project}/trunk</developerConnection>
+		<url>https://svn.backbase.com/customers/\${project}/trunk</url>
 	</scm>
-
-	<profiles>
-		<!-- full build profile, including docs -->
-		<profile>
-			<id>full</id>
-			<activation>
-                <!-- Activation by a property. Run with -Dfull-build -->
-                <property>
-                    <name>full-build</name>
-                </property>
-            </activation>
-			<modules>
-				<module>configuration</module>
-				<module>contentservices</module>
-				<module>orchestrator</module>
-				<module>portal</module>
-				<module>services</module>
-				<module>statics</module>
-                <module>dist</module>
-			</modules>
-		</profile>
-
-		<!-- dev profile for testing, docs not generated -->
-		<profile>
-			<id>portal</id>
-			<activation>
-                <!-- Activation by absence of a property. Run normally, without -Dfull-build -->
-                <property>
-                    <name>!full-build</name>
-                </property>
-            </activation>
-			<modules>
-				<module>configuration</module>
-				<module>portal</module>
-				<module>services</module>
-				<module>statics</module>
-			</modules>
-		</profile>
-	</profiles>
 
 	<reporting>
 		<plugins>
@@ -183,356 +96,44 @@
 		</plugins>
 	</reporting>
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.1</version>
-					<configuration>
-	                    <source>${java.target.version}</source>
-	                    <target>${java.target.version}</target>
-	                </configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-                	<version>2.3.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.16</version>
-				</plugin>
-				<!--<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>2.16</version>
-				</plugin>-->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>2.16</version>
-					<executions>
-						<execution>
-							<id>integration-test</id>
-							<goals>
-								<goal>integration-test</goal>
-							</goals>
-						</execution>
-						<execution>
-							<id>verify</id>
-							<goals>
-								<goal>verify</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.3</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>2.4.2</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.5</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.4</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.4</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-site-plugin</artifactId>
-					<version>3.3</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>2.6</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jxr-plugin</artifactId>
-					<version>2.3</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>2.16</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-failsafe-report-plugin</artifactId>
-					<version>2.16</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.9</version>
-				</plugin>
-				<plugin>
-	                <groupId>org.codehaus.mojo</groupId>
-	                <artifactId>properties-maven-plugin</artifactId>
-	                <version>1.0-alpha-2</version>
-	            </plugin>
-	            <plugin>
-	                <groupId>ro.isdc.wro4j</groupId>
-	                <artifactId>wro4j-maven-plugin</artifactId>
-	                <version>${wro4j.version}</version>
-	            </plugin>
-				<plugin>
-					<groupId>org.eclipse.jetty</groupId>
-                	<artifactId>jetty-maven-plugin</artifactId>
-					<version>${jetty.plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.tomcat.maven</groupId>
-					<artifactId>tomcat7-maven-plugin</artifactId>
-					<version>${tomcat.plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.tomcat.maven</groupId>
-					<artifactId>tomcat6-maven-plugin</artifactId>
-					<version>${tomcat.plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>sql-maven-plugin</artifactId>
-					<version>1.4</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.cxf</groupId>
-					<artifactId>cxf-codegen-plugin</artifactId>
-					<version>${cxf.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>exec-maven-plugin</artifactId>
-					<version>1.2.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.camel</groupId>
-					<artifactId>camel-maven-plugin</artifactId>
-					<version>${camel.version}</version>
-				</plugin>
-				<plugin>
-	                <groupId>org.codehaus.mojo</groupId>
-	                <artifactId>build-helper-maven-plugin</artifactId>
-	                <version>1.3</version>
-                </plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
-			<!-- Do a mvn release:prepare and a mvn release:perform if you want to 
-				release -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<configuration>
-					<!--<preparationGoals>clean verify install</preparationGoals> -->
-					<!-- During release:perform, enable the "release" profile -->
-					<!--<useReleaseProfile>false</useReleaseProfile> -->
-					<releaseProfiles>release</releaseProfiles>
-					<!--<autoVersionSubmodules>true</autoVersionSubmodules> -->
-					<goals>deploy</goals>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<profiles>
+		<!-- full build profile, including docs -->
+		<profile>
+			<id>full-build</id>
+			<activation>
+                <!-- Activation by a property. Run with -Dfull-build -->
+                <property>
+                    <name>full-build</name>
+                </property>
+            </activation>
+			<modules>
+                <module>parent</module>
+				<module>configuration</module>
+				<module>contentservices</module>
+				<module>orchestrator</module>
+                <module>statics</module>
+                <module>services</module>
+				<module>portal</module>
+                <module>dist</module>
+			</modules>
+		</profile>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-            	<artifactId>servlet-api</artifactId>
-            	<version>${servlet.api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.backbase.services.mashup</groupId>
-				<artifactId>mashup-camel-service-deps</artifactId>
-				<version>${mashupservices.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-cxf</artifactId>
-				<version>${camel.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.apache.camel</groupId>
-						<artifactId>woodstox-core-asl</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-jaxb</artifactId>
-				<version>${camel.version}</version>
-			</dependency>
-			<dependency>
-            <groupId>org.apache.camel</groupId>
-	            <artifactId>camel-http</artifactId>
-	            <version>${camel.version}</version>
-	        </dependency>
-			<dependency>
-				<groupId>com.google.code.gson</groupId>
-				<artifactId>gson</artifactId>
-				<version>${gson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.jayway.jsonpath</groupId>
-				<artifactId>json-path</artifactId>
-				<version>${json.path.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.jayway.jsonpath</groupId>
-				<artifactId>json-path-assert</artifactId>
-				<version>${json.path.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<!-- CXF -->
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-frontend-jaxws</artifactId>
-				<version>${cxf.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-transports-http</artifactId>
-				<version>${cxf.version}</version>
-			</dependency>
-			<!-- Apache Commons -->
-			<dependency>
-				<groupId>commons-lang</groupId>
-				<artifactId>commons-lang</artifactId>
-				<version>${commons.lang.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>${commons.io.version}</version>
-			</dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>${commons.collections.version}</version>
-            </dependency>
-			<!-- OpenCSV -->
-			<dependency>
-				<groupId>net.sf.opencsv</groupId>
-				<artifactId>opencsv</artifactId>
-				<version>${opencsv.version}</version>
-			</dependency>
-			<!-- ==== Service Plugin specific === -->
-			<!-- HTTP client -->
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>${http.components.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpmime</artifactId>
-				<version>${http.components.version}</version>
-			</dependency>
-			<!-- Less -->
-			<dependency>
-				<groupId>com.asual.lesscss</groupId>
-				<artifactId>lesscss-engine</artifactId>
-				<version>${less.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.asual.lesscss</groupId>
-				<artifactId>lesscss-servlet</artifactId>
-				<version>${less.version}</version>
-			</dependency>
-			<!-- Logging -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
-			<!-- TODO look into this -->
-			<!--<dependency>
-				<groupId>com.backbase.portal.commons.api</groupId>
-				<artifactId>logging</artifactId>
-				<version>${portal.server.version}</version>
-			</dependency>-->
-			<dependency>
-				<groupId>org.codehaus.groovy</groupId>
-				<artifactId>groovy-all</artifactId>
-				<version>${groovy.version}</version>
-			</dependency>
-			<!-- Testing -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-test</artifactId>
-				<version>${springframework.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-all</artifactId>
-				<version>${mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.code.findbugs</groupId>
-				<artifactId>findbugs</artifactId>
-				<version>${findbugs.version}</version>
-				<scope>test</scope>
-				<exclusions>
-					<!-- The Xerces version getting pulled in from this dies with enabling 
-						XInclude support. Excluding for now. -->
-					<exclusion>
-						<groupId>xerces</groupId>
-						<artifactId>xercesImpl</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.cobertura</groupId>
-				<artifactId>cobertura</artifactId>
-				<version>${cobertura.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-                <groupId>com.sun.xml.fastinfoset</groupId>
-                <artifactId>FastInfoset</artifactId>
-                <version>${fastinfoset.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jsr173_api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-		</dependencies>
-	</dependencyManagement>
+		<!-- dev profile for testing, docs not generated -->
+		<profile>
+			<id>portal</id>
+			<activation>
+                <!-- Activation by absence of a property. Run normally, without -Dfull-build -->
+                <property>
+                    <name>!full-build</name>
+                </property>
+            </activation>
+			<modules>
+                <module>parent</module>
+				<module>configuration</module>
+                <module>statics</module>
+                <module>services</module>
+				<module>portal</module>
+			</modules>
+		</profile>
+	</profiles>
 </project>

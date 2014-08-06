@@ -4,6 +4,12 @@
                       name="Backbase Portal All-In-One Archetype">
 
     <fileSets>
+        <!--<fileSet filtered="false" encoding="UTF-8">
+            <directory>/</directory>
+        </fileSet>-->
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>parent</directory>
+        </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>configuration</directory>
         </fileSet>

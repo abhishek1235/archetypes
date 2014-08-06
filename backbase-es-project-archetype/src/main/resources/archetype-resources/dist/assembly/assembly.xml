@@ -27,9 +27,21 @@
             <outputDirectory>/wars</outputDirectory>
         </file>
 
-        <!-- Statics -->
+        <!-- Themes -->
         <file>
-            <source>\${statics.dir}/sample.backbase.bundle/target/sample.backbase.bundle-bundle.zip</source>
+            <source>\${statics.dir}/themes/launchpad-default/target/launchpad-default-theme.zip</source>
+            <outputDirectory>/statics</outputDirectory>
+        </file>
+
+        <!-- Bundles -->
+        <file>
+            <source>\${statics.dir}/portal-bundles/com.backbase.samples/target/com.backbase.samples-bundle.zip</source>
+            <outputDirectory>/statics</outputDirectory>
+        </file>
+
+        <!-- YAPI -->
+        <file>
+            <source>\${statics.dir}/portal-bundles/com.backbase.samples/target/com.backbase.samples-yapi.zip</source>
             <outputDirectory>/statics</outputDirectory>
         </file>
     </files>

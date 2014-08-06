@@ -15,6 +15,9 @@
   <artifactId>themes</artifactId>
   <packaging>pom</packaging>
 
+  <name>Backbase Themes</name>
+  <description>A module that contains Backbase Themes.</description>
+
   <modules>
     <module>launchpad-default</module>
   </modules>

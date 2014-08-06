@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<portals>
+    <portal>
+        <name>gulfbank</name>
+        <properties>
+            <property name="title">
+                <value>Gulfbank</value>
+            </property>
+            <property name="DefaultLandingPage">
+                <value>/dashboard</value>
+            </property>
+            <property name="LoginPage">
+                <value type="string">/user-login</value>
+            </property>
+            <property name="LogoutPage">
+                <value type="string">/dashboard</value>
+            </property>
+            <property name="ErrorPage">
+                <value type="string">/login/error.jsp</value>
+            </property>
+            <property name="AccessDeniedPage">
+                <value type="string">/login/login.jsp?login_error=accessdenied</value>
+            </property>
+            <property name="AuthenticationFailurePage">
+                <value type="string">/login/login.jsp?login_error=failure</value>
+            </property>
+            <property name="TargetedDevice">
+                <value>mixed</value>
+            </property>
+            <property name="DefaultDevice">
+                <value>mixed</value>
+            </property>
+            <property name="TypeOfTags">
+                <value>tracking</value>
+            </property>
+            <!--<property name="thumbnailUrl">-->
+                <!--<value type="string"></value>-->
+            <!--</property>-->
+        </properties>
+    </portal>
+</portals>

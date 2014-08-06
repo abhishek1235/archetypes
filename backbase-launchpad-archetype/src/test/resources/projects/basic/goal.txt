@@ -1,1 +1,1 @@
-clean install -Dset-env
+clean install -Pinstall-less -Pcreate-database

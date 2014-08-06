@@ -1,1 +1,1 @@
-clean install -Dset-env -Dfull-build -Dembed-statics
+clean install -Dfull-build -Pinstall-less -Pcreate-database

@@ -8,33 +8,23 @@
 
     <parent>
         <groupId>\${groupId}</groupId>
-        <artifactId>\${artifactId}</artifactId>
+        <artifactId>parent</artifactId>
         <version>\${version}</version>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>orchestrator</artifactId>
     <packaging>war</packaging>
 
+    <name>Orchestrator</name>
+    <description>A WAR overaly over Backbase Orchestrator component.</description>
+
     <properties>
         <!-- Standard Maven proeprties -->
         <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
-
-        <!-- Folder where configuration is stored-->
-        <configuration.dir>\${project.parent.basedir}/configuration</configuration.dir>
-
-        <!-- Folder where data is stored-->
-        <data.dir>\${project.parent.basedir}/data</data.dir>
     </properties>
 
     <dependencies>
-        <!-- Project configuration -->
-        <dependency>
-            <groupId>\${groupId}</groupId>
-            <artifactId>configuration</artifactId>
-            <version>\${version}</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- Orchestrator component -->
         <dependency>
             <groupId>com.backbase.portal.orchestrator</groupId>
@@ -47,13 +37,11 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
-            <version>${httpclient.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -61,7 +49,6 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
         </dependency>
     </dependencies>
 
@@ -85,31 +72,15 @@
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <overlays>
-                        <overlay>
-                            <groupId>com.backbase.portal.orchestrator</groupId>
-                            <artifactId>orchestrator-webapp</artifactId>
-                            <excludes>
-                                <exclude>WEB-INF/lib/c3p0*.jar</exclude>
-                            </excludes>
-                        </overlay>
-                    </overlays>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty.plugin.version}</version>
                 <configuration>
                     <stopKey>foo</stopKey>
                     <stopPort>${orchestrator.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <jettyXml>\${configuration.dir}/target/test-classes/jetty/orchestrator/jetty.xml</jettyXml>
+                    <jettyXml>\${configuration.dir}/target/configuration/local/jetty/orchestrator/jetty.xml</jettyXml>
                     <webApp>
-                        <defaultsDescriptor>\${configuration.dir}/target/test-classes/jetty/webdefaults.xml</defaultsDescriptor>
+                        <defaultsDescriptor>\${configuration.dir}/target/configuration/local/jetty/webdefaults.xml</defaultsDescriptor>
                         <contextPath>/orchestrator</contextPath>
                     </webApp>
                     <httpConnector>
@@ -118,15 +89,15 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>${c3p0.group}</groupId>
+                        <groupId>c3p0</groupId>
                         <artifactId>c3p0</artifactId>
-                        <version>${c3p0.version}</version>
+                        <version>0.9.1</version>
                         <scope>runtime</scope>
                     </dependency>
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>${h2.version}</version>
+                        <version>1.3.154</version>
                         <scope>runtime</scope>
                     </dependency>
                 </dependencies>
@@ -158,7 +129,6 @@
                 <!-- or if you want to use tomcat 6.x
                 <artifactId>tomcat6-maven-plugin</artifactId>
                 -->
-                <version>${tomcat.plugin.version}</version>
                 <configuration>
                     <!-- http port -->
                     <port>${orchestrator.port}</port>
@@ -169,7 +139,7 @@
                     <!-- optional, needed only if you want to use a preconfigured server.xml file -->
                     <!-- <serverXml>\${project.build.testOutputDirectory}/configuration/tomcat/server.xml</serverXml>-->
                     <!-- optional path to a context file -->
-                    <contextFile>\${configuration.dir}/target/test-classes/tomcat/orchestrator/context.xml</contextFile>
+                    <contextFile>\${configuration.dir}/target/configuration/local/tomcat/orchestrator/context.xml</contextFile>
                     <!-- if you want to use test dependencies rather than only runtime -->
                     <useTestClasspath>false</useTestClasspath>
                     <!-- optional if you want to add some extra directories into the classloader -->
@@ -188,60 +158,20 @@
                         <version>${javax.mail.version}</version>
                     </dependency>
                     <dependency>
-                        <groupId>com.mchange</groupId>
+                        <groupId>c3p0</groupId>
                         <artifactId>c3p0</artifactId>
-                        <version>${c3p0.version}</version>
+                        <version>0.9.1</version>
                     </dependency>
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>${h2.version}</version>
+                        <version>1.3.154</version>
                     </dependency>
                 </dependencies>
-                <!--<executions>
-                    <execution>
-                        <id>tomcat-run</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>run-war-only</goal>
-                        </goals>
-                        <configuration>
-                            <fork>true</fork>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>tomcat-shutdown</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>shutdown</goal>
-                        </goals>
-                    </execution>
-                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/*TestST.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/target/**</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>verify</id>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -249,12 +179,6 @@
     <profiles>
         <profile>
             <id>create-database</id>
-            <activation>
-                <!-- Activation by a property. Run with -Dset-env -->
-                <property>
-                    <name>set-env</name>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -273,7 +197,7 @@
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/orchestrator/scripts/h2/create_database.sql</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/orchestrator/scripts/h2/create_database.sql</srcFile>
                                     </srcFiles>
                                 </configuration>
                             </execution>
@@ -282,7 +206,7 @@
                             <dependency>
                                 <groupId>com.h2database</groupId>
                                 <artifactId>h2</artifactId>
-                                <version>${h2.version}</version>
+                                <version>1.3.154</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -314,8 +238,8 @@
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/orchestrator/scripts/h2/drop_database.sql</srcFile>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/orchestrator/scripts/h2/create_database.sql</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/orchestrator/scripts/h2/drop_database.sql</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/orchestrator/scripts/h2/create_database.sql</srcFile>
                                     </srcFiles>
                                 </configuration>
                             </execution>
@@ -324,7 +248,7 @@
                             <dependency>
                                 <groupId>com.h2database</groupId>
                                 <artifactId>h2</artifactId>
-                                <version>${h2.version}</version>
+                                <version>1.3.154</version>
                             </dependency>
                         </dependencies>
                     </plugin>

@@ -8,18 +8,20 @@
 
     <parent>
         <groupId>\${groupId}</groupId>
-        <artifactId>\${artifactId}</artifactId>
+        <artifactId>parent</artifactId>
         <version>\${version}</version>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>configuration</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Configuration</name>
+    <description>A module that contains all Backbase CXP configurations.</description>
 
     <properties>
         <!-- Standard Maven proeprties -->
         <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
-
-        <!-- Folder where configuration is stored-->
-        <configuration.dir>\${project.parent.basedir}/configuration</configuration.dir>
 
         <!-- Less settings -->
         <less.cache>true</less.cache>
@@ -31,34 +33,54 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
+                <filtering>true</filtering>
             </resource>
         </resources>
-        <testResources>
-            <testResource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>filter</id>
-                        <phase>prepare-package</phase>
+                        <id>local</id>
+                        <phase>process-resources</phase>
                         <goals>
-                            <goal>copy-resources</goal>
+                            <goal>resources</goal>
                         </goals>
                         <configuration>
                             <encoding>UTF-8</encoding>
-                            <outputDirectory>${work.dir}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>src/main/resources</directory>
-                                    <filtering>true</filtering>
-                                </resource>
-                            </resources>
+                            <outputDirectory>\${work.dir}/local</outputDirectory>
+                            <filters>
+                                <filter>\${basedir}/src/main/filters/local.properties</filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>dev</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <outputDirectory>\${work.dir}/dev</outputDirectory>
+                            <filters>
+                                <filter>\${basedir}/src/main/filters/dev.properties</filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <outputDirectory>\${work.dir}/test</outputDirectory>
+                            <filters>
+                                <filter>\${basedir}/src/main/filters/test.properties</filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>
@@ -68,8 +90,8 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <descriptors>
-                        <descriptor>assembly/dist.xml</descriptor>
-                        <descriptor>assembly/portal.xml</descriptor>
+                        <descriptor>assembly/dev.xml</descriptor>
+                        <descriptor>assembly/test.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>
@@ -84,162 +106,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>local-development</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <!-- DB/Environment settings -->
-                <db.type>h2</db.type>
-                <db.hibernate.dialect>org.hibernate.dialect.H2Dialect</db.hibernate.dialect>
-                <db.username>sa</db.username>
-                <db.password></db.password>
-                <db.jdbc.driver>org.h2.Driver</db.jdbc.driver>
-                <portal.foundation.jdbc.url>jdbc:h2:file:\${data.dir}/db/portalFoundation;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</portal.foundation.jdbc.url>
-                <audit.jdbc.url>jdbc.url:h2:file:\${data.dir}/db/audit;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</audit.jdbc.url>
-                <portal.content.jdbc.url>jdbc:h2:file:\${data.dir}/db/contentServicesContent;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</portal.content.jdbc.url>
-                <portal.resource.jdbc.url>jdbc:h2:file:\${data.dir}/db/contentServicesResource;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</portal.resource.jdbc.url>
-                <portal.config.jdbc.url>jdbc:h2:file:\${data.dir}/db/contentServicesConfiguration;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</portal.config.jdbc.url>
-                <orchestrator.publishing.jdbc.url>jdbc:h2:file:\${data.dir}/db/orchestrator;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</orchestrator.publishing.jdbc.url>
-                <orchestrator.archiving.jdbc.url>jdbc:h2:file:\${data.dir}/db/archiving;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE</orchestrator.archiving.jdbc.url>
-                <data.dir>\${project.parent.basedir}/data</data.dir>
-                <backbase.config.path>\${project.build.testOutputDirectory}</backbase.config.path>
-                <log.dir>\${data.dir}/log</log.dir>
-                <!-- Portal Foundation settings -->
-                <portal.url>http://localhost:7777/portalserver</portal.url>
-                <portal.host>localhost</portal.host>
-                <portal.port>7777</portal.port>
-                <portal.context>portalserver</portal.context>
-                <!-- Content Services settings -->
-                <contentservices.url>http://localhost:8081/contentservices</contentservices.url>
-                <contentservices.host>localhost</contentservices.host>
-                <contentservices.port>8081</contentservices.port>
-                <contentservices.context>contentservices</contentservices.context>
-                <!-- Orchestrator settings -->
-                <orchestrator.url>http://localhost:8083/orchestrator</orchestrator.url>
-                <orchestrator.host>localhost</orchestrator.host>
-                <orchestrator.port>8083</orchestrator.port>
-                <orchestrator.context>orchestrator</orchestrator.context>
-            </properties>
-        </profile>
-        <profile>
-            <id>dev-server</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <!-- DB/Environment settings -->
-                <db.type>mysql</db.type>
-                <db.hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</db.hibernate.dialect>
-                <db.username>root</db.username>
-                <db.password>b4ckb4s3</db.password>
-                <db.jdbc.driver>com.mysql.jdbc.Driver</db.jdbc.driver>
-                <portal.foundation.jdbc.url>jdbc:mysql://localhost:3306/portal</portal.foundation.jdbc.url>
-                <audit.jdbc.url>jdbc:mysql://localhost:3306/audit</audit.jdbc.url>
-                <portal.content.jdbc.url>jdbc:mysql://localhost:3306/content</portal.content.jdbc.url>
-                <portal.resource.jdbc.url>jdbc:mysql://localhost:3306/resource</portal.resource.jdbc.url>
-                <portal.config.jdbc.url>jdbc:mysql://localhost:3306/config</portal.config.jdbc.url>
-                <orchestrator.publishing.jdbc.url>jdbc:mysql://localhost:3306/orchestr</orchestrator.publishing.jdbc.url>
-                <orchestrator.archiving.jdbc.url>jdbc:mysql://localhost:3306/archive</orchestrator.archiving.jdbc.url>
-                <data.dir>/opt/deploy</data.dir>
-                <backbase.config.path>/opt/backbase/config</backbase.config.path>
-                <log.dir>/opt/tomcat7/logs</log.dir>
-                <!-- Portal Foundation settings -->
-                <portal.url>http://dev.backbase.com:8080/portal</portal.url>
-                <portal.host>dev.backbase.com</portal.host>
-                <portal.port>8080</portal.port>
-                <portal.context>portal</portal.context>
-                <!-- Content Services settings -->
-                <contentservices.url>http://dev.backbase.com:8080/contentservices</contentservices.url>
-                <contentservices.host>dev.backbase.com</contentservices.host>
-                <contentservices.port>8080</contentservices.port>
-                <contentservices.context>contentservices</contentservices.context>
-                <!-- Orchestrator settings -->
-                <orchestrator.url>http://dev.backbase.com:8080/orchestrator</orchestrator.url>
-                <orchestrator.host>dev.backbase.com</orchestrator.host>
-                <orchestrator.port>8080</orchestrator.port>
-                <orchestrator.context>orchestrator</orchestrator.context>
-            </properties>
-        </profile>
-        <profile>
-            <id>test-server</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <!-- DB/Environment settings -->
-                <db.type>mysql</db.type>
-                <db.hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</db.hibernate.dialect>
-                <db.username>root</db.username>
-                <db.password>b4ckb4s3</db.password>
-                <db.jdbc.driver>com.mysql.jdbc.Driver</db.jdbc.driver>
-                <portal.foundation.jdbc.url>jdbc:mysql://localhost:3306/portal</portal.foundation.jdbc.url>
-                <audit.jdbc.url>jdbc:mysql://localhost:3306/audit</audit.jdbc.url>
-                <portal.content.jdbc.url>jdbc:mysql://localhost:3306/content</portal.content.jdbc.url>
-                <portal.resource.jdbc.url>jdbc:mysql://localhost:3306/resource</portal.resource.jdbc.url>
-                <portal.config.jdbc.url>jdbc:mysql://localhost:3306/config</portal.config.jdbc.url>
-                <orchestrator.publishing.jdbc.url>jdbc:mysql://localhost:3306/orchestr</orchestrator.publishing.jdbc.url>
-                <orchestrator.archiving.jdbc.url>jdbc:mysql://localhost:3306/archive</orchestrator.archiving.jdbc.url>
-                <data.dir>/opt/deploy</data.dir>
-                <backbase.config.path>/opt/backbase/config</backbase.config.path>
-                <log.dir>/opt/tomcat7/logs</log.dir>
-                <!-- Portal Foundation settings -->
-                <portal.url>http://test.backbase.com:8080/portal</portal.url>
-                <portal.host>test.backbase.com</portal.host>
-                <portal.port>8080</portal.port>
-                <portal.context>portal</portal.context>
-                <!-- Content Services settings -->
-                <contentservices.url>http://test.backbase.com:8080/contentservices</contentservices.url>
-                <contentservices.host>test.backbase.com</contentservices.host>
-                <contentservices.port>8080</contentservices.port>
-                <contentservices.context>contentservices</contentservices.context>
-                <!-- Orchestrator settings -->
-                <orchestrator.url>http://test.backbase.com:8080/orchestrator</orchestrator.url>
-                <orchestrator.host>test.backbase.com</orchestrator.host>
-                <orchestrator.port>8080</orchestrator.port>
-                <orchestrator.context>orchestrator</orchestrator.context>
-            </properties>
-        </profile>
-        <profile>
-            <id>dist</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <!-- DB/Environment settings -->
-                <db.type>mysql</db.type>
-                <db.username>root</db.username>
-                <db.password>b4ckb4s3</db.password>
-                <db.jdbc.driver>com.mysql.jdbc.Driver</db.jdbc.driver>
-                <portal.foundation.jdbc.url>jdbc:mysql://localhost:3306/portal</portal.foundation.jdbc.url>
-                <audit.jdbc.url>jdbc:mysql://localhost:3306/audit</audit.jdbc.url>
-                <portal.content.jdbc.url>jdbc:mysql://localhost:3306/content</portal.content.jdbc.url>
-                <portal.resource.jdbc.url>jdbc:mysql://localhost:3306/resource</portal.resource.jdbc.url>
-                <portal.config.jdbc.url>jdbc:mysql://localhost:3306/config</portal.config.jdbc.url>
-                <orchestrator.publishing.jdbc.url>jdbc:mysql://localhost:3306/orchestr</orchestrator.publishing.jdbc.url>
-                <orchestrator.archiving.jdbc.url>jdbc:mysql://localhost:3306/archive</orchestrator.archiving.jdbc.url>
-                <data.dir>/opt/deploy</data.dir>
-                <backbase.config.path>/opt/backbase/config</backbase.config.path>
-                <log.dir>/opt/tomcat7/logs</log.dir>
-                <!-- Portal Foundation settings -->
-                <portal.url>http://dist.backbase.com:8080/portal</portal.url>
-                <portal.host>dist.backbase.com</portal.host>
-                <portal.port>8080</portal.port>
-                <portal.context>portal</portal.context>
-                <!-- Content Services settings -->
-                <contentservices.url>http://dist.backbase.com:8080/contentservices</contentservices.url>
-                <contentservices.host>dist.backbase.com</contentservices.host>
-                <contentservices.port>8080</contentservices.port>
-                <contentservices.context>contentservices</contentservices.context>
-                <!-- Orchestrator settings -->
-                <orchestrator.url>http://dist.backbase.com:8080/orchestrator</orchestrator.url>
-                <orchestrator.host>dist.backbase.com</orchestrator.host>
-                <orchestrator.port>8080</orchestrator.port>
-                <orchestrator.context>orchestrator</orchestrator.context>
-            </properties>
-        </profile>
-    </profiles>
 </project>

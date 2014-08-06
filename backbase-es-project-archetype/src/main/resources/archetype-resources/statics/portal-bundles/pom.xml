@@ -12,6 +12,13 @@
       <version>\${version}</version>
   </parent>
 
-  <artifactId>portal-bundle</artifactId>
+  <artifactId>portal-bundles</artifactId>
   <packaging>pom</packaging>
+
+  <name>Portal Bundles</name>
+  <description>A module that contains Portal Bundles.</description>
+
+  <modules>
+    <module>com.backbase.samples</module>
+  </modules>  
 </project>

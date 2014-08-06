@@ -8,34 +8,33 @@
 
     <parent>
         <groupId>\${groupId}</groupId>
-        <artifactId>\${artifactId}</artifactId>
+        <artifactId>parent</artifactId>
         <version>\${version}</version>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>portal</artifactId>
     <packaging>war</packaging>
 
+    <name>Portal</name>
+    <description>A WAR overaly over Backbase Portal Foundation component. This is a module where all front-end and majority of back-end work is performed.</description>
+
     <properties>
         <!-- Standard Maven proeprties -->
         <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
 
-        <!-- Folder where configuration is stored-->
-        <configuration.dir>\${project.parent.basedir}/configuration</configuration.dir>
-
-        <!-- Folder where statics are stored-->
-        <statics.dir>\${project.parent.basedir}/statics</statics.dir>
-
-        <!-- Folder where data is stored-->
-        <data.dir>\${project.parent.basedir}/data</data.dir>
-
         <!-- Theme settings -->
         <theme.name>${theme.name}</theme.name>
+
+        <!-- Core LESS settings-->
         <less.cache>true</less.cache>
         <less.compress>false</less.compress>
-        <install.less.command>npm</install.less.command>
-        <install.less.args>install less</install.less.args>
-        <compile.command>node_modules/less/bin/lessc</compile.command>
-        <compile.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</compile.args>
+
+        <!-- NodeJS LESS settings-->
+        <less.install.command>npm</less.install.command>
+        <less.install.args>install less</less.install.args>
+        <less.compile.command>node_modules/less/bin/lessc</less.compile.command>
+        <less.compile.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.args>
 
         <dashboard.start>&lt;!-- Start Dashboard Portal Import &gt;--></dashboard.start>
         <dashboard.end>&lt;!-- End Dashboard Portal Import &gt;--></dashboard.end>
@@ -50,22 +49,28 @@
         <ehcache.disabled>false</ehcache.disabled>
     </properties>
 
-    <dependencies>
-        <!-- Project configuration TODO/can we do this better -->
-        <dependency>
-            <groupId>\${groupId}</groupId>
-            <artifactId>configuration</artifactId>
-            <version>\${version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- Statics TODO/can we do this better -->
-        <dependency>
-            <groupId>\${groupId}</groupId>
-            <artifactId>launchpad-default</artifactId>
-            <version>\${version}</version>
-            <scope>provided</scope>
-        </dependency>
+    <!--Important for maven-release plugin, to correctly bump the extracted dependencies' versions-->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Statics sub-modules-->
+            <dependency>
+                <groupId>\${groupId}</groupId>
+                <artifactId>launchpad-default</artifactId>
+                <version>\${version}</version>
+                <type>zip</type>
+                <classifier>theme</classifier>
+            </dependency>
+            <dependency>
+                <groupId>\${groupId}</groupId>
+                <artifactId>com.backbase.samples</artifactId>
+                <version>\${version}</version>
+                <type>zip</type>
+                <classifier>bundle</classifier>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
+    <dependencies>
         <!-- Backbase core modules -->
         <dependency>
             <groupId>com.backbase.portal.foundation</groupId>
@@ -190,24 +195,6 @@
             <version>\${launchpad.version}</version>
         </dependency>
 
-        <!-- Theme -->
-        <dependency>
-            <groupId>com.asual.lesscss</groupId>
-            <artifactId>lesscss-engine</artifactId>
-            <version>${less.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.asual.lesscss</groupId>
-            <artifactId>lesscss-servlet</artifactId>
-            <version>${less.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>javax.servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <!-- Required for FakeAuthenitcationProvider -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -310,6 +297,32 @@
                             </artifactItems>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>unpack-static-dependencies</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>\${groupId}</groupId>
+                                    <artifactId>com.backbase.samples</artifactId>
+                                    <type>zip</type>
+                                    <classifier>bundle</classifier>
+                                    <excludes>config-info/</excludes>
+                                    <outputDirectory>${work.dir}/</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>\${groupId}</groupId>
+                                    <artifactId>launchpad-default</artifactId>
+                                    <type>zip</type>
+                                    <classifier>theme</classifier>
+                                    <outputDirectory>${work.dir}/</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -334,14 +347,16 @@
                     <stopKey>foo</stopKey>
                     <stopPort>${portal.port.stop}</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <jettyXml>\${configuration.dir}/target/test-classes/jetty/portal/jetty.xml</jettyXml>
+                    <jettyXml>\${configuration.dir}/target/configuration/local/jetty/portal/jetty.xml</jettyXml>
                     <webApp>
-                        <defaultsDescriptor>\${configuration.dir}/target/test-classes/jetty/webdefaults.xml</defaultsDescriptor>
+                        <defaultsDescriptor>\${configuration.dir}/target/configuration/local/jetty/webdefaults.xml</defaultsDescriptor>
                         <contextPath>/portalserver</contextPath>
                         <resourceBases>
+                            <!-- DEFAULT -->
                             <resourceBase>\${project.basedir}/src/main/webapp</resourceBase>
                             <resourceBase>\${work.dir}</resourceBase>
-                            <!-- STATiCS -->
+                            <!-- STATICS -->
+                            <resourceBase>\${statics.dir}/portal-bundles/com.backbase.samples/src/main/webapp</resourceBase>
                             <resourceBase>\${statics.dir}/themes/launchpad-default/src/main/webapp</resourceBase>
                         </resourceBases>
                     </webApp>
@@ -366,15 +381,15 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>${c3p0.group}</groupId>
+                        <groupId>c3p0</groupId>
                         <artifactId>c3p0</artifactId>
-                        <version>${c3p0.version}</version>
+                        <version>0.9.1</version>
                         <scope>runtime</scope>
                     </dependency>
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>${h2.version}</version>
+                        <version>1.3.154</version>
                         <scope>runtime</scope>
                     </dependency>
                 </dependencies>
@@ -417,7 +432,7 @@
                     <!-- optional, needed only if you want to use a preconfigured server.xml file -->
                     <!-- <serverXml>\${project.build.testOutputDirectory}/configuration/tomcat/server.xml</serverXml>-->
                     <!-- optional path to a context file -->
-                    <contextFile>\${configuration.dir}/target/test-classes/tomcat/portal/context.xml</contextFile>
+                    <contextFile>\${configuration.dir}/target/configuration/local/tomcat/portal/context.xml</contextFile>
                     <!-- optional system propoerties you want to add -->
                     <systemProperties>
                         <!--<PORTALSERVER_PROXY_URL>http://localhost:8082/mashupservices-webapp/prox</PORTALSERVER_PROXY_URL>-->
@@ -443,53 +458,17 @@
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>${h2.version}</version>
+                        <version>1.3.154</version>
                     </dependency>
                 </dependencies>
-                <!--<executions>
-                    <execution>
-                        <id>tomcat-run</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>run-war-only</goal>
-                        </goals>
-                        <configuration>
-                            <fork>true</fork>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>tomcat-shutdown</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>shutdown</goal>
-                        </goals>
-                    </execution>
-                </executions>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/*TestST.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/target/**</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>verify</id>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -521,9 +500,9 @@
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/foundation/schema.ddl</srcFile>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/foundation/default-foundation-data-blank.sql</srcFile>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/foundation/audit_schema.ddl</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/foundation/schema.ddl</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/foundation/default-foundation-data-blank.sql</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/foundation/audit_schema.ddl</srcFile>
                                     </srcFiles>
                                 </configuration>
                             </execution>
@@ -532,7 +511,7 @@
                             <dependency>
                                 <groupId>com.h2database</groupId>
                                 <artifactId>h2</artifactId>
-                                <version>${h2.version}</version>
+                                <version>1.3.154</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -560,9 +539,9 @@
                                     <username>sa</username>
                                     <password></password>
                                     <srcFiles>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/foundation/schema.ddl</srcFile>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/foundation/default-foundation-data-blank.sql</srcFile>
-                                        <srcFile>\${configuration.dir}/target/test-classes/db-scripts/foundation/audit_schema.ddl</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/foundation/schema.ddl</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/foundation/default-foundation-data-blank.sql</srcFile>
+                                        <srcFile>\${configuration.dir}/target/configuration/local/db-scripts/foundation/audit_schema.ddl</srcFile>
                                     </srcFiles>
                                 </configuration>
                             </execution>
@@ -571,7 +550,7 @@
                             <dependency>
                                 <groupId>com.h2database</groupId>
                                 <artifactId>h2</artifactId>
-                                <version>${h2.version}</version>
+                                <version>1.3.154</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -899,7 +878,7 @@
                 <dependency>
                     <groupId>com.backbase.portal</groupId>
                     <artifactId>mobile</artifactId>
-                    <version>\${portal.server.version}</version>
+                    <version>\${portal.mobile.version}</version>
                     <type>zip</type>
                 </dependency>
             </dependencies>
@@ -1017,58 +996,6 @@
                                     <goal>unpack</goal>
                                 </goals>
                                 <phase>process-resources</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>embed-statics</id>
-            <!--Run in full builds only-->
-            <activation>
-                <property>
-                    <name>full-build</name>
-                </property>
-            </activation>
-
-            <!--Important for maven-release plugin, to correctly bump the extracted dependencies' versions-->
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>\${groupId}</groupId>
-                        <artifactId>launchpad-default</artifactId>
-                        <version>\${version}</version>
-                        <type>zip</type>
-                        <classifier>bundle</classifier>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack-bundle-dependencies</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>\${groupId}</groupId>
-                                            <artifactId>launchpad-default</artifactId>
-                                            <type>zip</type>
-                                            <classifier>bundle</classifier>
-                                            <outputDirectory>\${work.dir}/</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

@@ -8,23 +8,18 @@
 
     <parent>
         <groupId>\${groupId}</groupId>
-        <artifactId>\${artifactId}</artifactId>
+        <artifactId>parent</artifactId>
         <version>\${version}</version>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>dist</artifactId>
 
-    <properties>
-        <!-- Distributable Maven modules-->
-        <portal.dir>\${project.parent.basedir}/portal</portal.dir>
-        <orchestrator.dir>\${project.parent.basedir}/orchestrator</orchestrator.dir>
-        <contentservices.dir>\${project.parent.basedir}/contentservices</contentservices.dir>
-        <configuration.dir>\${project.parent.basedir}/configuration</configuration.dir>
-        <statics.dir>\${project.parent.basedir}/statics</statics.dir>
-    </properties>
+    <name>Distribution</name>
+    <description>A module that wraps up all artifacts that are to be delivered as part of the project delivery.</description>
 
     <build>
-        <finalName>\${project.artifactId}-\${project.version}</finalName>
+        <finalName>\${project.artifactId}</finalName>
 
         <plugins>
             <plugin>
@@ -40,7 +35,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>\${project.build.directory}/${project.artifactId}-${project.version}-${project.name}.zip</file>
+                                    <file>\${project.build.directory}/\${project.artifactId}-dist.zip</file>
                                     <type>zip</type>
                                 </artifact>
                             </artifacts>
@@ -53,7 +48,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <descriptors>
-                        <descriptor>assembly/assembly.xml</descriptor>
+                        <descriptor>\${project.basedir}/assembly/assembly.xml</descriptor>
                     </descriptors>
                     <outputDirectory>\${project.build.directory}</outputDirectory>
                     <workDirectory>\${work.dir}</workDirectory>

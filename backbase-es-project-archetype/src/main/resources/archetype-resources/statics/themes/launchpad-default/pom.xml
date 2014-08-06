@@ -19,6 +19,9 @@
     <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
   </properties>
 
+  <name>Launchpad Theme</name>
+  <description>A module that contains default Launchpad Theme.</description>
+
   <build>
     <finalName>\${project.artifactId}</finalName>
 
@@ -52,7 +55,7 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
           <descriptors>
-            <descriptor>assembly/bundle.xml</descriptor>
+            <descriptor>assembly/theme.xml</descriptor>
           </descriptors>
         </configuration>
         <executions>

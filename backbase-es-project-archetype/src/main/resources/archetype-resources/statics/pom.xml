@@ -8,12 +8,16 @@
 
   <parent>
       <groupId>\${groupId}</groupId>
-      <artifactId>\${artifactId}</artifactId>
+      <artifactId>parent</artifactId>
       <version>\${version}</version>
+      <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
   <artifactId>statics</artifactId>
   <packaging>pom</packaging>
+
+  <name>Statics</name>
+  <description>An aggegator module for all web statics modules.</description>
 
   <modules>
     <module>portal-bundles</module>

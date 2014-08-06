@@ -8,12 +8,16 @@
 
     <parent>
         <groupId>\${groupId}</groupId>
-        <artifactId>\${artifactId}</artifactId>
+        <artifactId>parent</artifactId>
         <version>\${version}</version>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>services</artifactId>
     <packaging>pom</packaging>
+
+    <name>Services</name>
+    <description>An aggegator module for all Apache Camel modules.</description>
 
     <modules>
         <module>sample-service-module</module>

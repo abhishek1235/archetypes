@@ -1,0 +1,32 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+  <id>test</id>
+  <baseDirectory>/</baseDirectory>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>${work.dir}/test</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>i18n/ResourceBundle.properties</include>
+        <include>i18n/ResourceBundle_ar_AA.properties</include>
+        <include>manager/examples/ice-config.properties</include>
+        <include>manager/examples/uiEditingOptions.js</include>
+        <include>tomcat/contentservices/context.xml</include>
+        <include>tomcat/orchestrator/context.xml</include>
+        <include>tomcat/portal/context.xml</include>
+        <include>backbase.properties</include>
+        <include>deviceConfig.xml</include>
+        <include>esapi.properties</include>
+        <include>ice-config.properties</include>
+        <include>logback.xml</include>
+        <include>ptc-config.properties</include>
+        <include>ptc-config.xml</include>
+        <include>services.properties</include>
+        <include>to-self-publishchains.xml</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</assembly>

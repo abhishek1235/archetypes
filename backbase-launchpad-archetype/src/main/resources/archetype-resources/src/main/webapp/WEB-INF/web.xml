@@ -193,12 +193,6 @@
         <servlet-class>com.backbase.portal.foundation.presentation.renderer.PtcServlet</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
-    <!-- Handles LESS CSS files -->
-    <servlet>
-        <servlet-name>less</servlet-name>
-        <servlet-class>com.asual.lesscss.LessServlet</servlet-class>
-        <load-on-startup>3</load-on-startup>
-    </servlet>
 
     <!--<servlet-mapping>
         <servlet-name>AtmosphereServlet</servlet-name>
@@ -215,10 +209,6 @@
     <servlet-mapping>
         <servlet-name>Mashup Servlet</servlet-name>
         <url-pattern>/services/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>less</servlet-name>
-        <url-pattern>*.less</url-pattern>
     </servlet-mapping>
 
     <session-config>

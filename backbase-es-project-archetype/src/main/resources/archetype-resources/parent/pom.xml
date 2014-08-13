@@ -99,7 +99,7 @@
 	<scm>
 		<connection>scm:svn:https://svn.backbase.com/customers/\${project}/trunk</connection>
 		<developerConnection>scm:svn:https://svn.backbase.com/customers/\${project}/trunk</developerConnection>
-		<url>https://svn.backbase.com/customers/\${project.name}/trunk</url>
+		<url>https://svn.backbase.com/customers/\${project}/trunk</url>
 	</scm>
 
 	<reporting>

@@ -1,4 +1,4 @@
-package my.company.mashupservices;
+package com.backbase.test.mashupservices;
 
 import java.io.IOException;
 

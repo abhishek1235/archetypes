@@ -14,6 +14,7 @@
     </parent>
 
     <artifactId>dist</artifactId>
+    <packaging>pom</packaging>
 
     <name>Distribution</name>
     <description>A module that wraps up all artifacts that are to be delivered as part of the project delivery.</description>

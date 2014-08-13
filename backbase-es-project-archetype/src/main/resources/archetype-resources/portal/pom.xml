@@ -34,9 +34,11 @@
         <less.install.command>npm</less.install.command>
         <less.install.args>install less</less.install.args>
         <less.compile.command>node_modules/less/bin/lessc</less.compile.command>
-        <less.compile.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.args>
+        <less.compile.launchpad-default-theme.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
+        <less.compile.launchpad-example-theme.args>\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.less \${project.build.directory}/\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.css</less.compile.launchpad-example-theme.args>
         <less.watch.command>autoless</less.watch.command>
-        <less.watch.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/themes/launchpad-default/src/main/webapp/static/themes/default</less.watch.args>
+        <less.watch.launchpad-default-theme.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/themes/launchpad-default/src/main/webapp/static/themes/default</less.watch.launchpad-default-theme.args>
+        <less.watch.launchpad-example-theme.args>\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example \${project.build.directory}/\${project.build.finalName}/themes/launchpad-example/src/main/webapp/static/themes/example</less.watch.launchpad-example-theme.args>
 
         <dashboard.start>&lt;!-- Start Dashboard Portal Import &gt;--></dashboard.start>
         <dashboard.end>&lt;!-- End Dashboard Portal Import &gt;--></dashboard.end>
@@ -54,20 +56,35 @@
     <!--Important for maven-release plugin, to correctly bump the extracted dependencies' versions-->
     <dependencyManagement>
         <dependencies>
+            <!-- Mosaic-->
+            <dependency>
+                <groupId>com.backbase.extensions</groupId>
+                <artifactId>mosaic-tools</artifactId>
+                <version>\${mosaic.tools.version}</version>
+                <classifier>bundle-dist</classifier>
+                <type>zip</type>
+            </dependency>
             <!-- Statics sub-modules-->
             <dependency>
                 <groupId>\${groupId}</groupId>
                 <artifactId>launchpad-default</artifactId>
                 <version>\${version}</version>
-                <type>zip</type>
                 <classifier>theme</classifier>
+                <type>zip</type>
             </dependency>
             <dependency>
                 <groupId>\${groupId}</groupId>
-                <artifactId>com.backbase.samples</artifactId>
+                <artifactId>samples</artifactId>
                 <version>\${version}</version>
-                <type>zip</type>
                 <classifier>bundle</classifier>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>\${groupId}</groupId>
+                <artifactId>samples</artifactId>
+                <version>\${version}</version>
+                <classifier>change-info</classifier>
+                <type>zip</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -256,18 +273,30 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
-                    <!-- Compiles less with node before jetty starts (test-compile phase) -->
+                    <!-- Compiles default-theme less with node before jetty starts (test-compile phase) -->
                     <execution>
-                        <id>compile-less-with-node</id>
+                        <id>compile-default-theme-with-node</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
                             <executable>\${less.compile.command}</executable>
-                            <commandlineArgs>\${less.compile.args}</commandlineArgs>
+                            <commandlineArgs>\${less.compile.launchpad-default-theme.args}</commandlineArgs>
                         </configuration>
                     </execution>
+                    <!-- Compiles example-theme less with node before jetty starts (test-compile phase) -->
+                    <!--<execution>
+                        <id>compile-example-theme-with-node</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>\${less.compile.command}</executable>
+                            <commandlineArgs>\${less.compile.launchpad-example-theme.args}</commandlineArgs>
+                        </configuration>
+                    </execution>-->
                 </executions>
             </plugin>
             <plugin>
@@ -295,32 +324,6 @@
                                     <type>js</type>
                                     <classifier>min</classifier>
                                     <outputDirectory>\${work.dir}/static/lib/</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>unpack-static-dependencies</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>\${groupId}</groupId>
-                                    <artifactId>com.backbase.samples</artifactId>
-                                    <type>zip</type>
-                                    <classifier>bundle</classifier>
-                                    <excludes>config-info/</excludes>
-                                    <outputDirectory>\${work.dir}/</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>\${groupId}</groupId>
-                                    <artifactId>launchpad-default</artifactId>
-                                    <type>zip</type>
-                                    <classifier>theme</classifier>
-                                    <outputDirectory>\${work.dir}/</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -354,12 +357,12 @@
                         <defaultsDescriptor>\${configuration.dir}/target/configuration/local/jetty/webdefaults.xml</defaultsDescriptor>
                         <contextPath>/portalserver</contextPath>
                         <resourceBases>
+                            <!-- STATICS -->
+                            <resourceBase>\${statics.dir}/bundles/samples/src/main/webapp</resourceBase>
+                            <resourceBase>\${statics.dir}/themes/launchpad-default/src/main/webapp</resourceBase>
                             <!-- DEFAULT -->
                             <resourceBase>\${project.basedir}/src/main/webapp</resourceBase>
                             <resourceBase>\${work.dir}</resourceBase>
-                            <!-- STATICS -->
-                            <resourceBase>\${statics.dir}/portal-bundles/com.backbase.samples/src/main/webapp</resourceBase>
-                            <resourceBase>\${statics.dir}/themes/launchpad-default/src/main/webapp</resourceBase>
                         </resourceBases>
                     </webApp>
                     <httpConnector>
@@ -478,12 +481,6 @@
     <profiles>
         <profile>
             <id>create-database</id>
-            <activation>
-                <!-- Activation by a property. Run with -Dset-env -->
-                <property>
-                    <name>set-env</name>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -827,24 +824,6 @@
                                     </artifactItems>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>unpack-mosaic-tools</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.backbase.extensions</groupId>
-                                            <artifactId>mosaic-tools</artifactId>
-                                            <classifier>bundle-dist</classifier>
-                                            <type>zip</type>
-                                            <outputDirectory>\${work.dir}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
                         </executions>
                     </plugin>
                 </plugins>
@@ -1006,13 +985,85 @@
         </profile>
 
         <profile>
+            <id>embed-statics</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-static-dependencies</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>\${groupId}</groupId>
+                                            <artifactId>samples</artifactId>
+                                            <type>zip</type>
+                                            <classifier>bundle</classifier>
+                                            <outputDirectory>\${work.dir}/</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>\${groupId}</groupId>
+                                            <artifactId>launchpad-default</artifactId>
+                                            <type>zip</type>
+                                            <classifier>theme</classifier>
+                                            <outputDirectory>\${work.dir}/</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>with-mosaic-tools</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-mosaic-tools</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>com.backbase.extensions</groupId>
+                                            <artifactId>mosaic-tools</artifactId>
+                                            <classifier>bundle-dist</classifier>
+                                            <type>zip</type>
+                                            <outputDirectory>\${work.dir}</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>\${groupId}</groupId>
+                                            <artifactId>samples</artifactId>
+                                            <classifier>change-info</classifier>
+                                            <type>zip</type>
+                                            <outputDirectory>\${work.dir}/static/config-info/imports</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
             <id>install-less</id>
-            <activation>
-                <!-- Activation by a property. Run with -Dset-env -->
-                <property>
-                    <name>set-env</name>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -1045,18 +1096,30 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <executions>
-                            <!-- Watches less for changes, after jetty starts -->
+                            <!-- Watches default-theme less for changes, after jetty starts -->
                             <execution>
-                                <id>watch-less-with-node</id>
+                                <id>watch-default-theme-with-node</id>
                                 <phase>process-test-classes</phase>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
                                     <executable>\${less.watch.command}</executable>
-                                    <commandlineArgs>\${less.watch.args}</commandlineArgs>
+                                    <commandlineArgs>\${less.watch.launchpad-default-theme.args}</commandlineArgs>
                                 </configuration>
                             </execution>
+                            <!-- Watches example-theme less for changes, after jetty starts -->
+                            <!--<execution>
+                                <id>watch-example-theme-with-node</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>\${less.watch.command}</executable>
+                                    <commandlineArgs>\${less.watch.launchpad-example-theme.args}</commandlineArgs>
+                                </configuration>
+                            </execution>-->
                         </executions>
                     </plugin>
                 </plugins>
@@ -1081,9 +1144,11 @@
                 <less.install.command>cmd</less.install.command>
                 <less.install.args>/c npm install less</less.install.args>
                 <less.compile.command>cmd</less.compile.command>
-                <less.compile.args>/c node node_modules\less\bin\lessc \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.args>
+                <less.compile.launchpad-default-theme.args>/c node node_modules\less\bin\lessc \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
+                <less.compile.launchpad-example-theme.args>/c node node_modules\less\bin\lessc \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.less \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.css</less.compile.launchpad-example-theme.args>
                 <less.watch.command>cmd</less.watch.command>
-                <less.watch.args>/c autoless \${project.basedir}/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/static/themes/default</less.watch.args>
+                <less.watch.launchpad-default-theme.args>/c autoless \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default</less.watch.launchpad-default-theme.args>
+                <less.watch.launchpad-example-theme.args>/c autoless \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example</less.watch.launchpad-example-theme.args>
             </properties>
         </profile>
     </profiles>

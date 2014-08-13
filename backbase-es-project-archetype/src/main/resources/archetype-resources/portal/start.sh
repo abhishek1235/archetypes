@@ -1,2 +1,2 @@
 #!/bin/sh
-mvn jetty:run-war
+mvn jetty:run

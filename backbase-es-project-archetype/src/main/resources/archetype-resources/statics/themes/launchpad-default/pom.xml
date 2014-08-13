@@ -13,13 +13,14 @@
   </parent>
 
   <artifactId>launchpad-default</artifactId>
+  <packaging>pom</packaging>
 
   <properties>
     <!-- Standard Maven proeprties -->
     <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
   </properties>
 
-  <name>Launchpad Theme</name>
+  <name>Launchpad Default Theme</name>
   <description>A module that contains default Launchpad Theme.</description>
 
   <build>

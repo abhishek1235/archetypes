@@ -86,10 +86,25 @@
             <version>${contentservices.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.backbase.portal.contentservices</groupId>
+            <artifactId>repository</artifactId>
+            <version>${contentservices.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.backbase.portal.orchestrator</groupId>
             <artifactId>resources</artifactId>
             <type>zip</type>
             <version>${orchestrator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.orchestrator</groupId>
+            <artifactId>integration</artifactId>
+            <version>${orchestrator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.services.mashup</groupId>
+            <artifactId>ptc-core</artifactId>
+            <version>${mashupservices.version}</version>
         </dependency>
     </dependencies>
 
@@ -210,6 +225,24 @@
                                     <artifactId>resources</artifactId>
                                     <type>zip</type>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration/scripts/manager</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.contentservices</groupId>
+                                    <artifactId>repository</artifactId>
+                                    <includes>**\/ehcache-content.xml,**\/ehcache-resource.xml,**\/ehcache-configuration.xml,**\/ehcache.xsd</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.orchestrator</groupId>
+                                    <artifactId>integration</artifactId>
+                                    <includes>**\/ehcache-orchestrator.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.services.mashup</groupId>
+                                    <artifactId>ptc-core</artifactId>
+                                    <includes>**\/backbase-ptc.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>

@@ -20,7 +20,7 @@
   <description>An aggegator module for all web statics modules.</description>
 
   <modules>
-    <module>portal-bundles</module>
+    <module>bundles</module>
     <module>themes</module>
   </modules>
 </project>

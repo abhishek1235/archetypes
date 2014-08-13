@@ -22,6 +22,12 @@
         <fileSet filtered="true" encoding="UTF-8" packaged="true">
             <directory>src/test/java</directory>
         </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/main/webapp/static</directory>
+            <includes>
+                <include>version.txt</include>
+            </includes>
+        </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory>src/main/webapp</directory>
         </fileSet>

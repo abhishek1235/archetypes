@@ -1,1 +1,1 @@
-call mvn jetty:run-war
+call mvn jetty:run

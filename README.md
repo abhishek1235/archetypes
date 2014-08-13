@@ -60,19 +60,21 @@ This way, all your coleagues can use these archetypes from your organization's M
 ## History of Changes
 5.5.0.0 
 
-1. Initial version of Launchpad Archetype and Backbase CXP ES Project Archetype with 0.10.0 version of Launchpad and Services Archetype. 
-2. Alignement of Portal Server, Content Services, Mashup Services, Orchestrator, Targeting, All-In-One and All-In-One with Launchpad archetypes with 5.5.0.0 version of Backbase Portal suite.
-3. Alignement of All-In-One with Launchpad archetypes with 0.10.0 version of Launchpad
-4. Separation of aggregating and parent POM so we can release individual archetypes when we need
+1. Initial version of Launchpad Archetype and Backbase CXP ES Project Archetype with Launchpad 0.10.0 and Services Archetype. 
+2. Alignement of Portal Server, Content Services, Mashup Services, Orchestrator, Targeting, All-In-One and All-In-One with Launchpad archetypes with Backbase Portal suite 5.5.0.0
+3. Alignement of All-In-One with Launchpad archetypes with Launchpad 0.10.0
+4. Separation of aggregating and parent POM
 5. Move to Jetty 9.1.2.v20140210
 6. Move to JDK 7
 7. Fixing reported bugs
-8. Adding some of the ES best practices
+8. Moved RSS target feed for test into application
+9. Adding ES best practices for web development
+10, Moved TODO from this file into GitHub issues section
 
 5.4.2.2 
 
-1. Alignement of Portal Server, Content Services, Mashup Services, All-In-One and All-In-One with Launchpad archetypes with 5.4.2.2 version of Backbase Portal suite
-2. Alignement of All-In-One with Launchpad archetypes with 0.8 version of Launchpad
+1. Alignement of Portal Server, Content Services, Mashup Services, All-In-One and All-In-One with Launchpad archetypes with Backbase Portal suite 5.4.2.2
+2. Alignement of All-In-One with Launchpad archetypes with Launchpad 0.8
 3. Initial version of Orchestrator Archetype
 4. Initial version of Targeting Archetype
 5. Rename archetypes to fit uniform naming convention 
@@ -83,8 +85,8 @@ This way, all your coleagues can use these archetypes from your organization's M
 5.4.1.3 
 
 1. Initial version of Portal Server Archetype 
-2. Initial version of Launchpad All-In-One Archetype with 0.7 version of Launchpad
-3. Alignement of All-In-One, Content Services and Mashup Services Archetypes with 5.4.1.3 version of Backbase Portal suite
+2. Initial version of Launchpad All-In-One Archetype with Launchpad 0.7
+3. Alignement of All-In-One, Content Services and Mashup Services Archetypes with Backbase Portal suite 5.4.1.3
 4. Fixing reported bugs
 5. Consolidated logging configurations across archetypes
 6. Documentation optimization
@@ -92,36 +94,16 @@ This way, all your coleagues can use these archetypes from your organization's M
 5.4.0.6 
 
 1. Initial version of Mashup Services Archetype 
-2. Alignement of All-In-One and Content Services Archetypes with 5.4.0.6 version of Backbase Portal suite
+2. Alignement of All-In-One and Content Services Archetypes with Backbase Portal suite 5.4.0.6
 3. Adding importer.jar to All-In-One Archetype 
 4. Documentation optimization
 
 5.4.0.5 
 
 1. Initial version of Content Services Archetype 
-2. Alignement of All-In-One Archetype with 5.4.0.5 version of Backbase Portal suite
+2. Alignement of All-In-One Archetype with Backbase Portal suite 5.4.0.5
 3. Documentation re-structuring
 
 5.3.1.1 
 
 1. Initial version of All-In-One Archetype
-
-## Known issues
-1. Occasional issue with shutting down Jetty after using an Launchpad based archetype
-
-## Planned tasks / open issues
-1. See is there anythiung we need to do to enable JMX on local Jetty and Tomcat instances by default
-2. Refactor PTC Camel route to get address as input parameter
-3. Make sure all sample Camel routes are working fine (SOAP one is not)
-4. Refactor out sample Camel routes in Mosaic references and then pull them from there
-5. Add better initial test configuration: rest-assured for integration ???
-6. Add ready to use Maven documentation generation configuration to all modules - fix module cross linking and add Backbase styling
-7. Fix jetty shutdown issue (Java 7 / Jetty ... )
-8. LESS autocompile vith Mosaic Tools grunt script which to be delivered by ES as part of Mosaic tools
-9. Default static bundle template per ES strategy to be included in all portal archetypes which to be delivered by ES as part of Mosaic tools
-10. Include Mosaic reference bundle in all portal archetypes
-11. Make sure we use ES portal import page with YAPI link on all portal archetypes
-12. Make sure we use latest YAPI as part of default settings according to YAPI best practice
-13. Example of keystore with imported SSL to be configured in ES CXP project archetype
-14. Forms archetype: runtime, ui ...
-15. Add forms module to ES CXP project archetype

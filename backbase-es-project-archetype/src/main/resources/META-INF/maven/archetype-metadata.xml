@@ -4,14 +4,35 @@
                       name="Backbase Portal All-In-One Archetype">
 
     <fileSets>
-        <!--<fileSet filtered="false" encoding="UTF-8">
-            <directory>/</directory>
-        </fileSet>-->
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>build.bat</include>
+                <include>build.sh</include>
+                <include>initial_build.bat</include>
+                <include>initial_build.sh</include>
+                <include>start.bat</include>
+                <include>start.sh</include>
+                <include>README.md</include>
+            </includes>
+        </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>parent</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>configuration</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portal/src/test/resources</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portal/src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>portal/src/main/webapp/static</directory>
+            <includes>
+                <include>version.txt</include>
+            </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory>portal/src/main/webapp</directory>
@@ -20,7 +41,25 @@
             <directory>portal</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
+            <directory>contentservices/src/main/webapp/static</directory>
+            <includes>
+                <include>version.txt</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>contentservices/src/main/webapp</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
             <directory>contentservices</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>orchestrator/src/main/webapp/static</directory>
+            <includes>
+                <include>version.txt</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>orchestrator/src/main/webapp</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>orchestrator</directory>
@@ -30,6 +69,9 @@
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory>statics/themes/launchpad-default/src/main/webapp</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>statics/themes/launchpad-example/src/main/webapp</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>statics</directory>

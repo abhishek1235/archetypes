@@ -23,6 +23,11 @@
             <type>zip</type>
             <version>${orchestrator.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.orchestrator</groupId>
+            <artifactId>integration</artifactId>
+            <version>${orchestrator.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -66,6 +71,23 @@
                                     <artifactId>resources</artifactId>
                                     <type>zip</type>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration/scripts/orchestrator</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-various-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.orchestrator</groupId>
+                                    <artifactId>integration</artifactId>
+                                    <includes>**\/ehcache-orchestrator.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>

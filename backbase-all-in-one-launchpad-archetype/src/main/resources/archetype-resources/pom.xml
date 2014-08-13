@@ -42,9 +42,11 @@
         <less.install.command>npm</less.install.command>
         <less.install.args>install less</less.install.args>
         <less.compile.command>node_modules/less/bin/lessc</less.compile.command>
-        <less.compile.args>\${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.args>
+        <less.compile.launchpad-default-theme.args>\${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
+        <less.compile.launchpad-example-theme.args>\${project.basedir}/src/main/webapp/static/themes/example/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/example/base.css</less.compile.launchpad-example-theme.args>
         <less.watch.command>autoless</less.watch.command>
-        <less.watch.args>\${project.basedir}/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/static/themes/default</less.watch.args>
+        <less.watch.launchpad-default-theme.args>\${project.basedir}/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/static/themes/default</less.watch.launchpad-default-theme.args>
+        <less.watch.launchpad-example-theme.args>\${project.basedir}/src/main/webapp/static/themes/example \${project.build.directory}/\${project.build.finalName}/static/themes/example</less.watch.launchpad-example-theme.args>
 
         <!-- EH cache kill switch-->
         <ehcache.disabled>false</ehcache.disabled>
@@ -271,21 +273,49 @@
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>write-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>\${project.build.outputDirectory}/profile.properties</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <executions>
-                    <!-- Compiles less with node before jetty starts (test-compile phase) -->
+                    <!-- Compiles default-theme less with node before jetty starts (test-compile phase) -->
                     <execution>
-                        <id>compile-less-with-node</id>
+                        <id>compile-default-theme-with-node</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
                             <executable>\${less.compile.command}</executable>
-                            <commandlineArgs>\${less.compile.args}</commandlineArgs>
+                            <commandlineArgs>\${less.compile.launchpad-default-theme.args}</commandlineArgs>
                         </configuration>
                     </execution>
+                    <!-- Compiles example-theme less with node before jetty starts (test-compile phase) -->
+                    <!--<execution>
+                        <id>compile-example-theme-with-node</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>\${less.compile.command}</executable>
+                            <commandlineArgs>\${less.compile.launchpad-example-theme.args}</commandlineArgs>
+                        </configuration>
+                    </execution>-->
                 </executions>
             </plugin>
             <!-- Stops the default jar from beign created -->
@@ -1277,18 +1307,30 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.2.1</version>
                         <executions>
-                            <!-- Watches less for changes, after jetty starts -->
+                            <!-- Watches default-theme less for changes, after jetty starts -->
                             <execution>
-                                <id>watch-less-with-node</id>
+                                <id>watch-default-theme-with-node</id>
                                 <phase>process-test-classes</phase>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
                                     <executable>\${less.watch.command}</executable>
-                                    <commandlineArgs>\${less.watch.args}</commandlineArgs>
+                                    <commandlineArgs>\${less.watch.launchpad-default-theme.args}</commandlineArgs>
                                 </configuration>
                             </execution>
+                            <!-- Watches example-theme less for changes, after jetty starts -->
+                            <!--<execution>
+                                <id>watch-example-theme-with-node</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>\${less.watch.command}</executable>
+                                    <commandlineArgs>\${less.watch.launchpad-example-theme.args}</commandlineArgs>
+                                </configuration>
+                            </execution>-->
                         </executions>
                     </plugin>
                 </plugins>
@@ -1313,9 +1355,11 @@
                 <less.install.command>cmd</less.install.command>
                 <less.install.args>/c npm install less</less.install.args>
                 <less.compile.command>cmd</less.compile.command>
-                <less.compile.args>/c node node_modules\less\bin\lessc \${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.args>
+                <less.compile.launchpad-default-theme.args>/c node node_modules\less\bin\lessc \${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
+                <less.compile.launchpad-example-theme.args>/c node node_modules\less\bin\lessc \${project.basedir}/src/main/webapp/static/themes/example/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/example/base.css</less.compile.launchpad-example-theme.args>
                 <less.watch.command>cmd</less.watch.command>
-                <less.watch.args>/c autoless \${project.basedir}/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/static/themes/default</less.watch.args>
+                <less.watch.launchpad-default-theme.args>/c autoless \${project.basedir}/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/static/themes/default</less.watch.launchpad-default-theme.args>
+                <less.watch.launchpad-example-theme.args>/c autoless \${project.basedir}/src/main/webapp/static/themes/example \${project.build.directory}/\${project.build.finalName}/static/themes/example</less.watch.launchpad-example-theme.args>
             </properties>
         </profile>
     </profiles>

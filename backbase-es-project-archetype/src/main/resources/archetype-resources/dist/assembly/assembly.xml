@@ -35,13 +35,13 @@
 
         <!-- Bundles -->
         <file>
-            <source>\${statics.dir}/portal-bundles/com.backbase.samples/target/com.backbase.samples-bundle.zip</source>
+            <source>\${statics.dir}/bundles/samples/target/samples-bundle.zip</source>
             <outputDirectory>/statics</outputDirectory>
         </file>
 
         <!-- YAPI -->
         <file>
-            <source>\${statics.dir}/portal-bundles/com.backbase.samples/target/com.backbase.samples-yapi.zip</source>
+            <source>\${statics.dir}/bundles/samples/target/samples-change-info.zip</source>
             <outputDirectory>/statics</outputDirectory>
         </file>
     </files>

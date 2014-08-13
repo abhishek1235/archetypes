@@ -16,6 +16,14 @@
     <description>A blank Maven archetype for the Backbase Portal Mashup Services.</description>
     <url>https://github.com/Backbase/archetypes/backbase-mashupservices-archetype</url>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.services.mashup</groupId>
+            <artifactId>ptc-core</artifactId>
+            <version>${mashupservices.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <resources>
             <resource>
@@ -40,6 +48,29 @@
         </extensions>
 
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-various-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.services.mashup</groupId>
+                                    <artifactId>ptc-core</artifactId>
+                                    <includes>**\/backbase-ptc.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Do a mvn release:prepare and a mvn release:perform if you want to release -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

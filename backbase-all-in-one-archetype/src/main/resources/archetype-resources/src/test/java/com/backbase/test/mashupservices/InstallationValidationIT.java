@@ -23,7 +23,7 @@ public class InstallationValidationIT {
     @Test
     public void basicValidation() throws IOException {
         // request url assuming default set up
-        String url = "http://localhost:${portal.port}/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/";
+        String url = "http://localhost:${portal.port}/portalserver/proxy?pipe=rss&url=http://localhost:${portal.port}/portalserver/static/RSS/rss-example-feed.xml";
 
         // set up the getMethod
         GetMethod get = new GetMethod(url);

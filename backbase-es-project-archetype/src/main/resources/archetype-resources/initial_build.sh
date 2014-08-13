@@ -1,2 +1,2 @@
 #!/bin/sh
-mvn clean install -Dfull-build-P install-less,create-database
+mvn clean package -Dfull-build -P install-less,embed-statics,with-mosaic-tools,create-database

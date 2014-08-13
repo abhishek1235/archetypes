@@ -74,6 +74,13 @@
             <version>${portal.dashboard.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.backbase.portal</groupId>
+            <artifactId>dashboard</artifactId>
+            <type>zip</type>
+            <classifier>min</classifier>
+            <version>${portal.dashboard.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.backbase.portal.tools</groupId>
             <artifactId>importer</artifactId>
             <type>jar</type>
@@ -88,10 +95,25 @@
             <version>${contentservices.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.backbase.portal.contentservices</groupId>
+            <artifactId>repository</artifactId>
+            <version>${contentservices.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.backbase.portal.orchestrator</groupId>
             <artifactId>resources</artifactId>
             <type>zip</type>
             <version>${orchestrator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.orchestrator</groupId>
+            <artifactId>integration</artifactId>
+            <version>${orchestrator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.services.mashup</groupId>
+            <artifactId>ptc-core</artifactId>
+            <version>${mashupservices.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.launchpad</groupId>
@@ -211,6 +233,32 @@
                                     <type>zip</type>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration/src/main/resources/manager</outputDirectory>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal</groupId>
+                                    <artifactId>dashboard</artifactId>
+                                    <type>zip</type>
+                                    <classifier>min</classifier>
+                                    <includes>**\/global-constants.js</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portal/src/main/webapp/static/conf</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.contentservices</groupId>
+                                    <artifactId>repository</artifactId>
+                                    <includes>**\/ehcache-content.xml,**\/ehcache-resource.xml,**\/ehcache-configuration.xml,**\/ehcache.xsd</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/contentservices/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal.orchestrator</groupId>
+                                    <artifactId>integration</artifactId>
+                                    <includes>**\/ehcache-orchestrator.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/orchestrator/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.services.mashup</groupId>
+                                    <artifactId>ptc-core</artifactId>
+                                    <includes>**\/backbase-ptc.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portal/src/main/resources</outputDirectory>
+                                </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
@@ -244,8 +292,22 @@
                                     <groupId>com.backbase.launchpad</groupId>
                                     <artifactId>launchpad-theme</artifactId>
                                     <type>war</type>
-                                    <includes>docs-v1\**,static\**</includes>
+                                    <includes>docs-v1\**</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portal/src/main/webapp/</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.launchpad</groupId>
+                                    <artifactId>launchpad-theme</artifactId>
+                                    <type>war</type>
+                                    <includes>static\lib\**,static\support\**,static\themes\default\**</includes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/statics/themes/launchpad-default/src/main/webapp</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.launchpad</groupId>
+                                    <artifactId>launchpad-theme</artifactId>
+                                    <type>war</type>
+                                    <includes>static\lib\**,static\support\**,static\themes\example\**</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/statics/themes/launchpad-example/src/main/webapp</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>

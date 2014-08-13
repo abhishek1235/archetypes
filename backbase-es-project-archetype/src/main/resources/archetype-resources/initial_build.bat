@@ -1,1 +1,1 @@
-call mvn clean install -Dfull-build -P install-less,create-database
+call mvn clean package -Dfull-build -P install-less,embed-statics,with-mosaic-tools,create-database

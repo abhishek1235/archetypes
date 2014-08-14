@@ -1,13 +1,13 @@
 <archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                       xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-                      name="Backbase Portal All-In-One Archetype">
+                      name="Backbase Portal Services Archetype">
 
     <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>configuration</directory>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
+        <fileSet filtered="false" encoding="UTF-8">
             <directory>src/test/resources</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8" packaged="true">
@@ -16,7 +16,7 @@
         <fileSet filtered="true" encoding="UTF-8" packaged="false">
             <directory>src/main/java</directory>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
+        <fileSet filtered="false" encoding="UTF-8">
             <directory>src/main/resources</directory>
         </fileSet>
     </fileSets>

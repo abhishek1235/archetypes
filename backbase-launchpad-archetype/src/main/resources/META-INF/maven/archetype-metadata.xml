@@ -1,9 +1,20 @@
 <archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                       xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-                      name="Backbase Portal All-In-One Archetype">
+                      name="Backbase Portal Launchpad Archetype">
 
     <fileSets>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>build.bat</include>
+                <include>build.sh</include>
+                <include>initial_build.bat</include>
+                <include>initial_build.sh</include>
+                <include>start.bat</include>
+                <include>start.sh</include>
+            </includes>
+        </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory>configuration</directory>
         </fileSet>

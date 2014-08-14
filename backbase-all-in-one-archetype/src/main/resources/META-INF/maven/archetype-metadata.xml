@@ -5,6 +5,17 @@
 
     <fileSets>
         <fileSet filtered="false" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>build.bat</include>
+                <include>build.sh</include>
+                <include>initial_build.bat</include>
+                <include>initial_build.sh</include>
+                <include>start.bat</include>
+                <include>start.sh</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
             <directory>configuration</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">

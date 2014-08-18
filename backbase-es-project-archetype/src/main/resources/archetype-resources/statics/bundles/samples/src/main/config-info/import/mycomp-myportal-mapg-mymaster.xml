@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <links>
+        <link>
+            <name>link_myPortal_MasterPage</name>
+            <contextItemName>myPortal</contextItemName>
+            <parentItemName>masterpage_root</parentItemName>
+            <properties>
+                <property name="TemplateName">
+                    <value type="String">link-default</value>
+                </property>
+                <property name="title">
+                    <value type="string">myPortal Master Page</value>
+                </property>
+                <property name="Description">
+                    <value type="String"></value>
+                </property>
+                <property name="SecuritySameAsParent">
+                    <value type="boolean">true</value>
+                </property>
+                <property name="order">
+                    <value type="double">10.0</value>
+                </property>
+                <property name="itemType">
+                    <value type="string">page</value>
+                </property>
+                <property name="sectionName">
+                    <value type="string">myPortalMasterPage</value>
+                </property>
+                <property name="ItemRef">
+                    <value type="uuidRef">myPortal9a-560c-cont-9d86-6c31b51caded</value>
+                </property>
+            </properties>
+            <uuid>myPortal14-b817-cont-8819-bac2ed9067ae</uuid>
+        </link>
+    </links>
+    <catalog>
+        <page>
+            <name>myPortal_MasterPage</name>
+            <contextItemName>myPortal</contextItemName>
+            <parentItemName>myPortal</parentItemName>
+            <type>page</type>
+            <manageable>true</manageable>
+            <properties>
+                <property name="title">
+                    <value>myPortal Master Page</value>
+                </property>
+                <property name="TemplateName">
+                    <value>LaunchpadPageTemplate</value>
+                </property>
+                <property name="client-template" label="Client Template">
+                    <value>page</value>
+                </property>
+                <property name="bundleName">
+                    <value>dashboard</value>
+                </property>
+                <property name="behaviors">
+                    <value type="string">be.perspective.Manager be.portalClientExt.PortalManagerPreferencesForm</value>
+                </property>
+                <property name="enableSEO">
+                    <value>false</value>
+                </property>
+                <property name="bd_seo_description" label="Description">
+                    <value></value>
+                </property>
+                <property name="bd_seo_canonical" label="Canonical">
+                    <value></value>
+                </property>
+                <property name="bd_seo_robots" label="Robots">
+                    <value></value>
+                </property>
+                <property name="bd_seo_locale" label="Locale">
+                    <value></value>
+                </property>
+                <property name="createdBy" readonly="false">
+                    <value type="string">admin</value>
+                </property>
+                <property label="Theme" name="themeName" viewHint="text-input,designModeOnly,manager">
+                    <value type="string">default</value>
+                </property>
+            </properties>
+            <uuid>myPortal9a-560c-cont-9d86-6c31b51caded</uuid>
+        </page>
+
+        <container>
+            <name>Manageable_Area_master_myPortal_MasterPage</name>
+            <contextItemName>myPortal</contextItemName>
+            <extendedItemName>Manageable_Area_Closure</extendedItemName>
+            <parentItemName>myPortal_MasterPage</parentItemName>
+            <manageable>true</manageable>
+            <properties>
+                <property name="autoExtend" manageable="true">
+                    <value type="boolean">true</value>
+                </property>
+                <property name="isManageableArea" manageable="true">
+                    <value type="boolean">true</value>
+                </property>
+                <property name="area">
+                    <value type="string">0</value>
+                </property>
+                <property name="order">
+                    <value type="double">1</value>
+                </property>
+            </properties>
+        </container>
+
+
+    </catalog>
+</items>

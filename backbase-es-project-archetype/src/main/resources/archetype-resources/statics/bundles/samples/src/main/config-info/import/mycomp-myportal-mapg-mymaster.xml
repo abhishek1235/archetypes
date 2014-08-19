@@ -72,10 +72,7 @@
                 <property name="bd_seo_locale" label="Locale">
                     <value></value>
                 </property>
-                <property name="createdBy" readonly="false">
-                    <value type="string">admin</value>
-                </property>
-                <property label="Theme" name="themeName" viewHint="text-input,designModeOnly,manager">
+                  <property label="Theme" name="themeName" viewHint="text-input,designModeOnly,manager">
                     <value type="string">default</value>
                 </property>
             </properties>
@@ -103,7 +100,5 @@
                 </property>
             </properties>
         </container>
-
-
     </catalog>
 </items>

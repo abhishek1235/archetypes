@@ -73,6 +73,9 @@
         <fileSet filtered="false" encoding="UTF-8">
             <directory>statics/themes/launchpad-example/src/main/webapp</directory>
         </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>statics/bundles/samples/src/main/webapp/static/samples/js/vendor</directory>
+        </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>statics</directory>
         </fileSet>

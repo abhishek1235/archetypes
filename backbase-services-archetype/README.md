@@ -3,12 +3,13 @@
 Version **5.5.0.0**
 
 ##Overview
-This archetype allows you to develop custom Backbase Services based on Apache Camel bundled with Backbase Portal.
+This archetype allows you to develop custom Backbase Services based on Apache Camel bundled with Backbase CXP.
 
 The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. It also contains all necessery scripts and configuration files required for forther configuration changes. 
 
 Backbase Services is not using database, therefore no database configurations are supplied.
 
+In case you would have many services, a good practice is to group many Services modules within parent service module.
 
 ##Usage
 Follow the steps below to get started with this archetype. Some of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html). You should get familiar with these topics before you start using this archetype.
@@ -58,45 +59,21 @@ Follow the steps below to get started with this archetype. Some of these steps r
         -DarchetypeVersion=5.5.0.0
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
-3. Optionally adjust JMV properties, differently configure the Logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Targeting Stand-Alone](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#N63C55).
-4. Use the following command to run Targeting on Jetty:  
-    <pre>
-    $ mvn jetty:run-war
-    </pre>
-Or, if you want to run Targeting on Tomcat 7:
-    <pre>
-    $ mvn tomcat7:run-war
-    </pre>
-Note that both Jetty and Tomcat use the 8084 port by default. In case you need to choose a different port since you maybe already have another process running on port 8084, make necessary changes in jetty and tomcat plugins within POM file before you run Targeting.
-5. Test Targeting by opening the Targeting contexts in a browser: [http://localhost:8084/targeting-webapp/contexts](http://localhost:8084/targeting-webapp/contexts) (pay attention to the port number).
-6. In order to integrate Targeting with your Backbase Portal that is running in its own standalone process, make sure to configure Portal’s Targeting Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
+3. In order to integrate Services with your Portal Foundation you need to declare Maven dependencies inside Portal Foundation's POM toward this Services module.
 
 ##Anatomy
 **project**  
 -**configuration**    
---**jetty**  
----jetty.xml --> jetty JNDI bindings for portal web application defined with this Maven project  
----webdefaults.xml --> jetty configuration  
---**tomcat**  
----context.xml --> tomcat 7 JNDI bindings for portal web application defined with this Maven project   
----server.xml --> tomcat 7 server configuration  
---backbase.properties --> main backbase configuration file    
---logback.xml --> logback configuration file   
+--services.properties --> main services configuration file where specific properties are externalized   
 -**src**  
 --**main**  
----**java**  
-----**com**  
------**backbase**  
-------**targeting**  
--------**collector**  
---------**examples**  
----------WeatherContextCollector.java --> Targeting collector example   
+---**java**    
 ---**resources** 
-----**META-INF**  
------**spring**  
-------**optional**  
--------targeting-connectorframework.xml --> Spring configuration for Targeting that refers to collector example  
----**webapp**   
+----**META-INF**   
+-----backbase-mashup-service.xml --> Apache Camel routes  
+----**wsdl**   
+-----**weather.wsdl** --> Sample WSDL
+----**binding.xml** --> Apache CXF helper file
 --**test**  
 ---**java**   
 ----**com**  

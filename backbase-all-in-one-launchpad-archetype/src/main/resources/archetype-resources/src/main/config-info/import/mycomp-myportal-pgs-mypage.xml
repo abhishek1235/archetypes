@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <links>
+        <link>
+            <name>link-index</name>
+            <contextItemName>myPortal</contextItemName>
+            <parentItemName>navroot_mainmenu</parentItemName>
+            <properties>
+                <property name="title">
+                    <value type="string">Home</value>
+                </property>
+                <property name="itemType">
+                    <value type="string">page</value>
+                </property>
+                <property name="order">
+                    <value type="double">0.0</value>
+                </property>
+                <property name="ItemRef">
+                    <value type="uuidRef">myPortalnt-29gh-lkhp-wiad-dis9bcmzlco2</value>
+                </property>
+                <property name="SecuritySameAsParent">
+                    <value type="boolean">true</value>
+                </property>
+                <property name="sectionName">
+                    <value type="string">home</value>
+                </property>
+            </properties>
+        </link>
+    </links>
+    <pages>
+        <page>
+            <name>index</name>
+            <contextItemName>myPortal</contextItemName>
+            <parentItemName>myPortal</parentItemName>
+            <extendedItemName>myPortal_MasterPage</extendedItemName>
+            <properties>
+                <property name="title">
+                    <value type="string">Home</value>
+                </property>
+            </properties>
+            <uuid>myPortalnt-29gh-lkhp-wiad-dis9bcmzlco2</uuid>
+        </page>
+    </pages>
+    <containers>
+        <container>
+            <name>index_MA_Main</name>
+            <contextItemName>myPortal</contextItemName>
+            <parentItemName>index</parentItemName>
+            <extendedItemName>Manageable_Area_master_myPortal_MasterPage</extendedItemName>
+        </container>
+    </containers>
+    <widgets>
+        <widget>
+            <name>index_Main_Sample_Wdgt</name>
+            <contextItemName>myPortal</contextItemName>
+            <extendedItemName>myComp-wdg-sample</extendedItemName>
+            <parentItemName>index_MA_Main</parentItemName>
+            <properties>
+                <property name="area">
+                    <value type="string">0</value>
+                </property>
+                <property name="order">
+                    <value type="double">1.0</value>
+                </property>
+            </properties>
+        </widget>
+    </widgets>
+</items>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <links>
+        <link>
+            <name>link-login</name>
+            <contextItemName>myPortal</contextItemName>
+            <parentItemName>navroot_notinmenu</parentItemName>
+            <properties>
+                <property name="title">
+                    <value type="string">Login</value>
+                </property>
+                <property name="itemType">
+                    <value type="string">page</value>
+                </property>
+                <property name="order">
+                    <value type="double">0.0</value>
+                </property>
+                <property name="ItemRef">
+                    <value type="uuidRef">adf1eb97-7c6b-42f0-981e-c4b555170bab</value>
+                </property>
+                <property name="SecuritySameAsParent">
+                    <value type="boolean">true</value>
+                </property>
+                <property name="sectionName">
+                    <value type="string">login</value>
+                </property>
+            </properties>
+        </link>
+    </links>
+    <rightsList>
+        <rights>
+            <name>link-login</name>
+            <contextItemName>myPortal</contextItemName>
+            <type>links</type>
+            <itemRight>
+                <securityProfile>CONSUMER</securityProfile>
+                <sid>role_anonymous</sid>
+            </itemRight>
+            <itemRight>
+                <securityProfile>CONSUMER</securityProfile>
+                <sid>role_user</sid>
+            </itemRight>
+            <itemRight>
+                <securityProfile>ADMIN</securityProfile>
+                <sid>group_admin</sid>
+            </itemRight>
+            <itemRight>
+                <securityProfile>ADMIN</securityProfile>
+                <sid>group_manager</sid>
+            </itemRight>
+        </rights>
+    </rightsList>
+    <pages>
+        <page>
+            <name>login</name>
+            <contextItemName>myPortal</contextItemName>
+            <parentItemName>myPortal</parentItemName>
+            <extendedItemName>myPortal_MasterPage</extendedItemName>
+            <properties>
+                <property name="title">
+                    <value type="string">Login</value>
+                </property>
+            </properties>
+            <uuid>adf1eb97-7c6b-42f0-981e-c4b555170bab</uuid>
+        </page>
+    </pages>
+    <containers>
+        <container>
+            <name>login_MA_Main</name>
+            <contextItemName>myPortal</contextItemName>
+            <parentItemName>login</parentItemName>
+            <extendedItemName>Manageable_Area_master_myPortal_MasterPage</extendedItemName>
+        </container>
+    </containers>
+    <widgets>
+        <widget>
+            <name>login_Main_Sample_Wdgt</name>
+            <contextItemName>myPortal</contextItemName>
+            <extendedItemName>widget-login</extendedItemName>
+            <parentItemName>login_MA_Main</parentItemName>
+            <properties>
+                <property name="area">
+                    <value type="string">0</value>
+                </property>
+                <property name="order">
+                    <value type="double">1.0</value>
+                </property>
+            </properties>
+        </widget>
+    </widgets>
+
+</items>

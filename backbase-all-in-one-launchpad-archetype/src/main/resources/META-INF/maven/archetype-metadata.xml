@@ -63,5 +63,8 @@
         <fileSet filtered="false" encoding="UTF-8">
             <directory>src/main/webapp</directory>
         </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>src/main/config-info</directory>
+        </fileSet>
     </fileSets>
 </archetype-descriptor>

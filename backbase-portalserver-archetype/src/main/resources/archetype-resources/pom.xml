@@ -22,6 +22,9 @@
         <portal.client.version>${portal.client.version}</portal.client.version>
         <targeting.version>${targeting.version}</targeting.version>
 
+        <!-- Mosaic module versions -->
+        <mosaic.tools.version>${mosaic.tools.version}</mosaic.tools.version>
+
         <!-- Folder where H2 and binary data is stored-->
         <portal.data.dir>\${project.basedir}/data</portal.data.dir>
 
@@ -466,7 +469,6 @@
             <properties>
                 <skipTests>true</skipTests>
             </properties>
-            
             <dependencies>
                 <dependency>
                     <groupId>com.backbase.portal.targeting</groupId>
@@ -512,9 +514,11 @@
         <profile>
             <id>no-dashboard</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <!-- Activation by a property. Run with -Dwithout-dashboard -->
+                <property>
+                    <name>without-dashboard</name>
+                </property>
             </activation>
-
             <dependencies>
                 <dependency>
                     <groupId>com.backbase.portal</groupId>
@@ -545,7 +549,6 @@
                     <type>zip</type>
                 </dependency>
             </dependencies>
-
             <build>
                 <resources>
                     <resource>
@@ -610,9 +613,11 @@
         <profile>
             <id>with-dashboard</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <!-- Activation by absence of a property. Run normally, without -Dwithout-dashboard -->
+                <property>
+                    <name>!without-dashboard</name>
+                </property>
             </activation>
-
             <dependencies>
                 <dependency>
                     <groupId>com.backbase.portal</groupId>
@@ -642,15 +647,7 @@
                     <version>\${portal.client.version}</version>
                     <type>zip</type>
                 </dependency>
-                <dependency>
-                    <groupId>com.backbase.extensions</groupId>
-                    <artifactId>mosaic-tools</artifactId>
-                    <version>${mosaic.tools.version}</version>
-                    <classifier>bundle-dist</classifier>
-                    <type>zip</type>
-                </dependency>
             </dependencies>
-
             <build>
                 <resources>
                     <resource>
@@ -709,6 +706,35 @@
                                     </artifactItems>
                                 </configuration>
                             </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>with-mosaic-tools</id>
+            <activation>
+                <!-- Activation by absence of a property. Run normally, without -Dwithout-mosaic-tools -->
+                <property>
+                    <name>!without-mosaic-tools</name>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.backbase.extensions</groupId>
+                    <artifactId>mosaic-tools</artifactId>
+                    <version>\${mosaic.tools.version}</version>
+                    <classifier>bundle-dist</classifier>
+                    <type>zip</type>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
                             <execution>
                                 <id>unpack-mosaic-tools</id>
                                 <phase>generate-resources</phase>

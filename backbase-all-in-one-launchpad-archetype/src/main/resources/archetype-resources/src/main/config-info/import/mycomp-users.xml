@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<users>
+
+    <!--Managers-->
+    <user>
+        <username>manager</username>
+        <password>manager</password>
+        <enabled>true</enabled>
+        <groups>
+            <group>
+                <name>manager</name>
+                <description></description>
+            </group>
+        </groups>
+    </user>
+
+</users>

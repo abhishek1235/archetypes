@@ -3,7 +3,7 @@
 Version **5.5.0.0**
 
 ##Overview
-This archetype allows you to run and customize Standalone Backbase Targeting according to your specific needs. We are basically creating a standard Maven WAR overlay of Standalone Backbase Targeting WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
+This archetype allows you to run as standalone and customize according to your specific needs Backbase Targeting. We are basically creating a standard Maven WAR overlay of Backbase Targeting WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
 
 The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. It also contains all necessery scripts and configuration files required for forther configuration changes. 
 
@@ -70,7 +70,7 @@ Or, if you want to run Targeting on Tomcat 7:
     </pre>
 Note that both Jetty and Tomcat use the 8084 port by default. In case you need to choose a different port since you maybe already have another process running on port 8084, make necessary changes in jetty and tomcat plugins within POM file before you run Targeting.
 5. Test Targeting by opening the Targeting contexts in a browser: [http://localhost:8084/targeting-webapp/contexts](http://localhost:8084/targeting-webapp/contexts) (pay attention to the port number).
-6. In order to integrate Targeting with your Backbase Portal that is running in its own standalone process, make sure to configure Portal’s Targeting Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
+6. In order to integrate Targeting with your Portal Foundation that is running in its own standalone process, make sure to configure Portal Foundation’s Targeting Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
 
 ##Anatomy
 **project**  

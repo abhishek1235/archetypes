@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <portals>
+        <portal>
+            <name>myPortal</name>
+            <contextItemName>[BBHOST]</contextItemName>
+                <properties>
+                <property name="title">
+                    <value type="string">myPortal</value>
+                </property>
+                <property name="AuthenticationFailurePage">
+                    <value type="string">/static/samples/html/portalAction.html?message=Please set a Authentication Failure page</value>
+                </property>
+                <property name="TargetedDevice">
+                    <value type="string">mixed</value>
+                </property>
+                <property name="LogoutPage">
+                    <value type="string">/static/samples/html/portalAction.html?message=Please set a logout page</value>
+                </property>
+                <property name="ErrorPage">
+                    <value type="string">/login/error.jsp</value>
+                </property>
+                <property name="Description">
+                    <value type="String">myPortal</value>
+                </property>
+                <property name="AccessDeniedPage">
+                    <value type="string">/static/samples/html/portalAction.html?message=Please set an access denied page</value>
+                </property>
+                <property name="LoginPage">
+                    <value type="string">/myPortal/login</value>
+                </property>
+                <property name="TargetedDevice">
+                    <value>mixed</value>
+                </property>
+                <property name="DefaultDevice">
+                    <value type="string">mixed</value>
+                </property>
+                <property name="DefaultLandingPage">
+                    <value type="string">/myPortal/home</value>
+                </property>
+                <property name="thumbnailUrl">
+                    <value type="string">$(contextRoot)/static/samples/media/portal-image.png</value>
+                </property>
+            </properties>
+        </portal>
+    </portals>
+    <rightsList>
+        <rights>
+            <name>myPortal</name>
+            <contextItemName>myPortal</contextItemName>
+            <type>portal</type>
+            <!--<itemRight>-->
+                <!--<securityProfile>CONSUMER</securityProfile>-->
+                <!--<sid>role_anonymous</sid>-->
+            <!--</itemRight>-->
+            <itemRight>
+                <securityProfile>CONSUMER</securityProfile>
+                <sid>role_user</sid>
+            </itemRight>
+            <itemRight>
+                <securityProfile>ADMIN</securityProfile>
+                <sid>group_admin</sid>
+            </itemRight>
+            <itemRight>
+                <securityProfile>ADMIN</securityProfile>
+                <sid>group_manager</sid>
+            </itemRight>
+        </rights>
+    </rightsList>
+</items>

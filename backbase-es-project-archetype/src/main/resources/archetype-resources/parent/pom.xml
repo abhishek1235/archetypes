@@ -38,7 +38,7 @@
 		<launchpad.version>${launchpad.version}</launchpad.version>
 
 		<!-- Mosaic module versions -->
-		<mosaic.tools.version>0.5</mosaic.tools.version>
+		<mosaic.tools.version>${mosaic.tools.version}</mosaic.tools.version>
 
 		<!-- Module folders -->
 		<configuration.dir>\${project.basedir}/../configuration</configuration.dir>

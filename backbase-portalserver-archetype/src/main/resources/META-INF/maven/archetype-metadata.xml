@@ -55,5 +55,8 @@
         <fileSet filtered="false" encoding="UTF-8">
             <directory>src/main/resources</directory>
         </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>src/main/config-info</directory>
+        </fileSet>
     </fileSets>
 </archetype-descriptor>

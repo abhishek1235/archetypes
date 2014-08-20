@@ -3,7 +3,7 @@
 Version **5.5.0.0**
 
 ##Overview
-A collection of Maven archetypes for Backbase Portal created by Expert Services that can help help with initial project setup and various project customizations.
+A collection of Maven archetypes for Backbase CXP created by Expert Services that can help help with initial project setup and various project customizations.
 
 Archetypes are deployed to Backbase Expert Services' Maven repository at
 
@@ -24,14 +24,13 @@ Archetypes are deployed to Backbase Expert Services' Maven repository at
 10. **backbase-targeting-archetype**, from version **5.4.2.2**
 
 ##Important Notes
-1. We have separated aggregator and parent POMs since 5.5.0.0 so make sure to understand this before making any changes. Purpose of this was to enable us to independently release each archetype if needed.
-2. From version **5.5.0.0** we're using **JDK 7** as default option due to latest version of embedded Jetty.
-3. Recently Backbase has switched to HTTPS for Maven repositories. This emans that if you're performing deploy or release you need to add HTTPS certificates to your MAVEN_OPTS in order for Maven to communicate with Maven repositories when using deploy and release plug-ins.
+1. We have separated aggregator and parent POMs since 5.5.0.0 so make sure to understand this before making any changes to archetypes. Purpose of this was to separate lifecycle for each archetype if needed and to make sure Maven site plugin works correctly by aggregating reports from all modules.
+2. From version **5.5.0.0** we're using **JDK 7** as the default option due to the latest version of embedded Jetty which requires it.
 
 ##Usage
 
 ###Pre-conditions
-We assume you're already familiar with [Development Guide](https://my.backbase.com/resources/documentation/portal/devd_mave.html) and that you need more advanced archetypes. These advanced archetypes are tailored by needs we have experienced when working with various clients around the world so they represent also a best practice on how to quickly bootstrap your project and solve some specific tasks related to Backbase suite of products.
+We assume that you're already familiar with [Development Guide](https://my.backbase.com/resources/documentation/portal/devd_mave.html) and that you need more additional archetypes for specific needs. These additional archetypes are tailored by needs we have experienced when working with various clients around the world so they represent also a best practice on how to quickly bootstrap your Backbase CXP projector modules and solve some specific tasks related to Backbase CXP.
 
 ###Maven repository configuration
 Configure your Maven configuration to include the Backbase extensions releases repository (https://repo.backbase.com/extensions).
@@ -42,20 +41,20 @@ Configure your Maven configuration to include the Backbase extensions releases r
 </pre>
 
 ##Contributions
-Please feel encouraged to create your own versions of these archetypes by forking the code and further changing it to meet your specific needs if you have them. If you feel change you have on mind is more of a generic change and other Backbase customers or ES could use it, please feel free to share ideas on Github Issues section or make a pull request.
+Please feel encouraged to create your own versions of these archetypes by forking the code and further changing it to meet your specific needs if you have them. If you feel change you have on mind is something that other Backbase CXP customers or Backbase Expert Services could use, please feel free to share ideas on Github Issues section or make a pull request.
 
-After you have build these archetypes locally and optionally deploy accross your organization, you are ready to start using them. Each archetype is specific so details on usage are within each of them.
+After you have build these archetypes locally and optionally deploy within your organization, you are ready to start using them. Each archetype is specific so details on usage are within each of them.
 
-In order to use these archetypes, you need to pull or fork code from this Git repository and build it locally:  
+In order to use these archetypes, you need to clone or fork code from this Git repository and build it locally:  
 <pre>
 	$ mvn clean install
 </pre>
 This way you can use these archetypes from your local Maven repository directly. 
 
 ###Deploy within your organization
-Optionally, you can also install these archetypes into a Maven repository within your organization. This would enable other people from your organization with access to that Maven repository to use these archetypes. You should do this with Maven deploy plugin. We already use it to deploy to our internal Maven repository so you just need to chnage our settings into yours. More info on this plugin you can find [here](http://maven.apache.org/plugins/maven-deploy-plugin). Key configuration you need to change is related to distributionManagement section inside main POM file.
+Optionally, you can also install these archetypes into a Maven repository within your organization. This would enable other people from your organization with access to that Maven repository to use these archetypes. You should do this with Maven deploy plugin. We already use it to deploy to our internal Maven repository so you just need to change Backbase settings into yours. More info on these plugins you can find [here](http://maven.apache.org/plugins/maven-deploy-plugin). Key configuration you need to change is related to distributionManagement section inside aggregator and parent POM files.
 
-This way, all your coleagues can use these archetypes from your organization's Maven repository. 
+This way, your entire organization can use these archetypes from your organization's Maven repository. 
 
 ## History of Changes
 5.5.0.0 
@@ -69,7 +68,9 @@ This way, all your coleagues can use these archetypes from your organization's M
 7. Fixing reported bugs
 8. Moved RSS target feed for test into application
 9. Adding ES best practices for web development
-10, Moved TODO from this file into GitHub issues section
+10. Migrated TODO section from this file into GitHub Issues section
+11. Upgrade to Mosaic Tools 0.9.5
+12. Adding best practices for widget lifecycle through use of YAPI (Mosaic Tools)
 
 5.4.2.2 
 

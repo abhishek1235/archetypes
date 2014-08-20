@@ -5,7 +5,7 @@ Version **5.5.0.0**
 ##Overview
 A blank Maven archetype that allows you to run a Backbase Portal Foundation running on a single JVM instance (Jetty or Tomcat 7) along with all the other Backbase Portal modules (Mashup Services, Targeting, Content Services and Publishing) pre-configured and ready-to-use.
 
-This archetype facilitates all-in-one setup for local development. It demonstrates how to configure Content Services and Orchestrator to run along Backbase Portal in the same JVM on a server of your choice. The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. 
+This archetype facilitates all-in-one setup for local development. It demonstrates how to configure Content Services and Orchestrator to run along Portal Foundation in the same JVM on a server of your choice. The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. 
 
 H2 is the default database. Refer to the reference documentation for full details on how to [move to a database of your choice if required](https://my.backbase.com/resources/documentation/portal/inst_data.html).
 

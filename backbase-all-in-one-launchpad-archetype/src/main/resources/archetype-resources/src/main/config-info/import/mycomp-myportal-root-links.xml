@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<links>
+    <link>
+        <name>navroot_mainmenu</name>
+        <contextItemName>myPortal</contextItemName>
+        <parentItemName>myPortal</parentItemName>
+        <properties>
+            <property name="TemplateName">
+                <value type="String">link-default</value>
+            </property>
+            <property name="title">
+                <value type="string">Main Navigation</value>
+            </property>
+            <property name="Description">
+                <value type="String"></value>
+            </property>
+            <property name="itemType">
+                <value type="string">menuHeader</value>
+            </property>
+            <property name="Order">
+                <value type="string">5</value>
+            </property>
+            <property name="sectionName">
+                <value type="string">main</value>
+            </property>
+        </properties>
+        <uuid>d20c424f-5b13-47f6-875e-6f1cc28c8037</uuid>
+    </link>
+
+    <link>
+        <name>navroot_notinmenu</name>
+        <contextItemName>myPortal</contextItemName>
+        <parentItemName>myPortal</parentItemName>
+        <properties>
+            <property name="TemplateName">
+                <value type="String">link-default</value>
+            </property>
+            <property name="title">
+                <value type="string">Not in Navigation</value>
+            </property>
+            <property name="Description">
+                <value type="String"></value>
+            </property>
+            <property name="itemType">
+                <value type="string">menuHeader</value>
+            </property>
+            <property name="Order">
+                <value type="string">30</value>
+            </property>
+        </properties>
+    </link>
+
+    <link>
+        <name>masterpage_root</name>
+        <contextItemName>myPortal</contextItemName>
+        <parentItemName>myPortal</parentItemName>
+        <properties>
+            <property name="TemplateName">
+                <value type="String">link-default</value>
+            </property>
+            <property name="title">
+                <value type="string">Master Pages</value>
+            </property>
+            <property name="Description">
+                <value type="String"></value>
+            </property>
+            <property name="SecuritySameAsParent">
+                <value type="boolean">false</value>
+            </property>
+            <property name="itemType">
+                <value type="string">menuHeader</value>
+            </property>
+            <property name="Order">
+                <value type="string">40</value>
+            </property>
+        </properties>
+    </link>
+</links>

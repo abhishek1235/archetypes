@@ -38,7 +38,7 @@
         <mobile.version>5.5.0.0</mobile.version>
 
         <!-- Mosaic dependency versions -->
-        <mosaic.tools.version>0.5</mosaic.tools.version>
+        <mosaic.tools.version>0.9.5</mosaic.tools.version>
         
         <!-- Third party dependency versions -->
         <java.target.version>1.7</java.target.version>

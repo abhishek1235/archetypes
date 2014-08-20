@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+    <!--Archetype sample widget-->
+    <widget>
+        <name>myComp-wdg-sample</name>
+        <extendedItemName>[myComp-wdg-sample]</extendedItemName>
+        <contextItemName>myPortal</contextItemName>
+    </widget>
+
+    <!--Lp-default login widget-->
+    <widget>
+        <name>widget-login</name>
+        <extendedItemName>[widget-login]</extendedItemName>
+        <contextItemName>myPortal</contextItemName>
+    </widget>
+
+</catalog>

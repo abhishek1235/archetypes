@@ -3,7 +3,7 @@
 Version **5.5.0.0**
 
 ##Overview
-A blank Maven archetype for the Backbase Portal Foundation with Launchpad Foundation on top pre-configured and ready-to-use. This archetype contains integrated Mashup Services and Targeting (default configuration) with all necessery configuration files already pre-configured.
+A blank Maven archetype for the Backbase Portal Foundation with Launchpad Foundation on top of it pre-configured and ready to use. This archetype contains integrated Mashup Services and Targeting (default configuration) with all necessery configuration files already pre-configured.
 
 The archetype is currently pre-configured for Jetty and Tomcat 7. One can easily switch from Tomcat 7 to Tomcat 6 by changing a single line within the POM file. It also contains all necessery scripts and configuration files required for forther configuration changes. 
 
@@ -15,7 +15,7 @@ Targeting is pre-configured together with example WeatherCollector.
 
 Launchpad Foundation is pre-configured and ready to be customized. Launchpad Foundation consists of Launchpad Theme, Launchpad Templates, Launchpad Foundation Containers and Launchpad Foundation Widgets.
 
-Difference between this archetype and one that ships with the product is minor and changes are there to make it be a part of Expert Services famility of archetypes. 
+Difference between this archetype and one that ships with the product is minor and changes are there to make it be a part of Backbase Expert Services famility of archetypes.
 
 ##Usage
 Follow the steps below to get started with this archetype. Some of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo). You should get familiar with these topics before you start using this archetype.
@@ -82,7 +82,7 @@ Optionally run following command to delete and re-create databases when required
     <pre>
     $ mvn clean -P clean-database
     </pre>
-Note that both Jetty and Tomcat use the 7777 port by default. In case you need to choose a different port since you maybe already have another process runing on port 7777, make necessary changes in Jetty and Tomcat plugins within POM files before you run Portal and Launchpad Theme. In order to use Launchpad you do need to run both Portal and Launchpad Theme at the same time. 
+Note that both Jetty and Tomcat use the 7777 port by default. In case you need to choose a different port since you maybe already have another process runing on port 7777, make necessary changes in Jetty and Tomcat plugins within POM files before you run Portal Foundation and Launchpad Theme. In order to use Launchpad you do need to run both Portal Foundation and Launchpad Theme at the same time. 
 5. Test Portal Foundation by opening the Portal Foundation URL in a browser: [http://localhost:7777/portalserver/](http://localhost:7777/portalserver/) (pay attention to the port number).
 6. Test Launchpad Theme by opening the main theme CSS in a browser: [http://localhost:7777/portalserver/static/themes/default/base.less](http://localhost:7777/portalserver/static/themes/default/base.less) (pay attention to the port number).
 7. Test embedded Mashup Services by opening the Mashup Services RSS pipe URL in a browser: [http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/](http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/) (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.

@@ -27,8 +27,8 @@
         <mashupservices.version>${mashupservices.version}</mashupservices.version>
         <launchpad.version>${launchpad.version}</launchpad.version>
 
-        <!-- Folder where H2 and binary data is stored-->
-        <portal.data.dir>\${project.basedir}/data</portal.data.dir>
+        <!-- Mosaic module versions -->
+        <mosaic.tools.version>${mosaic.tools.version}</mosaic.tools.version>
 
         <!-- Theme settings -->
         <theme.name>${theme.name}</theme.name>
@@ -49,6 +49,9 @@
 
         <dashboard.start>&lt;!-- Start Dashboard Portal Import &gt;--></dashboard.start>
         <dashboard.end>&lt;!-- End Dashboard Portal Import &gt;--></dashboard.end>
+
+        <!-- Folder where H2 and binary data is stored-->
+        <portal.data.dir>\${project.basedir}/data</portal.data.dir>
 
         <!-- EH cache kill switch-->
         <ehcache.disabled>false</ehcache.disabled>
@@ -766,13 +769,6 @@
                     <version>\${portal.client.version}</version>
                     <type>zip</type>
                 </dependency>
-                <dependency>
-                    <groupId>com.backbase.extensions</groupId>
-                    <artifactId>mosaic-tools</artifactId>
-                    <version>${mosaic.tools.version}</version>
-                    <classifier>bundle-dist</classifier>
-                    <type>zip</type>
-                </dependency>
             </dependencies>
             <build>
                 <resources>
@@ -828,24 +824,6 @@
                                             <outputDirectory>
                                                 \${work.dir}/static/lib/bcf/5_0_0/
                                             </outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>unpack-mosaic-tools</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.backbase.extensions</groupId>
-                                            <artifactId>mosaic-tools</artifactId>
-                                            <classifier>bundle-dist</classifier>
-                                            <type>zip</type>
-                                            <outputDirectory>\${work.dir}</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>
@@ -998,6 +976,53 @@
                                     <goal>unpack</goal>
                                 </goals>
                                 <phase>process-resources</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>with-mosaic-tools</id>
+            <activation>
+                <!-- Activation by absence of a property. Run normally, without -Dwithout-mosaic-tools -->
+                <property>
+                    <name>!without-mosaic-tools</name>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.backbase.extensions</groupId>
+                    <artifactId>mosaic-tools</artifactId>
+                    <version>\${mosaic.tools.version}</version>
+                    <classifier>bundle-dist</classifier>
+                    <type>zip</type>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-mosaic-tools</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>com.backbase.extensions</groupId>
+                                            <artifactId>mosaic-tools</artifactId>
+                                            <classifier>bundle-dist</classifier>
+                                            <type>zip</type>
+                                            <outputDirectory>\${work.dir}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

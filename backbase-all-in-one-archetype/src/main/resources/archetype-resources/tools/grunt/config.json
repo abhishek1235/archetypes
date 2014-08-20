@@ -1,4 +1,0 @@
-{
-	"port": 7777,
-	"paths": "../bundles/**/src/main/webapp/static/mosaic-*"
-}

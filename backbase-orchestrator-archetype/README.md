@@ -78,7 +78,7 @@ Optionally run following command to delete and re-create database when required:
     </pre>
 Note that both Jetty and Tomcat use the 8083 port by default. In case you need to choose a different port since you maybe already have another process running on port 8083, make necessary changes in jetty and tomcat plugins within POM file before you run Orchestrator.
 5. Test Orchestrator by opening the Orchestrator configuration URL in a browser: [http://localhost:8083/orchestrator-webapp/configuration](http://localhost:8083/orchestrator-webapp/configuration) (pay attention to the port number). Use admin/admin to authenticate.
-6. In order to integrate Orchestrator with your Backbase Portal that is running in its own standalone process, make sure to configure Portal’s Orchestrator Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
+6. In order to integrate Orchestrator with your Portal Foundation that is running in its own standalone process, make sure to configure Portal Foundation’s Orchestrator Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
 
 ##Anatomy
 **project**  

@@ -3,7 +3,7 @@ var bundlesDir =  '../../statics';
 var buildConfig = {
     bundlesDir: bundlesDir,
     projectName: 'samples',
-    bundleSearch: '/**/src/main/webapp/static/samples**',//TODO:replace with own project name space
+    bundleSearch: '/bundles/**/src/main/webapp/static/samples**',//TODO:replace with own project name space
     portalServer: {
         url: '/portalserver',
         port: '7777'

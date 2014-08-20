@@ -1,0 +1,14 @@
+<config>
+    <device-config>
+        <device type="iPhone" fallbackTypes="Smartphone">
+            <match>
+                <match text="iPhone">
+                    <match text="AppleWebKit"/>
+                </match>
+                <match text="ipod">
+                    <match text="AppleWebKit"/>
+                </match>
+            </match>
+        </device>
+    </device-config>
+</config>

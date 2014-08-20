@@ -136,11 +136,11 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 ------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations
 ------backbase-portal-presentation-config.xml --> Main Spring MVC configurations
 ------backbase-portal-presentation-security.xml --> Spring Security presentation configurations 
------ehcache-auditing.xml --> Ehcache Portal Audit configurations
------ehcache-foundation.xml --> Ehcache Portal Foundation configurations
------ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled
------ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations
------ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled 
+----ehcache-auditing.xml --> Ehcache Portal Audit configurations
+----ehcache-foundation.xml --> Ehcache Portal Foundation configurations
+----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled
+----ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations
+----ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled 
 ---**webapp**  
 ----**static**  
 -----**default**  
@@ -190,4 +190,10 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -**tools** --> various Backbase tools 
 --**grunt** --> various Grunt scripts 
 --importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool 
+-build.bat  
+-build.sh  
+-initial_build.bat  
+-initial_build.sh  
 -pom.xml  
+-start.bat  
+-start.sh 

@@ -146,12 +146,14 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 ------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations
 ------backbase-portal-presentation-config.xml --> Main Spring MVC configurations
 ------backbase-portal-presentation-security.xml --> Spring Security presentation configurations 
+----backbase-ptc.xml --> Mashup Services Spring Beans configuration file 
 ----ehcache-auditing.xml --> Ehcache Portal Audit configurations
 ----ehcache-foundation.xml --> Ehcache Portal Foundation configurations
 ----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled
 ----ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations
 ----ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled 
 ---**webapp**  
+----**docs-v1**  --> Launchpad theme documentation
 ----**static**  
 -----**default**  
 ------**css**  
@@ -161,17 +163,23 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -------bb_ribbon.png  
 -------bg_pm.png  
 -----**ext-lib**  
-------jquery-1.8.3-min.js 
------**lib**  
-------jquery-1.6.1-min.js  
+------jquery-1.8.3-min.js
+-----**launchpad** --> Launchpad assets  
+-----**lp** --> Launchpad assets 
+------**conf** --> Launchpad assets configurations 
+-------require-conf.js --> Launchpad RequireJS configurations     
 -----**RSS**  
 ------**xsl**  
 -------rss2html.xsl  
 ------rss-example-feed.xml
 -----**samples**  --> Sample bundle 
+-----**themes**  --> Launchpad themes
 ----version.txt --> Build version info file 
 ----**WEB-INF**  
------**default** --> default backbase templates  
+-----**backbase.com.2012.nexus** --> fox for Nexus bundle 
+-----**common** --> Common Launchpad templates  
+------theme.jsp --> Launchpad theme template include
+-----**default** --> default Backbase templates  
 ------borderlayout.jsp  
 ------container.jsp  
 ------link.jsp  
@@ -179,6 +187,15 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 ------widget.jsp  
 -----**import**  
 ------chooseImport.jsp --> import portal page  
+-----**launchpad** --> Launchpad templates
+------**pages** --> Launchpad templates  
+-------launchpad-lib.jsp --> Launchpad libs template include
+-----**lp** --> Launchpad templates
+------**common** --> Launchpad common templates  
+-------directives.jspf --> Launchpad directives template include fragment
+------**includes** --> Launchpad common templates  
+-------custom-body.jsp --> Launchpad custom body template include
+-------custom-head.jsp --> Launchpad custom head template include
 -----ehcache_statistics.jsp --> eh cache statistics page  
 -----hibernate_statistics.jsp --> hibernate statistics page  
 -----ibm-web-ext.xmi --> IBM WAS specific configuration file  
@@ -193,7 +210,7 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -----**backbase**  
 ------**test**  
 -------**mashupservices**  
---------InstallationValidationTestST.java --> Test used to validate embedded Mashup Services on embedded server    
+--------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server    
 -------**portalserver**  
 --------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server 
 -------**theme**   

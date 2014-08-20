@@ -92,7 +92,7 @@ Note that both Jetty and Tomcat use the 8081 port by default. In case you need t
 ------BloombergBlog.properties --> example RSS importer configuration  
 ----**scheduler**  
 -----**job**  
-------myjob.properties --> example schedule rjob configuration  
+------myjob.properties --> example scheduler job configuration  
 --**jetty**  
 ---jetty.xml --> Jetty JNDI bindings for Content Services web application defined with this Maven project  
 ---webdefaults.xml --> Main Jetty configuration  
@@ -111,10 +111,10 @@ Note that both Jetty and Tomcat use the 8081 port by default. In case you need t
 ----**META-INF**  
 -----**meta-model**  
 -----**spring**  
-----ehcache.xsd --> Ehcache XSD
-----ehcache-configuration.xml --> Ehcache Configuration repo configurations
-----ehcache-content.xml --> Ehcache Content repo configurations
-----ehcache-resource.xml --> Ehcache Resource repo configurations
+-----ehcache.xsd --> Ehcache XSD
+-----ehcache-configuration.xml --> Ehcache Configuration repo configurations
+-----ehcache-content.xml --> Ehcache Content repo configurations
+-----ehcache-resource.xml --> Ehcache Resource repo configurations
 ---**webapp**
 ----**static**   
 ----version.txt --> Build version info file

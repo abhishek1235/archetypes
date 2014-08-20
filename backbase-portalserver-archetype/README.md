@@ -139,6 +139,7 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 ------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations
 ------backbase-portal-presentation-config.xml --> Main Spring MVC configurations
 ------backbase-portal-presentation-security.xml --> Spring Security presentation configurations 
+----backbase-ptc.xml --> Mashup Services Spring Beans configuration file 
 ----ehcache-auditing.xml --> Ehcache Portal Audit configurations
 ----ehcache-foundation.xml --> Ehcache Portal Foundation configurations
 ----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled
@@ -164,7 +165,7 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -----**samples**  --> Sample bundle 
 ----version.txt --> Build version info file 
 ----**WEB-INF**  
------**default** --> default backbase templates  
+-----**default** --> default Backbase templates  
 ------borderlayout.jsp  
 ------container.jsp  
 ------link.jsp  
@@ -186,7 +187,7 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -----**backbase**  
 ------**test**  
 -------**mashupservices**  
---------InstallationValidationTestST.java --> Test used to validate embedded Mashup Services on embedded server    
+--------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server    
 -------**portalserver**  
 --------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server   
 ---**resources**  

@@ -76,13 +76,13 @@ Note that both Jetty and Tomcat use the 8084 port by default. In case you need t
 **project**  
 -**configuration**    
 --**jetty**  
----jetty.xml --> jetty JNDI bindings for portal web application defined with this Maven project  
----webdefaults.xml --> jetty configuration  
+---jetty.xml --> Jetty JNDI bindings for Targeting web application defined with this Maven project  
+---webdefaults.xml --> Global Jetty configuration  
 --**tomcat**  
----context.xml --> tomcat 7 JNDI bindings for portal web application defined with this Maven project   
----server.xml --> tomcat 7 server configuration  
---backbase.properties --> main backbase configuration file    
---logback.xml --> logback configuration file   
+---context.xml --> Tomcat 7 JNDI bindings for Targeting web application defined with this Maven project   
+---server.xml --> Tomcat 7 server configuration  
+--backbase.properties --> Main Backbase configuration file    
+--logback.xml --> Logback configuration file   
 -**src**  
 --**main**  
 ---**java**  
@@ -97,7 +97,9 @@ Note that both Jetty and Tomcat use the 8084 port by default. In case you need t
 -----**spring**  
 ------**optional**  
 -------targeting-connectorframework.xml --> Spring configuration for Targeting that refers to collector example  
----**webapp**   
+---**webapp**
+----**static**   
+----version.txt --> Build version info file
 --**test**  
 ---**java**   
 ----**com**  
@@ -106,4 +108,8 @@ Note that both Jetty and Tomcat use the 8084 port by default. In case you need t
 -------**targeting**  
 --------InstallationValidationTestST.java --> Test used to validate Targeting on embedded server  
 ---**resources**  
+-build.bat  
+-build.sh  
 -pom.xml  
+-start.bat  
+-start.sh  

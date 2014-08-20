@@ -102,11 +102,11 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 --**tomcat**  
 ---context.xml --> Tomcat 7 JNDI bindings for Portal Foundation web application defined with this Maven project  
 ---server.xml --> Tomcat 7 server configuration  
---backbase.properties --> main Backbase configuration file
--- deviceConfig.xml --> Backbase Portal Manager devices configuration
+--backbase.properties --> Main Backbase configuration file
+--deviceConfig.xml --> Backbase Portal Manager devices configuration
 --esapi.properties --> Backbase ESAPI configuration file  
 --ice-config.properties --> Backbase ICE configuration file  
---logback.xml --> logback configuration file  
+--logback.xml --> Logback configuration file  
 --ptc-config.properties --> Mashup Services configuration properties file  
 --ptc-config.xml --> Mashup Services main configuration file 
 --service-config.xml --> Optional Services configuration file      
@@ -117,10 +117,10 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 ----**import**  --> YAPI import configuration files
 ---**coreResources** 
 ----**import**  
------importPortal.xml --> backbase portal import file for portal without portal manager  
+-----importPortal.xml --> Backbase import file for portal without portal manager  
 ---**dashboardResources**  
 ----**import**  
------importPortal.xml --> backbase portal import file for portal with portal manager  
+-----importPortal.xml --> Backbase import file for portal with portal manager  
 ---**java**  
 ----**com**  
 -----**backbase** 
@@ -169,7 +169,7 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -------rss2html.xsl  
 ------rss-example-feed.xml
 -----**samples**  --> Sample bundle 
-------version.txt --> Build version info file 
+----version.txt --> Build version info file 
 ----**WEB-INF**  
 -----**default** --> default backbase templates  
 ------borderlayout.jsp  

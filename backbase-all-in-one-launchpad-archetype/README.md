@@ -113,7 +113,7 @@ Note that both Jetty and Tomcat for Portal Foundation and Launchpad Theme use th
 -----**job**  
 ------myjob.properties --> example scheduler job configuration
 --**jetty**  
----jetty.xml --> Jetty JNDI bindings for Portal Foundation web application defined with this Maven project  
+---jetty.xml --> Jetty JNDI bindings for all Backbase CXP web applications deployed on embedded Jetty  
 ---webdefaults.xml --> global Jetty configuration  
 --**scripts**   
 ---**contentservices** --> Content Services database scripts for all databases we support
@@ -122,7 +122,7 @@ Note that both Jetty and Tomcat for Portal Foundation and Launchpad Theme use th
 ---**tracking** --> Tracking database scripts for all databases we support      
 ---**orchestrator** --> Orchestrator database scripts for all databases we support  
 --**tomcat**  
----context.xml --> Tomcat 7 JNDI bindings for Portal Foundation web application defined with this Maven project  
+---context.xml --> Tomcat 7 JNDI bindings for Backbase CXP web applications deployed on embedded Jetty  
 ---server.xml --> Tomcat 7 server configuration  
 --backbase.properties --> Main Backbase configuration file
 --deviceConfig.xml --> Backbase Portal Manager devices configuration
@@ -250,8 +250,9 @@ Note that both Jetty and Tomcat for Portal Foundation and Launchpad Theme use th
 -------**theme**   
 --------InstallationValidationTestST.java --> Test used to validate Theme on embedded server   
 ---**resources**  
--**tools** --> various Backbase tools 
---**grunt** --> various Grunt scripts 
+-**tools** --> Folder with various Backbase tools 
+--**grunt** --> Various Grunt scripts 
+--**nodejs** --> Various NodeJS scripts 
 --importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool 
 -build.bat  
 -build.sh  

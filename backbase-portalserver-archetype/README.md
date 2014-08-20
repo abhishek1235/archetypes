@@ -191,8 +191,9 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -------**portalserver**  
 --------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server   
 ---**resources**  
--**tools** --> various Backbase tools 
---**grunt** --> various Grunt scripts 
+-**tools** --> Folder with various Backbase tools 
+--**grunt** --> Various Grunt scripts 
+--**nodejs** --> Various NodeJS scripts 
 --importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool 
 -build.bat  
 -build.sh  

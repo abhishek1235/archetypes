@@ -100,4 +100,293 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 9. Test Orchestrators by opening the Orchestrator configuration URL in a browser: [http://localhost:8083/portalserver/orchestrator/configuration](http://localhost:8083/portalserver/orchestrator/configuration) (pay attention to the port number).
 
 ##Anatomy
-TODO
+**project** 
+-**configuration** --> Configuration module  
+--**assembly**
+---dev.xml --> Dev assembly defintion 
+---test.xml --> Test assembly defintion 
+--**src**  
+---**main** 
+----**filters** 
+-----dev.properties --> Dev filtering properties 
+-----local.properties --> Local filtering properties 
+-----test.properties --> Test filtering properties    
+----**resources** 
+-----**contentservices** --> optional example files that can be used with Content Services  
+------**contentRepository**  
+-------**importers**  
+--------**cmis**  
+---------alfresco.properties --> example CMIS importer configuration  
+--------**feed**  
+---------BloombergBlog.properties --> example RSS importer configuration  
+-------**scheduler**  
+--------**job**  
+---------myjob.properties --> example scheduler job configuration
+-----**db-scripts**   
+------**contentservices** --> Content Services database scripts for all databases we support
+------**foundation** --> Portal Foundation database scripts for all databases we support   
+------**manager** --> Portal Manager scripts   
+------**tracking** --> Tracking database scripts for all databases we support      
+------**orchestrator** --> Orchestrator database scripts for all databases we support 
+-----**jetty**
+------**contentservices**  
+-------jetty.xml --> Jetty JNDI bindings for Content Services 
+------**orchestrator**  
+-------jetty.xml --> Jetty JNDI bindings for Orchestrator
+------**portal**  
+-------jetty.xml --> Jetty JNDI bindings for Portal Foundation 
+------webdefaults.xml --> global Jetty configuration   
+-----**tomcat** 
+------**contentservices**   
+-------context.xml --> Tomcat 7 JNDI bindings for Content Services
+------**orchestrator**   
+-------context.xml --> Tomcat 7 JNDI bindings for Orchestrator
+------**portal**   
+-------context.xml --> Tomcat 7 JNDI bindings for Portal Foundation    
+-----backbase.properties --> Main Backbase configuration file
+-----deviceConfig.xml --> Backbase Portal Manager devices configuration
+-----esapi.properties --> Backbase ESAPI configuration file  
+-----ice-config.properties --> Backbase ICE configuration file  
+-----logback.xml --> Logback configuration file  
+-----ptc-config.properties --> Mashup Services configuration properties file  
+-----ptc-config.xml --> Mashup Services main configuration file 
+-----service-config.xml --> Optional Services configuration file     
+-----to-self-publishchains.xml --> orchestrator configuration file
+-----wro.properties --> Wro configuration options
+-----wro.xml --> Wro configuration file  
+--build.bat  
+--build.sh   
+--pom.xml  
+-**contentservices** --> Content Services module      
+--**src**  
+---**main**  
+----**java**  
+----**resources**     
+-----**META-INF**  
+------**meta-model**  
+------**spring**  
+------ehcache.xsd --> Ehcache XSD
+------ehcache-configuration.xml --> Ehcache Configuration repo configurations
+------ehcache-content.xml --> Ehcache Content repo configurations
+------ehcache-resource.xml --> Ehcache Resource repo configurations
+----**webapp**
+-----**static**   
+-----version.txt --> Build version info file
+---**test**  
+----**java**   
+-----**com**  
+------**backbase**  
+-------**test**  
+--------**contentservices**  
+---------InstallationValidationTestST.java --> Test used to validate Content Services on embedded server  
+----**resources**  
+--build.bat  
+--build.sh  
+--initial_build.bat  
+--initial_build.sh  
+--pom.xml  
+--start.bat  
+--start.sh 
+-**data** --> Folder where all local data is stored
+-**dist** --> Distribution module
+--**assembly**
+---assembly.xml 
+--**release-notes**
+---release_notes.txt 
+--build.bat  
+--build.sh 
+--PACKAGE.md
+--package_procedure.md  
+--pom.xml  
+--releaseNotes.sh   
+-**orchestrator** --> Orchestrator module    
+--**src**  
+---**main**  
+----**java**  
+----**resources**
+-----**META-INFO** 
+------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations 
+-----ehcache-orchestrator.xml --> Ehcache Orchestrator configurations
+----**webapp**
+-----**static**   
+-----version.txt --> Build version info file     
+---**test**  
+----**java**   
+-----**com**  
+------**backbase**  
+-------**test**  
+--------**orchestrator**  
+---------InstallationValidationTestST.java --> Test used to validate Orchestrator on embedded server  
+----**resources**  
+--build.bat  
+--build.sh  
+--initial_build.bat  
+--initial_build.sh  
+--pom.xml  
+--start.bat  
+--start.sh 
+-**parent** --> Parent module  
+--pom.xml 
+-**portal** --> Portal Foundation module   
+--**src**  
+---**main**  
+----**config-info**  --> Backbase components configuration files
+-----**import**  --> YAPI import configuration files
+----**coreResources** 
+-----**import**  
+------importPortal.xml --> Backbase import file for portal without portal manager  
+----**dashboardResources**  
+-----**import**  
+------importPortal.xml --> Backbase import file for portal with portal manager  
+----**java**  
+-----**com**  
+------**backbase**  
+-------**services** 
+--------FakeAuthenticationFilter.java --> Override for default Launchpad services authentication
+-------**targeting**  
+--------**collector**  
+---------**examples**  
+----------WeatherContextCollector.java --> Targeting collector example  
+----**resources**
+-----**conf**  
+------uiEditingOptions.js --> Backbase Portal Manager UI editing options configurations
+-----**import**  
+------groups.xml --> Launchpad default user groups 
+------importPortal.xml --> copy of one from dashboardResources/import  
+------users.xml --> Launchpad default users 
+-----**META-INF**  
+------**meta-model**  
+------**spring**  
+-------**optional**  
+--------targeting-connectorframework.xml --> Spring configuration for Targeting that refers to collector example  
+-------backbase-portal-application-config.xml --> Spring configuration suitable to hook custom Spring configurations  
+-------backbase-portal-business-security.xml --> Main Spring Security configurations
+-------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations
+-------backbase-portal-presentation-config.xml --> Main Spring MVC configurations
+-------backbase-portal-presentation-security.xml --> Spring Security presentation configurations
+------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations 
+------ehcache.xsd --> Ehcache XSD
+------ehcache-configuration.xml --> Ehcache Configuration repo configurations
+------ehcache-content.xml --> Ehcache Content repo configurations
+------ehcache-resource.xml --> Ehcache Resource repo configurations
+-----backbase-ptc.xml --> Mashup Services Spring Beans configuration file 
+-----ehcache-auditing.xml --> Ehcache Portal Audit configurations
+-----ehcache-foundation.xml --> Ehcache Portal Foundation configurations
+-----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled
+-----ehcache-orchestrator.xml --> Ehcache Orchestrator configurations
+-----ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations
+-----ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled 
+----**webapp**  
+-----**docs-v1**  --> Launchpad theme documentation
+-----**static**  
+------**default**  
+-------**css**  
+--------backbaseportalserver.css  
+-------**media**  
+--------BB_logo_.png  
+--------bb_ribbon.png  
+--------bg_pm.png  
+------**ext-lib**  
+-------jquery-1.8.3-min.js 
+------**launchpad** --> Launchpad assets  
+------**lp** --> Launchpad assets 
+-------**conf** --> Launchpad assets configurations 
+--------require-conf.js --> Launchpad RequireJS configurations  
+------**RSS**  
+-------**xsl**  
+--------rss2html.xsl  
+-------rss-example-feed.xml
+-----version.txt --> Build version info file 
+-----**WEB-INF**  
+------**backbase.com.2012.nexus** --> fox for Nexus bundle
+------**common** --> Common Launchpad templates  
+-------theme.jsp --> Launchpad theme template include
+------**default** --> default backbase templates  
+-------borderlayout.jsp  
+-------container.jsp  
+-------link.jsp  
+-------page.jsp  
+-------widget.jsp  
+------**import**  
+-------chooseImport.jsp --> import portal page  
+------**launchpad** --> Launchpad templates
+-------**pages** --> Launchpad templates  
+--------launchpad-lib.jsp --> Launchpad libs template include
+------**lp** --> Launchpad templates
+-------**common** --> Launchpad common templates  
+--------directives.jspf --> Launchpad directives template include fragment
+-------**includes** --> Launchpad common templates  
+--------custom-body.jsp --> Launchpad custom body template include
+--------custom-head.jsp --> Launchpad custom head template include
+------ehcache_statistics.jsp --> eh cache statistics page  
+------hibernate_statistics.jsp --> hibernate statistics page  
+------ibm-web-ext.xmi --> IBM WAS specific configuration file  
+------index.jsp  
+------jboss-deployment-structure.xml --> JBoss deployment specific configuration file  
+------jboss-web.xml--> JBoss specific configuration file  
+------portal.tld --> portal's TLD  
+------web.xml  
+---**test**  
+----**java**   
+-----**com**  
+------**backbase**  
+-------**test**   
+--------**mashupservices**  
+---------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server       
+--------**portalserver**   
+---------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server
+--------**theme**   
+---------InstallationValidationTestST.java --> Test used to validate Theme on embedded server   
+----**resources**  
+--build.bat  
+--build.sh  
+--initial_build.bat  
+--initial_build.sh  
+--pom.xml  
+--start.bat  
+--start.sh
+-**services** --> Parent module for all Services modules
+--**sample-service-module** --> Sampel Services module   
+---**src**  
+----**main**  
+-----**java**    
+-----**resources** 
+------**META-INF**   
+-------backbase-mashup-service.xml --> Apache Camel routes  
+------**template** 
+-------**velocity** 
+--------sample-velocity.wsdl --> Sample Velocity template
+------**wsdl**   
+-------weather.wsdl --> Sample WSDL
+------binding.xml --> Apache CXF helper file
+----**test**  
+-----**java**   
+-----**resources**  
+---pom.xml  
+--build.bat  
+--build.sh  
+--pom.xml
+-**statics** --> Parent module for all Web sub modules
+--**bundles** --> Parent module for all Bundles
+---**samples** --> Sample Bundle
+---pom.xml
+--**themes** --> Parent module for all Themes
+---**launchpad-default** --> Launchpad default theme
+---**launchpad-example** --> Launchpad example theme
+---pom.xml
+--build.bat  
+--build.sh  
+--pom.xml
+--README.md
+-**tools** --> Folder with various Backbase tools 
+--**grunt** --> Various Grunt scripts 
+--**nodejs** --> Various NodeJS scripts 
+--importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool 
+-build.bat  
+-build.sh  
+-initial_build.bat  
+-initial_build.sh  
+-pom.xml 
+-README.md 
+-start.bat  
+-start.sh

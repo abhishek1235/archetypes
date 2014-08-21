@@ -155,9 +155,7 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -------bb_ribbon.png  
 -------bg_pm.png  
 -----**ext-lib**  
-------jquery-1.8.3-min.js 
------**lib**  
-------jquery-1.6.1-min.js  
+------jquery-1.8.3-min.js   
 -----**RSS**  
 ------**xsl**  
 -------rss2html.xsl  

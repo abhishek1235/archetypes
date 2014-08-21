@@ -368,7 +368,38 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 --pom.xml
 -**statics** --> Parent module for all Web sub modules
 --**bundles** --> Parent module for all Bundles
----**samples** --> Sample Bundle
+---**samples**  --> Sample bundle 
+----**chromes** 
+-----**blank**
+------chrome-blank.html
+----**conf**
+----**containers**
+----**html**
+-----**chromes**
+------chrome-blank.html
+-----portalAction.html
+----**js**
+-----**vendor**
+------jquery-1.10.2.min.js
+-----main.js
+-----plugins.js
+----**lib**
+----**media**
+-----apple-touch-icon-precomposed.png
+-----favicon.ico
+-----portal-image.png 
+----**support**
+----**widgets** 
+-----**sample** 
+------**css** 
+-------sample.cssg
+------**import** 
+-------myComp-sc-wdg-sample.xml
+------**js** 
+-------sample.js
+------icon.png
+------index.html 
+------README.md
 ---pom.xml
 --**themes** --> Parent module for all Themes
 ---**launchpad-default** --> Launchpad default theme

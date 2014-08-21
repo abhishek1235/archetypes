@@ -173,6 +173,37 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -------rss2html.xsl  
 ------rss-example-feed.xml
 -----**samples**  --> Sample bundle 
+------**chromes** 
+-------**blank**
+--------chrome-blank.html
+------**conf**
+------**containers**
+------**html**
+-------**chromes**
+--------chrome-blank.html
+-------portalAction.html
+------**js**
+-------**vendor**
+--------jquery-1.10.2.min.js
+-------main.js
+-------plugins.js
+------**lib**
+------**media**
+-------apple-touch-icon-precomposed.png
+-------favicon.ico
+-------portal-image.png 
+------**support**
+------**widgets** 
+-------**sample** 
+--------**css** 
+---------sample.cssg
+--------**import** 
+---------myComp-sc-wdg-sample.xml
+--------**js** 
+---------sample.js
+--------icon.png
+--------index.html 
+--------README.md
 -----**themes**  --> Launchpad themes
 ----version.txt --> Build version info file 
 ----**WEB-INF**  

@@ -3,9 +3,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Sample Widget</title>
+        <script src="js/sample.js"></script>
         <link rel="stylesheet" type="text/css" href="css/sample.css" />
     </head>
-    <body class="myComp-sample" g:onload="requireWidget(__WIDGET__, 'js/sample');">
+    <body class="myComp-sample" g:onload="(new Sample(__WIDGET__)).init();">
         <header>
             <div class="row">
                 <div class="col-md-12">

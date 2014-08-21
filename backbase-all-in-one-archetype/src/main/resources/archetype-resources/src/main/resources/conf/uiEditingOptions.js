@@ -1,5 +1,3 @@
-/*global bd*/
-
 /**
  * Copyright � 2011 Backbase B.V.
  */
@@ -14,31 +12,30 @@ bd.uiEditingOptions = {
 
     //based on properties of a widget, will display a drop down selector, will use the initial value in the widget property to render the current selection option
     //This is only used for global drop down that are used across multiple widgets.
-    widgetPreferenceSelections: {
-        widgetChrome: [
-            {label: "No Chrome", value: "$(contextRoot)/static/launchpad/chromes/blank/chrome-blank.html"},
-            {label: "Default Chrome", value: "$(contextRoot)/static/launchpad/chromes/default/chrome-default.html"},
-            {label: "Launcher Tab Chrome", value: "$(contextRoot)/static/launchpad/chromes/launcher/chrome-tab.html"},
-            {label: "Launcher Slide Chrome", value: "$(contextRoot)/static/launchpad/chromes/launcher/chrome-slide.html"},
-            {label: "Springboard Chrome", value: "$(contextRoot)/static/launchpad/chromes/springboard/chrome-springboard.html"}
+    widgetPreferenceSelections:{
+        widgetChrome:[
+            {label: "No Chrome", value: "$(contextRoot)/static/backbase.com.2012.aurora/html/chromes/widget_none.html"},
+            {label: "Default Chrome", value: "$(contextRoot)/static/backbase.com.2012.aurora/html/chromes/widget_default.html"}
         ]
     },
 
+    //UI properties of the catalog browser
+    catalog:{
+        //set the max amount of items returned by catalog web-service per each request
+        itemsPerRequest:100
+    },
+
     //enable/disable user & group management, allowing a client to use their own user/group providers
-    usersAndGroups: {
-        allowManagement: true
+    usersAndGroups:{
+        allowManagement:true
     },
 
-    defaultPageTemplates: {
-        tablet: "LaunchpadPageTemplate",
-        mobile: "LaunchpadPageTemplate",
-        smart: "LaunchpadPageTemplate",
-        web: "LaunchpadPageTemplate"
+    defaultPageTemplates:{
+        tablet:"bbTabletTemplate",
+        mobile:"bbMobileTemplate",
+        smart:"bbSmartTemplate",
+        web:"bbWebTemplate"
     },
-
-    /*
-    * portalmanager 5.5 new configuration for devices.
-    */
 
     portalDevices:{
         desktop:[
@@ -61,23 +58,7 @@ bd.uiEditingOptions = {
         ]
     },
 
-    //UI properties of the catalog browser
-    catalog: {
-        //set the max amount of items returned by catalog web-service per each request
-        itemsPerRequest: 100
-    },
-
-    //the cmis metaData that will show as the attribute in the image tag - ice widget only
-    //{ [cmis meta data name] : [attribute name in the image tag] }
-    iceWidgetImageMetaData: {
-        metaDataList: {
-            'bb:altText': 'alt',
-            'bb:title': 'title',
-            'bb:subTitle': 'subtitle'
-        }
-    },
-
-    /*
+    /***
     *   Default SEO Setting
     */
 
@@ -127,41 +108,40 @@ bd.uiEditingOptions = {
      * Mapping different CMIS type for different type of file
      */
 
-    cmisTypeData: {
-        'text': 'bb:richtext',
-        'image': 'bb:image',
-        'link': 'bb:link'
+    cmisTypeData:{
+        'text':'bb:richtext',
+        'image':'bb:image',
+        'link':'bb:link'
     },
 
 
-    repositoryBrowser: {
-        fullCRUDToManagerRole: true,
-        maxFileLoadedPerTime: 30,
-        autoLoadFile: false,
+    repositoryBrowser:{
+        fullCRUDToManagerRole:true,
+        maxFileLoadedPerTime:30,
+        autoLoadFile:false,
         // defined what kind of file will be showing up in the embed repo browser (ex. repo browser in designer toolbar and in the rich text editor toolbar)
         // '' = all type, 'image' = image type
-        filesType: '',
+        filesType:'',
         // the metaData showing in the preview
         //[cmis meta data name] : [name in the preview] or null for default display name
-        metaDataList: {
-            'cmis:contentStreamLength': 'Size',
-            'cmis:name': 'File Name',
-            'cmis:path': 'Path',
-            'cmis:createdBy': 'Created By',
-            'cmis:lastModifiedBy': 'Last Updated By',
-            'cmis:creationDate': 'Creation Date',
-            'cmis:lastModificationDate': 'Last Updated Date',
-            'bb:altText': 'Alternative Text',
-            'bb:title': null,
-            'bb:subTitle': null,
-            'cmis:versionSeriesId': null
+        metaDataList:{
+            'cmis:contentStreamLength':'Size',
+            'cmis:name':'File Name',
+            'cmis:path':'Path',
+            'cmis:createdBy':'Created By',
+            'cmis:lastModifiedBy':'Last Updated By',
+            'cmis:creationDate':'Creation Date',
+            'cmis:lastModificationDate':'Last Updated Date',
+            'bb:altText':'Alternative Text',
+            'bb:title':null,
+            'bb:subTitle':null,
+            'cmis:versionSeriesId':null
         }
     },
 
-    pageDesigner: {
-        enableDNDForContainers: true
+    pageDesigner:{
+        enableDNDForContainers:true
     },
-
 
     // special to the ckeditor toolbar
     // parentList: Array of containers class names
@@ -243,39 +223,33 @@ bd.uiEditingOptions = {
                 {name:'Branding',element:'span',attributes:{'class' : 'bd-BrandingText'}},
                 {name:'Link',element:'span',attributes:{'class' : 'bd-iceLink'}}
             ]
-        },
-        // title used as a prefix: '.bbTemplate-className {...}'
-        lp: {
-            '<div class="lp-tagline">Tagline</div>': 'tagline',
-            '<div class="lp-tagline-banner">Banner</div>': 'tagline-banner',
-            '<div class="lp-btn">Info</div>': 'btn',
-            '<div class="lp-btn-primary">Primary</div>': 'btn-primary'
         }
     },
 
     //assetsPicker
-    assetsPicker: {
-        filterBy: {
-            'PNG': 'image/png'
+    assetsPicker : {
+        filterBy : {
+            'PDF' : 'application/pdf'
         },
 
-        metaDataList: {
+        metaDataList:{
             'bb:title': 'Title',
-            'bb:altText': 'Alternative',
-            'cmis:path': 'Path',
-            "cmis:contentStreamMimeType": 'Base Type',
-            'cmis:objectTypeId': 'Object Type',
-            'cmis:contentStreamLength': 'Size',
-            'cmis:createdBy': 'Created By',
-            'cmis:creationDate': 'Creation Date',
-            'cmis:lastModifiedBy': 'Last Updated By',
-            'cmis:lastModificationDate': 'Last Updated Date'
+            'bb:altText':'Alternative',
+            'cmis:path':'Path',
+            "cmis:contentStreamMimeType" : 'Base Type',
+            'cmis:objectTypeId' : 'Object Type',
+            'cmis:contentStreamLength':'Size',
+            'cmis:createdBy':'Created By',
+            'cmis:creationDate':'Creation Date',
+            'cmis:lastModifiedBy':'Last Updated By',
+            'cmis:lastModificationDate':'Last Updated Date'
 
             //'cmis:name':'File Name',
             //'bb:subTitle':null,
             //'cmis:versionSeriesId':null
         }
     },
+
     //Filter out element tags and attribute when paste extenal source to ICE widget.
     whiteList:{
         allowedTags: ['section','nav','artical','aside','h1','h2','h3','h4','h5','h6','hgroup','footer','address','main',
@@ -304,12 +278,14 @@ bd.uiEditingOptions = {
     AllowedDNDTypes:{
         typeList:['bb:richtext', 'image', 'cmis:folder', 'cmis:document']
     },
-    //default behaviour for creating widget
+
+
+    //default behaviour for creating widget when drop asset on canvas
     defaultDNDJsonData: {
         //WThe json contains properties of widget when drop image file.
         imageFile: {
-            namePrefix: "widget-advanced-content-",
-            extendedItemName: "widget-advanced-content",
+            namePrefix: "AdvancedContentTemplate-",
+            extendedItemName: "AdvancedContentTemplate",
             //The required preferences for the image and text widget. All properties are case sensitive.
             preferences: {
                 TemplateName: {
@@ -319,38 +295,38 @@ bd.uiEditingOptions = {
                 },
                 title: {
                     name: "title",
-                    value: "Image",
+                    value: "Image and Text",
                     type: "string",
                     label: "Title",
                     viewHint: "text-input,user"
                 },
                 src: {
                     name: "src",
-                    value: "$(contextRoot)/static/launchpad/widgets/advanced-content-template/index.html",
+                    value: "$(contextRoot)/static/backbase.com.2011.ice/widgets/AdvanceContentTemplate/index.html",
                     type: "string"
                 },
                 templateUrl: {
                     name: "templateUrl",
-                    value: "$(contextRoot)/static/launchpad/html/content/image.html",
+                    value: "$(contextRoot)/static/backbase.com.2011.ice/html/ContentTemplate/AdvancedImageText.html",
                     type: "string",
                     label: "Content Template",
                     viewHint: "text-input,designModeOnly,user"
                 },
                 widgetChrome: {
                     name: "widgetChrome",
-                    value: "$(contextRoot)/static/launchpad/chromes/blank/chrome-blank.html",
+                    value: "$(contextRoot)/static/backbase.com.2012.aurora/html/chromes/widget_none.html",
                     type: "string",
                     label: "Widget Chrome",
                     viewHint: "select-one,designModeOnly,user"
                 }
             },
-            contentRefName: "contentPath",
+            contentRefName: "topImage",
             targetFile: ["image/png", "image/jpg", "image/jpeg", "image/gif", "image/bmp"]
         },
         //The json contains properties of widget when drop text file.
         richTextFile: {
-            namePrefix: "widget-advanced-content-",
-            extendedItemName: "widget-advanced-content",
+            namePrefix: "AdvancedContentTemplate-",
+            extendedItemName: "AdvancedContentTemplate",
             preferences: {
                 TemplateName: {
                     name: "TemplateName",
@@ -359,36 +335,36 @@ bd.uiEditingOptions = {
                 },
                 title: {
                     name: "title",
-                    value: "Text Content",
+                    value: "Image and Text",
                     type: "string",
-                    label: "Title",
+                     label: "Title",
                     viewHint: "text-input,user"
                 },
                 src: {
                     name: "src",
-                    value: "$(contextRoot)/static/launchpad/widgets/advanced-content-template/index.html",
+                    value: "$(contextRoot)/static/backbase.com.2011.ice/widgets/AdvanceContentTemplate/index.html",
                     type: "string"
                 },
                 templateUrl: {
                     name: "templateUrl",
-                    value: "$(contextRoot)/static/launchpad/html/content/text.html",
+                    value: "$(contextRoot)/static/backbase.com.2011.ice/html/ContentTemplate/AdvancedImageText.html",
                     type: "string",
                     label: "Content Template",
                     viewHint: "text-input,designModeOnly,user"
                 },
                 widgetChrome: {
                     name: "widgetChrome",
-                    value: "$(contextRoot)/static/launchpad/chromes/blank/chrome-blank.html",
+                    value: "$(contextRoot)/static/backbase.com.2012.aurora/html/chromes/widget_none.html",
                     type: "string",
                     label: "Widget Chrome",
                     viewHint: "select-one,designModeOnly,user"
                 }
             },
-            contentRefName: "advContent",
+            contentRefName: "textPrefA",
             targetFile: ["text/html", "text/plain"]
         }
     }
+
 };
 
 
-bd.customStylesSelector = 'lp';

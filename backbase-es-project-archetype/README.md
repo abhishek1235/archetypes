@@ -369,37 +369,65 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 -**statics** --> Parent module for all Web sub modules
 --**bundles** --> Parent module for all Bundles
 ---**samples**  --> Sample bundle 
-----**chromes** 
------**blank**
-------chrome-blank.html
-----**conf**
-----**containers**
-----**html**
------**chromes**
-------chrome-blank.html
------portalAction.html
-----**js**
------**vendor**
-------jquery-1.10.2.min.js
------main.js
------plugins.js
-----**lib**
-----**media**
------apple-touch-icon-precomposed.png
------favicon.ico
------portal-image.png 
-----**support**
-----**widgets** 
------**sample** 
-------**css** 
--------sample.cssg
-------**import** 
--------myComp-sc-wdg-sample.xml
-------**js** 
--------sample.js
-------icon.png
-------index.html 
-------README.md
+----**assembly**
+-----bundle.xml
+-----change-info.xml
+----**src**
+-----**main**
+------**config-info**  --> Backbase components configuration files
+-------**import**  --> YAPI import configuration files
+--------**samples**  --> Samples bundle YAPI import configuration files
+---------**widgets**
+--------mycomp-myportal.xml
+--------mycomp-myportal-inst-mypage.xml
+--------mycomp-myportal-mapg-mymaster.xml
+--------mycomp-myportal-pc-conts.xml
+--------mycomp-myportal-pc-wdgs.xml
+--------mycomp-myportal-pgs-login.xml
+--------mycomp-myportal-pgs-mypage.xml
+--------mycomp-myportal-root-links.xml
+--------mycomp-sc-cont-myContainer.xml
+--------mycomp-sc-conts.xml
+--------mycomp-sc-wdg-sample.xml
+--------mycomp-sc-wdgts.xml
+--------mycomp-tmps-conts.xml
+--------mycomp-tmps-pgs.xml
+--------mycomp-users.xml
+------**webapp**
+-------**static**
+--------**samples**
+---------**chromes** 
+-----------**blank**
+------------chrome-blank.html
+----------**conf**
+----------**containers**
+----------**html**
+-----------**chromes**
+------------chrome-blank.html
+-----------portalAction.html
+----------**js**
+-----------**vendor**
+------------jquery-1.10.2.min.js
+-----------main.js
+-----------plugins.js
+----------**lib**
+----------**media**
+-----------apple-touch-icon-precomposed.png
+-----------favicon.ico
+-----------portal-image.png 
+----------**support**
+----------**widgets** 
+-----------**sample** 
+------------**css** 
+-------------sample.cssg
+------------**import** 
+-------------myComp-sc-wdg-sample.xml
+------------**js** 
+-------------sample.js
+------------icon.png
+------------index.html 
+------------README.md
+----pom.xml
 ---pom.xml
 --**themes** --> Parent module for all Themes
 ---**launchpad-default** --> Launchpad default theme

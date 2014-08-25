@@ -138,6 +138,23 @@ Note that both Jetty and Tomcat for Portal Foundation and Launchpad Theme use th
 --**main**  
 ---**config-info**  --> Backbase components configuration files
 ----**import**  --> YAPI import configuration files
+-----**samples**  --> Samples bundle YAPI import configuration files
+------**widgets**
+-----mycomp-myportal.xml
+-----mycomp-myportal-inst-mypage.xml
+-----mycomp-myportal-mapg-mymaster.xml
+-----mycomp-myportal-pc-conts.xml
+-----mycomp-myportal-pc-wdgs.xml
+-----mycomp-myportal-pgs-login.xml
+-----mycomp-myportal-pgs-mypage.xml
+-----mycomp-myportal-root-links.xml
+-----mycomp-sc-cont-myContainer.xml
+-----mycomp-sc-conts.xml
+-----mycomp-sc-wdg-sample.xml
+-----mycomp-sc-wdgts.xml
+-----mycomp-tmps-conts.xml
+-----mycomp-tmps-pgs.xml
+-----mycomp-users.xml
 ---**coreResources** 
 ----**import**  
 -----importPortal.xml --> Backbase import file for portal without portal manager  

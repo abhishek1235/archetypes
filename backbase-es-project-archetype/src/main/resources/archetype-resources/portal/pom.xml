@@ -34,11 +34,11 @@
         <less.install.command>npm</less.install.command>
         <less.install.args>install less</less.install.args>
         <less.compile.command>node_modules/less/bin/lessc</less.compile.command>
-        <less.compile.launchpad-default-theme.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
-        <less.compile.launchpad-example-theme.args>\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.less \${project.build.directory}/\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.css</less.compile.launchpad-example-theme.args>
+        <less.compile.launchpad-default-theme.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
+        <less.compile.launchpad-example-theme.args>\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.less \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.css</less.compile.launchpad-example-theme.args>
         <less.watch.command>autoless</less.watch.command>
-        <less.watch.launchpad-default-theme.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default \${project.build.directory}/\${project.build.finalName}/themes/launchpad-default/src/main/webapp/static/themes/default</less.watch.launchpad-default-theme.args>
-        <less.watch.launchpad-example-theme.args>\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example \${project.build.directory}/\${project.build.finalName}/themes/launchpad-example/src/main/webapp/static/themes/example</less.watch.launchpad-example-theme.args>
+        <less.watch.launchpad-default-theme.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default</less.watch.launchpad-default-theme.args>
+        <less.watch.launchpad-example-theme.args>\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example</less.watch.launchpad-example-theme.args>
 
         <dashboard.start>&lt;!-- Start Dashboard Portal Import &gt;--></dashboard.start>
         <dashboard.end>&lt;!-- End Dashboard Portal Import &gt;--></dashboard.end>

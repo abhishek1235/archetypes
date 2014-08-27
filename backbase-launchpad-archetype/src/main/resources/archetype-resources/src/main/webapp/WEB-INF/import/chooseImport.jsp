@@ -435,7 +435,7 @@
 
                     <sec:authorize access="hasRole('role_admin')">
 
-                    <div><b>Shortlinks:</b> <a href="${contextPath}/static/mosaic-tools/yapi/index.html" target="_yapi">YAPI</a></div>
+                    <div><b>Shortlinks:</b> <a href="${contextPath}/static/mosaic-tools/yapi-3.0/index.html" target="_yapi">YAPI</a></div>
 
                     <form:form commandName="formObject" action="import" method="POST">
                     Select the objects you want to import: <input type="button" class="checkall bd-button bd-buttonGradientGrey" value="Check All">

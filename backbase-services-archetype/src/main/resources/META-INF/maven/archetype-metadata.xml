@@ -4,6 +4,13 @@
                       name="Backbase Portal Services Archetype">
 
     <fileSets>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>build.bat</include>
+                <include>build.sh</include>
+            </includes>
+        </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>configuration</directory>
         </fileSet>

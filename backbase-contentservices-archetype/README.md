@@ -62,7 +62,7 @@ Refer to [Development Setup](https://my.backbase.com/resources/documentation/por
 3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Content Services](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_cose).
 4. Use the following command to prepare the project for running.
     <pre>
-    $ mvn clean install -P create-database
+    $ mvn clean package -P create-database
     </pre>
 If you want to run Mashup Services on Jetty:  
     <pre>

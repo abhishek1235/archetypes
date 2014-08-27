@@ -85,31 +85,31 @@ Note that both Jetty and Tomcat use the 8082 port by default. In case you need t
 -**configuration**  
 --**jetty**  
 ---jetty.xml --> Jetty JNDI bindings for Mashup Services web application defined with this Maven project  
----webdefaults.xml --> Global Jetty configuration     
+---webdefaults.xml --> Global Jetty configuration  
 --**tomcat**  
----context.xml --> Tomcat 7 JNDI bindings for Mashup Services web application defined with this Maven project   
+---context.xml --> Tomcat 7 JNDI bindings for Mashup Services web application defined with this Maven project  
 ---server.xml --> Tomcat 7 server configuration  
 --backbase.properties --> Main Backbase configuration file  
---ice-config.properties --> Ice Data Provider configuration file   
+--ice-config.properties --> Ice Data Provider configuration file  
 --logback.xml --> Logback configuration file  
 --ptc-config.properties --> Mashup Services configuration properties file  
---ptc-config.xml --> Mashup Services main configuration file    
+--ptc-config.xml --> Mashup Services main configuration file  
 -**src**  
 --**main**  
 ---**java**  
 ---**resources**  
-----backbase-ptc.xml --> Mashup Services Spring Beans configuration file 
----**webapp**    
+----backbase-ptc.xml --> Mashup Services Spring Beans configuration file  
+---**webapp**  
 ----**static**  
 -----**RSS**  
 ------**xsl**  
 -------rss2html.xsl --> RSS 2 HTML XSL file  
-------rss-example-feed.xml
-----version.txt --> Build version info file
+------rss-example-feed.xml  
+----version.txt --> Build version info file  
 ----**WEB-INF**  
 -----**web.xml**  
 --**test**  
----**java**   
+---**java**  
 ----**com**  
 -----**backbase**  
 ------**test**  

@@ -99,27 +99,27 @@ Note that both Jetty and Tomcat use the 8081 port by default. In case you need t
 --**scripts**  
 ---**contentservices** --> Content Services database scripts for all databases we support  
 --**tomcat**  
----context.xml --> Tomcat 7 JNDI bindings for Content Services web application defined with this Maven project   
+---context.xml --> Tomcat 7 JNDI bindings for Content Services web application defined with this Maven project  
 ---server.xml --> Tomcat 7 server configuration  
---backbase.properties --> Main Backbase configuration file    
---logback.xml --> Logback configuration file 
+--backbase.properties --> Main Backbase configuration file  
+--logback.xml --> Logback configuration file  
 -**data** --> Folder where all local data is stored   
 -**src**  
 --**main**  
 ---**java**  
----**resources**     
+---**resources**  
 ----**META-INF**  
 -----**meta-model**  
 -----**spring**  
------ehcache.xsd --> Ehcache XSD
------ehcache-configuration.xml --> Ehcache Configuration repo configurations
------ehcache-content.xml --> Ehcache Content repo configurations
------ehcache-resource.xml --> Ehcache Resource repo configurations
----**webapp**
-----**static**   
-----version.txt --> Build version info file
+-----ehcache.xsd --> Ehcache XSD  
+-----ehcache-configuration.xml --> Ehcache Configuration repo configurations  
+-----ehcache-content.xml --> Ehcache Content repo configurations  
+-----ehcache-resource.xml --> Ehcache Resource repo configurations  
+---**webapp**  
+----**static**    
+----version.txt --> Build version info file  
 --**test**  
----**java**   
+---**java**  
 ----**com**  
 -----**backbase**  
 ------**test**  
@@ -132,4 +132,4 @@ Note that both Jetty and Tomcat use the 8081 port by default. In case you need t
 -initial_build.sh  
 -pom.xml  
 -start.bat  
--start.sh 
+-start.sh  

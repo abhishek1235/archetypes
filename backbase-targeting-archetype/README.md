@@ -74,15 +74,15 @@ Note that both Jetty and Tomcat use the 8084 port by default. In case you need t
 
 ##Anatomy
 **project**  
--**configuration**    
+-**configuration**  
 --**jetty**  
 ---jetty.xml --> Jetty JNDI bindings for Targeting web application defined with this Maven project  
 ---webdefaults.xml --> Global Jetty configuration  
 --**tomcat**  
----context.xml --> Tomcat 7 JNDI bindings for Targeting web application defined with this Maven project   
+---context.xml --> Tomcat 7 JNDI bindings for Targeting web application defined with this Maven project  
 ---server.xml --> Tomcat 7 server configuration  
---backbase.properties --> Main Backbase configuration file    
---logback.xml --> Logback configuration file   
+--backbase.properties --> Main Backbase configuration file  
+--logback.xml --> Logback configuration file  
 -**src**  
 --**main**  
 ---**java**  
@@ -91,17 +91,17 @@ Note that both Jetty and Tomcat use the 8084 port by default. In case you need t
 ------**targeting**  
 -------**collector**  
 --------**examples**  
----------WeatherContextCollector.java --> Targeting collector example   
----**resources** 
+---------WeatherContextCollector.java --> Targeting collector example  
+---**resources**  
 ----**META-INF**  
 -----**spring**  
 ------**optional**  
 -------targeting-connectorframework.xml --> Spring configuration for Targeting that refers to collector example  
----**webapp**
-----**static**   
-----version.txt --> Build version info file
+---**webapp**  
+----**static**  
+----version.txt --> Build version info file  
 --**test**  
----**java**   
+---**java**  
 ----**com**  
 -----**backbase**  
 ------**test**  

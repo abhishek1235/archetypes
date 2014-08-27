@@ -88,48 +88,48 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 
 ##Anatomy
 **project**  
--**configuration**    
+-**configuration**  
 --**jetty**  
 ---jetty.xml --> Jetty JNDI bindings for Portal Foundation web application defined with this Maven project  
 ---webdefaults.xml --> global Jetty configuration  
---**scripts**   
----**foundation** --> Portal Foundation database scripts for all databases we support   
----**manager** --> Portal Manager scripts   
+--**scripts**  
+---**foundation** --> Portal Foundation database scripts for all databases we support  
+---**manager** --> Portal Manager scripts  
 ---**tracking** --> Tracking database scripts for all databases we support  
 --**tomcat**  
 ---context.xml --> Tomcat 7 JNDI bindings for Portal Foundation web application defined with this Maven project  
 ---server.xml --> Tomcat 7 server configuration  
---backbase.properties --> Main Backbase configuration file
---deviceConfig.xml --> Backbase Portal Manager devices configuration
+--backbase.properties --> Main Backbase configuration file  
+--deviceConfig.xml --> Backbase Portal Manager devices configuration  
 --esapi.properties --> Backbase ESAPI configuration file  
 --ice-config.properties --> Backbase ICE configuration file  
 --logback.xml --> Logback configuration file  
 --ptc-config.properties --> Mashup Services configuration properties file  
---ptc-config.xml --> Mashup Services main configuration file 
---service-config.xml --> Optional Services configuration file      
+--ptc-config.xml --> Mashup Services main configuration file  
+--service-config.xml --> Optional Services configuration file  
 -**data** --> Folder where all local data is stored  
 -**src**  
 --**main**  
----**config-info**  --> Backbase components configuration files
-----**import**  --> YAPI import configuration files
------**samples**  --> Samples bundle YAPI import configuration files
-------**widgets**
------mycomp-myportal.xml
------mycomp-myportal-inst-mypage.xml
------mycomp-myportal-mapg-mymaster.xml
------mycomp-myportal-pc-conts.xml
------mycomp-myportal-pc-wdgs.xml
------mycomp-myportal-pgs-login.xml
------mycomp-myportal-pgs-mypage.xml
------mycomp-myportal-root-links.xml
------mycomp-sc-cont-myContainer.xml
------mycomp-sc-conts.xml
------mycomp-sc-wdg-sample.xml
------mycomp-sc-wdgts.xml
------mycomp-tmps-conts.xml
------mycomp-tmps-pgs.xml
------mycomp-users.xml
----**coreResources** 
+---**config-info**  --> Backbase components configuration files  
+----**import**  --> YAPI import configuration files  
+-----**samples**  --> Samples bundle YAPI import configuration files  
+------**widgets**  
+-----mycomp-myportal.xml  
+-----mycomp-myportal-inst-mypage.xml  
+-----mycomp-myportal-mapg-mymaster.xml  
+-----mycomp-myportal-pc-conts.xml  
+-----mycomp-myportal-pc-wdgs.xml  
+-----mycomp-myportal-pgs-login.xml  
+-----mycomp-myportal-pgs-mypage.xml  
+-----mycomp-myportal-root-links.xml  
+-----mycomp-sc-cont-myContainer.xml  
+-----mycomp-sc-conts.xml  
+-----mycomp-sc-wdg-sample.xml  
+-----mycomp-sc-wdgts.xml  
+-----mycomp-tmps-conts.xml  
+-----mycomp-tmps-pgs.xml  
+-----mycomp-users.xml  
+---**coreResources**  
 ----**import**  
 -----importPortal.xml --> Backbase import file for portal without portal manager  
 ---**dashboardResources**  
@@ -142,9 +142,9 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -------**collector**  
 --------**examples**  
 ---------WeatherContextCollector.java --> Targeting collector example  
----**resources**
+---**resources**  
 ----**conf**  
------uiEditingOptions.js --> Backbase Portal Manager UI editing options configurations
+-----uiEditingOptions.js --> Backbase Portal Manager UI editing options configurations  
 ----**import**  
 -----importPortal.xml --> copy of one from dashboardResources/import  
 ----**META-INF**  
@@ -152,16 +152,16 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 ------**optional**  
 -------targeting-connectorframework.xml --> Spring configuration for Targeting that refers to collector example  
 ------backbase-portal-application-config.xml --> Spring configuration suitable to hook custom Spring configurations  
-------backbase-portal-business-security.xml --> Main Spring Security configurations
-------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations
-------backbase-portal-presentation-config.xml --> Main Spring MVC configurations
-------backbase-portal-presentation-security.xml --> Spring Security presentation configurations 
-----backbase-ptc.xml --> Mashup Services Spring Beans configuration file 
-----ehcache-auditing.xml --> Ehcache Portal Audit configurations
-----ehcache-foundation.xml --> Ehcache Portal Foundation configurations
-----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled
-----ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations
-----ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled 
+------backbase-portal-business-security.xml --> Main Spring Security configurations  
+------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations  
+------backbase-portal-presentation-config.xml --> Main Spring MVC configurations  
+------backbase-portal-presentation-security.xml --> Spring Security presentation configurations  
+----backbase-ptc.xml --> Mashup Services Spring Beans configuration file  
+----ehcache-auditing.xml --> Ehcache Portal Audit configurations  
+----ehcache-foundation.xml --> Ehcache Portal Foundation configurations  
+----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled  
+----ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations  
+----ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled  
 ---**webapp**  
 ----**static**  
 -----**default**  
@@ -176,40 +176,40 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -----**RSS**  
 ------**xsl**  
 -------rss2html.xsl  
-------rss-example-feed.xml
------**samples**  --> Sample bundle 
-------**chromes** 
--------**blank**
---------chrome-blank.html
-------**conf**
-------**containers**
-------**html**
--------**chromes**
---------chrome-blank.html
--------portalAction.html
-------**js**
--------**vendor**
---------jquery-1.10.2.min.js
--------main.js
--------plugins.js
-------**lib**
-------**media**
--------apple-touch-icon-precomposed.png
--------favicon.ico
--------portal-image.png 
-------**support**
-------**widgets** 
--------**sample** 
---------**css** 
----------sample.cssg
---------**import** 
----------myComp-sc-wdg-sample.xml
---------**js** 
----------sample.js
---------icon.png
---------index.html 
---------README.md
-----version.txt --> Build version info file 
+------rss-example-feed.xml  
+-----**samples**  --> Sample bundle  
+------**chromes**  
+-------**blank**  
+--------chrome-blank.html  
+------**conf**  
+------**containers**  
+------**html**  
+-------**chromes**  
+--------chrome-blank.html  
+-------portalAction.html  
+------**js**  
+-------**vendor**  
+--------jquery-1.10.2.min.js  
+-------main.js  
+-------plugins.js  
+------**lib**  
+------**media**  
+-------apple-touch-icon-precomposed.png  
+-------favicon.ico  
+-------portal-image.png  
+------**support**  
+------**widgets**  
+-------**sample**  
+--------**css**  
+---------sample.css  
+--------**import**  
+---------myComp-sc-wdg-sample.xml  
+--------**js**  
+---------sample.js  
+--------icon.png  
+--------index.html  
+--------README.md  
+----version.txt --> Build version info file  
 ----**WEB-INF**  
 -----**default** --> default Backbase templates  
 ------borderlayout.jsp  
@@ -228,23 +228,23 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -----portal.tld --> portal's TLD  
 -----web.xml  
 --**test**  
----**java**   
+---**java**  
 ----**com**  
 -----**backbase**  
 ------**test**  
 -------**mashupservices**  
---------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server    
+--------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server  
 -------**portalserver**  
---------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server   
+--------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server  
 ---**resources**  
--**tools** --> Folder with various Backbase tools 
---**grunt** --> Various Grunt scripts 
---**nodejs** --> Various NodeJS scripts 
---importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool 
+-**tools** --> Folder with various Backbase tools  
+--**grunt** --> Various Grunt scripts  
+--**nodejs** --> Various NodeJS scripts  
+--importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool  
 -build.bat  
 -build.sh  
 -initial_build.bat  
 -initial_build.sh  
 -pom.xml  
 -start.bat  
--start.sh
+-start.sh  

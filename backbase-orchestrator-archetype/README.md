@@ -82,31 +82,31 @@ Note that both Jetty and Tomcat use the 8083 port by default. In case you need t
 
 ##Anatomy
 **project**  
--**configuration**    
+-**configuration**  
 --**jetty**  
 ---jetty.xml --> Jetty JNDI bindings for Orchestrator web application defined with this Maven project  
 ---webdefaults.xml --> Main Jetty configuration  
 --**scripts**  
 ---**orchestrator** --> Orchestrator database scripts for all databases we support  
 --**tomcat**  
----context.xml --> Tomcat 7 JNDI bindings for Orchestrator web application defined with this Maven project   
+---context.xml --> Tomcat 7 JNDI bindings for Orchestrator web application defined with this Maven project  
 ---server.xml --> Tomcat 7 server configuration  
---backbase.properties --> Main Backbase configuration file    
---logback.xml --> Logback configuration file 
---to-self-publishchains.xml --> Publishing configuration file 
--**data** --> Folder where all local data is stored   
+--backbase.properties --> Main Backbase configuration file  
+--logback.xml --> Logback configuration file  
+--to-self-publishchains.xml --> Publishing configuration file  
+-**data** --> Folder where all local data is stored  
 -**src**  
 --**main**  
 ---**java**  
----**resources**
-----**META-INFO** 
------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations 
-----ehcache-orchestrator.xml --> Ehcache Orchestrator configurations
----**webapp**
-----**static**   
-----version.txt --> Build version info file     
+---**resources**  
+----**META-INFO**  
+-----ehcache-orchestrator.xml --> Ehcache Orchestrator configurations  
+----ehcache-orchestrator.xml --> Ehcache Orchestrator configurations  
+---**webapp**  
+----**static**  
+----version.txt --> Build version info file  
 --**test**  
----**java**   
+---**java**  
 ----**com**  
 -----**backbase**  
 ------**test**  
@@ -119,4 +119,4 @@ Note that both Jetty and Tomcat use the 8083 port by default. In case you need t
 -initial_build.sh  
 -pom.xml  
 -start.bat  
--start.sh 
+-start.sh  

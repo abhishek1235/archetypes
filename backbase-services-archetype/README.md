@@ -63,21 +63,21 @@ Refer to [Development Setup](https://my.backbase.com/resources/documentation/por
 
 ##Anatomy
 **project**  
--**configuration**    
---services.properties --> main services configuration file where specific properties are externalized   
+-**configuration**  
+--services.properties --> main services configuration file where specific properties are externalized  
 -**src**  
 --**main**  
----**java**    
----**resources** 
-----**META-INF**   
------backbase-mashup-service.xml --> Apache Camel routes
-----**template** 
------**velocity** 
+---**java**  
+---**resources**  
+----**META-INF**  
+-----backbase-mashup-service.xml --> Apache Camel routes  
+----**template**  
+-----**velocity**  
 ------sample-velocity.wsdl --> Sample Velocity template  
-----**wsdl**   
------weather.wsdl --> Sample WSDL
-----binding.xml--> Apache CXF helper file
+----**wsdl**  
+-----weather.wsdl --> Sample WSDL  
+----binding.xml--> Apache CXF helper file  
 --**test**  
----**java**    
+---**java**  
 ---**resources**  
 -pom.xml  

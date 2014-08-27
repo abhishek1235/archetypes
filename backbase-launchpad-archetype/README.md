@@ -91,48 +91,48 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 
 ##Anatomy
 **project**  
--**configuration**    
+-**configuration**  
 --**jetty**  
 ---jetty.xml --> Jetty JNDI bindings for Portal Foundation web application defined with this Maven project  
 ---webdefaults.xml --> global Jetty configuration  
---**scripts**   
----**foundation** --> Portal Foundation database scripts for all databases we support   
----**manager** --> Portal Manager scripts   
+--**scripts**  
+---**foundation** --> Portal Foundation database scripts for all databases we support  
+---**manager** --> Portal Manager scripts  
 ---**tracking** --> Tracking database scripts for all databases we support  
 --**tomcat**  
 ---context.xml --> Tomcat 7 JNDI bindings for Portal Foundation web application defined with this Maven project  
 ---server.xml --> Tomcat 7 server configuration  
---backbase.properties --> Main Backbase configuration file
---deviceConfig.xml --> Backbase Portal Manager devices configuration
+--backbase.properties --> Main Backbase configuration file  
+--deviceConfig.xml --> Backbase Portal Manager devices configuration  
 --esapi.properties --> Backbase ESAPI configuration file  
 --ice-config.properties --> Backbase ICE configuration file  
 --logback.xml --> Logback configuration file  
 --ptc-config.properties --> Mashup Services configuration properties file  
---ptc-config.xml --> Mashup Services main configuration file 
---service-config.xml --> Optional Services configuration file      
+--ptc-config.xml --> Mashup Services main configuration file  
+--service-config.xml --> Optional Services configuration file  
 -**data** --> Folder where all local data is stored  
 -**src**  
 --**main**  
----**config-info**  --> Backbase components configuration files
-----**import**  --> YAPI import configuration files
------**samples**  --> Samples bundle YAPI import configuration files
-------**widgets**
------mycomp-myportal.xml
------mycomp-myportal-inst-mypage.xml
------mycomp-myportal-mapg-mymaster.xml
------mycomp-myportal-pc-conts.xml
------mycomp-myportal-pc-wdgs.xml
------mycomp-myportal-pgs-login.xml
------mycomp-myportal-pgs-mypage.xml
------mycomp-myportal-root-links.xml
------mycomp-sc-cont-myContainer.xml
------mycomp-sc-conts.xml
------mycomp-sc-wdg-sample.xml
------mycomp-sc-wdgts.xml
------mycomp-tmps-conts.xml
------mycomp-tmps-pgs.xml
------mycomp-users.xml
----**coreResources** 
+---**config-info**  --> Backbase components configuration files  
+----**import**  --> YAPI import configuration files  
+-----**samples**  --> Samples bundle YAPI import configuration files  
+------**widgets**  
+-----mycomp-myportal.xml  
+-----mycomp-myportal-inst-mypage.xml  
+-----mycomp-myportal-mapg-mymaster.xml  
+-----mycomp-myportal-pc-conts.xml  
+-----mycomp-myportal-pc-wdgs.xml  
+-----mycomp-myportal-pgs-login.xml  
+-----mycomp-myportal-pgs-mypage.xml  
+-----mycomp-myportal-root-links.xml  
+-----mycomp-sc-cont-myContainer.xml  
+-----mycomp-sc-conts.xml  
+-----mycomp-sc-wdg-sample.xml  
+-----mycomp-sc-wdgts.xml  
+-----mycomp-tmps-conts.xml  
+-----mycomp-tmps-pgs.xml  
+-----mycomp-users.xml  
+---**coreResources**  
 ----**import**  
 -----importPortal.xml --> Backbase import file for portal without portal manager  
 ---**dashboardResources**  
@@ -140,37 +140,37 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -----importPortal.xml --> Backbase import file for portal with portal manager  
 ---**java**  
 ----**com**  
------**backbase** 
-------**services** 
--------FakeAuthenticationFilter.java --> Override for default Launchpad services authentication
+-----**backbase**  
+------**services**  
+-------FakeAuthenticationFilter.java --> Override for default Launchpad services authentication  
 ------**targeting**  
 -------**collector**  
 --------**examples**  
 ---------WeatherContextCollector.java --> Targeting collector example  
 ---**resources**  
 ----**conf**  
------uiEditingOptions.js --> Backbase Portal Manager UI editing options configurations
+-----uiEditingOptions.js --> Backbase Portal Manager UI editing options configurations  
 ----**import**  
------groups.xml --> Launchpad default user groups 
+-----groups.xml --> Launchpad default user groups  
 -----importPortal.xml --> copy of one from dashboardResources/import  
------users.xml --> Launchpad default users 
+-----users.xml --> Launchpad default users  
 ----**META-INF**  
 -----**spring**  
 ------**optional**  
 -------targeting-connectorframework.xml --> Spring configuration for Targeting that refers to collector example  
 ------backbase-portal-application-config.xml --> Spring configuration suitable to hook custom Spring configurations  
-------backbase-portal-business-security.xml --> Main Spring Security configurations
-------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations
-------backbase-portal-presentation-config.xml --> Main Spring MVC configurations
-------backbase-portal-presentation-security.xml --> Spring Security presentation configurations 
-----backbase-ptc.xml --> Mashup Services Spring Beans configuration file 
-----ehcache-auditing.xml --> Ehcache Portal Audit configurations
-----ehcache-foundation.xml --> Ehcache Portal Foundation configurations
-----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled
-----ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations
-----ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled 
+------backbase-portal-business-security.xml --> Main Spring Security configurations  
+------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations  
+------backbase-portal-presentation-config.xml --> Main Spring MVC configurations  
+------backbase-portal-presentation-security.xml --> Spring Security presentation configurations  
+----backbase-ptc.xml --> Mashup Services Spring Beans configuration file  
+----ehcache-auditing.xml --> Ehcache Portal Audit configurations  
+----ehcache-foundation.xml --> Ehcache Portal Foundation configurations  
+----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled  
+----ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations  
+----ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled  
 ---**webapp**  
-----**docs-v1**  --> Launchpad theme documentation
+----**docs-v1**  --> Launchpad theme documentation  
 ----**static**  
 -----**default**  
 ------**css**  
@@ -180,53 +180,53 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -------bb_ribbon.png  
 -------bg_pm.png  
 -----**ext-lib**  
-------jquery-1.8.3-min.js
+------jquery-1.8.3-min.js  
 -----**launchpad** --> Launchpad assets  
------**lp** --> Launchpad assets 
-------**conf** --> Launchpad assets configurations 
--------require-conf.js --> Launchpad RequireJS configurations     
+-----**lp** --> Launchpad assets  
+------**conf** --> Launchpad assets configurations  
+-------require-conf.js --> Launchpad RequireJS configurations    
 -----**RSS**  
 ------**xsl**  
 -------rss2html.xsl  
-------rss-example-feed.xml
------**samples**  --> Sample bundle 
-------**chromes** 
--------**blank**
---------chrome-blank.html
-------**conf**
-------**containers**
-------**html**
--------**chromes**
---------chrome-blank.html
--------portalAction.html
-------**js**
--------**vendor**
---------jquery-1.10.2.min.js
--------main.js
--------plugins.js
-------**lib**
-------**media**
--------apple-touch-icon-precomposed.png
--------favicon.ico
--------portal-image.png 
-------**support**
-------**widgets** 
--------**sample** 
---------**css** 
----------sample.cssg
---------**import** 
----------myComp-sc-wdg-sample.xml
---------**js** 
----------sample.js
---------icon.png
---------index.html 
---------README.md
------**themes**  --> Launchpad themes
-----version.txt --> Build version info file 
+------rss-example-feed.xml  
+-----**samples**  --> Sample bundle  
+------**chromes**  
+-------**blank**  
+--------chrome-blank.html  
+------**conf**  
+------**containers**  
+------**html**  
+-------**chromes**  
+--------chrome-blank.html  
+-------portalAction.html  
+------**js**  
+-------**vendor**  
+--------jquery-1.10.2.min.js  
+-------main.js  
+-------plugins.js  
+------**lib**  
+------**media**  
+-------apple-touch-icon-precomposed.png  
+-------favicon.ico  
+-------portal-image.png  
+------**support**  
+------**widgets**  
+-------**sample**  
+--------**css**  
+---------sample.css  
+--------**import**  
+---------myComp-sc-wdg-sample.xml  
+--------**js**  
+---------sample.js  
+--------icon.png  
+--------index.html  
+--------README.md  
+-----**themes**  --> Launchpad themes  
+----version.txt --> Build version info file  
 ----**WEB-INF**  
------**backbase.com.2012.nexus** --> fox for Nexus bundle 
+-----**backbase.com.2012.nexus** --> fox for Nexus bundle  
 -----**common** --> Common Launchpad templates  
-------theme.jsp --> Launchpad theme template include
+------theme.jsp --> Launchpad theme template include  
 -----**default** --> default Backbase templates  
 ------borderlayout.jsp  
 ------container.jsp  
@@ -235,15 +235,15 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 ------widget.jsp  
 -----**import**  
 ------chooseImport.jsp --> import portal page  
------**launchpad** --> Launchpad templates
+-----**launchpad** --> Launchpad templates  
 ------**pages** --> Launchpad templates  
--------launchpad-lib.jsp --> Launchpad libs template include
------**lp** --> Launchpad templates
+-------launchpad-lib.jsp --> Launchpad libs template include  
+-----**lp** --> Launchpad templates  
 ------**common** --> Launchpad common templates  
--------directives.jspf --> Launchpad directives template include fragment
+-------directives.jspf --> Launchpad directives template include fragment  
 ------**includes** --> Launchpad common templates  
--------custom-body.jsp --> Launchpad custom body template include
--------custom-head.jsp --> Launchpad custom head template include
+-------custom-body.jsp --> Launchpad custom body template include  
+-------custom-head.jsp --> Launchpad custom head template include  
 -----ehcache_statistics.jsp --> eh cache statistics page  
 -----hibernate_statistics.jsp --> hibernate statistics page  
 -----ibm-web-ext.xmi --> IBM WAS specific configuration file  
@@ -253,21 +253,21 @@ Note that both Jetty and Tomcat use the 7777 port by default. In case you need t
 -----portal.tld --> portal's TLD  
 -----web.xml  
 --**test**  
----**java**   
+---**java**  
 ----**com**  
 -----**backbase**  
 ------**test**  
 -------**mashupservices**  
---------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server    
+--------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server   
 -------**portalserver**  
---------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server 
--------**theme**   
+--------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server  
+-------**theme**  
 --------InstallationValidationTestST.java --> Test used to validate Theme on embedded server  
 ---**resources**  
--**tools** --> Folder with various Backbase tools 
---**grunt** --> Various Grunt scripts 
---**nodejs** --> Various NodeJS scripts 
---importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool 
+-**tools** --> Folder with various Backbase tools  
+--**grunt** --> Various Grunt scripts  
+--**nodejs** --> Various NodeJS scripts  
+--importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool  
 -build.bat  
 -build.sh  
 -initial_build.bat  

@@ -102,16 +102,16 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 ##Anatomy
 **project** 
 -**configuration** --> Configuration module  
---**assembly**
----dev.xml --> Dev assembly defintion 
----test.xml --> Test assembly defintion 
+--**assembly**  
+---dev.xml --> Dev assembly defintion  
+---test.xml --> Test assembly defintion  
 --**src**  
----**main** 
-----**filters** 
------dev.properties --> Dev filtering properties 
------local.properties --> Local filtering properties 
------test.properties --> Test filtering properties    
-----**resources** 
+---**main**  
+----**filters**  
+-----dev.properties --> Dev filtering properties  
+-----local.properties --> Local filtering properties  
+-----test.properties --> Test filtering properties  
+----**resources**  
 -----**contentservices** --> optional example files that can be used with Content Services  
 ------**contentRepository**  
 -------**importers**  
@@ -121,59 +121,59 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 ---------BloombergBlog.properties --> example RSS importer configuration  
 -------**scheduler**  
 --------**job**  
----------myjob.properties --> example scheduler job configuration
------**db-scripts**   
-------**contentservices** --> Content Services database scripts for all databases we support
-------**foundation** --> Portal Foundation database scripts for all databases we support   
-------**manager** --> Portal Manager scripts   
-------**tracking** --> Tracking database scripts for all databases we support      
-------**orchestrator** --> Orchestrator database scripts for all databases we support 
------**jetty**
+---------myjob.properties --> example scheduler job configuration  
+-----**db-scripts**  
+------**contentservices** --> Content Services database scripts for all databases we support  
+------**foundation** --> Portal Foundation database scripts for all databases we support  
+------**manager** --> Portal Manager scripts  
+------**tracking** --> Tracking database scripts for all databases we support  
+------**orchestrator** --> Orchestrator database scripts for all databases we support  
+-----**jetty**  
 ------**contentservices**  
--------jetty.xml --> Jetty JNDI bindings for Content Services 
+-------jetty.xml --> Jetty JNDI bindings for Content Services  
 ------**orchestrator**  
--------jetty.xml --> Jetty JNDI bindings for Orchestrator
+-------jetty.xml --> Jetty JNDI bindings for Orchestrator  
 ------**portal**  
--------jetty.xml --> Jetty JNDI bindings for Portal Foundation 
-------webdefaults.xml --> global Jetty configuration   
------**tomcat** 
+-------jetty.xml --> Jetty JNDI bindings for Portal Foundation  
+------webdefaults.xml --> global Jetty configuration  
+-----**tomcat**  
 ------**contentservices**   
--------context.xml --> Tomcat 7 JNDI bindings for Content Services
-------**orchestrator**   
--------context.xml --> Tomcat 7 JNDI bindings for Orchestrator
+-------context.xml --> Tomcat 7 JNDI bindings for Content Services  
+------**orchestrator**  
+-------context.xml --> Tomcat 7 JNDI bindings for Orchestrator  
 ------**portal**   
--------context.xml --> Tomcat 7 JNDI bindings for Portal Foundation    
------backbase.properties --> Main Backbase configuration file
------deviceConfig.xml --> Backbase Portal Manager devices configuration
+-------context.xml --> Tomcat 7 JNDI bindings for Portal Foundation  
+-----backbase.properties --> Main Backbase configuration file  
+-----deviceConfig.xml --> Backbase Portal Manager devices configuration  
 -----esapi.properties --> Backbase ESAPI configuration file  
 -----ice-config.properties --> Backbase ICE configuration file  
 -----logback.xml --> Logback configuration file  
 -----ptc-config.properties --> Mashup Services configuration properties file  
------ptc-config.xml --> Mashup Services main configuration file 
------service-config.xml --> Optional Services configuration file     
------to-self-publishchains.xml --> orchestrator configuration file
------wro.properties --> Wro configuration options
+-----ptc-config.xml --> Mashup Services main configuration file  
+-----service-config.xml --> Optional Services configuration file      
+-----to-self-publishchains.xml --> orchestrator configuration file  
+-----wro.properties --> Wro configuration options  
 -----wro.xml --> Wro configuration file  
 --build.bat  
---build.sh   
+--build.sh  
 --pom.xml  
--**contentservices** --> Content Services module      
+-**contentservices** --> Content Services module  
 --**src**  
 ---**main**  
 ----**java**  
-----**resources**     
+----**resources**  
 -----**META-INF**  
 ------**meta-model**  
 ------**spring**  
-------ehcache.xsd --> Ehcache XSD
-------ehcache-configuration.xml --> Ehcache Configuration repo configurations
-------ehcache-content.xml --> Ehcache Content repo configurations
-------ehcache-resource.xml --> Ehcache Resource repo configurations
-----**webapp**
------**static**   
------version.txt --> Build version info file
+------ehcache.xsd --> Ehcache XSD  
+------ehcache-configuration.xml --> Ehcache Configuration repo configurations  
+------ehcache-content.xml --> Ehcache Content repo configurations  
+------ehcache-resource.xml --> Ehcache Resource repo configurations  
+----**webapp**  
+-----**static**    
+-----version.txt --> Build version info file  
 ---**test**  
-----**java**   
+----**java**  
 -----**com**  
 ------**backbase**  
 -------**test**  
@@ -186,34 +186,34 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 --initial_build.sh  
 --pom.xml  
 --start.bat  
---start.sh 
--**data** --> Folder where all local data is stored
--**dist** --> Distribution module
---**assembly**
----assembly.xml 
---**release-notes**
----release_notes.txt 
+--start.sh  
+-**data** --> Folder where all local data is stored  
+-**dist** --> Distribution module  
+--**assembly**  
+---assembly.xml  
+--**release-notes**  
+---release_notes.txt  
 --build.bat  
---build.sh 
---PACKAGE.md
+--build.sh  
+--PACKAGE.md  
 --package_procedure.md  
 --pom.xml  
---releaseNotes.sh   
--**orchestrator** --> Orchestrator module    
+--releaseNotes.sh  
+-**orchestrator** --> Orchestrator module  
 --**src**  
 ---**main**  
 ----**java**  
-----**resources**
------**META-INFO** 
-------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations 
------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations
-----**webapp**
------**static**   
------version.txt --> Build version info file     
+----**resources**  
+-----**META-INFO**  
+------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations  
+-----ehcache-orchestrator.xml --> Ehcache Orchestrator configurations  
+----**webapp**  
+-----**static**    
+-----version.txt --> Build version info file  
 ---**test**  
-----**java**   
+----**java**  
 -----**com**  
-------**backbase**  
+------**backbase**   
 -------**test**  
 --------**orchestrator**  
 ---------InstallationValidationTestST.java --> Test used to validate Orchestrator on embedded server  
@@ -224,15 +224,15 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 --initial_build.sh  
 --pom.xml  
 --start.bat  
---start.sh 
+--start.sh  
 -**parent** --> Parent module  
---pom.xml 
--**portal** --> Portal Foundation module   
+--pom.xml  
+-**portal** --> Portal Foundation module  
 --**src**  
 ---**main**  
-----**config-info**  --> Backbase components configuration files
------**import**  --> YAPI import configuration files
-----**coreResources** 
+----**config-info**  --> Backbase components configuration files  
+-----**import**  --> YAPI import configuration files  
+----**coreResources**  
 -----**import**  
 ------importPortal.xml --> Backbase import file for portal without portal manager  
 ----**dashboardResources**  
@@ -241,43 +241,43 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 ----**java**  
 -----**com**  
 ------**backbase**  
--------**services** 
---------FakeAuthenticationFilter.java --> Override for default Launchpad services authentication
+-------**services**  
+--------FakeAuthenticationFilter.java --> Override for default Launchpad services authentication  
 -------**targeting**  
 --------**collector**  
 ---------**examples**  
 ----------WeatherContextCollector.java --> Targeting collector example  
-----**resources**
+----**resources**  
 -----**conf**  
-------uiEditingOptions.js --> Backbase Portal Manager UI editing options configurations
+------uiEditingOptions.js --> Backbase Portal Manager UI editing options configurations  
 -----**import**  
-------groups.xml --> Launchpad default user groups 
+------groups.xml --> Launchpad default user groups  
 ------importPortal.xml --> copy of one from dashboardResources/import  
-------users.xml --> Launchpad default users 
+------users.xml --> Launchpad default users  
 -----**META-INF**  
 ------**meta-model**  
 ------**spring**  
 -------**optional**  
 --------targeting-connectorframework.xml --> Spring configuration for Targeting that refers to collector example  
 -------backbase-portal-application-config.xml --> Spring configuration suitable to hook custom Spring configurations  
--------backbase-portal-business-security.xml --> Main Spring Security configurations
--------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations
--------backbase-portal-presentation-config.xml --> Main Spring MVC configurations
--------backbase-portal-presentation-security.xml --> Spring Security presentation configurations
-------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations 
-------ehcache.xsd --> Ehcache XSD
-------ehcache-configuration.xml --> Ehcache Configuration repo configurations
-------ehcache-content.xml --> Ehcache Content repo configurations
-------ehcache-resource.xml --> Ehcache Resource repo configurations
------backbase-ptc.xml --> Mashup Services Spring Beans configuration file 
------ehcache-auditing.xml --> Ehcache Portal Audit configurations
------ehcache-foundation.xml --> Ehcache Portal Foundation configurations
------ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled
------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations
------ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations
------ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled 
+-------backbase-portal-business-security.xml --> Main Spring Security configurations  
+-------backbase-portal-integration-config.xml --> Spring configuration suitable to hook custom Spring configurations  
+-------backbase-portal-presentation-config.xml --> Main Spring MVC configurations  
+-------backbase-portal-presentation-security.xml --> Spring Security presentation configurations  
+------ehcache-orchestrator.xml --> Ehcache Orchestrator configurations  
+------ehcache.xsd --> Ehcache XSD  
+------ehcache-configuration.xml --> Ehcache Configuration repo configurations  
+------ehcache-content.xml --> Ehcache Content repo configurations  
+------ehcache-resource.xml --> Ehcache Resource repo configurations  
+-----backbase-ptc.xml --> Mashup Services Spring Beans configuration file  
+-----ehcache-auditing.xml --> Ehcache Portal Audit configurations  
+-----ehcache-foundation.xml --> Ehcache Portal Foundation configurations  
+-----ehcache-foundation-jgroups-example.xml --> Ehcache Portal Foundation configurations with JGroups enabled  
+-----ehcache-orchestrator.xml --> Ehcache Orchestrator configurations  
+-----ehcache-persistence.xml --> Ehcache Portal Foundation persistence configurations  
+-----ehcache-persistence-jgroups-example.xml --> Ehcache persistence configurations with JGroups enabled  
 ----**webapp**  
------**docs-v1**  --> Launchpad theme documentation
+-----**docs-v1**  --> Launchpad theme documentation  
 -----**static**  
 ------**default**  
 -------**css**  
@@ -287,20 +287,20 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 --------bb_ribbon.png  
 --------bg_pm.png  
 ------**ext-lib**  
--------jquery-1.8.3-min.js 
+-------jquery-1.8.3-min.js  
 ------**launchpad** --> Launchpad assets  
-------**lp** --> Launchpad assets 
--------**conf** --> Launchpad assets configurations 
+------**lp** --> Launchpad assets  
+-------**conf** --> Launchpad assets configurations  
 --------require-conf.js --> Launchpad RequireJS configurations  
 ------**RSS**  
 -------**xsl**  
 --------rss2html.xsl  
--------rss-example-feed.xml
------version.txt --> Build version info file 
+-------rss-example-feed.xml  
+-----version.txt --> Build version info file  
 -----**WEB-INF**  
-------**backbase.com.2012.nexus** --> fox for Nexus bundle
+------**backbase.com.2012.nexus** --> fox for Nexus bundle  
 ------**common** --> Common Launchpad templates  
--------theme.jsp --> Launchpad theme template include
+-------theme.jsp --> Launchpad theme template include  
 ------**default** --> default backbase templates  
 -------borderlayout.jsp  
 -------container.jsp  
@@ -309,15 +309,15 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 -------widget.jsp  
 ------**import**  
 -------chooseImport.jsp --> import portal page  
-------**launchpad** --> Launchpad templates
+------**launchpad** --> Launchpad templates  
 -------**pages** --> Launchpad templates  
---------launchpad-lib.jsp --> Launchpad libs template include
-------**lp** --> Launchpad templates
+--------launchpad-lib.jsp --> Launchpad libs template include  
+------**lp** --> Launchpad templates  
 -------**common** --> Launchpad common templates  
---------directives.jspf --> Launchpad directives template include fragment
+--------directives.jspf --> Launchpad directives template include fragment  
 -------**includes** --> Launchpad common templates  
---------custom-body.jsp --> Launchpad custom body template include
---------custom-head.jsp --> Launchpad custom head template include
+--------custom-body.jsp --> Launchpad custom body template include  
+--------custom-head.jsp --> Launchpad custom head template include  
 ------ehcache_statistics.jsp --> eh cache statistics page  
 ------hibernate_statistics.jsp --> hibernate statistics page  
 ------ibm-web-ext.xmi --> IBM WAS specific configuration file  
@@ -327,16 +327,16 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 ------portal.tld --> portal's TLD  
 ------web.xml  
 ---**test**  
-----**java**   
+----**java**  
 -----**com**  
 ------**backbase**  
--------**test**   
+-------**test**  
 --------**mashupservices**  
----------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server       
---------**portalserver**   
----------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server
---------**theme**   
----------InstallationValidationTestST.java --> Test used to validate Theme on embedded server   
+---------InstallationValidationTestST.java --> Test used to validate Mashup Services on embedded server    
+--------**portalserver**  
+---------InstallationValidationTestST.java --> Test used to validate Portal Foundation on embedded server  
+--------**theme**  
+---------InstallationValidationTestST.java --> Test used to validate Theme on embedded server  
 ----**resources**  
 --build.bat  
 --build.sh  
@@ -344,108 +344,108 @@ Note that by default both Jetty and Tomcat for Portal Foundation and Launchpad T
 --initial_build.sh  
 --pom.xml  
 --start.bat  
---start.sh
--**services** --> Parent module for all Services modules
---**sample-service-module** --> Sampel Services module   
+--start.sh  
+-**services** --> Parent module for all Services modules  
+--**sample-service-module** --> Sampel Services module  
 ---**src**  
 ----**main**  
------**java**    
------**resources** 
+-----**java**  
+-----**resources**  
 ------**META-INF**   
 -------backbase-mashup-service.xml --> Apache Camel routes  
-------**template** 
--------**velocity** 
---------sample-velocity.wsdl --> Sample Velocity template
-------**wsdl**   
--------weather.wsdl --> Sample WSDL
-------binding.xml --> Apache CXF helper file
+------**template**  
+-------**velocity**  
+--------sample-velocity.wsdl --> Sample Velocity template  
+------**wsdl**  
+-------weather.wsdl --> Sample WSDL  
+------binding.xml --> Apache CXF helper file  
 ----**test**  
------**java**   
+-----**java**  
 -----**resources**  
 ---pom.xml  
 --build.bat  
 --build.sh  
---pom.xml
--**statics** --> Parent module for all Web sub modules
---**bundles** --> Parent module for all Bundles
----**samples**  --> Sample bundle 
-----**assembly**
------bundle.xml
------change-info.xml
-----**src**
------**main**
-------**config-info**  --> Backbase components configuration files
--------**import**  --> YAPI import configuration files
---------**samples**  --> Samples bundle YAPI import configuration files
----------**widgets**
---------mycomp-myportal.xml
---------mycomp-myportal-inst-mypage.xml
---------mycomp-myportal-mapg-mymaster.xml
---------mycomp-myportal-pc-conts.xml
---------mycomp-myportal-pc-wdgs.xml
---------mycomp-myportal-pgs-login.xml
---------mycomp-myportal-pgs-mypage.xml
---------mycomp-myportal-root-links.xml
---------mycomp-sc-cont-myContainer.xml
---------mycomp-sc-conts.xml
---------mycomp-sc-wdg-sample.xml
---------mycomp-sc-wdgts.xml
---------mycomp-tmps-conts.xml
---------mycomp-tmps-pgs.xml
---------mycomp-users.xml
-------**webapp**
--------**static**
---------**samples**
----------**chromes** 
------------**blank**
-------------chrome-blank.html
-----------**conf**
-----------**containers**
-----------**html**
------------**chromes**
-------------chrome-blank.html
------------portalAction.html
-----------**js**
------------**vendor**
-------------jquery-1.10.2.min.js
------------main.js
------------plugins.js
-----------**lib**
-----------**media**
------------apple-touch-icon-precomposed.png
------------favicon.ico
------------portal-image.png 
-----------**support**
-----------**widgets** 
------------**sample** 
-------------**css** 
--------------sample.cssg
-------------**import** 
--------------myComp-sc-wdg-sample.xml
-------------**js** 
--------------sample.js
-------------icon.png
-------------index.html 
-------------README.md
-----pom.xml
----pom.xml
---**themes** --> Parent module for all Themes
----**launchpad-default** --> Launchpad default theme
----**launchpad-example** --> Launchpad example theme
----pom.xml
---build.bat  
+--pom.xml  
+-**statics** --> Parent module for all Web sub modules  
+--**bundles** --> Parent module for all Bundles  
+---**samples**  --> Sample bundle  
+----**assembly**  
+-----bundle.xml  
+-----change-info.xml  
+----**src**  
+-----**main**  
+------**config-info**  --> Backbase components configuration files  
+-------**import**  --> YAPI import configuration files  
+--------**samples**  --> Samples bundle YAPI import configuration files  
+---------**widgets**  
+--------mycomp-myportal.xml  
+--------mycomp-myportal-inst-mypage.xml  
+--------mycomp-myportal-mapg-mymaster.xml  
+--------mycomp-myportal-pc-conts.xml  
+--------mycomp-myportal-pc-wdgs.xml  
+--------mycomp-myportal-pgs-login.xml  
+--------mycomp-myportal-pgs-mypage.xml  
+--------mycomp-myportal-root-links.xml  
+--------mycomp-sc-cont-myContainer.xml  
+--------mycomp-sc-conts.xml  
+--------mycomp-sc-wdg-sample.xml  
+--------mycomp-sc-wdgts.xml  
+--------mycomp-tmps-conts.xml  
+--------mycomp-tmps-pgs.xml  
+--------mycomp-users.xml  
+------**webapp**  
+-------**static**  
+--------**samples**  
+---------**chromes**  
+-----------**blank**  
+------------chrome-blank.html  
+----------**conf**  
+----------**containers**  
+----------**html**  
+-----------**chromes**  
+------------chrome-blank.html  
+-----------portalAction.html  
+----------**js**  
+-----------**vendor**  
+------------jquery-1.10.2.min.js  
+-----------main.js  
+-----------plugins.js  
+----------**lib**  
+----------**media**  
+-----------apple-touch-icon-precomposed.png  
+-----------favicon.ico  
+-----------portal-image.png  
+----------**support**  
+----------**widgets**  
+-----------**sample**  
+------------**css**  
+-------------sample.css  
+------------**import**  
+-------------myComp-sc-wdg-sample.xml  
+------------**js**  
+-------------sample.js  
+------------icon.png  
+------------index.html   
+------------README.md  
+----pom.xml  
+---pom.xml  
+--**themes** --> Parent module for all Themes  
+---**launchpad-default** --> Launchpad default theme  
+---**launchpad-example** --> Launchpad example theme  
+---pom.xml  
+--build.bat   
 --build.sh  
---pom.xml
---README.md
--**tools** --> Folder with various Backbase tools 
---**grunt** --> Various Grunt scripts 
---**nodejs** --> Various NodeJS scripts 
---importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool 
+--pom.xml  
+--README.md  
+-**tools** --> Folder with various Backbase tools  
+--**grunt** --> Various Grunt scripts  
+--**nodejs** --> Various NodeJS scripts   
+--importer-5.5.0.0-jar-with-dependencies.jar --> Backbase Importer tool  
 -build.bat  
 -build.sh  
 -initial_build.bat  
 -initial_build.sh  
--pom.xml 
--README.md 
+-pom.xml  
+-README.md   
 -start.bat  
--start.sh
+-start.sh  

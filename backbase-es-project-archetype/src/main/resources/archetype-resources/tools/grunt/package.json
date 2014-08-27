@@ -5,16 +5,16 @@
   "main": "Gruntfile.js",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "0.4.4",
-    "grunt-contrib-requirejs": "0.4.4",
-    "grunt-connect-proxy": "0.1.10",
-    "grunt-contrib-connect": "0.7.1",
-    "glob": "3.2.9",
-    "time-grunt": "0.3.1",
-    "async": "0.8.0",
-    "grunt-contrib-watch": "0.6.1",
-    "grunt-contrib-less": "0.11.4",
-    "grunt-contrib-jshint": "~0.10.0"
+    "grunt": "~0.4.0",
+    "grunt-contrib-requirejs": "*",
+    "grunt-connect-proxy": "*",
+    "grunt-contrib-connect": "*",
+    "glob": "*",
+    "time-grunt": "*",
+    "async": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-jshint": "*"
   },
   "scripts": {
     "go": "grunt server; grunt go",

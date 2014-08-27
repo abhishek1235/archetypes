@@ -4,7 +4,6 @@ module.exports = function (grunt) {
 
     var glob = require("glob"),
         async = require('async'),
-        path = require('path'),
         buildConfig = require('./buildConfig'),
         proxyingTasks = require('./proxyingTasks')(buildConfig, grunt),
         connectConfig = function () {
@@ -16,13 +15,13 @@ module.exports = function (grunt) {
                         debug: buildConfig.servers.proxyServer.debug,
                         hostname: 'localhost',
                         port: buildConfig.servers.proxyServer.port,
-                        base: [buildConfig.bundlesDir],
+                        base: buildConfig.bundlesDir,
                         directory: buildConfig.bundlesDir,
                         middleware: function (connect, options) {
                             return [
                                 require('grunt-connect-proxy/lib/utils').proxyRequest,
                                 // Serve static files.
-                                connect.static(options.base),
+                                connect.static(buildConfig.bundlesDir),
                                 // Make empty directories browsable.
                                 connect.directory(options.base)
                             ];
@@ -42,23 +41,37 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
-            pkg: grunt.file.readJSON('package.json'),
-            connect: connectConfig(buildConfig),
-            watch: buildConfig.watch,
-            less: buildConfig.less,
-            jshint: {
-                options: {
-                    // options here to override JSHint defaults
-                    globals: {
-                        jQuery: true,
-                        console: true,
-                        module: true,
-                        document: true
-                    }
+        dir: {
+            less: buildConfig.lessFiles
+        },
+        pkg: grunt.file.readJSON('package.json'),
+        connect: connectConfig(buildConfig),
+        watch: {
+            less: {
+                files: buildConfig.bundlesDir + '/themes/**/src/main/webapp/static/themes/**/base.less',
+                tasks: ['less:dev', 'testing']
+            }
+        },
+        less: {
+            dev: {
+                files: {
+                    '<%= dir.less.desktop %>/base.css': '<%= dir.less.desktop %>/base.less',
+                    '<%= dir.less.mobile %>/base.css': '<%= dir.less.mobile %>/base.less'
+                }
+            }
+        },
+        jshint: {
+            options: {
+                // options here to override JSHint defaults
+                globals: {
+                    jQuery: true,
+                    console: true,
+                    module: true,
+                    document: true
                 }
             }
         }
-    );
+    });
 
     grunt.loadNpmTasks('grunt-connect-proxy');
     grunt.loadNpmTasks('grunt-contrib-connect');
@@ -83,6 +96,9 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.registerTask('default', ['go']);
+    grunt.registerTask('testing', function () {
+        console.log('after less');
+    });
 
+    grunt.registerTask('default', ['go']);
 };

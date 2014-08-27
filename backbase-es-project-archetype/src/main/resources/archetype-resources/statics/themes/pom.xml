@@ -20,6 +20,6 @@
 
   <modules>
     <module>launchpad-default</module>
-    <!--<module>launchpad-example</module>-->
+    <module>launchpad-example</module>
   </modules>
 </project>

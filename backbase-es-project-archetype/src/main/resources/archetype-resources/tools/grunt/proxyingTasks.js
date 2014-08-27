@@ -142,10 +142,10 @@ module.exports = function (buildConfig, grunt) {
     //CONFIG: You must add any of the functions above to be returned in the array else it will be ignored
     return [
         proxyMultipleBundles,
-        proxyThemes,
-        proxyPortalServer,
-        proxyConfigInfo,
-        proxyXmlImport
+        //proxyThemes,
+        //proxyConfigInfo,
+        //proxyXmlImport,
+        proxyPortalServer
     ];
 };
 

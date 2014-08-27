@@ -36,17 +36,7 @@
     <Environment name="mashup/ptc-config"
             value="\${backbase.config.path}/ptc-config.properties"
             type="java.lang.String"
-            override="false"/>
-
-    <Environment name="/less/Cache"
-            value="\${less.cache}"
-            type="java.lang.Boolean"
-            override="true"/>
-            
-    <Environment name="/less/Compress"
-            value="\${less.compress}"
-            type="java.lang.Boolean"
-            override="true"/>                
+            override="false"/>              
 
     <Environment name="backbase/services-config"
                  value="file:\${backbase.config.path}/services.properties"

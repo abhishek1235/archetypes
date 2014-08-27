@@ -179,13 +179,6 @@
                                     <includes>**\/WeatherContextCollector.java</includes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/java</outputDirectory>
                                 </artifactItem>
-                                <!--<artifactItem>
-                                    <groupId>com.backbase.portal.targeting</groupId>
-                                    <artifactId>connectorframework-examples</artifactId>
-                                    <classifier>sources</classifier>
-                                    <includes>**\/targeting-connectorframework.xml</includes>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
-                                </artifactItem>-->
                                 <artifactItem>
                                     <groupId>com.backbase.portal.manager</groupId>
                                     <artifactId>resources</artifactId>
@@ -214,7 +207,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-static-launchpad-resources</id>
+                        <id>copy-static-launchpad-theme-resources</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>unpack</goal>
@@ -229,6 +222,43 @@
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/webapp</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>prepare-fix-static-launchpad-theme-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.launchpad</groupId>
+                                    <artifactId>launchpad-theme</artifactId>
+                                    <type>war</type>
+                                    <includes>static\themes\default\launchpad.less</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/webapp/static/themes/example</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>fix-static-launchpad-theme-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target> 
+                                <move file="${project.build.outputDirectory}/archetype-resources/src/main/webapp/static/themes/example/static/themes/default/launchpad.less" todir="${project.build.outputDirectory}/archetype-resources/src/main/webapp/static/themes/example" />
+                                <delete dir="${project.build.outputDirectory}/archetype-resources/src/main/webapp/static/themes/example/static" />
+                            </target>
                         </configuration>
                     </execution>
                 </executions>

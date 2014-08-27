@@ -1,2 +1,2 @@
 #!/bin/sh
-mvn clean package -P install-less,with-mosaic-tools,create-database
+mvn clean package -P create-database

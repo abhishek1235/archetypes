@@ -2,8 +2,8 @@ var bundlesDir =  '../../statics';
 
 var buildConfig = {
     bundlesDir: bundlesDir,
-    projectName: 'samples',
-    bundleSearch: '/bundles/**/src/main/webapp/static/samples**',//TODO:replace with own project name space
+    projectName: 'sample',
+    bundleSearch: '/bundles/**/src/main/webapp/static/samples**', //TODO:replace with own project name space
     portalServer: {
         url: '/portalserver',
         port: '7777'
@@ -14,25 +14,9 @@ var buildConfig = {
             debug: true
         }
     },
-    watch: {
-        less: {
-            files: [bundlesDir + '/**/*.less'],
-            tasks: ['less:dev']
-        },
-        js: {
-            files: [bundlesDir + '/**/*.js'],
-            tasks: ['jshint']
-        }
-   },
-    less: {
-        dev: {files: [
-            {
-                expand: true,
-                cwd: bundlesDir + '/themes/*/src/main/webapp/static/themes',
-                src: '**/base.less',
-                dest: '**/base.css'
-            }
-        ]}
+    lessFiles: {
+        "default": bundlesDir + '/themes/launchpad-default/src/main/webapp/static/themes/default',
+        "example": bundlesDir + '/themes/launchpad-example/src/main/webapp/static/themes/example'
     }
 };
 

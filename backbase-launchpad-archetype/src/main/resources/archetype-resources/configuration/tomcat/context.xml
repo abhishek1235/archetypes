@@ -42,14 +42,4 @@
             value="\${project.build.testOutputDirectory}/configuration/service-config.properties"
             type="java.lang.String"
             override="false"/>
-
-    <Environment name="/less/Cache"
-            value="\${less.cache}"
-            type="java.lang.Boolean"
-            override="false"/>
-
-    <Environment name="/less/Compress"
-            value="\${less.compress}"
-            type="java.lang.Boolean"
-            override="false"/>
 </Context>

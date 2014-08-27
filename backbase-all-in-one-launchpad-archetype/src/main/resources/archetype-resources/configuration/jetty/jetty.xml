@@ -41,18 +41,6 @@
         <Arg type="java.lang.String">\${project.build.testOutputDirectory}/configuration/ptc-config.properties</Arg>
         <Arg type="boolean">false</Arg>
     </New>
-    <New id="lessServletCache" class="org.eclipse.jetty.plus.jndi.EnvEntry">
-        <Arg></Arg>
-        <Arg>/less/Cache</Arg>
-        <Arg type="java.lang.Boolean">\${less.cache}</Arg>
-        <Arg type="boolean">true</Arg>
-    </New>
-    <New id="lessCompress" class="org.eclipse.jetty.plus.jndi.EnvEntry">
-        <Arg></Arg>
-        <Arg>/less/Compress</Arg>
-        <Arg type="java.lang.Boolean">\${less.compress}</Arg>
-        <Arg type="boolean">true</Arg>
-    </New>
     <New id="serviceConfigLocation" class="org.eclipse.jetty.plus.jndi.EnvEntry">
         <Arg></Arg>
         <Arg>backbase/service-config</Arg>

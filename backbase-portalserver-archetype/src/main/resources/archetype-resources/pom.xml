@@ -758,5 +758,12 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>no-cache</id>
+            <properties>
+                <ehcache.disabled>true</ehcache.disabled>
+            </properties>
+        </profile>
     </profiles>
 </project>

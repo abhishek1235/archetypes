@@ -1,2 +1,0 @@
-#!/bin/sh
-node less-watcher.js ../../statics/themes/launchpad-default/src/main/webapp/static/themes/default/base.less ../../statics/themes/launchpad-default/src/main/webapp/static/themes/default/base.css

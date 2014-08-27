@@ -1,1 +1,1 @@
-clean install -Dfull-build -Pinstall-less -Pembed-statics -Pwith-mosaic-tools -Pcreate-database
+clean install -Dfull-build -Pinstall-less -Pcreate-database

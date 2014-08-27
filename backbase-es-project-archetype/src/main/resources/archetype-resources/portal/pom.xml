@@ -23,23 +23,6 @@
         <!-- Standard Maven proeprties -->
         <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
 
-        <!-- Theme settings -->
-        <theme.name>${theme.name}</theme.name>
-
-        <!-- Core LESS settings-->
-        <less.cache>true</less.cache>
-        <less.compress>false</less.compress>
-
-        <!-- NodeJS LESS settings-->
-        <less.install.command>npm</less.install.command>
-        <less.install.args>install less</less.install.args>
-        <less.compile.command>node_modules/less/bin/lessc</less.compile.command>
-        <less.compile.launchpad-default-theme.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
-        <less.compile.launchpad-example-theme.args>\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.less \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.css</less.compile.launchpad-example-theme.args>
-        <less.watch.command>autoless</less.watch.command>
-        <less.watch.launchpad-default-theme.args>\${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default</less.watch.launchpad-default-theme.args>
-        <less.watch.launchpad-example-theme.args>\${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example</less.watch.launchpad-example-theme.args>
-
         <dashboard.start>&lt;!-- Start Dashboard Portal Import &gt;--></dashboard.start>
         <dashboard.end>&lt;!-- End Dashboard Portal Import &gt;--></dashboard.end>
 
@@ -66,6 +49,13 @@
             </dependency>
             <dependency>
                 <groupId>\${groupId}</groupId>
+                <artifactId>launchpad-example</artifactId>
+                <version>\${version}</version>
+                <classifier>theme</classifier>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>\${groupId}</groupId>
                 <artifactId>samples</artifactId>
                 <version>\${version}</version>
                 <classifier>bundle</classifier>
@@ -78,10 +68,21 @@
                 <classifier>change-info</classifier>
                 <type>zip</type>
             </dependency>
+            <dependency>
+                <groupId>\${groupId}</groupId>
+                <artifactId>sample-service-module</artifactId>
+                <version>\${version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <!-- Include here all Apache Camel services from services module that need to be deployed in final WAR -->
+        <dependency>
+            <groupId>\${groupId}</groupId>
+            <artifactId>sample-service-module</artifactId>
+        </dependency>
+
         <!-- Backbase core modules -->
         <dependency>
             <groupId>com.backbase.portal.foundation</groupId>
@@ -227,13 +228,6 @@
             <artifactId>groovy-all</artifactId>
             <version>${groovy.version}</version>
         </dependency>
-
-        <!-- Include here all Apache Camel services from services module that need to be deployed in final WAR -->
-        <dependency>
-            <groupId>\${groupId}</groupId>
-            <artifactId>sample-service-module</artifactId>
-            <version>\${version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -260,36 +254,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <!-- Compiles default-theme less with node before jetty starts (test-compile phase) -->
-                    <execution>
-                        <id>compile-default-theme-with-node</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>\${less.compile.command}</executable>
-                            <commandlineArgs>\${less.compile.launchpad-default-theme.args}</commandlineArgs>
-                        </configuration>
-                    </execution>
-                    <!-- Compiles example-theme less with node before jetty starts (test-compile phase) -->
-                    <!--<execution>
-                        <id>compile-example-theme-with-node</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>\${less.compile.command}</executable>
-                            <commandlineArgs>\${less.compile.launchpad-example-theme.args}</commandlineArgs>
-                        </configuration>
-                    </execution>-->
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -971,6 +935,12 @@
 
         <profile>
             <id>embed-statics</id>
+            <!-- Activation by absence of a property. Run normally, without -Dwithout-embed-statics -->
+            <activation>
+                <property>
+                    <name>!without-embed-statics</name>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -995,6 +965,13 @@
                                         <artifactItem>
                                             <groupId>\${groupId}</groupId>
                                             <artifactId>launchpad-default</artifactId>
+                                            <type>zip</type>
+                                            <classifier>theme</classifier>
+                                            <outputDirectory>\${work.dir}/</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>\${groupId}</groupId>
+                                            <artifactId>launchpad-example</artifactId>
                                             <type>zip</type>
                                             <classifier>theme</classifier>
                                             <outputDirectory>\${work.dir}/</outputDirectory>
@@ -1063,92 +1040,9 @@
         </profile>
 
         <profile>
-            <id>install-less</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <executions>
-                            <!-- Install node less module on demand -->
-                            <execution>
-                                <id>install-less-with-node</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>\${less.install.command}</executable>
-                                    <commandlineArgs>\${less.install.args}</commandlineArgs>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>watch-less</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <executions>
-                            <!-- Watches default-theme less for changes, after jetty starts -->
-                            <execution>
-                                <id>watch-default-theme-with-node</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>\${less.watch.command}</executable>
-                                    <commandlineArgs>\${less.watch.launchpad-default-theme.args}</commandlineArgs>
-                                </configuration>
-                            </execution>
-                            <!-- Watches example-theme less for changes, after jetty starts -->
-                            <!--<execution>
-                                <id>watch-example-theme-with-node</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>\${less.watch.command}</executable>
-                                    <commandlineArgs>\${less.watch.launchpad-example-theme.args}</commandlineArgs>
-                                </configuration>
-                            </execution>-->
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
             <id>no-cache</id>
             <properties>
-                <less.cache>false</less.cache>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>run-on-windows</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <properties>
-                <less.install.command>cmd</less.install.command>
-                <less.install.args>/c npm install less</less.install.args>
-                <less.compile.command>cmd</less.compile.command>
-                <less.compile.launchpad-default-theme.args>/c node node_modules\less\bin\lessc \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.less \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
-                <less.compile.launchpad-example-theme.args>/c node node_modules\less\bin\lessc \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.less \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example/base.css</less.compile.launchpad-example-theme.args>
-                <less.watch.command>cmd</less.watch.command>
-                <less.watch.launchpad-default-theme.args>/c autoless \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default \${statics.dir}/themes/launchpad-default/src/main/webapp/static/themes/default</less.watch.launchpad-default-theme.args>
-                <less.watch.launchpad-example-theme.args>/c autoless \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example \${statics.dir}/themes/launchpad-example/src/main/webapp/static/themes/example</less.watch.launchpad-example-theme.args>
+                <ehcache.disabled>true</ehcache.disabled>
             </properties>
         </profile>
     </profiles>

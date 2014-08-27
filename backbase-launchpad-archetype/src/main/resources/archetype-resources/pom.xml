@@ -29,13 +29,6 @@
 
         <!-- Mosaic module versions -->
         <mosaic.tools.version>${mosaic.tools.version}</mosaic.tools.version>
-
-        <!-- Theme settings -->
-        <theme.name>${theme.name}</theme.name>
-
-        <!-- Core LESS settings -->
-        <less.cache>true</less.cache>
-        <less.compress>false</less.compress>
         
         <!-- NodeJS LESS settings -->
         <less.install.command>npm</less.install.command>
@@ -314,7 +307,7 @@
                         </configuration>
                     </execution>
                     <!-- Compiles example-theme less with node before jetty starts (test-compile phase) -->
-                    <!--<execution>
+                    <execution>
                         <id>compile-example-theme-with-node</id>
                         <phase>compile</phase>
                         <goals>
@@ -324,7 +317,7 @@
                             <executable>\${less.compile.command}</executable>
                             <commandlineArgs>\${less.compile.launchpad-example-theme.args}</commandlineArgs>
                         </configuration>
-                    </execution>-->
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -1099,7 +1092,7 @@
         <profile>
             <id>no-cache</id>
             <properties>
-                <less.cache>false</less.cache>
+                <ehcache.disabled>true</ehcache.disabled>
             </properties>
         </profile>
 

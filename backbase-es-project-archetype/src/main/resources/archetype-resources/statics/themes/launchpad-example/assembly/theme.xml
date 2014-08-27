@@ -9,9 +9,6 @@
     <fileSet>
       <directory>\${work.dir}</directory>
       <outputDirectory>/</outputDirectory>
-      <includes>
-        <include>static/themes/default/*.css</include>
-      </includes>
     </fileSet>
   </fileSets>
 </assembly>

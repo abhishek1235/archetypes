@@ -70,13 +70,13 @@ Refer to [Development Setup](https://my.backbase.com/resources/documentation/por
 3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  
 4. Use the following command from the root project folder to prepare the project for running:
     <pre>
-    $ mvn clean package -P install-less,create-database
+    $ mvn clean install -P install-less,create-database
     </pre>
-If you want to run CXP on Jetty run this within folders portal, contentservices and orchestrator:  
+If you want to run CXP on Jetty run this within folders: portal, contentservices and orchestrator:  
     <pre>
-    $ mvn jetty:run-war
+    $ mvn jetty:run
     </pre>
-Or, if you want to run Portal on Tomcat 7 run this within folders portal, contentservices and orchestrator:
+Or, if you want to run Portal on Tomcat 7 run this within folders: portal, contentservices and orchestrator:
     <pre>
     $ mvn tomcat7:run
     </pre>

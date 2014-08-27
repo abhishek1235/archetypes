@@ -64,13 +64,13 @@ Refer to [Development Setup](https://my.backbase.com/resources/documentation/por
     <pre>
     $ mvn clean package -P create-database
     </pre>
-If you want to run Mashup Services on Jetty:  
+If you want to run Content Services on Jetty:  
     <pre>
-    $ mvn jetty:run-war
+    $ mvn jetty:run
     </pre>
-Or, if you want to run Mashup Services on Tomcat 7:
+Or, if you want to run Content Services on Tomcat 7:
     <pre>
-    $ mvn tomcat7:run-war
+    $ mvn tomcat7:run
     </pre>
 Optionally run following command to delete and re-create databases when required:
     <pre>

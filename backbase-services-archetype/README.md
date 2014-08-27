@@ -60,6 +60,10 @@ Follow the steps below to get started with this archetype. Some of these steps r
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
 3. In order to integrate Services with your Portal Foundation you need to declare Maven dependencies inside Portal Foundation's POM toward this Services module.
+4. Use the following command to build the project:
+    <pre>
+    $ mvn clean package
+    </pre>
 
 ##Anatomy
 **project**  

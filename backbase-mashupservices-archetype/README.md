@@ -66,15 +66,15 @@ Refer to [Development Setup](https://my.backbase.com/resources/documentation/por
 For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Mashup Services Stand-Alone](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_mash).
 4. Use the following command to prepare the project for running:
     <pre>
-    $ mvn clean install
+    $ mvn clean package
     </pre>
 If you want to run Mashup Services on Jetty:  
     <pre>
-    $ mvn jetty:run-war
+    $ mvn jetty:run
     </pre>
 Or, if you want to run Mashup Services on Tomcat 7:
     <pre>
-    $ mvn tomcat7:run-war
+    $ mvn tomcat7:run
     </pre>
 Note that both Jetty and Tomcat use the 8082 port by default. In case you need to choose a different port since you maybe already have another process running on port 8082, make necessary changes in jetty and tomcat plugins within POM file before you run Mashup Services.
 5. Test Mashup Services by opening the Mashup Services RSS pipe URL in a browser: [http://localhost:8082/mashupservices-webapp/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/](http://localhost:8082/mashupservices-webapp/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/) (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.

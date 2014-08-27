@@ -68,27 +68,19 @@ Follow the steps below to get started with this archetype. Some of these steps r
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
 3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).
-4. Use the following command from the root project folder to prepare the project for running:
+4. Use the following command to prepare the project for running:
     <pre>
-    $ mvn clean install -P create-database
+    $ mvn clean package -P install-less,create-database
     </pre>
-If you want to run Launchpad Theme on Jetty, move to theme sub-folder and run this:  
+If you want to run CXP with Launchpad on Jetty:  
     <pre>
-    $ mvn jetty:run-war
+    $ mvn jetty:run
     </pre>
-Or, if you want to run Launchpad Theme on Tomcat 7:
+Or, if you want to run CXP with Launchpad on Tomcat 7:
     <pre>
-    $ mvn tomcat7:run-war
+    $ mvn tomcat7:run
     </pre>
-If you want to run Portal on Jetty, move to portalserver sub-folder and run this:  
-    <pre>
-    $ mvn jetty:run-war
-    </pre>
-Or, if you want to run Portal on Tomcat 7:
-    <pre>
-    $ mvn tomcat7:run-war
-    </pre>
-Optionally run following command from the root project folder to delete and re-create databases when required:
+Optionally run following command to delete and re-create databases when required:
     <pre>
     $ mvn clean -P clean-database
     </pre>

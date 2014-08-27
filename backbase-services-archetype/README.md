@@ -58,8 +58,8 @@ Follow the steps below to get started with this archetype. Some of these steps r
         -DarchetypeGroupId=com.backbase.expert.tools
         -DarchetypeVersion=5.5.0.0
     </pre>
-Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
-3. In order to integrate Services with your Portal Foundation you need to declare Maven dependencies inside Portal Foundation's POM toward this Services module.
+Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
+3. In order to integrate Services with your Portal Foundation you need to declare Maven dependencies inside Portal Foundation's POM toward this Services module.  
 4. Use the following command to build the project:
     <pre>
     $ mvn clean package

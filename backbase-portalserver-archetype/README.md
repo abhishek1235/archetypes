@@ -62,8 +62,8 @@ Follow the steps below to get started with this archetype. Some of these steps r
         -DarchetypeGroupId=com.backbase.expert.tools
         -DarchetypeVersion=5.5.0.0
     </pre>
-Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
-3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).
+Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
+3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  
 4. Use the following command to prepare the project for running.
     <pre>
     $ mvn clean package -P create-database
@@ -80,11 +80,11 @@ Optionally run following command to delete and re-create databases when required
     <pre>
     $ mvn clean -P clean-database
     </pre>
-Note that both Jetty and Tomcat use the 7777 port by default. In case you need to choose a different port since you maybe already have another process runing on port 7777, make necessary changes in jetty and tomcat plugins within POM file before you run Portal Foundation.
-5. Test Portal Foundation by opening the Portal Foundation URL in a browser: [http://localhost:7777/portalserver/](http://localhost:7777/portalserver/) (pay attention to the port number).
-6. Test embedded Mashup Services by opening the Mashup Services RSS pipe URL in a browser: [http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/](http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/) (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.
-7. In order to integrate Portal Foundation with your Content Services that is running in its own standalone process, make sure to configure Portal’s Content Services Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
-8. In order to integrate Portal Foundation with your Orchestrator that is running in its own standalone process, make sure to configure Portal’s Orchestrator and Orchestrator Proxy within backbase.properties as it is explained in [Install Publishing](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_orch) and [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
+Note that both Jetty and Tomcat use the 7777 port by default. In case you need to choose a different port since you maybe already have another process runing on port 7777, make necessary changes in jetty and tomcat plugins within POM file before you run Portal Foundation.  
+5. Test Portal Foundation by opening the Portal Foundation URL in a browser: [http://localhost:7777/portalserver/](http://localhost:7777/portalserver/) (pay attention to the port number).  
+6. Test embedded Mashup Services by opening the Mashup Services RSS pipe URL in a browser: [http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/](http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/) (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.  
+7. In order to integrate Portal Foundation with your Content Services that is running in its own standalone process, make sure to configure Portal’s Content Services Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).  
+8. In order to integrate Portal Foundation with your Orchestrator that is running in its own standalone process, make sure to configure Portal’s Orchestrator and Orchestrator Proxy within backbase.properties as it is explained in [Install Publishing](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_orch) and [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).  
 
 ##Anatomy
 **project**  

@@ -58,8 +58,8 @@ Follow the steps below to get started with this archetype. Some of these steps r
         -DarchetypeGroupId=com.backbase.expert.tools
         -DarchetypeVersion=5.5.0.0
     </pre>
-Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information. 
-3. Optionally adjust JMV properties, differently configure the Logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Publishing](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_orch).
+Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
+3. Optionally adjust JMV properties, differently configure the Logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Publishing](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_orch).  
 4. Use the following command to prepare the project for running.
     <pre>
     $ mvn clean package -P create-database
@@ -76,9 +76,9 @@ Optionally run following command to delete and re-create database when required:
     <pre>
     $ mvn clean -P clean-database
     </pre>
-Note that both Jetty and Tomcat use the 8083 port by default. In case you need to choose a different port since you maybe already have another process running on port 8083, make necessary changes in jetty and tomcat plugins within POM file before you run Orchestrator.
-5. Test Orchestrator by opening the Orchestrator configuration URL in a browser: [http://localhost:8083/orchestrator-webapp/configuration](http://localhost:8083/orchestrator-webapp/configuration) (pay attention to the port number). Use admin/admin to authenticate.
-6. In order to integrate Orchestrator with your Portal Foundation that is running in its own standalone process, make sure to configure Portal Foundation’s Orchestrator Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
+Note that both Jetty and Tomcat use the 8083 port by default. In case you need to choose a different port since you maybe already have another process running on port 8083, make necessary changes in jetty and tomcat plugins within POM file before you run Orchestrator.  
+5. Test Orchestrator by opening the Orchestrator configuration URL in a browser: [http://localhost:8083/orchestrator-webapp/configuration](http://localhost:8083/orchestrator-webapp/configuration) (pay attention to the port number). Use admin/admin to authenticate.  
+6. In order to integrate Orchestrator with your Portal Foundation that is running in its own standalone process, make sure to configure Portal Foundation’s Orchestrator Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).  
 
 ##Anatomy
 **project**  

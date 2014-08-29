@@ -4,25 +4,30 @@ module.exports = function (grunt) {
 
     var glob = require("glob"),
         async = require('async'),
-        path = require('path'),
         buildConfig = require('./buildConfig'),
-        proxyingTasks = require('./proxyingTasks')(buildConfig, grunt),
+
+        bundlesDir          = buildConfig.bundles.bundlesDir,
+        bundleSearch        = buildConfig.bundles.bundleSearch,
+        themesDir           = buildConfig.themes.themesDir,
+        themesPath          = buildConfig.themes.themesPath,
+        portalServerUrl     = buildConfig.servers.portalServer.url,
+        portalServerPort    = buildConfig.servers.portalServer.port,
+        proxyServerPort     = buildConfig.servers.proxyServer.port,
+
         connectConfig = function () {
             return {
-                //When you have a complex folder structure that need to be proxy-ed into friendly url.
-                // i.e. /portalserver/static/config-info/import/mosaic-media-catalog-widgets.xml to static/import/mosaic-media-catalog-widgets.xml
                 proxyServer: {
                     options: {
                         debug: buildConfig.servers.proxyServer.debug,
                         hostname: 'localhost',
-                        port: buildConfig.servers.proxyServer.port,
-                        base: [buildConfig.bundlesDir],
-                        directory: buildConfig.bundlesDir,
+                        port: proxyServerPort,
+                        base: bundlesDir,
+                        directory: bundlesDir,
                         middleware: function (connect, options) {
                             return [
                                 require('grunt-connect-proxy/lib/utils').proxyRequest,
                                 // Serve static files.
-                                connect.static(options.base),
+                                connect.static(bundlesDir),
                                 // Make empty directories browsable.
                                 connect.directory(options.base)
                             ];
@@ -33,6 +38,7 @@ module.exports = function (grunt) {
                 }
             };
         },
+        proxyingTasks = require('./proxyingTasks')(buildConfig, grunt),
         setProxyForFolders = function (fnCallback) {
             async.series(proxyingTasks, function (err, results) {
                 console.log('done with things');
@@ -44,8 +50,17 @@ module.exports = function (grunt) {
     grunt.initConfig({
             pkg: grunt.file.readJSON('package.json'),
             connect: connectConfig(buildConfig),
-            watch: buildConfig.watch,
-            less: buildConfig.less,
+            watch: {
+                less: {
+                    files: themesDir + '/**' + themesPath + '/**/*.less',
+                    tasks: ['less:dev']
+                }
+            },
+            less: {
+                dev: {
+                    files: buildConfig.themes.lessFiles
+                }
+            },
             jshint: {
                 options: {
                     // options here to override JSHint defaults
@@ -84,5 +99,4 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['go']);
-
 };

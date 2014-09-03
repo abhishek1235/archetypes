@@ -72,13 +72,6 @@
             <version>${portal.dashboard.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.backbase.portal.tools</groupId>
-            <artifactId>importer</artifactId>
-            <type>jar</type>
-            <version>${portal.tools.version}</version>
-            <classifier>jar-with-dependencies</classifier>
-        </dependency>
-        <dependency>
             <groupId>com.backbase.portal.contentservices</groupId>
             <artifactId>repository</artifactId>
             <classifier>ddl-scripts</classifier>
@@ -105,6 +98,20 @@
             <groupId>com.backbase.services.mashup</groupId>
             <artifactId>ptc-core</artifactId>
             <version>${mashupservices.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal.tools</groupId>
+            <artifactId>importer</artifactId>
+            <type>jar</type>
+            <version>${portal.tools.version}</version>
+            <classifier>jar-with-dependencies</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.extensions</groupId>
+            <artifactId>mosaic-tools</artifactId>
+            <version>${mosaic.tools.version}</version>
+            <classifier>bundle-dist</classifier>
+            <type>zip</type>
         </dependency>
     </dependencies>
 
@@ -261,6 +268,25 @@
                                     <type>jar</type>
                                     <classifier>jar-with-dependencies</classifier>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/tools</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-mosaic-tools</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.extensions</groupId>
+                                    <artifactId>mosaic-tools</artifactId>
+                                    <classifier>bundle-dist</classifier>
+                                    <type>zip</type>
+                                    <includes>tools/*/**</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>

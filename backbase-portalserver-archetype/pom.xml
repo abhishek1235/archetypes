@@ -71,6 +71,13 @@
             <version>${portal.tools.version}</version>
             <classifier>jar-with-dependencies</classifier>
         </dependency>
+        <dependency>
+            <groupId>com.backbase.extensions</groupId>
+            <artifactId>mosaic-tools</artifactId>
+            <version>${mosaic.tools.version}</version>
+            <classifier>bundle-dist</classifier>
+            <type>zip</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -196,6 +203,25 @@
                                     <type>jar</type>
                                     <classifier>jar-with-dependencies</classifier>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/tools</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-mosaic-tools</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.extensions</groupId>
+                                    <artifactId>mosaic-tools</artifactId>
+                                    <classifier>bundle-dist</classifier>
+                                    <type>zip</type>
+                                    <includes>tools/*/**</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>

@@ -22,10 +22,6 @@
     <properties>
         <!-- Standard Maven proeprties -->
         <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
-
-        <!-- Less settings -->
-        <less.cache>true</less.cache>
-        <less.compress>false</less.compress>
     </properties>
 
     <build>
@@ -83,6 +79,20 @@
                             </filters>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>dist</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <outputDirectory>\${work.dir}/dist</outputDirectory>
+                            <filters>
+                                <filter>\${basedir}/src/main/filters/dist.properties</filter>
+                            </filters>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -92,6 +102,7 @@
                     <descriptors>
                         <descriptor>assembly/dev.xml</descriptor>
                         <descriptor>assembly/test.xml</descriptor>
+                        <descriptor>assembly/dist.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>

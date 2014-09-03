@@ -1012,6 +1012,7 @@
                                             <artifactId>mosaic-tools</artifactId>
                                             <classifier>bundle-dist</classifier>
                                             <type>zip</type>
+                                            <excludes>tools/</excludes>
                                             <outputDirectory>\${work.dir}</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>

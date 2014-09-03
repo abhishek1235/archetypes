@@ -44,25 +44,17 @@
             <source>\${statics.dir}/bundles/samples/target/samples-change-info.zip</source>
             <outputDirectory>/statics</outputDirectory>
         </file>
-    </files>
 
-    <fileSets>
-        <!-- Copy configuration -->
-        <fileSet>
-            <directory>\${configuration.dir}</directory>
+        <!-- Configuration -->
+        <file>
+            <source>\${configuration.dir}/target/configuration-dist.zip</source>
             <outputDirectory>/configuration</outputDirectory>
-            <includes>
-                <include>**/*</include>
-            </includes>
-        </fileSet>
+        </file>
 
-        <!-- Copy release notes -->
-        <fileSet>
-            <directory>\${project.basedir}/release-notes</directory>
+        <!-- Release Notes -->
+        <file>
+            <source>\${project.basedir}/release-notes/release_notes.txt</source>
             <outputDirectory>/release-notes</outputDirectory>
-            <includes>
-                <include>**/*</include>
-            </includes>
-        </fileSet>
-    </fileSets>
+        </file>
+    </files>
 </assembly>

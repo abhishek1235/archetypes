@@ -32,8 +32,46 @@ Archetypes are deployed to Backbase Expert Services' Maven repository at
 ###Pre-conditions
 We assume that you're already familiar with [Development Guide](https://my.backbase.com/resources/documentation/portal/devd_mave.html) and that you need more additional archetypes for specific needs. These additional archetypes are tailored by needs we have experienced when working with various clients around the world so they represent also a best practice on how to quickly bootstrap your Backbase CXP projector modules and solve some specific tasks related to Backbase CXP.
 
-###Maven repository configuration
-Configure your Maven configuration to include the Backbase extensions releases repository (https://repo.backbase.com/extensions).
+###Backbase extensions Maven repository configuration
+In order to deploy your snapshots or make releases to pre-confogured Backbase Maven repositories, you need to configure your Maven configuration to include the Backbase extensions releases repository (https://repo.backbase.com/extensions).
+
+Edit the settings.xml file located in the .m2 folder. 
+    <pre>```    
+    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+        <profiles>
+            <profile>
+                <id>backbase</id>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+                <repositories>
+                    <repository>
+                        <id>Backbase Artifact Repository</id>
+                        <url>https://repo.backbase.com/repo/</url>
+                    </repository>
+                    <repository>
+                        <id>Backbase Extensions Repository</id>
+                        <url>https://repo.backbase.com/extensions/</url>
+                    </repository>
+                </repositories>
+            </profile>
+        </profiles>
+        <servers>
+            <server>
+                <id>Backbase Artifact Repository</id>
+                <!--Please change your_user_name and your_password below-->
+                <username>your_user_name</username>
+                <password>your_password</password>
+            </server>
+            <server>
+                <id>Backbase Extensions Repository</id>
+                <!--Please change your_user_name and your_password below-->
+                <username>your_user_name</username>
+                <password>your_password</password>
+            </server>
+        </servers>
+    </settings>
+    ```</pre>
 
 ###Maven archetype project generation: 
 <pre>

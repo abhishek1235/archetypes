@@ -22,44 +22,7 @@ Launchpad Foundation is pre-configured and ready to be customized. Launchpad Fou
 ##Usage
 Follow the steps below to get started with this archetype. Some of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo). You should get familiar with these topics before you start using this archetype.
 
-1. Configure your Maven installation to include the Backbase extensions repository by editing the settings.xml file located in the .m2 folder. 
-    <pre>```    
-    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-        <profiles>
-            <profile>
-                <id>backbase</id>
-                <activation>
-                    <activeByDefault>true</activeByDefault>
-                </activation>
-                <repositories>
-                    <repository>
-                        <id>Backbase Artifact Repository</id>
-                        <url>https://repo.backbase.com/repo/</url>
-                    </repository>
-                    <repository>
-                        <id>Backbase Extensions Repository</id>
-                        <url>https://repo.backbase.com/extensions/</url>
-                    </repository>
-                </repositories>
-            </profile>
-        </profiles>
-        <servers>
-            <server>
-                <id>Backbase Artifact Repository</id>
-                <!--Please change your_user_name and your_password below-->
-                <username>your_user_name</username>
-                <password>your_password</password>
-            </server>
-            <server>
-                <id>Backbase Extensions Repository</id>
-                <!--Please change your_user_name and your_password below-->
-                <username>your_user_name</username>
-                <password>your_password</password>
-            </server>
-        </servers>
-    </settings>
-    ```</pre>
-2. Generate the project. Open a command shell and go to a location where you want to create the content services project. Execute the following command:
+1. Generate the project. Open a command shell and go to a location where you want to create the content services project. Execute the following command:
     <pre>
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-all-in-one-launchpad-archetype
@@ -67,8 +30,8 @@ Follow the steps below to get started with this archetype. Some of these steps r
         -DarchetypeVersion=5.5.0.0
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
-3. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  
-4. Use the following command to prepare the project for running:
+2. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  
+3. Use the following command to prepare the project for running:
     <pre>
     $ mvn clean package -P install-less,create-database
     </pre>
@@ -85,11 +48,11 @@ Optionally run following command to delete and re-create databases when required
     $ mvn clean -P clean-database
     </pre>
 Note that both Jetty and Tomcat for Portal Foundation and Launchpad Theme use the 7777 port by default. In case you need to choose a different port since you maybe already have another process running on ports 7777, make necessary changes in Jetty and Tomcat plugins within POM files before you run Portal Foundation and Launchpad Theme. In order to use Launchpad you do need to run both Portal and Launchpad Theme at the same time.  
-5. Test Portal Foundation by opening the Portal Foundation URL in a browser: [http://localhost:7777/portalserver/](http://localhost:7777/portalserver/) (pay attention to the port number).  
-6. Test Launchpad Theme by opening the main theme CSS in a browser: [http://localhost:7777/portalserver/static/themes/default/base.less](http://localhost:7777/portalserver/static/themes/default/base.less) (pay attention to the port number).  
-7. Test embedded Mashup Services by opening the Mashup Services RSS pipe URL in a browser: [http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/](http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/) (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.  
-8. Test Content Services by opening the Content Services RSS URL in a browser: [http://localhost:7777/portalserver/content/atom](http://localhost:7777/portalserver/content/atom) (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.  
-9. Test Orchestrators by opening the Orchestrator configuration URL in a browser: [http://localhost:7777/portalserver/orchestrator/configuration](http://localhost:7777/portalserver/orchestrator/configuration) (pay attention to the port number).  
+4. Test Portal Foundation by opening the Portal Foundation URL in a browser: [http://localhost:7777/portalserver/](http://localhost:7777/portalserver/) (pay attention to the port number).  
+5. Test Launchpad Theme by opening the main theme CSS in a browser: [http://localhost:7777/portalserver/static/themes/default/base.less](http://localhost:7777/portalserver/static/themes/default/base.less) (pay attention to the port number).  
+6. Test embedded Mashup Services by opening the Mashup Services RSS pipe URL in a browser: [http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/](http://localhost:7777/portalserver/proxy?pipe=rss&url=http://blog.bloomberg.com/feed/) (pay attention to the port number). Existing RSS pipe fetches RSS feed from url parameter and then applies XSLT transformation to create a snippet of HTML that can be used from some widget for example.  
+7. Test Content Services by opening the Content Services RSS URL in a browser: [http://localhost:7777/portalserver/content/atom](http://localhost:7777/portalserver/content/atom) (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.  
+8. Test Orchestrators by opening the Orchestrator configuration URL in a browser: [http://localhost:7777/portalserver/orchestrator/configuration](http://localhost:7777/portalserver/orchestrator/configuration) (pay attention to the port number).  
 
 ##Anatomy
 **project**  

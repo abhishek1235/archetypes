@@ -32,7 +32,7 @@
         
         <!-- NodeJS LESS settings -->
         <less.install.command>npm</less.install.command>
-        <less.install.args>install less</less.install.args>
+        <less.install.args>install less autoless</less.install.args>
         <less.compile.command>node_modules/less/bin/lessc</less.compile.command>
         <less.compile.launchpad-default-theme.args>\${project.basedir}/src/main/webapp/static/themes/default/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/default/base.css</less.compile.launchpad-default-theme.args>
         <less.compile.launchpad-example-theme.args>\${project.basedir}/src/main/webapp/static/themes/example/base.less \${project.build.directory}/\${project.build.finalName}/static/themes/example/base.css</less.compile.launchpad-example-theme.args>

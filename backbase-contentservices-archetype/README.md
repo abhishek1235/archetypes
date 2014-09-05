@@ -40,7 +40,7 @@ Optionally run following command to delete and re-create databases when required
     $ mvn clean -P clean-database
     </pre>
 Note that both Jetty and Tomcat use the 8081 port by default. In case you need to choose a different port since you maybe already have another process running on port 8081, make necessary changes in jetty and tomcat plugins within POM file before you run Content Services.  
-4. Test Content Services by opening the Content Services RSS URL in a browser: [http://localhost:8081/contentservices-webapp/](http://localhost:8081/contentservices-webapp/) (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.  
+4. Test Content Services by opening the Content Services Atom feed in a browser: [http://localhost:8081/contentservices-webapp/](http://localhost:8081/contentservices-webapp/) (pay attention to the port number) or by using some CMIS client software. More info on how to use [CMIS Workbench](https://my.backbase.com/doc-center/manuals/portal/cont_cont.html#cont_cont_cmis) can be found on the CMIS Workbench page of our documentation.  
 5. In order to integrate Content Services with your Portal Foundation that is running in its own standalone process, make sure to configure Portal Foundation’s Content Services Proxy within backbase.properties as it is explained in [Proxy Configuration](https://my.backbase.com/resources/documentation/portal/inst_conf.html#inst_conf_prox).
 
 ##Anatomy

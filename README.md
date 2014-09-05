@@ -25,7 +25,7 @@ Archetypes are deployed to Backbase Expert Services' Maven repository at
 
 ##Important Notes
 1. We have separated aggregator and parent POMs since 5.5.0.0 so make sure to understand this before making any changes to archetypes. Purpose of this was to separate lifecycle for each archetype if needed and to make sure Maven site plugin works correctly by aggregating reports from all modules.
-2. From version **5.5.0.0** we're using **JDK 7** as the default option due to the latest version of embedded Jetty which requires it.
+2. From version **5.5.0.0** we're using **JDK 7** as the default option due to the latest version of embedded Jetty which requires it. Make sure that your Maven is using correct version of the JDK.
 
 ##Usage
 

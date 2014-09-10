@@ -23,7 +23,7 @@
         <maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
         
         <!-- Backbase dependency versions -->
-        <portal.server.version>5.5.0.2</portal.server.version>
+        <portal.server.version>5.5.0.0</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
         <portal.dashboard.version>5.5.0.0</portal.dashboard.version>
         <portal.tools.version>5.5.0.0</portal.tools.version>

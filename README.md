@@ -26,6 +26,7 @@ Archetypes are deployed to Backbase Expert Services' Maven repository at
 ##Important Notes
 1. We have separated aggregator and parent POMs since 5.5.0.0 so make sure to understand this before making any changes to archetypes. Purpose of this was to separate lifecycle for each archetype if needed and to make sure Maven site plugin works correctly by aggregating reports from all modules.
 2. From version **5.5.0.0** we're using **JDK 7** as the default option due to the latest version of embedded Jetty which requires it and due to LP specific we also require **Maven 3.1.1** as the minimal version. Also, make sure that your Maven is using correct version of the JDK. You can check all of these by typing <pre>mvn --version</pre> in your command prompt.
+3. From version **5.5.0.0** we're using **NodeJS** which needs to be at least 0.10.x, so make sure you have it and if not, please upgrade node and npm as well. For mobile development, 0.10.20 is the minimal version that Titanium requires, so bets to grab latest version available. 
 
 ##Usage
 
@@ -46,25 +47,21 @@ Edit the settings.xml file located in the .m2 folder.
                 </activation>
                 <repositories>
                     <repository>
-                        <id>Backbase Artifact Repository</id>
+                        <id>repo.backbase.com</id>
                         <url>https://repo.backbase.com/repo/</url>
                     </repository>
-                    <repository>
-                        <id>Backbase Extensions Repository</id>
-                        <url>https://repo.backbase.com/extensions/</url>
-                    </repository>
                 </repositories>
+                <pluginRepositories>
+                    <pluginRepository>
+                        <id>repo.backbase.com</id>
+                        <url>https://repo.backbase.com/repo/</url>
+                    </pluginRepository>
+                </pluginRepositories>
             </profile>
         </profiles>
         <servers>
             <server>
-                <id>Backbase Artifact Repository</id>
-                <!--Please change your_user_name and your_password below-->
-                <username>your_user_name</username>
-                <password>your_password</password>
-            </server>
-            <server>
-                <id>Backbase Extensions Repository</id>
+                <id>repo.backbase.com</id>
                 <!--Please change your_user_name and your_password below-->
                 <username>your_user_name</username>
                 <password>your_password</password>
@@ -103,12 +100,13 @@ This way, your entire organization can use these archetypes from your organizati
 4. Separation of aggregating and parent POM
 5. Move to Jetty 9.1.2.v20140210
 6. Move to JDK 7
-7. Fixing reported bugs
-8. Moved RSS target feed for test into application
-9. Adding ES best practices for web development
-10. Migrated TODO section from this file into GitHub Issues section
-11. Upgrade to Mosaic Tools 0.9.5
-12. Adding best practices for widget lifecycle through use of YAPI (Mosaic Tools)
+7. Introduction to NodeJS
+8. Fixing reported bugs
+9. Moved RSS target feed for test into application
+10. Adding ES best practices for web development
+11. Migrated TODO section from this file into GitHub Issues section
+12. Upgrade to latest Mosaic Tools (1.x)
+13. Adding best practices for widget lifecycle through use of Mosaic Tools / YAPI / Grunt / NodeJS Proxy
 
 5.4.2.2 
 

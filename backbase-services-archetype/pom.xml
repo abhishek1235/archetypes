@@ -17,7 +17,7 @@
     <url>https://github.com/Backbase/archetypes/backbase-services-archetype</url>
 
     <properties>
-        <mashupservices.version>5.5.0.0.LP.0.9.0</mashupservices.version>
+        <mashupservices.version>5.5.0.0.LP.0.10.0</mashupservices.version>
     </properties> 
 
     <build>

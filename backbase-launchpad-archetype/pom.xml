@@ -12,7 +12,7 @@
     <artifactId>backbase-launchpad-archetype</artifactId>
     <packaging>maven-archetype</packaging>
 
-    <name>Backbase Portal Foundation with Launchpad Archetype</name>
+    <name>Backbase Portal Foundation with Launchpad Foundation Archetype</name>
     <description>A blank Maven archetype for the Backbase Portal Foundation with Launchpad Foundation enabled. This one contains integrated Mashup Services and Targeting with necessery configuration files already there.</description>
     <url>https://github.com/Backbase/archetypes/backbase-launchpad-archetype</url>
 

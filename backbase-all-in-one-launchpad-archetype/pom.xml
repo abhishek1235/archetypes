@@ -12,8 +12,8 @@
     <artifactId>backbase-all-in-one-launchpad-archetype</artifactId>
     <packaging>maven-archetype</packaging>
 
-    <name>Backbase Portal All-In-One with Launchpad Archetype</name>
-    <description>A blank Maven archetype for the Backbase Portal server running on a single JVM instance. This one contains integrated Mashup Services, Targeting, Content Services, Orchestrator and Launchpad with necessery configuration files already there.</description>
+    <name>Backbase Portal All-In-One with Launchpad Foundation Archetype</name>
+    <description>A blank Maven archetype for the Backbase Portal server running on a single JVM instance. This one contains integrated Mashup Services, Targeting, Content Services, Orchestrator and Launchpad Foundation with necessery configuration files already there.</description>
     <url>https://github.com/Backbase/archetypes/backbase-all-in-one-launchpad-archetype</url>
 
     <properties>

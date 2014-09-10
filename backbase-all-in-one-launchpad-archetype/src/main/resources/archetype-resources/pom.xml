@@ -506,6 +506,10 @@
                             <value>http://localhost:${mashupservices.port}/mashupservices-webapp/proxy</value>
                         </systemProperty>-->
                         <systemProperty>
+                            <name>portalserver.language</name>
+                            <value>en</value>
+                        </systemProperty>
+                        <systemProperty>
                             <name>net.sf.ehcache.disabled</name>
                             <value>\${ehcache.disabled}</value>
                         </systemProperty>

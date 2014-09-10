@@ -17,9 +17,10 @@
         <project.reporting.outputEncoding>${project.reporting.outputEncoding}</project.reporting.outputEncoding>
 
         <!-- Backbase module versions -->
-        <portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
         <portal.server.version>${portal.server.version}</portal.server.version>
         <portal.client.version>${portal.client.version}</portal.client.version>
+        <portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
+
         <targeting.version>${targeting.version}</targeting.version>
         <orchestrator.version>${orchestrator.version}</orchestrator.version>
         <contentservices.version>${contentservices.version}</contentservices.version>
@@ -405,6 +406,10 @@
                             <value>http://localhost:${mashupservices.port}/mashupservices-webapp/proxy</value>
                         </systemProperty>-->
                         <systemProperty>
+                            <name>portalserver.language</name>
+                            <value>en</value>
+                        </systemProperty>
+                        <systemProperty>
                             <name>net.sf.ehcache.disabled</name>
                             <value>\${ehcache.disabled}</value>
                         </systemProperty>
@@ -615,21 +620,6 @@
                                     </srcFiles>
                                 </configuration>
                             </execution>
-                            <!--<execution>
-                                <id>createTracking</phase>
-                                <goals>
-                                    <goal>execute</goal>
-                                </goals>
-                                <configuration>
-                                    <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${portal.data.dir}/tracking</url>
-                                    <username>sa</username>
-                                    <password></password>
-                                    <srcFiles>
-                                        <srcFile>\${project.basedir}/configuration/scripts/tracking/scripts/h2/tracking_schema.ddl</srcFile>
-                                    </srcFiles>
-                                </configuration>
-                            </execution>-->
                         </executions>
                         <dependencies>
                             <dependency>
@@ -737,22 +727,6 @@
                                     </srcFiles>
                                 </configuration>
                             </execution>
-                            <!--<execution>
-                                <id>cleanTracking</phase>
-                                <phase>clean</phase>
-                                <goals>
-                                    <goal>execute</goal>
-                                </goals>
-                                <configuration>
-                                    <driver>org.h2.Driver</driver>
-                                    <url>jdbc:h2:file:\${portal.data.dir}/tracking</url>
-                                    <username>sa</username>
-                                    <password></password>
-                                    <srcFiles>
-                                        <srcFile>\${project.basedir}/configuration/scripts/tracking/scripts/h2/tracking_schema.ddl</srcFile>
-                                    </srcFiles>
-                                </configuration>
-                            </execution>-->
                         </executions>
                         <dependencies>
                             <dependency>
@@ -801,7 +775,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
-                        <version>2.3</version>
+                        <version>2.4</version>
                         <configuration>
                             <packagingExcludes>
                                 WEB-INF/lib/stax-api*.jar,

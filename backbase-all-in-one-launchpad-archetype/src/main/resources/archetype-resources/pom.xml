@@ -463,9 +463,9 @@
                         <port>${portal.port}</port>
                     </httpConnector>
                     <contextHandlers>
-                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                        <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
+                            <war>\${project.basedir}/target/contentservices.war</war>
                             <contextPath>/contentservices-webapp</contextPath>
-                            <resourceBase>\${project.basedir}/target/contentservices.war</resourceBase>
                             <configurationClasses>
                                 <configurationClass>org.eclipse.jetty.webapp.WebInfConfiguration</configurationClass>
                                 <configurationClass>org.eclipse.jetty.webapp.WebXmlConfiguration</configurationClass>
@@ -477,9 +477,9 @@
                                 <configurationClass>org.eclipse.jetty.webapp.TagLibConfiguration</configurationClass>
                             </configurationClasses>
                         </contextHandler>
-                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                        <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
+                            <war>\${project.basedir}/target/orchestrator.war</war>
                             <contextPath>/orchestrator-webapp</contextPath>
-                            <resourceBase>\${project.basedir}/target/orchestrator.war</resourceBase>
                             <configurationClasses>
                                 <configurationClass>org.eclipse.jetty.webapp.WebInfConfiguration</configurationClass>
                                 <configurationClass>org.eclipse.jetty.webapp.WebXmlConfiguration</configurationClass>

@@ -67,6 +67,13 @@ Edit the settings.xml file located in the .m2 folder.
                 <username>your_user_name</username>
                 <password>your_password</password>
             </server>
+            <!-- This identity is due to issue with LP 0.10 that requires this -->
+            <server>
+                <id>Backbase Artifact Repository</id>
+                <!--Please change your_user_name and your_password below-->
+                <username>your_user_name</username>
+                <password>your_password</password>
+            </server>
         </servers>
     </settings>
     ```</pre>

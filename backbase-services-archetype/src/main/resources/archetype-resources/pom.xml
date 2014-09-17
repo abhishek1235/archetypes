@@ -25,7 +25,7 @@
 
     <repositories>
         <repository>
-            <id>Backbase Repo Repository</id>
+            <id>repo.backbase.com</id>
             <url>https://repo.backbase.com/repo/</url>
         </repository>
     </repositories>

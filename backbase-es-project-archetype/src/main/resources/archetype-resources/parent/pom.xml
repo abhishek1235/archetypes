@@ -81,12 +81,12 @@
 
 	<distributionManagement>
 		<repository>
-			<id>Backbase Artifact Repository</id>
+			<id>artifacts.backbase.com</id>
 			<name>artifacts.backbase.com-releases</name>
 			<url>https://artifacts.backbase.com/backbase-ps-releases</url>
 		</repository>
 		<snapshotRepository>
-			<id>Backbase Artifact Repository</id>
+			<id>artifacts.backbase.com</id>
 			<name>artifacts.backbase.com-snapshots</name>
 			<url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
 		</snapshotRepository>

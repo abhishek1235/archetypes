@@ -55,23 +55,22 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <dependency>
+                <groupId>com.backbase.portal.contentservices</groupId>
+                <artifactId>contentservices-webapp</artifactId>
+                <version>\${contentservices.version}</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>com.backbase.portal.orchestrator</groupId>
+                <artifactId>orchestrator-webapp</artifactId>
+                <version>\${orchestrator.version}</version>
+                <type>war</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>com.backbase.portal.contentservices</groupId>
-            <artifactId>contentservices-webapp</artifactId>
-            <version>\${contentservices.version}</version>
-            <type>war</type>
-        </dependency>
-        <dependency>
-            <groupId>com.backbase.portal.orchestrator</groupId>
-            <artifactId>orchestrator-webapp</artifactId>
-            <version>\${orchestrator.version}</version>
-            <type>war</type>
-        </dependency>
-
         <!-- Backbase core modules -->
         <dependency>
             <groupId>com.backbase.portal.foundation</groupId>
@@ -224,29 +223,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <overlays>
-                        <overlay>
-                            <groupId>com.backbase.portal.contentservices</groupId>
-                            <artifactId>contentservices-webapp</artifactId>
-                            <excludes>
-                                <exclude>**/*</exclude>
-                            </excludes>
-                        </overlay>
-                        <overlay>
-                            <groupId>com.backbase.portal.orchestrator</groupId>
-                            <artifactId>orchestrator-webapp</artifactId>
-                            <excludes>
-                                <exclude>**/*</exclude>
-                            </excludes>
-                        </overlay>
-                    </overlays>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

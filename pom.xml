@@ -33,7 +33,7 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>tag-archetypes-5.5.0.0</tag>
+        <tag>tag-archetypes-5.5.0.4</tag>
     </scm>
 
     <modules>
@@ -48,5 +48,6 @@
         <module>backbase-portalserver-archetype</module>
         <module>backbase-services-archetype</module>
         <module>backbase-targeting-archetype</module>
+        <!--<module>backbase-forms-archetype</module>-->
     </modules>
 </project>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>\${groupId}</groupId>
+        <artifactId>parent</artifactId>
+        <version>\${version}</version>
+    </parent>
+
+    <artifactId>plugins</artifactId>
+
+    <dependencies>
+        <!-- Forms SDK -->
+        <dependency>
+            <groupId>com.aquima</groupId>
+            <artifactId>aquima-sdk-oem</artifactId>
+            <version>${forms.sdk.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aquima</groupId>
+            <artifactId>aquima-web</artifactId>
+            <version>${forms.web.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aquima</groupId>
+            <artifactId>sdk-test</artifactId>
+            <version>${forms.test.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Required Spring libraries -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<scope>provided</scope>
+		</dependency>
+        
+        <!-- Servlet API -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Mockito to create mocks for unit tests -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/java</directory>
+                <excludes>
+                    <!-- Ignore integration tests during normal build -->
+                    <exclude>**/*IT.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+    </build>
+</project>

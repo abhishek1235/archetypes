@@ -34,6 +34,11 @@
         <theme.name>default</theme.name>
         <mobile.version>5.5.0.0</mobile.version>
 
+        <forms.runtime.version>5.2.3</forms.runtime.version>
+        <forms.sdk.version>5.2.3.1</forms.sdk.version>
+        <forms.test.version>5.2.3</forms.test.version>
+        <forms.web.version>5.2.3.1</forms.web.version>
+
         <!-- Mosaic dependency versions -->
         <mosaic.tools.version>1.1</mosaic.tools.version>
         
@@ -83,6 +88,8 @@
         <targeting.port.stop>9997</targeting.port.stop>
         <theme.port>8085</theme.port>
         <theme.port.stop>9998</theme.port.stop>
+        <forms.runtime.port>8086</forms.runtime.port>
+        <forms.runtime.port.stop>9999</forms.runtime.port.stop>
     </properties>
 
     <!-- Do  not change repo id's here due to Backbase ES Jenkins -->
@@ -130,6 +137,31 @@
     </developers>
     
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.js</exclude>
+                    <exclude>**/*.ico</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources/</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+            </extension>
+        </extensions>
+
         <pluginManagement>
             <plugins>
                 <plugin>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>\${groupId}</groupId>
+        <artifactId>parent</artifactId>
+        <version>\${version}</version>
+    </parent>
+
+    <artifactId>runtime</artifactId>
+    <packaging>war</packaging>
+
+    <properties>
+        <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
+
+        <!-- Forms-home folder. Requires to be generated before you run this project-->
+        <forms.home>\${project.parent.basedir}/home/target/test-classes</forms.home>
+    </properties>
+
+    <dependencies>
+
+        <!-- Forms runtime WAR overlay -->
+        <dependency>
+            <groupId>com.backbase.forms</groupId>
+            <artifactId>forms-runtime</artifactId>
+            <version>${forms.runtime.version}</version>
+            <type>war</type>
+        </dependency>
+
+        <!-- Development required Forms SDK -->
+        <!--<dependency>
+            <groupId>com.aquima</groupId>
+            <artifactId>aquima-sdk-oem</artifactId>
+            <version>${forms.sdk.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aquima</groupId>
+            <artifactId>aquima-web</artifactId>
+            <version>${forms.web.version}</version>
+            <scope>provided</scope>
+        </dependency>-->
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Forms plugins -->
+        <dependency>
+            <groupId>\${groupId}</groupId>
+            <artifactId>plugins</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>forms-runtime</finalName>
+
+        <testResources>
+            <testResource>
+                <directory>configuration</directory>
+                <filtering>true</filtering>
+                <targetPath>configuration</targetPath>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <stopKey>foo</stopKey>
+                    <stopPort>${forms.runtime.port.stop}</stopPort>
+                    <scanIntervalSeconds>1</scanIntervalSeconds>
+                    <jettyConfig>\${project.build.testOutputDirectory}/configuration/jetty/jetty.xml</jettyConfig>
+                    <webAppConfig>
+                        <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
+                        <contextPath>/forms-runtime</contextPath>
+                        <resourceBases>
+                            <!-- DEFAULT -->
+                            <resourceBase>\${project.basedir}/src/main/webapp</resourceBase>
+                            <resourceBase>\${work.dir}</resourceBase>
+                        </resourceBases>
+                    </webAppConfig>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>${forms.runtime.port}</port>
+                        </connector>
+                    </connectors>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.mail</groupId>
+                        <artifactId>mail</artifactId>
+                        <version>${javax.mail.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.3.154</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                            <skip>\${skipTests}</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <!-- or if you want to use tomcat 6.x
+                <artifactId>tomcat6-maven-plugin</artifactId>
+                -->
+                <configuration>
+                    <!-- http port -->
+                    <port>${forms.runtime.port}</port>
+                    <!--<tomcat-url>http://localhost:8080/manager/html</tomcat-url>-->
+                    <!-- application path always starts with /-->
+                    <!--<path>/\${project.build.finalName}</path>-->
+                    <path>/forms-runtime</path>
+                    <!-- optional, needed only if you want to use a preconfigured server.xml file -->
+                    <!-- <serverXml>\${project.build.testOutputDirectory}/configuration/tomcat/server.xml</serverXml>-->
+                    <!-- optional path to a context file -->
+                    <contextFile>\${configuration.dir}/target/configuration/tomcat/context.xml</contextFile>
+                    <!-- if you want to use test dependencies rather than only runtime -->
+                    <useTestClasspath>false</useTestClasspath>
+                    <!-- optional if you want to add some extra directories into the classloader -->
+                    <additionalClasspathDirs>
+                        <additionalClasspathDir></additionalClasspathDir>
+                    </additionalClasspathDirs>
+                    <addContextWarDependencies>true</addContextWarDependencies>
+                    <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+                    <warSourceDirectory>\${project.build.directory}/\${project.build.finalName}/</warSourceDirectory>
+                </configuration>
+                <!-- For any extra dependencies needed when running embedded Tomcat (not WAR dependencies) add them below -->
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.mail</groupId>
+                        <artifactId>mail</artifactId>
+                        <version>${javax.mail.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.3.154</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

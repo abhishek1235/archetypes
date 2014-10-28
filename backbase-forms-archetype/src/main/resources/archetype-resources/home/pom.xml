@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>\${groupId}</groupId>
+		<artifactId>parent</artifactId>
+        <version>\${version}</version>
+	</parent>
+
+	<artifactId>home</artifactId>
+
+	<properties>
+		<work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
+
+        <environment>dev</environment>
+	</properties>
+
+	<build>
+		<finalName>forms-home</finalName>
+
+        <!-- Add everyting as test resources, filter and output to target/test-classes -->
+        <testResources>
+            <testResource>
+                <directory>web-resources/</directory>
+                <targetPath>web-resources/</targetPath>
+                <filtering>false</filtering>
+                <excludes>
+                    <!-- Do not the folder where all the values are stored -->
+                    <exclude>**/*.less</exclude>
+                    <exclude>**/less</exclude>
+                    <exclude>**/vendor/bootstrap/**</exclude>
+                </excludes>
+            </testResource>
+            <testResource>
+                <directory />
+                <filtering>true</filtering>
+                <excludes>
+                    <!-- Do not the folder where all the values are stored -->
+                    <exclude>configuration/</exclude>
+                    <exclude>target/</exclude>
+                    <exclude>lib/</exclude>
+                    <exclude>exports/**</exclude>
+                    <exclude>*.h2.*</exclude>
+                    <exclude>*.iml</exclude>
+                    <exclude>web-resources/</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <!-- Read external properties -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>\${project.basedir}/configuration/\${environment}.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <!-- Copy over the libs, without filtering to avoid corupped files-->
+                    <!--<execution>
+                        <id>libs</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>\${project.build.testOutputDirectory}/lib</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>lib</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>-->
+                    <!-- Copy over the h2 database, without filtering to avoid corupped files-->
+                    <!--<execution>
+                        <id>h2</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>\${project.build.testOutputDirectory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>*.h2.*</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>-->
+                    <!-- Copy over the exports, without filtering to avoid corupped files-->
+                    <execution>
+                        <id>exports</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>\${project.build.testOutputDirectory}/exports</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>exports</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+	</build>
+</project>

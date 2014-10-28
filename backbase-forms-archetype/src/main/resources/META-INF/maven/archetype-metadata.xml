@@ -1,7 +1,7 @@
 <archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                       xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-                      name="Backbase Portal All-In-One Archetype">
+                      name="Backbase Forms Archetype">
 
     <fileSets>
         <fileSet filtered="false" encoding="UTF-8">
@@ -9,47 +9,47 @@
             <includes>
                 <include>build.bat</include>
                 <include>build.sh</include>
-                <include>initial_build.bat</include>
-                <include>initial_build.sh</include>
-                <include>start.bat</include>
-                <include>start.sh</include>
+                <include>README.md</include>
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>configuration</directory>
+            <directory>home/documents</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>tools</directory>
+            <directory>home/lib</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>home</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>parent</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/test/resources</directory>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8" packaged="true">
-            <directory>src/test/java</directory>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8" packaged="false">
-            <directory>src/main/java</directory>
+            <directory>plugins/src/test/resources</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/webapp/static</directory>
+            <directory>plugins/src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>plugins</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>runtime/src/test/resources</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>runtime/src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>runtime/src/main/webapp/static</directory>
             <includes>
                 <include>version.txt</include>
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/webapp</directory>
+            <directory>runtime/src/main/webapp</directory>
         </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/dashboardResources</directory>
-        </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/coreResources</directory>
-        </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/resources</directory>
-        </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/config-info</directory>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>runtime</directory>
         </fileSet>
     </fileSets>
 </archetype-descriptor>

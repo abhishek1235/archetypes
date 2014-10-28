@@ -28,7 +28,7 @@
         <fileSet filtered="false" encoding="UTF-8">
             <directory>portal/src/main/resources</directory>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
+        <fileSet filtered="false" encoding="UTF-8">
             <directory>portal/src/main/webapp/static</directory>
             <includes>
                 <include>version.txt</include>
@@ -40,7 +40,7 @@
         <fileSet filtered="true" encoding="UTF-8">
             <directory>portal</directory>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
+        <fileSet filtered="false" encoding="UTF-8">
             <directory>contentservices/src/main/webapp/static</directory>
             <includes>
                 <include>version.txt</include>
@@ -52,7 +52,7 @@
         <fileSet filtered="true" encoding="UTF-8">
             <directory>contentservices</directory>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
+        <fileSet filtered="false" encoding="UTF-8">
             <directory>orchestrator/src/main/webapp/static</directory>
             <includes>
                 <include>version.txt</include>

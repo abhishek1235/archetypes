@@ -52,7 +52,7 @@
     <filter>
         <filter-name>uAgentOverrideFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
+    </filter>    
     <!-- Filter for setting the UAgentInfo -->
     <filter>
         <filter-name>uAgentInfoGatheringFilter</filter-name>
@@ -161,7 +161,6 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <!-- Handles PTC requests -->
     <servlet>
         <servlet-name>PTC Servlet</servlet-name>
         <servlet-class>com.backbase.portal.foundation.presentation.renderer.PtcServlet</servlet-class>
@@ -204,6 +203,11 @@
 
     <env-entry>
         <env-entry-name>backbase/config</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+    </env-entry>
+
+    <env-entry>
+        <env-entry-name>backbase/camel-services-config</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
     </env-entry>
 

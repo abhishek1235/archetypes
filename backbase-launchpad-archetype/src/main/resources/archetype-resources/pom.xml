@@ -18,6 +18,7 @@
         <project.reporting.outputEncoding>${project.reporting.outputEncoding}</project.reporting.outputEncoding>
 
         <!-- Backbase module versions -->
+        <portal.bom.version>${portal.bom.version}</portal.bom.version>
         <portal.server.version>${portal.server.version}</portal.server.version>
         <portal.client.version>${portal.client.version}</portal.client.version>
         <portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
@@ -59,6 +60,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.backbase.portal</groupId>
+                <artifactId>portal-bom</artifactId>
+                <version>${portal.bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
             <dependency>
                 <groupId>com.sun.xml.fastinfoset</groupId>
                 <artifactId>FastInfoset</artifactId>
@@ -150,33 +158,6 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>${spring.security.framework.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-expression</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-aop</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.security</groupId>
-                    <artifactId>spring-security-acl</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- default authentication plugin -->
@@ -366,6 +347,7 @@
                         <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
                             <resourcesAsCSV>\${project.basedir}/src/main/webapp;\${work.dir}</resourcesAsCSV>
                         </baseResource>
+                        <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
                     </webApp>
                     <httpConnector>
                          <port>${portal.port}</port>

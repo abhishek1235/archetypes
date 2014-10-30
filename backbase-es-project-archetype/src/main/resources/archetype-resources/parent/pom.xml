@@ -25,6 +25,7 @@
 		<maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
 		
 		<!-- Backbase module versions -->
+		<portal.bom.version>${portal.bom.version}</portal.bom.version>
 		<portal.server.version>${portal.server.version}</portal.server.version>
 		<portal.client.version>${portal.client.version}</portal.client.version>
 		<portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
@@ -504,17 +505,6 @@
 				<version>1.9.4.1</version>
 				<scope>test</scope>
 			</dependency>
-			<dependency>
-                <groupId>com.sun.xml.fastinfoset</groupId>
-                <artifactId>FastInfoset</artifactId>
-                <version>1.2.12</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jsr173_api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
 		</dependencies>
 	</dependencyManagement>
 </project>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>backbase-parent-archetype</artifactId>
-        <version>5.5.0.4-SNAPSHOT</version>
+        <version>5.5.1.0-SNAPSHOT</version>
         <relativePath>../backbase-parent-archetype/pom.xml</relativePath>
     </parent>
 
@@ -51,6 +52,13 @@
             <groupId>com.backbase.portal.foundation</groupId>
             <artifactId>security-portalserver</artifactId>
             <version>${portal.server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.portal</groupId>
+            <artifactId>dashboard</artifactId>
+            <version>${portal.dashboard.version}</version>
+            <classifier>min</classifier>
+            <type>zip</type>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.targeting</groupId>
@@ -209,6 +217,7 @@
                                     <groupId>com.backbase.portal.manager</groupId>
                                     <artifactId>resources</artifactId>
                                     <type>zip</type>
+                                    <includes>**\/uiEditingOptions.js</includes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration/scripts/manager</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
@@ -227,6 +236,22 @@
                                     <groupId>com.backbase.services.mashup</groupId>
                                     <artifactId>ptc-core</artifactId>
                                     <includes>**\/backbase-ptc.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal</groupId>
+                                    <artifactId>dashboard</artifactId>
+                                    <classifier>min</classifier>
+                                    <type>zip</type>
+                                    <includes>**\/ptc-config.xml</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/configuration</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.portal</groupId>
+                                    <artifactId>dashboard</artifactId>
+                                    <classifier>min</classifier>
+                                    <type>zip</type>
+                                    <includes>**\/ptc-ehcache-config.xml,**\/ptc-ehcache-config-jgroups-example.xml</includes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/src/main/resources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
@@ -267,6 +292,28 @@
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>fix-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target> 
+                                <move file="${project.build.outputDirectory}/archetype-resources/configuration/WEB-INF/classes/ptc-config.xml" todir="${project.build.outputDirectory}/archetype-resources/configuration/" />
+                                <delete dir="${project.build.outputDirectory}/archetype-resources/configuration/WEB-INF" />
+                                <move file="${project.build.outputDirectory}/archetype-resources/src/main/resources/WEB-INF/classes/ptc-ehcache-config.xml" todir="${project.build.outputDirectory}/archetype-resources/src/main/resources/" />
+                                <move file="${project.build.outputDirectory}/archetype-resources/src/main/resources/WEB-INF/classes/ptc-ehcache-config-jgroups-example.xml" todir="${project.build.outputDirectory}/archetype-resources/src/main/resources/" />
+                                <delete dir="${project.build.outputDirectory}/archetype-resources/src/main/resources/WEB-INF" />
+                            </target>
                         </configuration>
                     </execution>
                 </executions>

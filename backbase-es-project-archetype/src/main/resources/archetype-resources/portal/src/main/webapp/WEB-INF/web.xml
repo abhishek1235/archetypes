@@ -53,7 +53,7 @@
     <filter>
         <filter-name>uAgentOverrideFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
+    </filter>    
     <!-- Filter for setting the UAgentInfo -->
     <filter>
         <filter-name>uAgentInfoGatheringFilter</filter-name>
@@ -98,11 +98,6 @@
         <filter-name>urlFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
-    <!-- Filter for faking authentication -->
-    <filter>
-        <filter-name>fakeAuthenticationFilter</filter-name>
-        <filter-class>com.backbase.services.FakeAuthenticationFilter</filter-class>
-    </filter>
 
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
@@ -136,10 +131,6 @@
         <filter-name>urlFilter</filter-name>
         <servlet-name>Portal Foundation Spring MVC</servlet-name>
     </filter-mapping>
-    <filter-mapping>
-        <filter-name>fakeAuthenticationFilter</filter-name>
-        <servlet-name>Mashup Servlet</servlet-name>
-    </filter-mapping>
 
     <!-- Creates the Spring Container shared by all Servlets and Filters -->
     <listener>
@@ -161,17 +152,6 @@
         <param-value>com.backbase.portal.foundation.integration.context.BackbaseContextInitializer,com.backbase.portal.ptc.config.PtcApplicationContextInitializer</param-value>
     </context-param>
 
-    <!-- launchpad server push mechanism start (boostrap Atmosphere framework) -->
-    <!--<servlet>
-        <description>AtmosphereServlet</description>
-        <servlet-name>AtmosphereServlet</servlet-name>
-        <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
-        <init-param>
-            <param-name>org.atmosphere.cpr.packages</param-name>
-            <param-value>com.backbase.launchpad.services.notification.provider</param-value>
-        </init-param>
-        <load-on-startup>0</load-on-startup>
-    </servlet>-->
     <!-- Handles Foundation Spring requests -->
     <servlet>
         <servlet-name>Portal Foundation Spring MVC</servlet-name>
@@ -182,26 +162,28 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <!-- Handles Integration Services requests -->
     <servlet>
-       <servlet-name>Mashup Servlet</servlet-name>
-       <servlet-class>com.backbase.mashup.camel.servlet.MashupServlet</servlet-class>
-       <load-on-startup>2</load-on-startup>
+        <servlet-name>Mashup Servlet</servlet-name>
+        <servlet-class>com.backbase.mashup.camel.servlet.MashupServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>PTC Servlet</servlet-name>
         <servlet-class>com.backbase.portal.foundation.presentation.renderer.PtcServlet</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
-
-    <!--<servlet-mapping>
+    <!-- Launchpad server push mechanism start (boostrap Atmosphere framework) -->
+    <!--<servlet>
+        <description>AtmosphereServlet</description>
         <servlet-name>AtmosphereServlet</servlet-name>
-        <url-pattern>/event/*</url-pattern>
-    </servlet-mapping>-->
-    <servlet-mapping>
-        <servlet-name>Portal Foundation Spring MVC</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
+        <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+        <init-param>
+            <param-name>org.atmosphere.cpr.packages</param-name>
+            <param-value>com.backbase.launchpad.services.notification.provider</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>-->
+
     <servlet-mapping>
         <servlet-name>PTC Servlet</servlet-name>
         <url-pattern>/proxy/*</url-pattern>
@@ -210,6 +192,14 @@
         <servlet-name>Mashup Servlet</servlet-name>
         <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Portal Foundation Spring MVC</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <!--<servlet-mapping>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <url-pattern>/event/*</url-pattern>
+    </servlet-mapping>-->
 
     <session-config>
         <session-timeout>20</session-timeout>
@@ -242,7 +232,7 @@
     </env-entry>
 
     <env-entry>
-        <env-entry-name>backbase/services-config</env-entry-name>
+        <env-entry-name>backbase/camel-services-config</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
     </env-entry>
 

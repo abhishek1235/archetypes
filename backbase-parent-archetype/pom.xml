@@ -22,7 +22,7 @@
         <!-- Backbase dependency versions -->
         <portal.bom.version>5.5.1.0</portal.bom.version>
         <portal.server.version>5.5.1.0</portal.server.version>
-        <portal.client.version>5.2.0.1</portal.client.version>
+        <portal.client.version>5.2.0.0</portal.client.version>
         <portal.dashboard.version>5.5.1.0</portal.dashboard.version>
         <portal.tools.version>5.5.1.0</portal.tools.version>
         <portal.mobile.version>5.5.1.0</portal.mobile.version>

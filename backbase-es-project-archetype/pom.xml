@@ -78,13 +78,6 @@
             <version>${portal.dashboard.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.backbase.portal</groupId>
-            <artifactId>dashboard</artifactId>
-            <type>zip</type>
-            <classifier>min</classifier>
-            <version>${portal.dashboard.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.backbase.portal.contentservices</groupId>
             <artifactId>repository</artifactId>
             <classifier>ddl-scripts</classifier>

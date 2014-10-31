@@ -117,6 +117,7 @@
                     <webApp>
                         <defaultsDescriptor>\${project.build.testOutputDirectory}/configuration/jetty/webdefaults.xml</defaultsDescriptor>
                         <contextPath>/targeting-webapp</contextPath>
+                        <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
                     </webApp>
                     <httpConnector>
                         <port>${targeting.port}</port>

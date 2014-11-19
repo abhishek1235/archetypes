@@ -1,6 +1,6 @@
 # Archetype backbase-portalserver-archetype
 
-Version **5.5.0.0**
+Version **5.5.1.0**
 
 ##Overview
 A blank Maven archetype for the Backbase Portal Foundation. This archetype contains integrated Mashup Services and Targeting (default configuration) with all necessery configuration files already pre-configured.
@@ -23,7 +23,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-portalserver-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.5.0.0
+        -DarchetypeVersion=5.5.1.0
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
 2. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  

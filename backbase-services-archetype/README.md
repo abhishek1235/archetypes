@@ -1,6 +1,6 @@
 # Archetype backbase-services-archetype
 
-Version **5.5.0.0**
+Version **5.5.1.0**
 
 ##Overview
 This archetype allows you to develop custom Backbase Services based on Apache Camel bundled with Backbase CXP.
@@ -19,7 +19,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-services-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.5.0.0
+        -DarchetypeVersion=5.5.1.0
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
 2. In order to integrate Services with your Portal Foundation you need to declare Maven dependencies inside Portal Foundation's POM toward this Services module.  

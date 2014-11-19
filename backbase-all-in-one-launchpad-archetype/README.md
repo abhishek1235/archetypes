@@ -1,6 +1,6 @@
 # Archetype backbase-all-in-one-launchpad-archetype
 
-Version **5.5.0.0**
+Version **5.5.1.0**
 
 ##Overview
 A blank Maven archetype that allows you to run a Backbase Portal Foundation running on a single JVM instance (Jetty, Tomcat 6, or Tomcat 7) along with all the other Backbase Portal modules (Mashup Services, Targeting, Content Services and Publishing) and Launchpad Foundation on top pre-configured and ready to use.
@@ -27,7 +27,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-all-in-one-launchpad-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.5.0.0
+        -DarchetypeVersion=5.5.1.0
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
 2. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  

@@ -1,6 +1,6 @@
 # Archetype backbase-mashupservices-archetype
 
-Version **5.5.0.0**
+Version **5.5.1.0**
 
 ##Overview
 This archetype allows you to run as standalone and customize according to your specific needs Backbase Mashup Services. We are basically creating a standard Maven WAR overlay of Backbase Mashup Services WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
@@ -19,7 +19,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-mashupservices-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.5.0.0
+        -DarchetypeVersion=5.5.1.0
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
 2. Optionally adjust JMV properties, differently configure the logback, or make some changes to one or more of the following configuration files:

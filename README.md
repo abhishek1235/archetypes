@@ -1,6 +1,6 @@
 #Archetypes
 
-Version **5.5.0.0**
+Version **5.5.1.0**
 
 ##Overview
 A collection of Maven archetypes for Backbase CXP created by Expert Services that can help help with initial project setup and various project customizations.
@@ -100,6 +100,15 @@ Optionally, you can also install these archetypes into a Maven repository within
 This way, your entire organization can use these archetypes from your organization's Maven repository. 
 
 ## History of Changes
+5.5.1.0 
+
+1. Alignement of all existing archetypes with Backbase CXP 5.5.1.0 and Launchpad 0.10.1
+2. Aligning release process with other Mosiac projects
+3. Fixing reported bugs
+4. Removed custom RSS feed XSL where applicable since default one is working fine
+5. Removed FakeAuthentication filter where applicable since no need for it any more
+6. Bundling Mosaic Reference bundle (0.5.1) where applicable
+
 5.5.0.0 
 
 1. Initial version of Launchpad Archetype and Backbase CXP ES Project Archetype with Launchpad 0.10.0 and Services Archetype. 
@@ -113,8 +122,9 @@ This way, your entire organization can use these archetypes from your organizati
 9. Moved RSS target feed for test into application
 10. Adding ES best practices for web development
 11. Migrated TODO section from this file into GitHub Issues section
-12. Upgrade to latest Mosaic Tools (1.x)
+12. Upgrade to latest Mosaic Tools (1.0)
 13. Adding best practices for widget lifecycle through use of Mosaic Tools / YAPI / Grunt / NodeJS Proxy
+14. Out-of-box ehcache configuration files in src/main/resources of all relevant components
 
 5.4.2.2 
 

@@ -1,6 +1,6 @@
 # Archetype backbase-orchestrator-archetype
 
-Version **5.5.0.0**
+Version **5.5.1.0**
 
 ##Overview
 This archetype allows you to customize Backbase Orchestrator according to your specific needs. We are basically creating a standard Maven WAR overlay of Standalone Backbase Orchestrator WAR. More info on how WAR overlay works you can find [here](http://maven.apache.org/plugins/maven-war-plugin/overlays.html).
@@ -19,7 +19,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-orchestrator-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.5.0.0
+        -DarchetypeVersion=5.5.1.0
     </pre>
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
 2. Optionally adjust JMV properties, differently configure the Logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Publishing](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_orch).  

@@ -341,7 +341,7 @@
 			<dependency>
 				<groupId>com.backbase.services.mashup</groupId>
 				<artifactId>mashup-camel-service-deps</artifactId>
-				<version>5.5.0.0.LP.0.10.0</version>
+				<version>\${mashupservices.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

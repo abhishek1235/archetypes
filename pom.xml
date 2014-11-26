@@ -37,6 +37,12 @@
     <profiles>
         <profile>
             <id>backbase.com/repo</id>
+            <activation>
+                <!-- Activation by existance of a property. Run with -DdeployToRepo -->
+                <property>
+                    <name>deployToRepo</name>
+                </property>
+            </activation>
             <distributionManagement>
                 <repository>
                     <id>repo.backbase.com</id>
@@ -52,6 +58,12 @@
         </profile>
         <profile>
             <id>backbase.com/artifacts</id>
+            <activation>
+                <!-- Activation by absence of a property. Run normally, without -DdeployToRepo -->
+                <property>
+                    <name>!deployToRepo</name>
+                </property>
+            </activation>
             <distributionManagement>
                 <repository>
                     <id>artifacts.backbase.com</id>

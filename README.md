@@ -47,8 +47,14 @@ Edit the settings.xml file located in the .m2 folder.
                     <activeByDefault>true</activeByDefault>
                 </activation>
                 <repositories>
+                    <!-- Main product repository -->
                     <repository>
                         <id>repo.backbase.com</id>
+                        <url>https://repo.backbase.com/repo/</url>
+                    </repository>
+                    <!-- Internal development repository is due to mobile services until it gets properly released -->
+                    <repository>
+                        <id>artifacts.backbase.com</id>
                         <url>https://repo.backbase.com/repo/</url>
                     </repository>
                 </repositories>
@@ -61,13 +67,21 @@ Edit the settings.xml file located in the .m2 folder.
             </profile>
         </profiles>
         <servers>
+            <!-- Main product repository -->
             <server>
                 <id>repo.backbase.com</id>
                 <!--Please change your_user_name and your_password below-->
                 <username>your_user_name</username>
                 <password>your_password</password>
             </server>
-            <!-- This identity is due to issue with LP 0.10 that requires this -->
+            <!-- Internal development repository is due to mobile services until it gets properly released -->
+            <server>
+                <id>artifacts.backbase.com</id>
+                <!--Please change your_user_name and your_password below-->
+                <username>your_user_name</username>
+                <password>your_password</password>
+            </server>
+            <!-- This identity is due to bug with LP 0.10 that requires this -->
             <server>
                 <id>Backbase Artifact Repository</id>
                 <!--Please change your_user_name and your_password below-->
@@ -103,11 +117,10 @@ This way, your entire organization can use these archetypes from your organizati
 5.5.1.0 
 
 1. Alignement of all existing archetypes with Backbase CXP 5.5.1.0 and Launchpad 0.10.1
-2. Aligning release process with other Mosiac projects
+2. Aligning release process with other Mosiac projects based on two distribution repository profiles
 3. Fixing reported bugs
 4. Removed custom RSS feed XSL where applicable since default one is working fine
 5. Removed FakeAuthentication filter where applicable since no need for it any more
-6. Bundling Mosaic Reference bundle (0.5.1) where applicable
 
 5.5.0.0 
 

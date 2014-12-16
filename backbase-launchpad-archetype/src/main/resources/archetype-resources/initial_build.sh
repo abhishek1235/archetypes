@@ -1,2 +1,2 @@
 #!/bin/sh
-mvn clean package -P install-less,create-database
+mvn clean install -P create-database

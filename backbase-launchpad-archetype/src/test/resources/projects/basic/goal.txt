@@ -1,1 +1,1 @@
-clean install -Pinstall-less -Pcreate-database
+clean install -Pcreate-database

@@ -1,1 +1,1 @@
-call mvn clean package -P install-less,create-database
+call mvn install package -P create-database

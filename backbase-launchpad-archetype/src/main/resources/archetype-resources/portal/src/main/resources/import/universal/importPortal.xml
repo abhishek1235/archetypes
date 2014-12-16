@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!-- Copyright (c) 2011 Backbase B.V. -->
+<backbase-portal-import>
+    <!-- ** USER AND GROUPS ** -->
+    <groups>
+        <file>groups.xml</file>
+    </groups>
+    <!-- ** Launchpad ** -->
+    <templates>
+        <file>launchpad/template-pages.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </templates>
+    <templates>
+        <file>launchpad/template-containers.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </templates>
+    <containers>
+        <file>launchpad/catalog-containers.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </containers>
+    <widgets>
+        <file>launchpad/bundles/launchpad.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/bundles/launchpad-messaging.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+    <widgets>
+        <file>launchpad/bundles/launchpad-universal.xml</file>
+        <rights-file>launchpad/rights/rights-default.xml</rights-file>
+    </widgets>
+
+    <templates>
+        <file>../defaultImportData/templates.xml</file>
+    </templates>
+
+    <!-- Darts -->
+    <containers>
+        <file>backbase.com.2012.darts/catalog-containers.xml</file>
+    </containers>
+    <templates>
+        <file>backbase.com.2012.darts/template-containers.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+
+    <!-- ** Portal Manager ** -->
+     <containers>
+        <file>backbase.com.2013.aurora/catalog-containers-adminDesignerOnly.xml</file>
+    </containers>
+     <templates>
+        <file>backbase.com.2012.aurora/template-widgets.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2012.aurora/template-containers.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2012.aurora/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2013.aurora/template-containers.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2013.aurora/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2011.spitfire/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+    <templates>
+        <file>backbase.com.2012.sabre/template-pages.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/adminManagerRights.xml</rights-file>
+    </templates>
+
+     <containers>
+        <file>backbase.com.2012.aurora/catalog-containers-adminDesignerOnly.xml</file>
+    </containers>
+
+    ${dashboard.start}
+    <portal-import>
+        <name>dashboard</name>
+        <file>backbase.com.2011.spitfire/instance-portal.xml</file>
+        <rights-file>backbase.com.2011.spitfire/rights/ManagerConsumerRights.xml</rights-file>
+        <containers>
+            <file>backbase.com.2011.spitfire/instance-containers.xml</file>
+        </containers>
+        <widgets>
+            <file>backbase.com.2011.spitfire/instance-widgets.xml</file>
+        </widgets>
+        <widgets>
+            <file>backbase.com.2011.ice/instance-widgets.xml</file>
+        </widgets>
+        <widgets>
+            <file>backbase.com.2012.nexus/instance-widgets.xml</file>
+        </widgets>
+        <widgets>
+            <file>backbase.com.2012.tango/instance-widgets.xml</file>
+        </widgets>
+        <widgets>
+            <file>backbase.com.2011.spitfire/instance-widgets-admin-only.xml</file>
+            <rights-file>backbase.com.2011.spitfire/rights/adminOnlyRights.xml</rights-file>
+        </widgets>
+        <links>
+            <file>backbase.com.2011.spitfire/instance-links.xml</file>
+        </links>
+    </portal-import>
+    ${dashboard.end}
+</backbase-portal-import>

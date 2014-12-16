@@ -7,49 +7,60 @@
         <fileSet filtered="false" encoding="UTF-8">
             <directory></directory>
             <includes>
-                <include>build.bat</include>
-                <include>build.sh</include>
-                <include>initial_build.bat</include>
-                <include>initial_build.sh</include>
-                <include>start.bat</include>
-                <include>start.sh</include>
+                <include>README.md</include>
+                <include>pom.xml</include>
             </includes>
         </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>configuration</directory>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>parent</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>tools</directory>
+            <directory>portal/configuration</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/test/resources</directory>
+            <directory>portal/tools</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>portal/src/test/resources</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8" packaged="true">
-            <directory>src/test/java</directory>
+            <directory>portal/src/test/java</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8" packaged="false">
-            <directory>src/main/java</directory>
+            <directory>portal/src/main/java</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/webapp/static</directory>
+            <directory>portal/src/main/webapp/static</directory>
             <includes>
                 <include>version.txt</include>
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/webapp</directory>
+            <directory>portal/src/main/webapp</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/dashboardResources</directory>
+            <directory>portal/src/main/dashboardResources</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/coreResources</directory>
+            <directory>portal/src/main/coreResources</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/main/resources</directory>
+            <directory>portal/src/main/resources</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>src/main/config-info</directory>
+            <directory>portal/src/main/config-info</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>portal</directory>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>launchpad-theme</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>launchpad-theme</directory>
         </fileSet>
     </fileSets>
 </archetype-descriptor>

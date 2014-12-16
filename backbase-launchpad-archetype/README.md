@@ -31,7 +31,7 @@ Refer to [Development Setup](https://my.backbase.com/resources/documentation/por
 2. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  
 3. Use the following command to prepare the project for running.
     <pre>
-    $ mvn clean package -P install-less,create-database
+    $ mvn clean package -P create-database
     </pre>
 If you want to run Portal Foundation with Launchpad on Jetty:  
     <pre>

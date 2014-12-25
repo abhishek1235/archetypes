@@ -42,7 +42,6 @@
         <portal.data.dir>\${project.basedir}/data</portal.data.dir>
 
         <!--Launchpad settings-->
-        <launchpad.frontend>false</launchpad.frontend>
         <launchpad.edition>${launchpad.edition}</launchpad.edition>
 
         <!-- EH cache kill-switch-->
@@ -82,13 +81,6 @@
                 <artifactId>launchpad-theme</artifactId>
                 <version>\${version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.backbase.launchpad</groupId>
-                <artifactId>launchpad-widgets</artifactId>
-                <version>\${launchpad.version}</version>
-                <type>war</type>
-                <classifier>\${launchpad.edition}</classifier>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -98,11 +90,6 @@
             <groupId>com.backbase.portal.foundation</groupId>
             <artifactId>presentation</artifactId>
             <version>\${portal.server.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.backbase.launchpad</groupId>
-            <artifactId>mashup-camel-core</artifactId>
-            <version>\${launchpad.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.services.mashup</groupId>
@@ -189,6 +176,11 @@
         </dependency>
 
         <!-- Launchpad -->
+        <dependency>
+            <groupId>com.backbase.launchpad</groupId>
+            <artifactId>mashup-camel-core</artifactId>
+            <version>\${launchpad.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.backbase.launchpad</groupId>
             <artifactId>launchpad-authentication</artifactId>
@@ -320,36 +312,6 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>unpack-launchpad-bundle</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <!-- Uncomment to include demo services -->
-                                <!--
-                                <artifactItem>
-                                    <groupId>com.backbase.launchpad</groupId>
-                                    <artifactId>demo-services</artifactId>
-                                    <type>war</type>
-                                    <outputDirectory>${project.basedir}/target</outputDirectory>
-                                    <destFileName>demo-services.war</destFileName>
-                                </artifactItem>
-                                -->
-                                <artifactItem>
-                                    <groupId>com.backbase.launchpad</groupId>
-                                    <artifactId>launchpad-widgets</artifactId>
-                                    <type>war</type>
-                                    <classifier>${launchpad.edition}</classifier>
-                                    <outputDirectory>\${project.build.directory}/launchpad</outputDirectory>
-                                    <destFileName>launchpad.war</destFileName>
-                                    <excludes>META-INF</excludes>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -373,19 +335,6 @@
                     <httpConnector>
                         <port>${portal.port}</port>
                     </httpConnector>
-                    <contextHandlers>
-                        <!-- Uncomment to include demo services -->
-                        <!--
-                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <war>${project.basedir}/target/demo-services.war</war>
-                            <contextPath>/demo-services</contextPath>
-                        </contextHandler>
-                        -->
-                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <contextPath>/launchpad</contextPath>
-                            <resourceBase>\${project.build.directory}/launchpad</resourceBase>
-                        </contextHandler>
-                    </contextHandlers>
                     <systemProperties>
                         <!--<systemProperty>
                             <name>PORTALSERVER_PROXY_URL</name>
@@ -860,6 +809,26 @@
                         <version>\${portal.mobile.version}</version>
                         <type>zip</type>
                     </dependency>
+                    <dependency>
+                        <groupId>com.backbase.launchpad</groupId>
+                        <artifactId>portalserver</artifactId>
+                        <version>\${launchpad.version}</version>
+                        <classifier>launchpad-bundle</classifier>
+                        <type>zip</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.backbase.launchpad</groupId>
+                        <artifactId>launchpad-widgets</artifactId>
+                        <version>\${launchpad.version}</version>
+                        <classifier>\${launchpad.edition}</classifier>
+                        <type>zip</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.backbase.launchpad</groupId>
+                        <artifactId>portalserver</artifactId>
+                        <version>\${launchpad.version}</version>
+                        <type>war</type>
+                    </dependency>
                 </dependencies>
             </dependencyManagement>
 
@@ -889,6 +858,33 @@
                                             <type>zip</type>
                                             <outputDirectory>\${work.dir}</outputDirectory>
                                         </artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.backbase.launchpad</groupId>
+                                            <artifactId>portalserver</artifactId>
+                                            <classifier>launchpad-bundle</classifier>
+                                            <type>zip</type>
+                                            <outputDirectory>\${work.dir}</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.backbase.launchpad</groupId>
+                                            <artifactId>launchpad-widgets</artifactId>
+                                            <classifier>\${launchpad.edition}</classifier>
+                                            <type>zip</type>
+                                            <outputDirectory>\${work.dir}/static/launchpad</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.backbase.launchpad</groupId>
+                                            <artifactId>portalserver</artifactId>
+                                            <type>war</type>
+                                            <outputDirectory>\${work.dir}</outputDirectory>
+                                            <includes>
+                                                **/WEB-INF/launchpad.tld,
+                                                **/WEB-INF/common/theme.jsp,
+                                                **/WEB-INF/classes/import/launchpad/**,
+                                                **/WEB-INF/classes/com/backbase/launchpad/**,
+                                                **/WEB-INF/classes/META-INF/spring/optional/backbase-launchpad-config.xml
+                                            </includes>
+                                        </artifactItem>
                                     </artifactItems>
                                 </configuration>
                             </execution>
@@ -907,7 +903,7 @@
                                         <!-- Copy Edition -->
                                         <echo>Copying edition import.</echo>
                                         <copy todir="\${project.build.outputDirectory}/import">
-                                            <fileset dir="src/main/resources/import/${launchpad.edition}">
+                                            <fileset dir="\${project.build.outputDirectory}/import/\${launchpad.edition}">
                                                 <include name="**"/>
                                             </fileset>
                                         </copy>

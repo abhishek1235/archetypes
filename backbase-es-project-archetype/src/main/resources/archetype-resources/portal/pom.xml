@@ -327,7 +327,7 @@
                         </contextHandler>
                         <!--Extra theme resources-->
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <resourceBase>\${statics.dir}/universal</resourceBase>
+                            <resourceBase>\${statics.dir}/themes/universal</resourceBase>
                             <contextPath>/portalserver/static/universal</contextPath>
                         </contextHandler>
                     </contextHandlers>
@@ -960,7 +960,7 @@
                                 </contextHandler>
                                 <!--Extra theme resources-->
                                 <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                                    <resourceBase>\${statics.dir}/universal</resourceBase>
+                                    <resourceBase>\${statics.dir}/themes/universal</resourceBase>
                                     <contextPath>/portalserver/static/universal</contextPath>
                                 </contextHandler>
                                 <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">

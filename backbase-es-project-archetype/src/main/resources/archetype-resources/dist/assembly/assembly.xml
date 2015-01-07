@@ -29,7 +29,7 @@
 
         <!-- Themes -->
         <file>
-            <source>\${statics.dir}/themes/launchpad-default/target/launchpad-default-theme.zip</source>
+            <source>\${statics.dir}/themes/target/themes.zip</source>
             <outputDirectory>/statics</outputDirectory>
         </file>
 

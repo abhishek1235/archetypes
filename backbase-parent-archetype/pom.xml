@@ -5,7 +5,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>backbase-parent-archetype</artifactId>
-    <version>5.5.1.0-SNAPSHOT</version>
+    <version>5.5.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Parent Archetype</name>
@@ -20,22 +20,21 @@
         <maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
         
         <!-- Backbase dependency versions -->
-        <portal.bom.version>5.5.1.0</portal.bom.version>
-        <portal.server.version>5.5.1.0</portal.server.version>
+        <portal.bom.version>5.5.1.1</portal.bom.version>
+        <portal.server.version>5.5.1.1</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
-        <portal.dashboard.version>5.5.1.0</portal.dashboard.version>
-        <portal.tools.version>5.5.1.0</portal.tools.version>
-        <portal.mobile.version>5.5.1.0</portal.mobile.version>
+        <portal.dashboard.version>5.5.1.1</portal.dashboard.version>
+        <portal.tools.version>5.5.1.1</portal.tools.version>
+        <portal.mobile.version>5.5.1.1</portal.mobile.version>
 
-        <mashupservices.version>5.5.1.0</mashupservices.version>
-        <contentservices.version>5.5.1.0</contentservices.version>
-        <orchestrator.version>5.5.1.0</orchestrator.version>
-        <targeting.version>5.5.1.0</targeting.version>
+        <mashupservices.version>5.5.1.1</mashupservices.version>
+        <contentservices.version>5.5.1.1</contentservices.version>
+        <orchestrator.version>5.5.1.1</orchestrator.version>
+        <targeting.version>5.5.1.1</targeting.version>
         <launchpad.version>0.11.1</launchpad.version>
-        <launchpad.edition>universal</launchpad.edition>
-        <launchpad.mashupservices.version>5.5.1.0.LP.0.10.1</launchpad.mashupservices.version>
+        <launchpad.mashupservices.version>5.5.1.0.LP.0.11.0</launchpad.mashupservices.version>
         <theme.name>default</theme.name>
-        <mobile.version>5.5.1.0</mobile.version>
+        <mobile.version>5.5.1.1</mobile.version>
 
         <forms.runtime.version>5.2.3</forms.runtime.version>
         <forms.sdk.version>5.2.3.1</forms.sdk.version>
@@ -112,7 +111,7 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>tag-archetypes-5.5.1.0</tag>
+        <tag>tag-archetypes-5.5.1.1</tag>
     </scm>
 
     <developers>

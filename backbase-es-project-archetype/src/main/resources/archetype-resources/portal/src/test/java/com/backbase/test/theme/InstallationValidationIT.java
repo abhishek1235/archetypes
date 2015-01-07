@@ -23,7 +23,7 @@ public class InstallationValidationIT {
     @Test
     public void basicValidation() throws IOException {
         // request url assuming default set up
-        String url = "http://localhost:${portal.port}/portalserver/static/themes/default/base.css";
+        String url = "http://localhost:${portal.port}/portalserver/static/themes/default/css/base.css";
 
         // set up the getMethod
         GetMethod get = new GetMethod(url);

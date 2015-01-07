@@ -3,6 +3,10 @@
                       xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
                       name="Backbase ES CXP project Archetype">
 
+    <requiredProperties>
+        <requiredProperty key="launchpad-edition"/>
+    </requiredProperties>
+
     <fileSets>
         <fileSet filtered="false" encoding="UTF-8">
             <directory></directory>
@@ -67,11 +71,14 @@
         <fileSet filtered="true" encoding="UTF-8">
             <directory>services</directory>
         </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>statics/themes/launchpad-default/src/main/webapp</directory>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>statics/themes</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>statics/themes/launchpad-example/src/main/webapp</directory>
+            <directory>statics/themes</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory>statics/bundles/samples/src/main/webapp/static/samples/js/vendor</directory>

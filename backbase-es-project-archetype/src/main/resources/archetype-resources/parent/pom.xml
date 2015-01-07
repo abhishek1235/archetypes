@@ -31,12 +31,13 @@
 		<portal.dashboard.version>${portal.dashboard.version}</portal.dashboard.version>
 		<portal.mobile.version>${portal.mobile.version}</portal.mobile.version>
 		
-		<!-- Special version to to LP -->
+		<!-- Special version to LP -->
 		<mashupservices.version>${mashupservices.version}</mashupservices.version>
 		<targeting.version>${targeting.version}</targeting.version>
 		<orchestrator.version>${orchestrator.version}</orchestrator.version>
 		<contentservices.version>${contentservices.version}</contentservices.version>
 		<launchpad.version>${launchpad.version}</launchpad.version>
+		<launchpad.edition>${launchpad.edition}</launchpad.edition>
 
 		<!-- Mosaic module versions -->
 		<mosaic.tools.version>${mosaic.tools.version}</mosaic.tools.version>

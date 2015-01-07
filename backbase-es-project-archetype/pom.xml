@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-        
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>backbase-parent-archetype</artifactId>
-        <version>5.5.1.0-SNAPSHOT</version>
+        <version>5.5.1.1-SNAPSHOT</version>
         <relativePath>../backbase-parent-archetype/pom.xml</relativePath>
     </parent>
 
@@ -18,9 +18,9 @@
     <url>https://github.com/Backbase/archetypes/backbase-es-project-archetype</url>
 
     <properties>
-        <theme.name>default</theme.name>
         <mashupservices.version>${launchpad.mashupservices.version}</mashupservices.version>
-    </properties>    
+        <launchpad.edition>${launchpad-edition}</launchpad.edition>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -103,7 +103,7 @@
         <dependency>
             <groupId>com.backbase.services.mashup</groupId>
             <artifactId>ptc-core</artifactId>
-            <version>${mashupservices.version}</version>
+            <version>${portal.server.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.launchpad</groupId>
@@ -256,6 +256,24 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>copy-launchpad-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.launchpad</groupId>
+                                    <artifactId>launchpad-theme</artifactId>
+                                    <type>war</type>
+                                    <excludes>static/**, build/**</excludes>
+                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/statics/themes</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>copy-portal-tools</id>
                         <phase>generate-resources</phase>
                         <goals>
@@ -292,56 +310,6 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>copy-static-launchpad-resources</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.backbase.launchpad</groupId>
-                                    <artifactId>launchpad-theme</artifactId>
-                                    <type>war</type>
-                                    <includes>docs-v1\**</includes>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/portal/src/main/webapp/</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.backbase.launchpad</groupId>
-                                    <artifactId>launchpad-theme</artifactId>
-                                    <type>war</type>
-                                    <includes>static\lib\**,static\support\**,static\themes\default\**</includes>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/statics/themes/launchpad-default/src/main/webapp</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.backbase.launchpad</groupId>
-                                    <artifactId>launchpad-theme</artifactId>
-                                    <type>war</type>
-                                    <includes>static\lib\**,static\support\**,static\themes\example\**</includes>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/statics/themes/launchpad-example/src/main/webapp</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>prepare-fix-static-launchpad-theme-resources</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.backbase.launchpad</groupId>
-                                    <artifactId>launchpad-theme</artifactId>
-                                    <type>war</type>
-                                    <includes>static\themes\default\launchpad.less</includes>
-                                    <outputDirectory>${project.build.outputDirectory}/archetype-resources/statics/themes/launchpad-example/src/main/webapp/static/themes/example</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -361,19 +329,6 @@
                                 <move file="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF/classes/ptc-ehcache-config.xml" todir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/" />
                                 <move file="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF/classes/ptc-ehcache-config-jgroups-example.xml" todir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/" />
                                 <delete dir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF" />
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>fix-static-launchpad-theme-resources</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target> 
-                                <move file="${project.build.outputDirectory}/archetype-resources/statics/themes/launchpad-example/src/main/webapp/static/themes/example/static/themes/default/launchpad.less" todir="${project.build.outputDirectory}/archetype-resources/statics/themes/launchpad-example/src/main/webapp/static/themes/example" />
-                                <delete dir="${project.build.outputDirectory}/archetype-resources/statics/themes/launchpad-example/src/main/webapp/static/themes/example/static" />
                             </target>
                         </configuration>
                     </execution>

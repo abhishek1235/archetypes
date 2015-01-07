@@ -1,1 +1,1 @@
-clean install -Dfull-build -Pinstall-less -Pcreate-database
+clean install -Dfull-build -Pcreate-database

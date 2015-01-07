@@ -12,7 +12,7 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>launchpad-theme</artifactId>
+    <artifactId>themes</artifactId>
     <packaging>pom</packaging>
 
     <name>Launchpad :: Bundles :: Theme</name>

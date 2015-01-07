@@ -25,7 +25,7 @@
         <!--<module>backbase-all-in-one-launchpad-archetype</module>-->
         <module>backbase-contentservices-archetype</module>
         <module>backbase-es-project-archetype</module>
-        <module>backbase-launchpad-archetype</module>
+        <!--<module>backbase-launchpad-archetype</module>-->
         <module>backbase-mashupservices-archetype</module>
         <module>backbase-orchestrator-archetype</module>
         <module>backbase-portalserver-archetype</module>

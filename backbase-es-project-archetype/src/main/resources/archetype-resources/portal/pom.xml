@@ -914,6 +914,15 @@
         <profile>
             <id>with-launchpad-demo-services</id>
 
+            <dependencies>
+                <dependency>
+                    <groupId>com.backbase.launchpad</groupId>
+                    <artifactId>launchpad-integration-services-bom</artifactId>
+                    <version>\${launchpad.version}</version>
+                    <type>pom</type>
+                </dependency>
+            </dependencies>
+
             <build>
                 <resources>
                     <resource>

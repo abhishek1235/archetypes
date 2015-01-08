@@ -1,1 +1,1 @@
-call mvn clean install -P install-less
+call mvn clean install

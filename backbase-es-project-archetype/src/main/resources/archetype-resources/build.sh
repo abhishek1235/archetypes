@@ -1,2 +1,2 @@
 #!/bin/sh
-mvn clean install -P install-less
+mvn clean install

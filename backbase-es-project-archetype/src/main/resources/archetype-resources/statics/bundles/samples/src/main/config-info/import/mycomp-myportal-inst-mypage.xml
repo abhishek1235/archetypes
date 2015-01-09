@@ -32,7 +32,7 @@
             <name>index</name>
             <contextItemName>myPortal</contextItemName>
             <parentItemName>myPortal</parentItemName>
-            <extendedItemName>master_myPortal_MasterPage</extendedItemName>
+            <extendedItemName>myPortal_MasterPage</extendedItemName>
             <properties>
                 <property name="title">
                     <value type="string">Home</value>

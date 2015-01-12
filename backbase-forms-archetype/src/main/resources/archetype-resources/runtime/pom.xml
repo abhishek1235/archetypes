@@ -7,6 +7,7 @@
         <groupId>\${groupId}</groupId>
         <artifactId>parent</artifactId>
         <version>\${version}</version>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>runtime</artifactId>
@@ -16,7 +17,7 @@
         <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
 
         <!-- Forms-home folder. Requires to be generated before you run this project-->
-        <forms.home>\${project.parent.basedir}/home/target/test-classes</forms.home>
+        <forms.home>\${project.basedir}/../home/target/forms-home/local</forms.home>
     </properties>
 
     <dependencies>
@@ -25,7 +26,7 @@
         <dependency>
             <groupId>com.backbase.forms</groupId>
             <artifactId>forms-runtime</artifactId>
-            <version>${forms.runtime.version}</version>
+            <version>\${forms.runtime.version}</version>
             <type>war</type>
         </dependency>
 
@@ -69,7 +70,7 @@
         <dependency>
             <groupId>\${groupId}</groupId>
             <artifactId>plugins</artifactId>
-            <version>${project.version}</version>
+            <version>\${project.version}</version>
         </dependency>
     </dependencies>
 

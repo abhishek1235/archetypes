@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0          http://maven.apache.org/xsd/maven-4.0.0.xsd">
-        
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>backbase-parent-archetype</artifactId>
-        <version>5.5.0.4-SNAPSHOT</version>
+        <version>5.5.1.1-SNAPSHOT</version>
         <relativePath>../backbase-parent-archetype/pom.xml</relativePath>
     </parent>
 
@@ -15,9 +15,83 @@
 
     <name>Backbase Forms Archetype</name>
     <description>A blank Maven archetype for the standard Backbase ES project setup of Backbase Forms.</description>
-    <url>https://github.com/Backbase/archetypes/backbase-forms-archetype</url>   
+    <url>https://github.com/Backbase/archetypes/backbase-forms-archetype</url>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>backbase-forms</groupId>
+                <artifactId>forms-release-package</artifactId>
+                <version>${forms.release.package.version}</version>
+                <type>zip</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-default-forms-home</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>backbase-forms</groupId>
+                                    <artifactId>forms-release-package</artifactId>
+                                    <version>${forms.release.package.version}</version>
+                                    <type>zip</type>
+                                    <includes>backbase-${forms.release.package.version}.zip</includes>
+                                    <outputDirectory>${project.build.outputDirectory}/forms-home</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-default-forms-home</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="Preparing default forms.home"/>
+                                <unzip
+                                        src="${project.build.outputDirectory}/forms-home/backbase-${forms.release.package.version}.zip"
+                                        dest="${project.build.outputDirectory}/forms-home">
+                                    <patternset>
+                                        <include name="**/Forms-Runtime-Server-${forms.release.package.version}.zip"/>
+                                    </patternset>
+                                    <mapper type="flatten"/>
+                                </unzip>
+                                <unzip
+                                        src="${project.build.outputDirectory}/forms-home/Forms-Runtime-Server-${forms.release.package.version}.zip"
+                                        dest="${project.build.outputDirectory}/forms-home">
+                                    <patternset>
+                                        <include name="**/forms.home/**"/>
+                                    </patternset>
+                                </unzip>
+                                <move todir="${project.build.outputDirectory}/archetype-resources/home/src/main/resources">
+                                    <fileset dir="${project.build.outputDirectory}/forms-home/forms.home"/>
+                                </move>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>

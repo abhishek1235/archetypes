@@ -1,0 +1,12 @@
+<mbean code="org.jboss.naming.JNDIBindingServiceMgr"
+       name="jboss.apps:name=forms-runtime">
+    <attribute name="BindingsConfig" serialDataType="jbxb">
+        <jndi:bindings xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+                       xmlns:jndi="urn:jboss:jndi-binding-service:1.0"
+                       xs:schemaLocation="urn:jboss:jndi-binding-service resource:jndi-binding-service_1_0.xsd">
+            <jndi:binding name="java:/aquima.home">
+                <jndi:value>\${forms.home}</jndi:value>
+            </jndi:binding>
+        </jndi:bindings>
+    </attribute>
+</mbean>

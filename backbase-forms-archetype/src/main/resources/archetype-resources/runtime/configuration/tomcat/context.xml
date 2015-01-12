@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context useHttpOnly="false">
+
+    <Environment name="aquima.home"
+            value="\${forms.home}"
+            type="java.lang.String"
+            override="false"/>
+
+</Context>

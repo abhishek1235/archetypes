@@ -13,10 +13,13 @@
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>home/documents</directory>
+            <directory>home/src/main/resources/documents</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>home/lib</directory>
+            <directory>home/src/main/resources/lib</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>home/src/main/resources/exports</directory>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>home</directory>
@@ -32,9 +35,6 @@
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>plugins</directory>
-        </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory>runtime/src/test/resources</directory>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory>runtime/src/main/resources</directory>

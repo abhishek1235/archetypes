@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<!-- 
+		About the aquima: prefix:
+		
+		Resources that use the aquima: protocol are looked up from the aquima.home folder.
+		If the resource is not found, the classpath is used.
+		
+		You can configure aquima.home in multiple ways, See SystemProperties. The easiest way is to
+		start the vm with the extra argument -Daquima.home=YOUR_FOLDER 
+	-->
+
+	<import resource="aquima:security-config.xml" />
+	
+	<context:annotation-config />
+	
+	<!-- Timer/Scheduler -->
+	<task:annotation-driven />
+	
+	<!-- From all jars on the classpath containing an aquima-plugin-context.xml, import it. -->
+	<import resource="classpath*:aquima-plugin-context.xml" />
+	
+	<!-- 
+	<bean id="sessionInfoProvider" class="com.aquima.web.framework.SessionInfoProvider" factory-method="getInstance" />	  
+	-->
+	<context:component-scan base-package="com.aquima.web.framework" />
+	
+	<context:component-scan base-package="com.aquima.server.config" />
+	<context:component-scan base-package="com.aquima.web.config" />	
+	<context:component-scan base-package="com.aquima.web.aaas" />	
+	<context:component-scan base-package="com.aquima.web.shortcut" />
+	<context:component-scan base-package="com.aquima.web.ui" />
+	<context:component-scan base-package="com.aquima.web.components" />
+	<context:component-scan base-package="com.aquima.web.controller" />
+	<context:component-scan base-package="com.aquima.web.api.controller" />	
+	
+	<util:properties id="aquimaProperties" location="aquima:aquima.properties" />
+	<util:properties id="languageFormats" location="aquima:language-formats.properties" />
+</beans>

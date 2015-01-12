@@ -7,6 +7,7 @@
         <groupId>\${groupId}</groupId>
         <artifactId>parent</artifactId>
         <version>\${version}</version>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>plugins</artifactId>

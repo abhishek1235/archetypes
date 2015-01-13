@@ -36,10 +36,11 @@
         <theme.name>default</theme.name>
         <mobile.version>5.5.1.1</mobile.version>
 
-        <forms.runtime.version>5.2.3</forms.runtime.version>
-        <forms.sdk.version>5.2.3.1</forms.sdk.version>
-        <forms.test.version>5.2.3</forms.test.version>
-        <forms.web.version>5.2.3.1</forms.web.version>
+        <forms.release.package.version>5.5.4</forms.release.package.version>
+        <forms.runtime.version>5.5.4</forms.runtime.version>
+        <forms.sdk.version>5.5.4</forms.sdk.version>
+        <forms.test.version>5.5.4</forms.test.version>
+        <forms.web.version>5.5.4</forms.web.version>
 
         <!-- Mosaic dependency versions -->
         <mosaic.tools.version>1.1</mosaic.tools.version>

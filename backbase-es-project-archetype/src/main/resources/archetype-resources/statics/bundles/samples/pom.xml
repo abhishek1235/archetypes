@@ -12,7 +12,7 @@
     <artifactId>samples</artifactId>
     <packaging>pom</packaging>
 
-    <name>Backbase Sample Bundle</name>
+    <name>Statics :: Bundles :: Sample</name>
     <description>Backbase Sample Bundle with some examples.</description>
 
     <properties>

@@ -267,7 +267,7 @@
                                     <groupId>com.backbase.launchpad</groupId>
                                     <artifactId>launchpad-theme</artifactId>
                                     <type>war</type>
-                                    <excludes>static/**, build/**</excludes>
+                                    <excludes>static/**, build/**, node/**, META-INF/**</excludes>
                                     <outputDirectory>${project.build.outputDirectory}/archetype-resources/statics/themes</outputDirectory>
                                 </artifactItem>
                             </artifactItems>

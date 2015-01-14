@@ -14,7 +14,7 @@
 
     <artifactId>sample-service-module</artifactId>
 
-    <name>Sample Services</name>
+    <name>Services :: Sample</name>
     <description>Sample Apache Camel services.</description>
 
     <dependencies>

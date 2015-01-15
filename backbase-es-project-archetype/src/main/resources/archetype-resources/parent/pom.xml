@@ -324,7 +324,7 @@
 					<!--<preparationGoals>clean verify</preparationGoals>-->
 					<!-- During release:perform, enable the "release" profile -->
 					<!--<useReleaseProfile>false</useReleaseProfile> -->
-					<releaseProfiles>install-less,create-database</releaseProfiles>
+					<releaseProfiles>create-database</releaseProfiles>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<goals>deploy</goals>
 				</configuration>

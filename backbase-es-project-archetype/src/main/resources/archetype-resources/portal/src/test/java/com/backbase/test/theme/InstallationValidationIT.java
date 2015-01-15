@@ -1,16 +1,11 @@
 package com.backbase.test.theme;
 
-import java.io.IOException;
-
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.junit.Test;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.auth.AuthScope;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.codec.binary.Base64;
+import java.io.IOException;
 
-import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
 public class InstallationValidationIT {

@@ -10,6 +10,8 @@
               password="\${db.password}"
               maxWait="5000"
               driverClassName="\${db.jdbc.driver}"
+              validationQuery="select 1"
+              defaultTransactionIsolation="READ_COMMITTED"
               url="\${portal.config.jdbc.url}"/>
 
     <Resource name="jdbc/content-datasource"
@@ -21,6 +23,8 @@
               password="\${db.password}"
               maxWait="5000"
               driverClassName="\${db.jdbc.driver}"
+              validationQuery="select 1"
+              defaultTransactionIsolation="READ_COMMITTED"
               url="\${portal.content.jdbc.url}"/>
 
     <Resource name="jdbc/resource-datasource"
@@ -32,6 +36,8 @@
               password="\${db.password}"
               maxWait="5000"
               driverClassName="\${db.jdbc.driver}"
+              validationQuery="select 1"
+              defaultTransactionIsolation="READ_COMMITTED"
               url="\${portal.resource.jdbc.url}"/>
 
     <Environment name="backbase/config"

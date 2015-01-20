@@ -10,6 +10,8 @@
               password="\${db.password}"
               maxWait="5000"
               driverClassName="\${db.jdbc.driver}"
+              validationQuery="select 1"
+              defaultTransactionIsolation="READ_COMMITTED"
               url="\${portal.foundation.jdbc.url}"/>
 
     <Resource name="jdbc/auditDS"
@@ -21,6 +23,8 @@
               password="\${db.password}"
               maxWait="5000"
               driverClassName="\${db.jdbc.driver}"
+              validationQuery="select 1"
+              defaultTransactionIsolation="READ_COMMITTED"
               url="\${audit.jdbc.url}"/>
 
     <Environment name="backbase/config"

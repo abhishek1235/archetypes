@@ -9,7 +9,7 @@ LOG_PATH=$BASE_PATH
 
 # run paths.
 CONTENT_SERVICES_PATH="contentservices"
-PORTAL_SERVER_PATH="portalserver"
+PORTAL_SERVER_PATH="portal"
 ORCHESTRATOR_PATH="orchestrator"
 THEME_PATH="statics/themes"
 

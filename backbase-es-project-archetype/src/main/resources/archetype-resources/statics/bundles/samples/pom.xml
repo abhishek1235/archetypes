@@ -17,7 +17,7 @@
 
     <properties>
         <!-- Standard Maven properties -->
-        <work.dir>\${project.build.directory}/${project.build.finalName}</work.dir>
+        <work.dir>\${project.build.directory}/\${project.build.finalName}</work.dir>
     </properties>
 
     <build>

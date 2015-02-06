@@ -324,11 +324,11 @@
                         </goals>
                         <configuration>
                             <target> 
-                                <move file="${project.build.outputDirectory}/archetype-resources/configuration/src/main/resources/WEB-INF/classes/ptc-config.xml" todir="${project.build.outputDirectory}/archetype-resources/configuration/src/main/resources/" />
-                                <delete dir="${project.build.outputDirectory}/archetype-resources/configuration/src/main/resources/WEB-INF" />
-                                <move file="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF/classes/ptc-ehcache-config.xml" todir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/" />
-                                <move file="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF/classes/ptc-ehcache-config-jgroups-example.xml" todir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/" />
-                                <delete dir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF" />
+                                <move file="${project.build.outputDirectory}/archetype-resources/configuration/src/main/resources/WEB-INF/classes/ptc-config.xml" todir="${project.build.outputDirectory}/archetype-resources/configuration/src/main/resources/" failonerror="false" />
+                                <delete dir="${project.build.outputDirectory}/archetype-resources/configuration/src/main/resources/WEB-INF" failonerror="false" />
+                                <move file="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF/classes/ptc-ehcache-config.xml" todir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/" failonerror="false" />
+                                <move file="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF/classes/ptc-ehcache-config-jgroups-example.xml" todir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/" failonerror="false" />
+                                <delete dir="${project.build.outputDirectory}/archetype-resources/portal/src/main/resources/WEB-INF" failonerror="false" />
                             </target>
                         </configuration>
                     </execution>

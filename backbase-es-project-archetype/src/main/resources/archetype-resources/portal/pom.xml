@@ -914,11 +914,6 @@
         <profile>
             <id>with-launchpad-demo-services</id>
 
-            <!--Launchpad demo services add a PropertiesComponent to the Camel context and register backbase.properties as
-            the properties resolver. This conflicts with the PropertiesComponent registered by the sample services.
-            Make sure to remove the "properties" bean from the sample service configuration and migrate the values from
-            services.properties to backbase.properties if demo-services are to be used.-->
-
             <dependencies>
                 <dependency>
                     <groupId>com.backbase.launchpad</groupId>

@@ -77,10 +77,10 @@
                         <configuration>
                             <target>
                                 <copy todir="\${project.build.directory}/change-info">
-                                    <fileset dir="src/main/webapp/static/samples/widgets">
+                                    <fileset dir="src/main/webapp/static/samples/widgets" erroronmissingdir="false">
                                         <include name="**/*.xml" />
                                     </fileset>
-                                    <fileset dir="src/main/config-info">
+                                    <fileset dir="src/main/config-info" erroronmissingdir="false">
                                         <include name="**/*.xml" />
                                     </fileset>
                                     <flattenmapper />

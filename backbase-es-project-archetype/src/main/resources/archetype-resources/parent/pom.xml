@@ -454,6 +454,18 @@
 				<artifactId>groovy-all</artifactId>
 				<version>${groovy.version}</version>
 			</dependency>
+                        <dependency>
+                                <groupId>com.backbase.services.mashup</groupId>
+                                <artifactId>mashup-camel-service-deps</artifactId>
+                                <version>\${mashupservices.version}</version>
+                                <type>pom</type>
+                                <scope>import</scope>
+                       </dependency>
+                       <dependency>
+                               <groupId>com.backbase.services.mashup</groupId>
+                               <artifactId>mashup-camel-utils</artifactId>
+                               <version>\${mashupservices.version}</version>
+                       </dependency>
 			<!-- Testing -->
 			<dependency>
 				<groupId>org.springframework</groupId>

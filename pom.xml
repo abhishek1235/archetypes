@@ -66,14 +66,14 @@
             </activation>
             <distributionManagement>
                 <repository>
-                    <id>repo.backbase.com</id>
-                    <name>repo.backbase.com-releases</name>
-                    <url>https://repo.backbase.com/expert-release-local</url>
+                    <id>artifacts.backbase.com</id>
+                    <name>artifacts.backbase.com-releases</name>
+                    <url>https://artifacts.backbase.com/backbase-ps-releases</url>
                 </repository>
                 <snapshotRepository>
-                    <id>repo.backbase.com</id>
-                    <name>repo.backbase.com-snapshots</name>
-                    <url>https://repo.backbase.com/expert-release-local</url>
+                    <id>artifacts.backbase.com</id>
+                    <name>artifacts.backbase.com-snapshots</name>
+                    <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>

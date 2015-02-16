@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0          http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>backbase-parent-archetype</artifactId>
-        <version>5.5.1.1-SNAPSHOT</version>
+        <version>5.5.1.2-SNAPSHOT</version>
         <relativePath>../backbase-parent-archetype/pom.xml</relativePath>
     </parent>
 
@@ -68,24 +68,20 @@
                         </goals>
                         <configuration>
                             <target>
-                                <echo message="Preparing default forms.home"/>
-                                <unzip
-                                        src="${project.build.outputDirectory}/forms-home/backbase-${forms.release.package.version}.zip"
-                                        dest="${project.build.outputDirectory}/forms-home">
+                                <echo message="Preparing default forms.home" />
+                                <unzip src="${project.build.outputDirectory}/forms-home/backbase-${forms.release.package.version}.zip" dest="${project.build.outputDirectory}/forms-home">
                                     <patternset>
-                                        <include name="**/Forms-Runtime-Server-${forms.release.package.version}.zip"/>
+                                        <include name="**/Forms-Runtime-Server-${forms.release.package.version}.zip" />
                                     </patternset>
-                                    <mapper type="flatten"/>
+                                    <mapper type="flatten" />
                                 </unzip>
-                                <unzip
-                                        src="${project.build.outputDirectory}/forms-home/Forms-Runtime-Server-${forms.release.package.version}.zip"
-                                        dest="${project.build.outputDirectory}/forms-home">
+                                <unzip src="${project.build.outputDirectory}/forms-home/Forms-Runtime-Server-${forms.release.package.version}.zip" dest="${project.build.outputDirectory}/forms-home">
                                     <patternset>
-                                        <include name="**/forms.home/**"/>
+                                        <include name="**/forms.home/**" />
                                     </patternset>
                                 </unzip>
                                 <move todir="${project.build.outputDirectory}/archetype-resources/home/src/main/resources">
-                                    <fileset dir="${project.build.outputDirectory}/forms-home/forms.home"/>
+                                    <fileset dir="${project.build.outputDirectory}/forms-home/forms.home" />
                                 </move>
                             </target>
                         </configuration>

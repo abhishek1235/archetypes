@@ -15,7 +15,7 @@
     <scm>
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
-        <url>git@github.com:Backbase/archetypes.git</url>
+        <url>https://github.com/Backbase/archetypes</url>
         <tag>tag-archetypes-5.5.1.1</tag>
     </scm>
 

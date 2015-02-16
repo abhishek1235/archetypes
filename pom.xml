@@ -5,7 +5,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes-aggregator</artifactId>
-    <version>5.5.1.2-SNAPSHOT</version>
+    <version>5.5.1.1</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>
@@ -66,14 +66,14 @@
             </activation>
             <distributionManagement>
                 <repository>
-                    <id>artifacts.backbase.com</id>
-                    <name>artifacts.backbase.com-releases</name>
-                    <url>https://artifacts.backbase.com/backbase-ps-releases</url>
+                    <id>repo.backbase.com</id>
+                    <name>repo.backbase.com-releases</name>
+                    <url>https://repo.backbase.com/expert-release-local</url>
                 </repository>
                 <snapshotRepository>
-                    <id>artifacts.backbase.com</id>
-                    <name>artifacts.backbase.com-snapshots</name>
-                    <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
+                    <id>repo.backbase.com</id>
+                    <name>repo.backbase.com-snapshots</name>
+                    <url>https://repo.backbase.com/expert-release-local</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>

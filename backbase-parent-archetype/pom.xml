@@ -5,7 +5,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>backbase-parent-archetype</artifactId>
-    <version>5.5.1.1</version>
+    <version>5.5.1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Parent Archetype</name>

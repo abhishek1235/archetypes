@@ -16,7 +16,7 @@
 
 	<properties>
 		<!--Project name-->
-        <project>${artifactId}</project>
+        <project>\${artifactId}</project>
 
 		<!-- Standard Maven proeprties -->
 		<project.build.sourceEncoding>${project.build.sourceEncoding}</project.build.sourceEncoding>

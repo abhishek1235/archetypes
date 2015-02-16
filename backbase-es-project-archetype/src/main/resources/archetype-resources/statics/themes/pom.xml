@@ -62,7 +62,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>npm-flatten</id>
+                        <id>npm flatten</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>npm</goal>

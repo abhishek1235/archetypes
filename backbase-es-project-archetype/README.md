@@ -1,6 +1,6 @@
 # Archetype backbase-es-project-archetype
 
-Version **5.5.1.0**
+Version **5.5.1.1**
 
 ##Overview
 A blank Maven archetype for the standard enterprise project setup with full suite of Backbase CXP components.
@@ -17,7 +17,7 @@ Content Services are pre-configured and ready to use from within Portal Manager.
 
 Publishing is pre-configured for self-publishing. Refer to our reference documentation for more information on [Configure Publishing](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#N632EA) how to configure publishing by modifying the orchestrator configuration file which is located inside the configuration folder.
 
-Launchpad Foundation is pre-configured and ready to be customized. Launchpad Foundation consists of Launchpad Theme, Launchpad Templates, Launchpad Foundation Containers and Launchpad Foundation Widgets.
+Launchpad (_universal_ or _banking_ edition Launchpad Foundation consists of themes, templates, containers and widgets) are pre-configured and ready to be customized. Launchpad demo services are also available.
 
 ##Usage
 Follow the steps below to get started with this archetype. Some of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo). You should get familiar with these topics before you start using this archetype.
@@ -27,8 +27,9 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-es-project-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.5.1.0
+        -DarchetypeVersion=5.5.1.1
     </pre>
+    For **launchapd edition** type **_universal_ or _banking_**. Universal edition contains the commons items used in all Launchap projects, while the banking edition also contains banking specific components.
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
 2. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  
 3. Use the following command from the root project folder to prepare the project for running:
@@ -43,6 +44,11 @@ Or, if you want to run Portal on Tomcat 7 run the following Maven command within
     <pre>
     $ mvn tomcat7:run
     </pre>
+To enable Launchpad demo services, run with -Pwith-launchpad-demo-services, e.g.
+    <pre>
+    $ mvn jetty:run -Pwith-launchpad-demo-services
+    </pre>
+In this case, it is necessary to adjust backbase-portal-business-security.xml according to the official Launchap installation instructions.
 Optionally run following command from the root project folder to delete and re-create databases when required:
     <pre>
     $ mvn clean -Dfull-build -P clean-database

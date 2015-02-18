@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
     <name>Services</name>
-    <description>An aggegator module for all Apache Camel modules.</description>
+    <description>An aggregator module for all Apache Camel modules.</description>
 
     <modules>
         <module>sample-service-module</module>

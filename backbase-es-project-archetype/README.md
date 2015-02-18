@@ -29,7 +29,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
         -DarchetypeGroupId=com.backbase.expert.tools
         -DarchetypeVersion=5.5.1.1
     </pre>
-    For **launchapd edition** type **_universal_ or _banking_**. Universal edition contains the commons items used in all Launchap projects, while the banking edition also contains banking specific components.
+    For **launchpad edition** type **_universal_ or _banking_**. Universal edition contains the commons items used in all Launchap projects, while the banking edition also contains banking specific components.
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  
 2. Optionally adjust JMV properties, differently configure the logback, or make some changes to main configuration file (backbase.properties). For any of these steps refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) or [Install Portal Foundation](https://my.backbase.com/resources/documentation/portal/inst_tcat.html#inst_tcat_pofo).  
 3. Use the following command from the root project folder to prepare the project for running:

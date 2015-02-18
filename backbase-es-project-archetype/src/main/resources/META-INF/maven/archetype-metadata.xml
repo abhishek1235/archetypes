@@ -83,8 +83,19 @@
         <fileSet filtered="false" encoding="UTF-8">
             <directory>statics/bundles/samples/src/main/webapp/static/samples/js/vendor</directory>
         </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>statics</directory>
+            <includes>
+                <include>**/*.png</include>
+                <include>**/*.ico</include>
+            </includes>
+        </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>statics</directory>
+            <excludes>
+                <exclude>**/*.png</exclude>
+                <exclude>**/*.ico</exclude>
+            </excludes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>dist</directory>

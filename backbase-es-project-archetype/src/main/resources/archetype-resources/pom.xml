@@ -16,7 +16,7 @@
 
 	<properties>
 		<!--Project name-->
-        <project>TODO</project>
+        <project>\${artifactId}</project>
     </properties>
         
 	<distributionManagement>

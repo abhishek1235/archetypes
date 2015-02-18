@@ -1,6 +1,6 @@
 #Archetypes
 
-Version **5.5.1.0**
+Version **5.5.1.1**
 
 ##Overview
 A collection of Maven archetypes for Backbase CXP created by Expert Services that can help help with initial project setup and various project customizations.

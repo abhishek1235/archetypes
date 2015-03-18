@@ -31,7 +31,7 @@
         <contentservices.version>5.5.1.1</contentservices.version>
         <orchestrator.version>5.5.1.1</orchestrator.version>
         <targeting.version>5.5.1.1</targeting.version>
-        <launchpad.version>0.11.4</launchpad.version>
+        <launchpad.version>0.11.5</launchpad.version>
         <launchpad.mashupservices.version>5.5.1.0.LP.0.11.0</launchpad.mashupservices.version>
         <theme.name>default</theme.name>
         <mobile.version>5.5.1.1</mobile.version>

@@ -16,10 +16,6 @@
 
     <name>Statics :: Themes</name>
 
-    <properties>
-        <launchpad.edition>\${launchpad.edition}</launchpad.edition>
-    </properties>
-
     <build>
         <finalName>themes</finalName>
         <pluginManagement>

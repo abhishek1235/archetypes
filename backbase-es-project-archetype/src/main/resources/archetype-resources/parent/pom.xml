@@ -38,6 +38,7 @@
 		<contentservices.version>${contentservices.version}</contentservices.version>
 		<launchpad.version>${launchpad.version}</launchpad.version>
 		<launchpad.edition>${launchpad.edition}</launchpad.edition>
+		<launchpad.mashupservices.version>${launchpad.mashupservices.version}</launchpad.mashupservices.version>
 
 		<!-- Mosaic module versions -->
 		<mosaic.tools.version>${mosaic.tools.version}</mosaic.tools.version>
@@ -457,14 +458,14 @@
                         <dependency>
                                 <groupId>com.backbase.services.mashup</groupId>
                                 <artifactId>mashup-camel-service-deps</artifactId>
-                                <version>\${mashupservices.version}</version>
+                                <version>\${launchpad.mashupservices.version}</version>
                                 <type>pom</type>
                                 <scope>import</scope>
                        </dependency>
                        <dependency>
                                <groupId>com.backbase.services.mashup</groupId>
                                <artifactId>mashup-camel-utils</artifactId>
-                               <version>\${mashupservices.version}</version>
+                               <version>\${launchpad.mashupservices.version}</version>
                        </dependency>
 			<!-- Testing -->
 			<dependency>

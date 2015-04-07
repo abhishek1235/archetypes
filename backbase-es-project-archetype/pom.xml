@@ -18,7 +18,6 @@
     <url>https://github.com/Backbase/archetypes/backbase-es-project-archetype</url>
 
     <properties>
-        <mashupservices.version>${launchpad.mashupservices.version}</mashupservices.version>
         <launchpad.edition>${launchpad-edition}</launchpad.edition>
     </properties>
 
@@ -103,7 +102,7 @@
         <dependency>
             <groupId>com.backbase.services.mashup</groupId>
             <artifactId>ptc-core</artifactId>
-            <version>${portal.server.version}</version>
+            <version>${mashupservices.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.launchpad</groupId>

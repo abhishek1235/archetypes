@@ -21,9 +21,9 @@
         
         <!-- Backbase dependency versions -->
         <portal.bom.version>5.5.1.1</portal.bom.version>
-        <portal.server.version>5.5.1.1</portal.server.version>
+        <portal.server.version>5.5.1.2</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
-        <portal.dashboard.version>5.5.1.1</portal.dashboard.version>
+        <portal.dashboard.version>5.5.1.2</portal.dashboard.version>
         <portal.tools.version>5.5.1.1</portal.tools.version>
         <portal.mobile.version>5.5.1.1</portal.mobile.version>
 
@@ -31,10 +31,9 @@
         <contentservices.version>5.5.1.1</contentservices.version>
         <orchestrator.version>5.5.1.1</orchestrator.version>
         <targeting.version>5.5.1.1</targeting.version>
-        <launchpad.version>0.11.5</launchpad.version>
+        <launchpad.version>0.11.6</launchpad.version>
         <launchpad.mashupservices.version>5.5.1.0.LP.0.11.0</launchpad.mashupservices.version>
         <theme.name>default</theme.name>
-        <mobile.version>5.5.1.1</mobile.version>
 
         <forms.release.package.version>5.5.4</forms.release.package.version>
         <forms.runtime.version>5.5.4</forms.runtime.version>
@@ -112,7 +111,7 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>tag-archetypes-5.5.1.1</tag>
+        <tag>tag-archetypes-5.5.1.2</tag>
     </scm>
 
     <developers>

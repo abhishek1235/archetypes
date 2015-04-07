@@ -102,17 +102,17 @@
         <dependency>
             <groupId>com.backbase.services.mashup</groupId>
             <artifactId>ptc-core</artifactId>
-            <version>\${portal.server.version}</version>
+            <version>\${mashupservices.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.services.mashup</groupId>
             <artifactId>backbase.com.2011.ice</artifactId>
-            <version>\${portal.server.version}</version>
+            <version>\${mashupservices.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.services.mashup</groupId>
             <artifactId>backbase.com.2012.aurora</artifactId>
-            <version>\${portal.server.version}</version>
+            <version>\${mashupservices.version}</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.portal.frontend</groupId>

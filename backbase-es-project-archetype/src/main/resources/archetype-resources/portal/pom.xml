@@ -322,11 +322,13 @@
                     <!--Map themes for hot deployment of static resources, keeping paths the same as if themes were embedded-->
                     <contextHandlers>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <defaultsDescriptor>\${configuration.dir}/target/configuration/local/jetty/webdefaults.xml</defaultsDescriptor>
                             <resourceBase>\${statics.dir}/themes/themes</resourceBase>
                             <contextPath>/portalserver/static/themes</contextPath>
                         </contextHandler>
                         <!--Extra theme resources-->
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                            <defaultsDescriptor>\${configuration.dir}/target/configuration/local/jetty/webdefaults.xml</defaultsDescriptor>
                             <resourceBase>\${statics.dir}/themes/universal</resourceBase>
                             <contextPath>/portalserver/static/universal</contextPath>
                         </contextHandler>

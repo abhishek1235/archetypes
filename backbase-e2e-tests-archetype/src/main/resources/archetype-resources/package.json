@@ -1,10 +1,10 @@
 {
-  "name": "e2e tests",
+  "name": "\${artifactId}",
   "version": "0.0.1",
-  "description": "e2e tests",
+  "description": "\${artifactId} e2e tests",
   "repository": {
     "type": "git",
-    "url": "https://stash.backbase.com/scm/esald/project.git"
+    "url": "https://stash.backbase.com/scm/esald/\${artifactId}.git"
   },
   "main": "protractor.conf.js",
   "scripts": {

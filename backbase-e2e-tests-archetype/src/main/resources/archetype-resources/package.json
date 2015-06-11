@@ -1,7 +1,7 @@
 {
   "name": "e2e tests",
   "version": "0.0.1",
-  "description": "${artifactId} e2e tests",
+  "description": "e2e tests",
   "repository": {
     "type": "git",
     "url": "https://stash.backbase.com/scm/esald/project.git"

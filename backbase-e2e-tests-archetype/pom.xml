@@ -10,8 +10,19 @@
     </parent>
 
     <artifactId>backbase-e2e-tests-archetype</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
 
     <name>Backbase ES e2e tests archetype</name>
     <description>A simple e2e testing project using Protractor</description>
+
+    <build>
+        <!--Override parent settings that skip *.js files. Remove if e.g. this archetype becomes standalone.-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

@@ -1,16 +1,15 @@
 {
-  "name": "${artifactId}",
+  "name": "e2e tests",
   "version": "0.0.1",
   "description": "${artifactId} e2e tests",
   "repository": {
     "type": "git",
-    "url": "https://stash.backbase.com/scm/esald/${artifactId}.git"
+    "url": "https://stash.backbase.com/scm/esald/project.git"
   },
   "main": "protractor.conf.js",
   "scripts": {
     "test": "protractor protractor.conf.js"
   },
-  "author": "${user.name}",
   "devDependencies": {
     "protractor": "~1.8.0",
     "jasmine-reporters": "^2.0.0"

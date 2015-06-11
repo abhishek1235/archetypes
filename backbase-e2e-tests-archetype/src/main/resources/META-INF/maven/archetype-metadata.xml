@@ -19,19 +19,10 @@
   -->
 <archetype-descriptor name="Backbase ES e2e tests archetype">
 
-  <fileSets>
-    <fileSet filtered="false" packaged="false">
-      <directory></directory>
-      <includes>
-        <include>pom.xml</include>
-      </includes>
-    </fileSet>
-	<fileSet filtered="true" packaged="false">
-      <directory></directory>
-      <includes>
-        <include>**/**</include>
-      </includes>
-    </fileSet>
-  </fileSets>
+    <fileSets>
+        <fileSet filtered="true" packaged="false">
+            <directory></directory>
+        </fileSet>
+    </fileSets>
 
 </archetype-descriptor>

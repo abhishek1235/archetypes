@@ -32,6 +32,7 @@
         <!--<module>backbase-services-archetype</module>-->
         <!--<module>backbase-targeting-archetype</module>-->
         <module>backbase-forms-archetype</module>
+        <module>backbase-e2e-tests-archetype</module>
     </modules>
 
     <profiles>

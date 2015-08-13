@@ -19,7 +19,6 @@
 
     <properties>
         <theme.name>default</theme.name>
-        <mashupservices.version>${launchpad.mashupservices.version}</mashupservices.version>
         <contentservices.port>7777</contentservices.port>
         <contentservices.port.stop>9999</contentservices.port.stop>
         <orchestrator.port>7777</orchestrator.port>

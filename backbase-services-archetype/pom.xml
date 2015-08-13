@@ -16,12 +16,4 @@
     <name>Backbase Portal Services Archetype</name>
     <description>A blank Maven archetype for the Backbase Portal Services.</description>
     <url>https://github.com/Backbase/archetypes/backbase-services-archetype</url>
-
-    <properties>
-        <mashupservices.version>${launchpad.mashupservices.version}</mashupservices.version>
-    </properties> 
-
-    <build>
-        
-    </build>
 </project>

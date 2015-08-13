@@ -5,7 +5,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>backbase-parent-archetype</artifactId>
-    <version>5.5.1.2-SNAPSHOT</version>
+    <version>5.5.1.4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Parent Archetype</name>
@@ -20,19 +20,18 @@
         <maven.resources.includeEmptyDirs>true</maven.resources.includeEmptyDirs>
         
         <!-- Backbase dependency versions -->
-        <portal.bom.version>5.5.1.1</portal.bom.version>
-        <portal.server.version>5.5.1.2</portal.server.version>
+        <portal.bom.version>5.5.1.4</portal.bom.version>
+        <portal.server.version>5.5.1.4</portal.server.version>
         <portal.client.version>5.2.0.0</portal.client.version>
-        <portal.dashboard.version>5.5.1.2</portal.dashboard.version>
-        <portal.tools.version>5.5.1.1</portal.tools.version>
+        <portal.dashboard.version>5.5.1.4</portal.dashboard.version>
+        <portal.tools.version>5.5.1.4</portal.tools.version>
         <portal.mobile.version>5.5.1.1</portal.mobile.version>
 
-        <mashupservices.version>5.5.1.1</mashupservices.version>
-        <contentservices.version>5.5.1.1</contentservices.version>
-        <orchestrator.version>5.5.1.1</orchestrator.version>
-        <targeting.version>5.5.1.1</targeting.version>
-        <launchpad.version>0.11.8</launchpad.version>
-        <launchpad.mashupservices.version>5.5.1.0.LP.0.11.0</launchpad.mashupservices.version>
+        <mashupservices.version>5.5.1.4</mashupservices.version>
+        <contentservices.version>5.5.1.4</contentservices.version>
+        <orchestrator.version>5.5.1.4</orchestrator.version>
+        <targeting.version>5.5.1.4</targeting.version>
+        <launchpad.version>0.11.11</launchpad.version>
         <theme.name>default</theme.name>
 
         <forms.release.package.version>5.5.4</forms.release.package.version>
@@ -111,7 +110,7 @@
         <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
         <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>tag-archetypes-5.5.1.2</tag>
+        <tag>tag-archetypes-5.5.1.4</tag>
     </scm>
 
     <developers>
@@ -119,6 +118,11 @@
             <email>marko@backbase.com</email>
             <name>Marko Dragoljevic</name>
             <url>https://github.com/chipi</url>
+        </developer>
+        <developer>
+            <email>bojan@backbase.com</email>
+            <name>Bojan Tomic</name>
+            <url>https://github.com/kaqqao</url>
         </developer>
     </developers>
     

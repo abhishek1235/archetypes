@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.backbase.expert.tools</groupId>
         <artifactId>backbase-parent-archetype</artifactId>
-        <version>5.5.1.2-SNAPSHOT</version>
+        <version>5.5.1.4-SNAPSHOT</version>
         <relativePath>../backbase-parent-archetype/pom.xml</relativePath>
     </parent>
 
@@ -19,7 +19,6 @@
 
     <properties>
         <theme.name>default</theme.name>
-        <mashupservices.version>${launchpad.mashupservices.version}</mashupservices.version>
         <launchpad.edition>${launchpad-edition}</launchpad.edition>
         <c3p0.group>c3p0</c3p0.group>
         <c3p0.version>0.9.1.1</c3p0.version>

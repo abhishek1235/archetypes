@@ -5,7 +5,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>archetypes-aggregator</artifactId>
-    <version>5.5.1.4</version>
+    <version>5.5.1.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Backbase Expert Services Archetypes</name>

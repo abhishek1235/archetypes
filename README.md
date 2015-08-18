@@ -3,7 +3,7 @@
 ### Overview
 A collection of Maven archetypes for Backbase CXP created by Expert Services that can help help with initial project setup and various project customizations.
 
-Version **5.5.1.1**
+Version **5.5.1.4**
 
 Archetypes are deployed to Backbase Expert Services' Maven repository at
 
@@ -12,16 +12,17 @@ Archetypes are deployed to Backbase Expert Services' Maven repository at
 3. INTERNAL SNAPSHOTS               	**https://artifacts.backbase.com/backbase-ps-snapshots**
 
 ##List of currently available archetypes:
-1. **backbase-all-in-one-archetype**, from version **5.3.1.1**
-2. **backbase-all-in-one-launchpad-archetype**, from version **5.4.1.3**
-3. **backbase-contentservices-archetype**, from version **5.4.0.5**
+1. **backbase-all-in-one-archetype**, from version **5.3.1.1** **[DEPRECATED]**
+2. **backbase-all-in-one-launchpad-archetype**, from version **5.4.1.3** **[DEPRECATED]**
+3. **backbase-contentservices-archetype**, from version **5.4.0.5** **[DEPRECATED]**
 4. **backbase-es-project-archetype**, from version **5.5.0.0**
-5. **backbase-launchpad-archetype**, from version **5.5.0.0**
-6. **backbase-mashupservices-archetype**, from version **5.4.0.6**
-7. **backbase-orchestrator-archetype**, from version **5.4.2.2**
-8. **backbase-portalserver-archetype**, from version **5.4.1.3**
-9. **backbase-services-archetype**, from version **5.5.0.0**
-10. **backbase-targeting-archetype**, from version **5.4.2.2**
+5. **backbase-launchpad-archetype**, from version **5.5.0.0** **[DEPRECATED]**
+6. **backbase-mashupservices-archetype**, from version **5.4.0.6** **[DEPRECATED]**
+7. **backbase-orchestrator-archetype**, from version **5.4.2.2** **[DEPRECATED]**
+8. **backbase-portalserver-archetype**, from version **5.4.1.3** **[DEPRECATED]**
+9. **backbase-services-archetype**, from version **5.5.0.0** **[DEPRECATED]**
+10. **backbase-targeting-archetype**, from version **5.4.2.2** **[DEPRECATED]**
+11. **backbase-forms-archetype**, from version **5.5.1.0**
 
 ##Important Notes
 1. We have separated aggregator and parent POMs since 5.5.0.0 so make sure to understand this before making any changes to archetypes. Purpose of this was to separate lifecycle for each archetype if needed and to make sure Maven site plugin works correctly by aggregating reports from all modules.

@@ -27,7 +27,7 @@ Follow the steps below to get started with this archetype. Some of these steps r
     $ mvn archetype:generate
         -DarchetypeArtifactId=backbase-es-project-archetype
         -DarchetypeGroupId=com.backbase.expert.tools
-        -DarchetypeVersion=5.5.1.1
+        -DarchetypeVersion=5.5.1.4
     </pre>
     For **launchpad edition** type **_universal_ or _banking_**. Universal edition contains the commons items used in all Launchap projects, while the banking edition also contains banking specific components.
 Refer to [Development Setup](https://my.backbase.com/resources/documentation/portal/devd_mave.html) for more information.  

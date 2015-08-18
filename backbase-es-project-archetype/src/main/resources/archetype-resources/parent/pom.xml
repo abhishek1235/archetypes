@@ -42,6 +42,9 @@
 		<!-- Mosaic module versions -->
 		<mosaic.tools.version>${mosaic.tools.version}</mosaic.tools.version>
 
+		<!--Library versions-->
+        <camel.version>${camel.version}</camel.version>
+
 		<!-- Module folders -->
 		<configuration.dir>\${project.basedir}/../configuration</configuration.dir>
 		<portal.dir>\${project.basedir}/../portal</portal.dir>
@@ -109,6 +112,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.8</version>
 				<configuration>
 					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 				</configuration>
@@ -302,7 +306,7 @@
 				<plugin>
 					<groupId>org.apache.camel</groupId>
 					<artifactId>camel-maven-plugin</artifactId>
-					<version>2.10.0</version>
+					<version>\${camel.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -343,7 +347,7 @@
 			<dependency>
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-cxf</artifactId>
-				<version>2.10.0</version>
+				<version>\${camel.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>org.apache.camel</groupId>
@@ -354,12 +358,12 @@
 			<dependency>
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-jaxb</artifactId>
-				<version>2.10.0</version>
+				<version>\${camel.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-http</artifactId>
-				<version>2.10.0</version>
+				<version>\${camel.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.code.gson</groupId>

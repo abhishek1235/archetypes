@@ -43,7 +43,7 @@
             <dependency>
                 <groupId>com.backbase.portal</groupId>
                 <artifactId>portal-bom</artifactId>
-                <version>${portal.bom.version}</version>
+                <version>\${portal.bom.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -351,9 +351,9 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>c3p0</groupId>
+                        <groupId>com.mchange</groupId>
                         <artifactId>c3p0</artifactId>
-                        <version>0.9.1</version>
+                        <version>0.9.2.1</version>
                         <scope>runtime</scope>
                     </dependency>
                     <dependency>
@@ -531,22 +531,22 @@
                 <dependency>
                     <groupId>com.backbase.portal.targeting</groupId>
                     <artifactId>tracking</artifactId>
-                    <version>${targeting.version}</version>
+                    <version>\${targeting.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.camel</groupId>
                     <artifactId>camel-core</artifactId>
-                    <version>${camel.version}</version>
+                    <version>\${camel.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.camel</groupId>
                     <artifactId>camel-spring-javaconfig</artifactId>
-                    <version>${camel.version}</version>
+                    <version>\${camel.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.camel</groupId>
                     <artifactId>camel-spring</artifactId>
-                    <version>${camel.version}</version>
+                    <version>\${camel.version}</version>
                     <exclusions>
                         <exclusion>
                             <groupId>org.springframework</groupId>

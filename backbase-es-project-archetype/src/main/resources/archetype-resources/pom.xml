@@ -11,7 +11,7 @@
     <version>\${version}</version>
 	<packaging>pom</packaging>
 
-	<name>Aggregator</name>
+	<name>\${artifactId} :: Aggregator</name>
 	<description>A module that aggregates all other project modules.</description>
 
 	<properties>

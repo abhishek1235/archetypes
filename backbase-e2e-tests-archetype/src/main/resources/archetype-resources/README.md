@@ -1,7 +1,6 @@
 # Description
 
 This is a stand-alone module for running end-to-end (e2e) Protractor tests through Maven.
-The tests are executed on a remote machine and target Aldermore Dev environment.
 
 
 #Rationale
@@ -13,7 +12,11 @@ For that reason, this module is meant to be run in its own life-cycle, executing
 
 This is also in line with the way Launchpad tests are done.
 
-#Future improvements
+#Content
 
-It might be possible to run these tests inside the Portal build lifecycle on Jenkins in a headless browser (e.g. Phantom.js),
-and with actual browsers in an independent lifecycle, like it is done now. The type of testing could then be controlled using Maven profiles.
+In the selected folder, two additional subfolders will be generated: _e2e_ - containing smaple test and _Pages_ - containing sample page object.
+In the protractor configuration file, _protractor.conf.js_, basic test configuration is set - Selenium webdriver address, framework, browser and reports.
+
+#Test results reporting
+
+The reports will be generated in the _target_ folder, in HTML and JUnit XML format. Test results are organised per test suite and they contain screenshots.

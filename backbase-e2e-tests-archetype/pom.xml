@@ -2,27 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.backbase.expert.tools</groupId>
-        <artifactId>backbase-parent-archetype</artifactId>
-        <version>5.5.1.5-SNAPSHOT</version>
-        <relativePath>../backbase-parent-archetype/pom.xml</relativePath>
-    </parent>
-
+    <groupId>com.backbase.expert.tools</groupId>
     <artifactId>backbase-e2e-tests-archetype</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
 
     <name>Backbase ES e2e tests archetype</name>
     <description>A simple e2e testing project using Protractor</description>
 
     <build>
-        <!--Override parent settings that skip *.js files. Remove if e.g. this archetype becomes standalone.-->
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
+
 </project>

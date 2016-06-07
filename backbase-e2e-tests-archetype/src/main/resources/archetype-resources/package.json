@@ -1,17 +1,21 @@
 {
-  "name": "\${artifactId}",
+  "name": "${artifactId}",
   "version": "0.0.1",
-  "description": "\${artifactId} e2e tests",
+  "description": "${artifactId} e2e tests",
   "repository": {
     "type": "git",
-    "url": "https://stash.backbase.com/scm/esald/\${artifactId}.git"
+    "url": "https://stash.backbase.com/scm/esald/${artifactId}.git"
   },
+
   "main": "protractor.conf.js",
+
   "scripts": {
     "test": "protractor protractor.conf.js"
   },
+
   "devDependencies": {
-    "protractor": "~1.8.0",
-    "jasmine-reporters": "^2.0.0"
+    "protractor": "~3.3.0",
+    "jasmine-reporters": "^2.1.1",
+    "protractor-jasmine2-screenshot-reporter": "^0.2.0"
   }
 }

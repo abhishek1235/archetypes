@@ -2,8 +2,9 @@
 
 This archetype generates stand-alone test automation project using Protractor v3.3.0.
 
-**Current version: 2.1**
-Development version: 2.2-SNAPSHOT
+**Current version: 2.2**
+
+Development version: 2.3-SNAPSHOT
 
 Archetypes are deployed to Backbase Expert Services' Maven repository at
 

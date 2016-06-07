@@ -35,4 +35,49 @@
         </pluginManagement>
     </build>
 
+    <profiles>
+        <profile>
+            <id>backbase.com/repo</id>
+            <activation>
+                <!-- Activation by existance of a property. Run with -DdeployToRepo -->
+                <property>
+                    <name>deployToRepo</name>
+                </property>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>repo.backbase.com</id>
+                    <name>repo.backbase.com-releases</name>
+                    <url>https://repo.backbase.com/expert-release-local</url>
+                </repository>
+                <snapshotRepository>
+                    <id>repo.backbase.com</id>
+                    <name>repo.backbase.com-snapshots</name>
+                    <url>https://repo.backbase.com/expert-release-local</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>backbase.com/artifacts</id>
+            <activation>
+                <!-- Activation by absence of a property. Run normally, without -DdeployToRepo -->
+                <property>
+                    <name>!deployToRepo</name>
+                </property>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>artifacts.backbase.com</id>
+                    <name>artifacts.backbase.com-releases</name>
+                    <url>https://artifacts.backbase.com/backbase-ps-releases</url>
+                </repository>
+                <snapshotRepository>
+                    <id>artifacts.backbase.com</id>
+                    <name>artifacts.backbase.com-snapshots</name>
+                    <url>https://artifacts.backbase.com/backbase-ps-snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
 </project>

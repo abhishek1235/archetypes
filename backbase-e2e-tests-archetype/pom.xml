@@ -4,7 +4,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>backbase-e2e-tests-archetype</artifactId>
-    <version>2.3-SNAPSHOT</version>
+    <version>2.3</version>
     <packaging>maven-archetype</packaging>
 
     <name>Backbase ES e2e tests archetype</name>
@@ -14,7 +14,7 @@
         <connection>scm:git:https://github.com/Backbase/archetypes.git</connection>
         <developerConnection>scm:git:https://github.com/Backbase/archetypes.git</developerConnection>
         <url>https://github.com/Backbase/archetypes</url>
-        <tag>HEAD</tag>
+        <tag>backbase-e2e-tests-archetype-2.3</tag>
     </scm>
 
     <build>

@@ -36,7 +36,7 @@
 						<groupId>com.github.eirslett</groupId>
 						<artifactId>frontend-maven-plugin</artifactId>
 
-						<!-- Change to true use Maven proxies -->
+						<!-- Change to true to use Maven proxies -->
 						<configuration>
 							<npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
 						</configuration>

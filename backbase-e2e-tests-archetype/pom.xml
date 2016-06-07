@@ -11,11 +11,9 @@
     <description>A simple e2e testing project using Protractor</description>
 
     <scm>
-
-       <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
-       <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
-       <url>https://github.com/Backbase/archetypes</url>
-
+        <connection>scm:git:git@github.com:Backbase/archetypes.git</connection>
+        <developerConnection>scm:git:git@github.com:Backbase/archetypes.git</developerConnection>
+        <url>https://github.com/Backbase/archetypes</url>
     </scm>
 
     <build>

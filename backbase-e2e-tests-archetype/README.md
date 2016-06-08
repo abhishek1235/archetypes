@@ -25,7 +25,7 @@ To build and install the archetype run
 To generate a project based on this archetype run
 
 <pre>
-	$ mvn archetype:generate -DarchetypeGroupId=com.backbase.expert.tools -DarchetypeArtifactId=backbase-e2e-tests-archetype -DarchetypeVersion=2.1
+	$ mvn archetype:generate -DarchetypeGroupId=com.backbase.expert.tools -DarchetypeArtifactId=backbase-e2e-tests-archetype -DarchetypeVersion=2.3
 </pre>
 
 #Licence 

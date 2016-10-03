@@ -12,7 +12,7 @@ exports.config = {
 	},
 
 	onPrepare: function() {
-		browser.getCapabilities().then(function(caps){
+		return browser.getCapabilities().then(function(caps){
 			var browserName = caps.get('browserName').toUpperCase();
 			var browserVersion = caps.get('version');
 			var prefix = browserName + '-' + browserVersion + '-';

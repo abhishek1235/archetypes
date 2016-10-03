@@ -14,8 +14,8 @@
   },
 
   "devDependencies": {
-    "protractor": "~3.3.0",
-    "jasmine-reporters": "^2.1.1",
-    "protractor-jasmine2-screenshot-reporter": "^0.2.0"
+    "protractor": "3.3.0",
+    "jasmine-reporters": "2.2.0",
+    "protractor-jasmine2-screenshot-reporter": "0.2.0"
   }
 }

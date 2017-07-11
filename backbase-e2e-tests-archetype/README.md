@@ -1,6 +1,6 @@
 #Archetype overview
 
-This archetype generates stand-alone test automation project using Protractor v3.3.0.
+This archetype generates stand-alone test automation project using Protractor v5.1.2.
 
 **Current version: 3.0**
 
@@ -25,7 +25,7 @@ To build and install the archetype run
 To generate a project based on this archetype run
 
 <pre>
-	$ mvn archetype:generate -DarchetypeGroupId=com.backbase.expert.tools -DarchetypeArtifactId=backbase-e2e-tests-archetype -DarchetypeVersion=2.4
+	$ mvn archetype:generate -DarchetypeGroupId=com.backbase.expert.tools -DarchetypeArtifactId=backbase-e2e-tests-archetype -DarchetypeVersion=3.0
 </pre>
 
 #Licence 

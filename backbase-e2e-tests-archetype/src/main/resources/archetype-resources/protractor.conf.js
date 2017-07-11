@@ -59,7 +59,7 @@ exports.config = {
                 browser.browserVersion = caps.get('version');
                 browser.prefix = browser.browserName + '-' + browser.browserVersion + '-';
                 browser.manage().timeouts().implicitlyWait(15000);
-                //Broser Type and ScreenType
+                //Browser Type and ScreenType
                 //browser.deviceType -> will be used if we need to define different behaviours between mobile and desktop
                 //browser.screenType -> will be used to print the size of screen or if it is mobile or not
                 browser.getProcessedConfig().then(function (config){

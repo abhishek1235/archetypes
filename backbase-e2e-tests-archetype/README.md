@@ -2,9 +2,9 @@
 
 This archetype generates stand-alone test automation project using Protractor v5.1.2.
 
-**Current version: 3.0**
+**Current version: 3.1**
 
-Development version: 3.1-SNAPSHOT
+Development version: 3.2-SNAPSHOT
 
 Archetypes are deployed to Backbase Expert Services' Maven repository at
 
@@ -25,7 +25,7 @@ To build and install the archetype run
 To generate a project based on this archetype run
 
 <pre>
-	$ mvn archetype:generate -DarchetypeGroupId=com.backbase.expert.tools -DarchetypeArtifactId=backbase-e2e-tests-archetype -DarchetypeVersion=3.0
+	$ mvn archetype:generate -DarchetypeGroupId=com.backbase.expert.tools -DarchetypeArtifactId=backbase-e2e-tests-archetype -DarchetypeVersion=3.2-SNAPSHOT
 </pre>
 
 #Licence 

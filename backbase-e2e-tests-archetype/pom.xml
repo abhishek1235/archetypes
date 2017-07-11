@@ -4,7 +4,7 @@
 
     <groupId>com.backbase.expert.tools</groupId>
     <artifactId>backbase-e2e-tests-archetype</artifactId>
-    <version>3.1-SNAPSHOT</version>
+    <version>3.2-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
 
     <name>Backbase ES e2e tests archetype</name>
